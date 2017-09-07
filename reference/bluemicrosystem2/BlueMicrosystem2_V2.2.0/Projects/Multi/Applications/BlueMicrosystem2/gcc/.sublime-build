@@ -1,0 +1,6 @@
+{
+  	"name":"Build Sensortile Application"
+  	"selector":"source.c",
+    "cmd": "make",
+  	"working_dir": "$project/Projects/Multi/Applications/BlueMicrosystem2/gcc"
+}

@@ -1,0 +1,4270 @@
+ARM GAS  /tmp/ccy45MUB.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"HWAdvanceFeatures.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	HWAdvanceFeaturesStatus
+  19              		.bss
+  20              		.align	2
+  21              		.type	HWAdvanceFeaturesStatus, %object
+  22              		.size	HWAdvanceFeaturesStatus, 4
+  23              	HWAdvanceFeaturesStatus:
+  24 0000 00000000 		.space	4
+  25              		.align	2
+  26              	DefaultAccODR:
+  27 0004 00000000 		.space	4
+  28              		.text
+  29              		.align	2
+  30              		.p2align 4,,15
+  31              		.global	InitHWFeatures
+  32              		.thumb
+  33              		.thumb_func
+  34              		.type	InitHWFeatures, %function
+  35              	InitHWFeatures:
+  36              	.LFB263:
+  37              		.file 1 "../../../../../Projects/Multi/Applications/BlueMicrosystem2/Src/HWAdvanceFeatures.c"
+  38              		.loc 1 59 0
+  39              		.cfi_startproc
+  40              		@ args = 0, pretend = 0, frame = 0
+  41              		@ frame_needed = 0, uses_anonymous_args = 0
+  42 0000 08B5     		push	{r3, lr}
+  43              		.cfi_def_cfa_offset 8
+  44              		.cfi_offset 3, -8
+  45              		.cfi_offset 14, -4
+  46              		.loc 1 61 0
+  47 0002 034B     		ldr	r3, .L2
+  48 0004 DB69     		ldr	r3, [r3, #28]
+  49 0006 1846     		mov	r0, r3
+  50 0008 0249     		ldr	r1, .L2+4
+  51 000a FFF7FEFF 		bl	BSP_ACCELERO_Get_ODR
+  52              		.loc 1 62 0
+  53 000e 08BD     		pop	{r3, pc}
+  54              	.L3:
+  55              		.align	2
+  56              	.L2:
+  57 0010 00000000 		.word	TargetBoardFeatures
+ARM GAS  /tmp/ccy45MUB.s 			page 2
+
+
+  58 0014 04000000 		.word	DefaultAccODR
+  59              		.cfi_endproc
+  60              	.LFE263:
+  61              		.size	InitHWFeatures, .-InitHWFeatures
+  62              		.align	2
+  63 0018 AFF30080 		.p2align 4,,15
+  63      AFF30080 
+  64              		.global	DisableHWFeatures
+  65              		.thumb
+  66              		.thumb_func
+  67              		.type	DisableHWFeatures, %function
+  68              	DisableHWFeatures:
+  69              	.LFB264:
+  70              		.loc 1 70 0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74 0020 08B5     		push	{r3, lr}
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 3, -8
+  77              		.cfi_offset 14, -4
+  78              		.loc 1 71 0
+  79 0022 1C4B     		ldr	r3, .L12
+  80 0024 1B68     		ldr	r3, [r3]
+  81 0026 03F00103 		and	r3, r3, #1
+  82 002a 002B     		cmp	r3, #0
+  83 002c 01D0     		beq	.L5
+  84              		.loc 1 72 0
+  85 002e FFF7FEFF 		bl	DisableHWPedometer
+  86              	.L5:
+  87              		.loc 1 75 0
+  88 0032 184B     		ldr	r3, .L12
+  89 0034 1B68     		ldr	r3, [r3]
+  90 0036 03F00203 		and	r3, r3, #2
+  91 003a 002B     		cmp	r3, #0
+  92 003c 01D0     		beq	.L6
+  93              		.loc 1 76 0
+  94 003e FFF7FEFF 		bl	DisableHWFreeFall
+  95              	.L6:
+  96              		.loc 1 79 0
+  97 0042 144B     		ldr	r3, .L12
+  98 0044 1B68     		ldr	r3, [r3]
+  99 0046 03F00403 		and	r3, r3, #4
+ 100 004a 002B     		cmp	r3, #0
+ 101 004c 01D0     		beq	.L7
+ 102              		.loc 1 80 0
+ 103 004e FFF7FEFF 		bl	DisableHWDoubleTap
+ 104              	.L7:
+ 105              		.loc 1 83 0
+ 106 0052 104B     		ldr	r3, .L12
+ 107 0054 1B68     		ldr	r3, [r3]
+ 108 0056 03F00803 		and	r3, r3, #8
+ 109 005a 002B     		cmp	r3, #0
+ 110 005c 01D0     		beq	.L8
+ 111              		.loc 1 84 0
+ 112 005e FFF7FEFF 		bl	DisableHWSingleTap
+ 113              	.L8:
+ARM GAS  /tmp/ccy45MUB.s 			page 3
+
+
+ 114              		.loc 1 87 0
+ 115 0062 0C4B     		ldr	r3, .L12
+ 116 0064 1B68     		ldr	r3, [r3]
+ 117 0066 03F01003 		and	r3, r3, #16
+ 118 006a 002B     		cmp	r3, #0
+ 119 006c 01D0     		beq	.L9
+ 120              		.loc 1 88 0
+ 121 006e FFF7FEFF 		bl	DisableHWWakeUp
+ 122              	.L9:
+ 123              		.loc 1 91 0
+ 124 0072 084B     		ldr	r3, .L12
+ 125 0074 1B68     		ldr	r3, [r3]
+ 126 0076 03F02003 		and	r3, r3, #32
+ 127 007a 002B     		cmp	r3, #0
+ 128 007c 01D0     		beq	.L10
+ 129              		.loc 1 92 0
+ 130 007e FFF7FEFF 		bl	DisableHWTilt
+ 131              	.L10:
+ 132              		.loc 1 95 0
+ 133 0082 044B     		ldr	r3, .L12
+ 134 0084 1B68     		ldr	r3, [r3]
+ 135 0086 03F04003 		and	r3, r3, #64
+ 136 008a 002B     		cmp	r3, #0
+ 137 008c 01D0     		beq	.L4
+ 138              		.loc 1 96 0
+ 139 008e FFF7FEFF 		bl	DisableHWOrientation6D
+ 140              	.L4:
+ 141              		.loc 1 98 0
+ 142 0092 08BD     		pop	{r3, pc}
+ 143              	.L13:
+ 144              		.align	2
+ 145              	.L12:
+ 146 0094 00000000 		.word	HWAdvanceFeaturesStatus
+ 147              		.cfi_endproc
+ 148              	.LFE264:
+ 149              		.size	DisableHWFeatures, .-DisableHWFeatures
+ 150              		.align	2
+ 151 0098 AFF30080 		.p2align 4,,15
+ 151      AFF30080 
+ 152              		.global	EnableHWOrientation6D
+ 153              		.thumb
+ 154              		.thumb_func
+ 155              		.type	EnableHWOrientation6D, %function
+ 156              	EnableHWOrientation6D:
+ 157              	.LFB265:
+ 158              		.loc 1 108 0
+ 159              		.cfi_startproc
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162 00a0 08B5     		push	{r3, lr}
+ 163              		.cfi_def_cfa_offset 8
+ 164              		.cfi_offset 3, -8
+ 165              		.cfi_offset 14, -4
+ 166              		.loc 1 109 0
+ 167 00a2 0A4B     		ldr	r3, .L16
+ 168 00a4 9B69     		ldr	r3, [r3, #24]
+ 169 00a6 002B     		cmp	r3, #0
+ARM GAS  /tmp/ccy45MUB.s 			page 4
+
+
+ 170 00a8 0FD0     		beq	.L14
+ 171              		.loc 1 111 0
+ 172 00aa FFF7FEFF 		bl	DisableHWFeatures
+ 173              		.loc 1 114 0
+ 174 00ae 074B     		ldr	r3, .L16
+ 175 00b0 DB69     		ldr	r3, [r3, #28]
+ 176 00b2 1846     		mov	r0, r3
+ 177 00b4 FFF7FEFF 		bl	BSP_ACCELERO_Enable_6D_Orientation_Ext
+ 178 00b8 0346     		mov	r3, r0
+ 179 00ba 012B     		cmp	r3, #1
+ 180 00bc 05D0     		beq	.L14
+ 181              		.loc 1 118 0
+ 182 00be 044B     		ldr	r3, .L16+4
+ 183 00c0 1B68     		ldr	r3, [r3]
+ 184 00c2 43F04002 		orr	r2, r3, #64
+ 185 00c6 024B     		ldr	r3, .L16+4
+ 186 00c8 1A60     		str	r2, [r3]
+ 187              	.L14:
+ 188              		.loc 1 121 0
+ 189 00ca 08BD     		pop	{r3, pc}
+ 190              	.L17:
+ 191              		.align	2
+ 192              	.L16:
+ 193 00cc 00000000 		.word	TargetBoardFeatures
+ 194 00d0 00000000 		.word	HWAdvanceFeaturesStatus
+ 195              		.cfi_endproc
+ 196              	.LFE265:
+ 197              		.size	EnableHWOrientation6D, .-EnableHWOrientation6D
+ 198              		.align	2
+ 199 00d4 AFF30080 		.p2align 4,,15
+ 199      AFF30080 
+ 199      AFF30080 
+ 200              		.global	DisableHWOrientation6D
+ 201              		.thumb
+ 202              		.thumb_func
+ 203              		.type	DisableHWOrientation6D, %function
+ 204              	DisableHWOrientation6D:
+ 205              	.LFB266:
+ 206              		.loc 1 129 0
+ 207              		.cfi_startproc
+ 208              		@ args = 0, pretend = 0, frame = 0
+ 209              		@ frame_needed = 0, uses_anonymous_args = 0
+ 210 00e0 08B5     		push	{r3, lr}
+ 211              		.cfi_def_cfa_offset 8
+ 212              		.cfi_offset 3, -8
+ 213              		.cfi_offset 14, -4
+ 214              		.loc 1 130 0
+ 215 00e2 0D4B     		ldr	r3, .L21
+ 216 00e4 9B69     		ldr	r3, [r3, #24]
+ 217 00e6 002B     		cmp	r3, #0
+ 218 00e8 15D0     		beq	.L18
+ 219              		.loc 1 132 0
+ 220 00ea 0B4B     		ldr	r3, .L21
+ 221 00ec DB69     		ldr	r3, [r3, #28]
+ 222 00ee 1846     		mov	r0, r3
+ 223 00f0 FFF7FEFF 		bl	BSP_ACCELERO_Disable_6D_Orientation_Ext
+ 224 00f4 0346     		mov	r3, r0
+ARM GAS  /tmp/ccy45MUB.s 			page 5
+
+
+ 225 00f6 012B     		cmp	r3, #1
+ 226 00f8 05D0     		beq	.L20
+ 227              		.loc 1 136 0
+ 228 00fa 084B     		ldr	r3, .L21+4
+ 229 00fc 1B68     		ldr	r3, [r3]
+ 230 00fe 23F04002 		bic	r2, r3, #64
+ 231 0102 064B     		ldr	r3, .L21+4
+ 232 0104 1A60     		str	r2, [r3]
+ 233              	.L20:
+ 234              		.loc 1 140 0
+ 235 0106 044B     		ldr	r3, .L21
+ 236 0108 DA69     		ldr	r2, [r3, #28]
+ 237 010a 054B     		ldr	r3, .L21+8
+ 238 010c 1B68     		ldr	r3, [r3]	@ float
+ 239 010e 1046     		mov	r0, r2
+ 240 0110 1946     		mov	r1, r3
+ 241 0112 FFF7FEFF 		bl	BSP_ACCELERO_Set_ODR_Value
+ 242              	.L18:
+ 243              		.loc 1 142 0
+ 244 0116 08BD     		pop	{r3, pc}
+ 245              	.L22:
+ 246              		.align	2
+ 247              	.L21:
+ 248 0118 00000000 		.word	TargetBoardFeatures
+ 249 011c 00000000 		.word	HWAdvanceFeaturesStatus
+ 250 0120 04000000 		.word	DefaultAccODR
+ 251              		.cfi_endproc
+ 252              	.LFE266:
+ 253              		.size	DisableHWOrientation6D, .-DisableHWOrientation6D
+ 254              		.align	2
+ 255 0124 AFF30080 		.p2align 4,,15
+ 255      AFF30080 
+ 255      AFF30080 
+ 256              		.global	GetHWOrientation6D
+ 257              		.thumb
+ 258              		.thumb_func
+ 259              		.type	GetHWOrientation6D, %function
+ 260              	GetHWOrientation6D:
+ 261              	.LFB267:
+ 262              		.loc 1 150 0
+ 263              		.cfi_startproc
+ 264              		@ args = 0, pretend = 0, frame = 8
+ 265              		@ frame_needed = 0, uses_anonymous_args = 0
+ 266 0130 00B5     		push	{lr}
+ 267              		.cfi_def_cfa_offset 4
+ 268              		.cfi_offset 14, -4
+ 269 0132 83B0     		sub	sp, sp, #12
+ 270              		.cfi_def_cfa_offset 16
+ 271              		.loc 1 151 0
+ 272 0134 0023     		movs	r3, #0
+ 273 0136 8DF80730 		strb	r3, [sp, #7]
+ 274              		.loc 1 153 0
+ 275 013a 794B     		ldr	r3, .L32
+ 276 013c 9B69     		ldr	r3, [r3, #24]
+ 277 013e 002B     		cmp	r3, #0
+ 278 0140 00F0E880 		beq	.L24
+ 279              	.LBB2:
+ARM GAS  /tmp/ccy45MUB.s 			page 6
+
+
+ 280              		.loc 1 154 0
+ 281 0144 0023     		movs	r3, #0
+ 282 0146 8DF80630 		strb	r3, [sp, #6]
+ 283              		.loc 1 155 0
+ 284 014a 0023     		movs	r3, #0
+ 285 014c 8DF80530 		strb	r3, [sp, #5]
+ 286              		.loc 1 156 0
+ 287 0150 0023     		movs	r3, #0
+ 288 0152 8DF80430 		strb	r3, [sp, #4]
+ 289              		.loc 1 157 0
+ 290 0156 0023     		movs	r3, #0
+ 291 0158 8DF80330 		strb	r3, [sp, #3]
+ 292              		.loc 1 158 0
+ 293 015c 0023     		movs	r3, #0
+ 294 015e 8DF80230 		strb	r3, [sp, #2]
+ 295              		.loc 1 159 0
+ 296 0162 0023     		movs	r3, #0
+ 297 0164 8DF80130 		strb	r3, [sp, #1]
+ 298              		.loc 1 161 0
+ 299 0168 6D4B     		ldr	r3, .L32
+ 300 016a DA69     		ldr	r2, [r3, #28]
+ 301 016c 0DF10603 		add	r3, sp, #6
+ 302 0170 1046     		mov	r0, r2
+ 303 0172 1946     		mov	r1, r3
+ 304 0174 FFF7FEFF 		bl	BSP_ACCELERO_Get_6D_Orientation_XL_Ext
+ 305              		.loc 1 165 0
+ 306 0178 694B     		ldr	r3, .L32
+ 307 017a DA69     		ldr	r2, [r3, #28]
+ 308 017c 0DF10503 		add	r3, sp, #5
+ 309 0180 1046     		mov	r0, r2
+ 310 0182 1946     		mov	r1, r3
+ 311 0184 FFF7FEFF 		bl	BSP_ACCELERO_Get_6D_Orientation_XH_Ext
+ 312              		.loc 1 169 0
+ 313 0188 654B     		ldr	r3, .L32
+ 314 018a DA69     		ldr	r2, [r3, #28]
+ 315 018c 01AB     		add	r3, sp, #4
+ 316 018e 1046     		mov	r0, r2
+ 317 0190 1946     		mov	r1, r3
+ 318 0192 FFF7FEFF 		bl	BSP_ACCELERO_Get_6D_Orientation_YL_Ext
+ 319              		.loc 1 173 0
+ 320 0196 624B     		ldr	r3, .L32
+ 321 0198 DA69     		ldr	r2, [r3, #28]
+ 322 019a 0DF10303 		add	r3, sp, #3
+ 323 019e 1046     		mov	r0, r2
+ 324 01a0 1946     		mov	r1, r3
+ 325 01a2 FFF7FEFF 		bl	BSP_ACCELERO_Get_6D_Orientation_YH_Ext
+ 326              		.loc 1 177 0
+ 327 01a6 5E4B     		ldr	r3, .L32
+ 328 01a8 DA69     		ldr	r2, [r3, #28]
+ 329 01aa 0DF10203 		add	r3, sp, #2
+ 330 01ae 1046     		mov	r0, r2
+ 331 01b0 1946     		mov	r1, r3
+ 332 01b2 FFF7FEFF 		bl	BSP_ACCELERO_Get_6D_Orientation_ZL_Ext
+ 333              		.loc 1 181 0
+ 334 01b6 5A4B     		ldr	r3, .L32
+ 335 01b8 DA69     		ldr	r2, [r3, #28]
+ 336 01ba 0DF10103 		add	r3, sp, #1
+ARM GAS  /tmp/ccy45MUB.s 			page 7
+
+
+ 337 01be 1046     		mov	r0, r2
+ 338 01c0 1946     		mov	r1, r3
+ 339 01c2 FFF7FEFF 		bl	BSP_ACCELERO_Get_6D_Orientation_ZH_Ext
+ 340              		.loc 1 185 0
+ 341 01c6 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 342 01ca 002B     		cmp	r3, #0
+ 343 01cc 17D1     		bne	.L25
+ 344              		.loc 1 185 0 is_stmt 0 discriminator 1
+ 345 01ce 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 346 01d2 002B     		cmp	r3, #0
+ 347 01d4 13D1     		bne	.L25
+ 348 01d6 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 349 01da 002B     		cmp	r3, #0
+ 350 01dc 0FD1     		bne	.L25
+ 351 01de 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 352 01e2 002B     		cmp	r3, #0
+ 353 01e4 0BD1     		bne	.L25
+ 354 01e6 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 355 01ea 012B     		cmp	r3, #1
+ 356 01ec 07D1     		bne	.L25
+ 357 01ee 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 358 01f2 002B     		cmp	r3, #0
+ 359 01f4 03D1     		bne	.L25
+ 360              		.loc 1 186 0 is_stmt 1
+ 361 01f6 0423     		movs	r3, #4
+ 362 01f8 8DF80730 		strb	r3, [sp, #7]
+ 363 01fc 8AE0     		b	.L24
+ 364              	.L25:
+ 365              		.loc 1 187 0
+ 366 01fe 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 367 0202 012B     		cmp	r3, #1
+ 368 0204 17D1     		bne	.L27
+ 369              		.loc 1 187 0 is_stmt 0 discriminator 1
+ 370 0206 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 371 020a 002B     		cmp	r3, #0
+ 372 020c 13D1     		bne	.L27
+ 373 020e 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 374 0212 002B     		cmp	r3, #0
+ 375 0214 0FD1     		bne	.L27
+ 376 0216 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 377 021a 002B     		cmp	r3, #0
+ 378 021c 0BD1     		bne	.L27
+ 379 021e 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 380 0222 002B     		cmp	r3, #0
+ 381 0224 07D1     		bne	.L27
+ 382 0226 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 383 022a 002B     		cmp	r3, #0
+ 384 022c 03D1     		bne	.L27
+ 385              		.loc 1 188 0 is_stmt 1
+ 386 022e 0123     		movs	r3, #1
+ 387 0230 8DF80730 		strb	r3, [sp, #7]
+ 388 0234 6EE0     		b	.L24
+ 389              	.L27:
+ 390              		.loc 1 189 0
+ 391 0236 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 392 023a 002B     		cmp	r3, #0
+ 393 023c 17D1     		bne	.L28
+ARM GAS  /tmp/ccy45MUB.s 			page 8
+
+
+ 394              		.loc 1 189 0 is_stmt 0 discriminator 1
+ 395 023e 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 396 0242 002B     		cmp	r3, #0
+ 397 0244 13D1     		bne	.L28
+ 398 0246 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 399 024a 002B     		cmp	r3, #0
+ 400 024c 0FD1     		bne	.L28
+ 401 024e 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 402 0252 012B     		cmp	r3, #1
+ 403 0254 0BD1     		bne	.L28
+ 404 0256 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 405 025a 002B     		cmp	r3, #0
+ 406 025c 07D1     		bne	.L28
+ 407 025e 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 408 0262 002B     		cmp	r3, #0
+ 409 0264 03D1     		bne	.L28
+ 410              		.loc 1 190 0 is_stmt 1
+ 411 0266 0323     		movs	r3, #3
+ 412 0268 8DF80730 		strb	r3, [sp, #7]
+ 413 026c 52E0     		b	.L24
+ 414              	.L28:
+ 415              		.loc 1 191 0
+ 416 026e 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 417 0272 002B     		cmp	r3, #0
+ 418 0274 17D1     		bne	.L29
+ 419              		.loc 1 191 0 is_stmt 0 discriminator 1
+ 420 0276 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 421 027a 012B     		cmp	r3, #1
+ 422 027c 13D1     		bne	.L29
+ 423 027e 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 424 0282 002B     		cmp	r3, #0
+ 425 0284 0FD1     		bne	.L29
+ 426 0286 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 427 028a 002B     		cmp	r3, #0
+ 428 028c 0BD1     		bne	.L29
+ 429 028e 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 430 0292 002B     		cmp	r3, #0
+ 431 0294 07D1     		bne	.L29
+ 432 0296 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 433 029a 002B     		cmp	r3, #0
+ 434 029c 03D1     		bne	.L29
+ 435              		.loc 1 192 0 is_stmt 1
+ 436 029e 0223     		movs	r3, #2
+ 437 02a0 8DF80730 		strb	r3, [sp, #7]
+ 438 02a4 36E0     		b	.L24
+ 439              	.L29:
+ 440              		.loc 1 193 0
+ 441 02a6 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 442 02aa 002B     		cmp	r3, #0
+ 443 02ac 17D1     		bne	.L30
+ 444              		.loc 1 193 0 is_stmt 0 discriminator 1
+ 445 02ae 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 446 02b2 002B     		cmp	r3, #0
+ 447 02b4 13D1     		bne	.L30
+ 448 02b6 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 449 02ba 002B     		cmp	r3, #0
+ 450 02bc 0FD1     		bne	.L30
+ARM GAS  /tmp/ccy45MUB.s 			page 9
+
+
+ 451 02be 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 452 02c2 002B     		cmp	r3, #0
+ 453 02c4 0BD1     		bne	.L30
+ 454 02c6 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 455 02ca 002B     		cmp	r3, #0
+ 456 02cc 07D1     		bne	.L30
+ 457 02ce 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 458 02d2 012B     		cmp	r3, #1
+ 459 02d4 03D1     		bne	.L30
+ 460              		.loc 1 194 0 is_stmt 1
+ 461 02d6 0523     		movs	r3, #5
+ 462 02d8 8DF80730 		strb	r3, [sp, #7]
+ 463 02dc 1AE0     		b	.L24
+ 464              	.L30:
+ 465              		.loc 1 195 0
+ 466 02de 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 467 02e2 002B     		cmp	r3, #0
+ 468 02e4 16D1     		bne	.L24
+ 469              		.loc 1 195 0 is_stmt 0 discriminator 1
+ 470 02e6 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 471 02ea 002B     		cmp	r3, #0
+ 472 02ec 12D1     		bne	.L24
+ 473 02ee 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 474 02f2 012B     		cmp	r3, #1
+ 475 02f4 0ED1     		bne	.L24
+ 476 02f6 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 477 02fa 002B     		cmp	r3, #0
+ 478 02fc 0AD1     		bne	.L24
+ 479 02fe 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
+ 480 0302 002B     		cmp	r3, #0
+ 481 0304 06D1     		bne	.L24
+ 482 0306 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
+ 483 030a 002B     		cmp	r3, #0
+ 484 030c 02D1     		bne	.L24
+ 485              		.loc 1 196 0 is_stmt 1
+ 486 030e 0623     		movs	r3, #6
+ 487 0310 8DF80730 		strb	r3, [sp, #7]
+ 488              	.L24:
+ 489              	.LBE2:
+ 490              		.loc 1 201 0
+ 491 0314 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 492              		.loc 1 202 0
+ 493 0318 1846     		mov	r0, r3
+ 494 031a 03B0     		add	sp, sp, #12
+ 495              		@ sp needed
+ 496 031c 5DF804FB 		ldr	pc, [sp], #4
+ 497              	.L33:
+ 498              		.align	2
+ 499              	.L32:
+ 500 0320 00000000 		.word	TargetBoardFeatures
+ 501              		.cfi_endproc
+ 502              	.LFE267:
+ 503              		.size	GetHWOrientation6D, .-GetHWOrientation6D
+ 504              		.align	2
+ 505 0324 AFF30080 		.p2align 4,,15
+ 505      AFF30080 
+ 505      AFF30080 
+ARM GAS  /tmp/ccy45MUB.s 			page 10
+
+
+ 506              		.global	EnableHWTilt
+ 507              		.thumb
+ 508              		.thumb_func
+ 509              		.type	EnableHWTilt, %function
+ 510              	EnableHWTilt:
+ 511              	.LFB268:
+ 512              		.loc 1 209 0
+ 513              		.cfi_startproc
+ 514              		@ args = 0, pretend = 0, frame = 0
+ 515              		@ frame_needed = 0, uses_anonymous_args = 0
+ 516 0330 08B5     		push	{r3, lr}
+ 517              		.cfi_def_cfa_offset 8
+ 518              		.cfi_offset 3, -8
+ 519              		.cfi_offset 14, -4
+ 520              		.loc 1 210 0
+ 521 0332 0A4B     		ldr	r3, .L36
+ 522 0334 9B69     		ldr	r3, [r3, #24]
+ 523 0336 002B     		cmp	r3, #0
+ 524 0338 0FD0     		beq	.L34
+ 525              		.loc 1 212 0
+ 526 033a FFF7FEFF 		bl	DisableHWFeatures
+ 527              		.loc 1 215 0
+ 528 033e 074B     		ldr	r3, .L36
+ 529 0340 DB69     		ldr	r3, [r3, #28]
+ 530 0342 1846     		mov	r0, r3
+ 531 0344 FFF7FEFF 		bl	BSP_ACCELERO_Enable_Tilt_Detection_Ext
+ 532 0348 0346     		mov	r3, r0
+ 533 034a 012B     		cmp	r3, #1
+ 534 034c 05D0     		beq	.L34
+ 535              		.loc 1 219 0
+ 536 034e 044B     		ldr	r3, .L36+4
+ 537 0350 1B68     		ldr	r3, [r3]
+ 538 0352 43F02002 		orr	r2, r3, #32
+ 539 0356 024B     		ldr	r3, .L36+4
+ 540 0358 1A60     		str	r2, [r3]
+ 541              	.L34:
+ 542              		.loc 1 222 0
+ 543 035a 08BD     		pop	{r3, pc}
+ 544              	.L37:
+ 545              		.align	2
+ 546              	.L36:
+ 547 035c 00000000 		.word	TargetBoardFeatures
+ 548 0360 00000000 		.word	HWAdvanceFeaturesStatus
+ 549              		.cfi_endproc
+ 550              	.LFE268:
+ 551              		.size	EnableHWTilt, .-EnableHWTilt
+ 552              		.align	2
+ 553 0364 AFF30080 		.p2align 4,,15
+ 553      AFF30080 
+ 553      AFF30080 
+ 554              		.global	DisableHWTilt
+ 555              		.thumb
+ 556              		.thumb_func
+ 557              		.type	DisableHWTilt, %function
+ 558              	DisableHWTilt:
+ 559              	.LFB269:
+ 560              		.loc 1 230 0
+ARM GAS  /tmp/ccy45MUB.s 			page 11
+
+
+ 561              		.cfi_startproc
+ 562              		@ args = 0, pretend = 0, frame = 0
+ 563              		@ frame_needed = 0, uses_anonymous_args = 0
+ 564 0370 08B5     		push	{r3, lr}
+ 565              		.cfi_def_cfa_offset 8
+ 566              		.cfi_offset 3, -8
+ 567              		.cfi_offset 14, -4
+ 568              		.loc 1 231 0
+ 569 0372 0D4B     		ldr	r3, .L41
+ 570 0374 9B69     		ldr	r3, [r3, #24]
+ 571 0376 002B     		cmp	r3, #0
+ 572 0378 15D0     		beq	.L38
+ 573              		.loc 1 233 0
+ 574 037a 0B4B     		ldr	r3, .L41
+ 575 037c DB69     		ldr	r3, [r3, #28]
+ 576 037e 1846     		mov	r0, r3
+ 577 0380 FFF7FEFF 		bl	BSP_ACCELERO_Disable_Tilt_Detection_Ext
+ 578 0384 0346     		mov	r3, r0
+ 579 0386 012B     		cmp	r3, #1
+ 580 0388 05D0     		beq	.L40
+ 581              		.loc 1 237 0
+ 582 038a 084B     		ldr	r3, .L41+4
+ 583 038c 1B68     		ldr	r3, [r3]
+ 584 038e 23F02002 		bic	r2, r3, #32
+ 585 0392 064B     		ldr	r3, .L41+4
+ 586 0394 1A60     		str	r2, [r3]
+ 587              	.L40:
+ 588              		.loc 1 241 0
+ 589 0396 044B     		ldr	r3, .L41
+ 590 0398 DA69     		ldr	r2, [r3, #28]
+ 591 039a 054B     		ldr	r3, .L41+8
+ 592 039c 1B68     		ldr	r3, [r3]	@ float
+ 593 039e 1046     		mov	r0, r2
+ 594 03a0 1946     		mov	r1, r3
+ 595 03a2 FFF7FEFF 		bl	BSP_ACCELERO_Set_ODR_Value
+ 596              	.L38:
+ 597              		.loc 1 243 0
+ 598 03a6 08BD     		pop	{r3, pc}
+ 599              	.L42:
+ 600              		.align	2
+ 601              	.L41:
+ 602 03a8 00000000 		.word	TargetBoardFeatures
+ 603 03ac 00000000 		.word	HWAdvanceFeaturesStatus
+ 604 03b0 04000000 		.word	DefaultAccODR
+ 605              		.cfi_endproc
+ 606              	.LFE269:
+ 607              		.size	DisableHWTilt, .-DisableHWTilt
+ 608              		.align	2
+ 609 03b4 AFF30080 		.p2align 4,,15
+ 609      AFF30080 
+ 609      AFF30080 
+ 610              		.global	EnableHWWakeUp
+ 611              		.thumb
+ 612              		.thumb_func
+ 613              		.type	EnableHWWakeUp, %function
+ 614              	EnableHWWakeUp:
+ 615              	.LFB270:
+ARM GAS  /tmp/ccy45MUB.s 			page 12
+
+
+ 616              		.loc 1 252 0
+ 617              		.cfi_startproc
+ 618              		@ args = 0, pretend = 0, frame = 0
+ 619              		@ frame_needed = 0, uses_anonymous_args = 0
+ 620 03c0 08B5     		push	{r3, lr}
+ 621              		.cfi_def_cfa_offset 8
+ 622              		.cfi_offset 3, -8
+ 623              		.cfi_offset 14, -4
+ 624              		.loc 1 253 0
+ 625 03c2 0A4B     		ldr	r3, .L45
+ 626 03c4 9B69     		ldr	r3, [r3, #24]
+ 627 03c6 002B     		cmp	r3, #0
+ 628 03c8 0FD0     		beq	.L43
+ 629              		.loc 1 255 0
+ 630 03ca FFF7FEFF 		bl	DisableHWFeatures
+ 631              		.loc 1 258 0
+ 632 03ce 074B     		ldr	r3, .L45
+ 633 03d0 DB69     		ldr	r3, [r3, #28]
+ 634 03d2 1846     		mov	r0, r3
+ 635 03d4 FFF7FEFF 		bl	BSP_ACCELERO_Enable_Wake_Up_Detection_Ext
+ 636 03d8 0346     		mov	r3, r0
+ 637 03da 012B     		cmp	r3, #1
+ 638 03dc 05D0     		beq	.L43
+ 639              		.loc 1 262 0
+ 640 03de 044B     		ldr	r3, .L45+4
+ 641 03e0 1B68     		ldr	r3, [r3]
+ 642 03e2 43F01002 		orr	r2, r3, #16
+ 643 03e6 024B     		ldr	r3, .L45+4
+ 644 03e8 1A60     		str	r2, [r3]
+ 645              	.L43:
+ 646              		.loc 1 265 0
+ 647 03ea 08BD     		pop	{r3, pc}
+ 648              	.L46:
+ 649              		.align	2
+ 650              	.L45:
+ 651 03ec 00000000 		.word	TargetBoardFeatures
+ 652 03f0 00000000 		.word	HWAdvanceFeaturesStatus
+ 653              		.cfi_endproc
+ 654              	.LFE270:
+ 655              		.size	EnableHWWakeUp, .-EnableHWWakeUp
+ 656              		.align	2
+ 657 03f4 AFF30080 		.p2align 4,,15
+ 657      AFF30080 
+ 657      AFF30080 
+ 658              		.global	DisableHWWakeUp
+ 659              		.thumb
+ 660              		.thumb_func
+ 661              		.type	DisableHWWakeUp, %function
+ 662              	DisableHWWakeUp:
+ 663              	.LFB271:
+ 664              		.loc 1 273 0
+ 665              		.cfi_startproc
+ 666              		@ args = 0, pretend = 0, frame = 0
+ 667              		@ frame_needed = 0, uses_anonymous_args = 0
+ 668 0400 08B5     		push	{r3, lr}
+ 669              		.cfi_def_cfa_offset 8
+ 670              		.cfi_offset 3, -8
+ARM GAS  /tmp/ccy45MUB.s 			page 13
+
+
+ 671              		.cfi_offset 14, -4
+ 672              		.loc 1 274 0
+ 673 0402 0D4B     		ldr	r3, .L50
+ 674 0404 9B69     		ldr	r3, [r3, #24]
+ 675 0406 002B     		cmp	r3, #0
+ 676 0408 15D0     		beq	.L47
+ 677              		.loc 1 276 0
+ 678 040a 0B4B     		ldr	r3, .L50
+ 679 040c DB69     		ldr	r3, [r3, #28]
+ 680 040e 1846     		mov	r0, r3
+ 681 0410 FFF7FEFF 		bl	BSP_ACCELERO_Disable_Wake_Up_Detection_Ext
+ 682 0414 0346     		mov	r3, r0
+ 683 0416 012B     		cmp	r3, #1
+ 684 0418 05D0     		beq	.L49
+ 685              		.loc 1 280 0
+ 686 041a 084B     		ldr	r3, .L50+4
+ 687 041c 1B68     		ldr	r3, [r3]
+ 688 041e 23F01002 		bic	r2, r3, #16
+ 689 0422 064B     		ldr	r3, .L50+4
+ 690 0424 1A60     		str	r2, [r3]
+ 691              	.L49:
+ 692              		.loc 1 284 0
+ 693 0426 044B     		ldr	r3, .L50
+ 694 0428 DA69     		ldr	r2, [r3, #28]
+ 695 042a 054B     		ldr	r3, .L50+8
+ 696 042c 1B68     		ldr	r3, [r3]	@ float
+ 697 042e 1046     		mov	r0, r2
+ 698 0430 1946     		mov	r1, r3
+ 699 0432 FFF7FEFF 		bl	BSP_ACCELERO_Set_ODR_Value
+ 700              	.L47:
+ 701              		.loc 1 286 0
+ 702 0436 08BD     		pop	{r3, pc}
+ 703              	.L51:
+ 704              		.align	2
+ 705              	.L50:
+ 706 0438 00000000 		.word	TargetBoardFeatures
+ 707 043c 00000000 		.word	HWAdvanceFeaturesStatus
+ 708 0440 04000000 		.word	DefaultAccODR
+ 709              		.cfi_endproc
+ 710              	.LFE271:
+ 711              		.size	DisableHWWakeUp, .-DisableHWWakeUp
+ 712              		.align	2
+ 713 0444 AFF30080 		.p2align 4,,15
+ 713      AFF30080 
+ 713      AFF30080 
+ 714              		.global	EnableHWFreeFall
+ 715              		.thumb
+ 716              		.thumb_func
+ 717              		.type	EnableHWFreeFall, %function
+ 718              	EnableHWFreeFall:
+ 719              	.LFB272:
+ 720              		.loc 1 294 0
+ 721              		.cfi_startproc
+ 722              		@ args = 0, pretend = 0, frame = 0
+ 723              		@ frame_needed = 0, uses_anonymous_args = 0
+ 724 0450 08B5     		push	{r3, lr}
+ 725              		.cfi_def_cfa_offset 8
+ARM GAS  /tmp/ccy45MUB.s 			page 14
+
+
+ 726              		.cfi_offset 3, -8
+ 727              		.cfi_offset 14, -4
+ 728              		.loc 1 295 0
+ 729 0452 0D4B     		ldr	r3, .L55
+ 730 0454 9B69     		ldr	r3, [r3, #24]
+ 731 0456 002B     		cmp	r3, #0
+ 732 0458 15D0     		beq	.L52
+ 733              		.loc 1 297 0
+ 734 045a FFF7FEFF 		bl	DisableHWFeatures
+ 735              		.loc 1 300 0
+ 736 045e 0A4B     		ldr	r3, .L55
+ 737 0460 DB69     		ldr	r3, [r3, #28]
+ 738 0462 1846     		mov	r0, r3
+ 739 0464 FFF7FEFF 		bl	BSP_ACCELERO_Enable_Free_Fall_Detection_Ext
+ 740 0468 0346     		mov	r3, r0
+ 741 046a 012B     		cmp	r3, #1
+ 742 046c 05D0     		beq	.L54
+ 743              		.loc 1 304 0
+ 744 046e 074B     		ldr	r3, .L55+4
+ 745 0470 1B68     		ldr	r3, [r3]
+ 746 0472 43F00202 		orr	r2, r3, #2
+ 747 0476 054B     		ldr	r3, .L55+4
+ 748 0478 1A60     		str	r2, [r3]
+ 749              	.L54:
+ 750              		.loc 1 314 0
+ 751 047a 034B     		ldr	r3, .L55
+ 752 047c DB69     		ldr	r3, [r3, #28]
+ 753 047e 1846     		mov	r0, r3
+ 754 0480 0121     		movs	r1, #1
+ 755 0482 FFF7FEFF 		bl	BSP_ACCELERO_Set_Free_Fall_Threshold_Ext
+ 756              	.L52:
+ 757              		.loc 1 319 0
+ 758 0486 08BD     		pop	{r3, pc}
+ 759              	.L56:
+ 760              		.align	2
+ 761              	.L55:
+ 762 0488 00000000 		.word	TargetBoardFeatures
+ 763 048c 00000000 		.word	HWAdvanceFeaturesStatus
+ 764              		.cfi_endproc
+ 765              	.LFE272:
+ 766              		.size	EnableHWFreeFall, .-EnableHWFreeFall
+ 767              		.align	2
+ 768              		.p2align 4,,15
+ 769              		.global	DisableHWFreeFall
+ 770              		.thumb
+ 771              		.thumb_func
+ 772              		.type	DisableHWFreeFall, %function
+ 773              	DisableHWFreeFall:
+ 774              	.LFB273:
+ 775              		.loc 1 327 0
+ 776              		.cfi_startproc
+ 777              		@ args = 0, pretend = 0, frame = 0
+ 778              		@ frame_needed = 0, uses_anonymous_args = 0
+ 779 0490 08B5     		push	{r3, lr}
+ 780              		.cfi_def_cfa_offset 8
+ 781              		.cfi_offset 3, -8
+ 782              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccy45MUB.s 			page 15
+
+
+ 783              		.loc 1 328 0
+ 784 0492 0D4B     		ldr	r3, .L60
+ 785 0494 9B69     		ldr	r3, [r3, #24]
+ 786 0496 002B     		cmp	r3, #0
+ 787 0498 15D0     		beq	.L57
+ 788              		.loc 1 330 0
+ 789 049a 0B4B     		ldr	r3, .L60
+ 790 049c DB69     		ldr	r3, [r3, #28]
+ 791 049e 1846     		mov	r0, r3
+ 792 04a0 FFF7FEFF 		bl	BSP_ACCELERO_Disable_Free_Fall_Detection_Ext
+ 793 04a4 0346     		mov	r3, r0
+ 794 04a6 012B     		cmp	r3, #1
+ 795 04a8 05D0     		beq	.L59
+ 796              		.loc 1 334 0
+ 797 04aa 084B     		ldr	r3, .L60+4
+ 798 04ac 1B68     		ldr	r3, [r3]
+ 799 04ae 23F00202 		bic	r2, r3, #2
+ 800 04b2 064B     		ldr	r3, .L60+4
+ 801 04b4 1A60     		str	r2, [r3]
+ 802              	.L59:
+ 803              		.loc 1 338 0
+ 804 04b6 044B     		ldr	r3, .L60
+ 805 04b8 DA69     		ldr	r2, [r3, #28]
+ 806 04ba 054B     		ldr	r3, .L60+8
+ 807 04bc 1B68     		ldr	r3, [r3]	@ float
+ 808 04be 1046     		mov	r0, r2
+ 809 04c0 1946     		mov	r1, r3
+ 810 04c2 FFF7FEFF 		bl	BSP_ACCELERO_Set_ODR_Value
+ 811              	.L57:
+ 812              		.loc 1 340 0
+ 813 04c6 08BD     		pop	{r3, pc}
+ 814              	.L61:
+ 815              		.align	2
+ 816              	.L60:
+ 817 04c8 00000000 		.word	TargetBoardFeatures
+ 818 04cc 00000000 		.word	HWAdvanceFeaturesStatus
+ 819 04d0 04000000 		.word	DefaultAccODR
+ 820              		.cfi_endproc
+ 821              	.LFE273:
+ 822              		.size	DisableHWFreeFall, .-DisableHWFreeFall
+ 823              		.align	2
+ 824 04d4 AFF30080 		.p2align 4,,15
+ 824      AFF30080 
+ 824      AFF30080 
+ 825              		.global	EnableHWDoubleTap
+ 826              		.thumb
+ 827              		.thumb_func
+ 828              		.type	EnableHWDoubleTap, %function
+ 829              	EnableHWDoubleTap:
+ 830              	.LFB274:
+ 831              		.loc 1 348 0
+ 832              		.cfi_startproc
+ 833              		@ args = 0, pretend = 0, frame = 0
+ 834              		@ frame_needed = 0, uses_anonymous_args = 0
+ 835 04e0 08B5     		push	{r3, lr}
+ 836              		.cfi_def_cfa_offset 8
+ 837              		.cfi_offset 3, -8
+ARM GAS  /tmp/ccy45MUB.s 			page 16
+
+
+ 838              		.cfi_offset 14, -4
+ 839              		.loc 1 349 0
+ 840 04e2 0D4B     		ldr	r3, .L65
+ 841 04e4 9B69     		ldr	r3, [r3, #24]
+ 842 04e6 002B     		cmp	r3, #0
+ 843 04e8 15D0     		beq	.L62
+ 844              		.loc 1 351 0
+ 845 04ea FFF7FEFF 		bl	DisableHWFeatures
+ 846              		.loc 1 354 0
+ 847 04ee 0A4B     		ldr	r3, .L65
+ 848 04f0 DB69     		ldr	r3, [r3, #28]
+ 849 04f2 1846     		mov	r0, r3
+ 850 04f4 FFF7FEFF 		bl	BSP_ACCELERO_Enable_Double_Tap_Detection_Ext
+ 851 04f8 0346     		mov	r3, r0
+ 852 04fa 012B     		cmp	r3, #1
+ 853 04fc 05D0     		beq	.L64
+ 854              		.loc 1 358 0
+ 855 04fe 074B     		ldr	r3, .L65+4
+ 856 0500 1B68     		ldr	r3, [r3]
+ 857 0502 43F00402 		orr	r2, r3, #4
+ 858 0506 054B     		ldr	r3, .L65+4
+ 859 0508 1A60     		str	r2, [r3]
+ 860              	.L64:
+ 861              		.loc 1 368 0
+ 862 050a 034B     		ldr	r3, .L65
+ 863 050c DB69     		ldr	r3, [r3, #28]
+ 864 050e 1846     		mov	r0, r3
+ 865 0510 1021     		movs	r1, #16
+ 866 0512 FFF7FEFF 		bl	BSP_ACCELERO_Set_Tap_Threshold_Ext
+ 867              	.L62:
+ 868              		.loc 1 373 0
+ 869 0516 08BD     		pop	{r3, pc}
+ 870              	.L66:
+ 871              		.align	2
+ 872              	.L65:
+ 873 0518 00000000 		.word	TargetBoardFeatures
+ 874 051c 00000000 		.word	HWAdvanceFeaturesStatus
+ 875              		.cfi_endproc
+ 876              	.LFE274:
+ 877              		.size	EnableHWDoubleTap, .-EnableHWDoubleTap
+ 878              		.align	2
+ 879              		.p2align 4,,15
+ 880              		.global	DisableHWDoubleTap
+ 881              		.thumb
+ 882              		.thumb_func
+ 883              		.type	DisableHWDoubleTap, %function
+ 884              	DisableHWDoubleTap:
+ 885              	.LFB275:
+ 886              		.loc 1 381 0
+ 887              		.cfi_startproc
+ 888              		@ args = 0, pretend = 0, frame = 0
+ 889              		@ frame_needed = 0, uses_anonymous_args = 0
+ 890 0520 08B5     		push	{r3, lr}
+ 891              		.cfi_def_cfa_offset 8
+ 892              		.cfi_offset 3, -8
+ 893              		.cfi_offset 14, -4
+ 894              		.loc 1 382 0
+ARM GAS  /tmp/ccy45MUB.s 			page 17
+
+
+ 895 0522 0D4B     		ldr	r3, .L70
+ 896 0524 9B69     		ldr	r3, [r3, #24]
+ 897 0526 002B     		cmp	r3, #0
+ 898 0528 15D0     		beq	.L67
+ 899              		.loc 1 384 0
+ 900 052a 0B4B     		ldr	r3, .L70
+ 901 052c DB69     		ldr	r3, [r3, #28]
+ 902 052e 1846     		mov	r0, r3
+ 903 0530 FFF7FEFF 		bl	BSP_ACCELERO_Disable_Double_Tap_Detection_Ext
+ 904 0534 0346     		mov	r3, r0
+ 905 0536 012B     		cmp	r3, #1
+ 906 0538 05D0     		beq	.L69
+ 907              		.loc 1 388 0
+ 908 053a 084B     		ldr	r3, .L70+4
+ 909 053c 1B68     		ldr	r3, [r3]
+ 910 053e 23F00402 		bic	r2, r3, #4
+ 911 0542 064B     		ldr	r3, .L70+4
+ 912 0544 1A60     		str	r2, [r3]
+ 913              	.L69:
+ 914              		.loc 1 392 0
+ 915 0546 044B     		ldr	r3, .L70
+ 916 0548 DA69     		ldr	r2, [r3, #28]
+ 917 054a 054B     		ldr	r3, .L70+8
+ 918 054c 1B68     		ldr	r3, [r3]	@ float
+ 919 054e 1046     		mov	r0, r2
+ 920 0550 1946     		mov	r1, r3
+ 921 0552 FFF7FEFF 		bl	BSP_ACCELERO_Set_ODR_Value
+ 922              	.L67:
+ 923              		.loc 1 394 0
+ 924 0556 08BD     		pop	{r3, pc}
+ 925              	.L71:
+ 926              		.align	2
+ 927              	.L70:
+ 928 0558 00000000 		.word	TargetBoardFeatures
+ 929 055c 00000000 		.word	HWAdvanceFeaturesStatus
+ 930 0560 04000000 		.word	DefaultAccODR
+ 931              		.cfi_endproc
+ 932              	.LFE275:
+ 933              		.size	DisableHWDoubleTap, .-DisableHWDoubleTap
+ 934              		.align	2
+ 935 0564 AFF30080 		.p2align 4,,15
+ 935      AFF30080 
+ 935      AFF30080 
+ 936              		.global	EnableHWSingleTap
+ 937              		.thumb
+ 938              		.thumb_func
+ 939              		.type	EnableHWSingleTap, %function
+ 940              	EnableHWSingleTap:
+ 941              	.LFB276:
+ 942              		.loc 1 402 0
+ 943              		.cfi_startproc
+ 944              		@ args = 0, pretend = 0, frame = 0
+ 945              		@ frame_needed = 0, uses_anonymous_args = 0
+ 946 0570 08B5     		push	{r3, lr}
+ 947              		.cfi_def_cfa_offset 8
+ 948              		.cfi_offset 3, -8
+ 949              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccy45MUB.s 			page 18
+
+
+ 950              		.loc 1 403 0
+ 951 0572 0A4B     		ldr	r3, .L74
+ 952 0574 9B69     		ldr	r3, [r3, #24]
+ 953 0576 002B     		cmp	r3, #0
+ 954 0578 0FD0     		beq	.L72
+ 955              		.loc 1 405 0
+ 956 057a FFF7FEFF 		bl	DisableHWFeatures
+ 957              		.loc 1 408 0
+ 958 057e 074B     		ldr	r3, .L74
+ 959 0580 DB69     		ldr	r3, [r3, #28]
+ 960 0582 1846     		mov	r0, r3
+ 961 0584 FFF7FEFF 		bl	BSP_ACCELERO_Enable_Single_Tap_Detection_Ext
+ 962 0588 0346     		mov	r3, r0
+ 963 058a 012B     		cmp	r3, #1
+ 964 058c 05D0     		beq	.L72
+ 965              		.loc 1 412 0
+ 966 058e 044B     		ldr	r3, .L74+4
+ 967 0590 1B68     		ldr	r3, [r3]
+ 968 0592 43F00802 		orr	r2, r3, #8
+ 969 0596 024B     		ldr	r3, .L74+4
+ 970 0598 1A60     		str	r2, [r3]
+ 971              	.L72:
+ 972              		.loc 1 415 0
+ 973 059a 08BD     		pop	{r3, pc}
+ 974              	.L75:
+ 975              		.align	2
+ 976              	.L74:
+ 977 059c 00000000 		.word	TargetBoardFeatures
+ 978 05a0 00000000 		.word	HWAdvanceFeaturesStatus
+ 979              		.cfi_endproc
+ 980              	.LFE276:
+ 981              		.size	EnableHWSingleTap, .-EnableHWSingleTap
+ 982              		.align	2
+ 983 05a4 AFF30080 		.p2align 4,,15
+ 983      AFF30080 
+ 983      AFF30080 
+ 984              		.global	DisableHWSingleTap
+ 985              		.thumb
+ 986              		.thumb_func
+ 987              		.type	DisableHWSingleTap, %function
+ 988              	DisableHWSingleTap:
+ 989              	.LFB277:
+ 990              		.loc 1 423 0
+ 991              		.cfi_startproc
+ 992              		@ args = 0, pretend = 0, frame = 0
+ 993              		@ frame_needed = 0, uses_anonymous_args = 0
+ 994 05b0 08B5     		push	{r3, lr}
+ 995              		.cfi_def_cfa_offset 8
+ 996              		.cfi_offset 3, -8
+ 997              		.cfi_offset 14, -4
+ 998              		.loc 1 424 0
+ 999 05b2 0D4B     		ldr	r3, .L79
+ 1000 05b4 9B69     		ldr	r3, [r3, #24]
+ 1001 05b6 002B     		cmp	r3, #0
+ 1002 05b8 15D0     		beq	.L76
+ 1003              		.loc 1 426 0
+ 1004 05ba 0B4B     		ldr	r3, .L79
+ARM GAS  /tmp/ccy45MUB.s 			page 19
+
+
+ 1005 05bc DB69     		ldr	r3, [r3, #28]
+ 1006 05be 1846     		mov	r0, r3
+ 1007 05c0 FFF7FEFF 		bl	BSP_ACCELERO_Disable_Single_Tap_Detection_Ext
+ 1008 05c4 0346     		mov	r3, r0
+ 1009 05c6 012B     		cmp	r3, #1
+ 1010 05c8 05D0     		beq	.L78
+ 1011              		.loc 1 430 0
+ 1012 05ca 084B     		ldr	r3, .L79+4
+ 1013 05cc 1B68     		ldr	r3, [r3]
+ 1014 05ce 23F00802 		bic	r2, r3, #8
+ 1015 05d2 064B     		ldr	r3, .L79+4
+ 1016 05d4 1A60     		str	r2, [r3]
+ 1017              	.L78:
+ 1018              		.loc 1 434 0
+ 1019 05d6 044B     		ldr	r3, .L79
+ 1020 05d8 DA69     		ldr	r2, [r3, #28]
+ 1021 05da 054B     		ldr	r3, .L79+8
+ 1022 05dc 1B68     		ldr	r3, [r3]	@ float
+ 1023 05de 1046     		mov	r0, r2
+ 1024 05e0 1946     		mov	r1, r3
+ 1025 05e2 FFF7FEFF 		bl	BSP_ACCELERO_Set_ODR_Value
+ 1026              	.L76:
+ 1027              		.loc 1 436 0
+ 1028 05e6 08BD     		pop	{r3, pc}
+ 1029              	.L80:
+ 1030              		.align	2
+ 1031              	.L79:
+ 1032 05e8 00000000 		.word	TargetBoardFeatures
+ 1033 05ec 00000000 		.word	HWAdvanceFeaturesStatus
+ 1034 05f0 04000000 		.word	DefaultAccODR
+ 1035              		.cfi_endproc
+ 1036              	.LFE277:
+ 1037              		.size	DisableHWSingleTap, .-DisableHWSingleTap
+ 1038              		.align	2
+ 1039 05f4 AFF30080 		.p2align 4,,15
+ 1039      AFF30080 
+ 1039      AFF30080 
+ 1040              		.global	EnableHWPedometer
+ 1041              		.thumb
+ 1042              		.thumb_func
+ 1043              		.type	EnableHWPedometer, %function
+ 1044              	EnableHWPedometer:
+ 1045              	.LFB278:
+ 1046              		.loc 1 444 0
+ 1047              		.cfi_startproc
+ 1048              		@ args = 0, pretend = 0, frame = 0
+ 1049              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1050 0600 08B5     		push	{r3, lr}
+ 1051              		.cfi_def_cfa_offset 8
+ 1052              		.cfi_offset 3, -8
+ 1053              		.cfi_offset 14, -4
+ 1054              		.loc 1 445 0
+ 1055 0602 0A4B     		ldr	r3, .L83
+ 1056 0604 9B69     		ldr	r3, [r3, #24]
+ 1057 0606 002B     		cmp	r3, #0
+ 1058 0608 0FD0     		beq	.L81
+ 1059              		.loc 1 447 0
+ARM GAS  /tmp/ccy45MUB.s 			page 20
+
+
+ 1060 060a FFF7FEFF 		bl	DisableHWFeatures
+ 1061              		.loc 1 449 0
+ 1062 060e 074B     		ldr	r3, .L83
+ 1063 0610 DB69     		ldr	r3, [r3, #28]
+ 1064 0612 1846     		mov	r0, r3
+ 1065 0614 FFF7FEFF 		bl	BSP_ACCELERO_Enable_Pedometer_Ext
+ 1066 0618 0346     		mov	r3, r0
+ 1067 061a 012B     		cmp	r3, #1
+ 1068 061c 05D0     		beq	.L81
+ 1069              		.loc 1 453 0
+ 1070 061e 044B     		ldr	r3, .L83+4
+ 1071 0620 1B68     		ldr	r3, [r3]
+ 1072 0622 43F00102 		orr	r2, r3, #1
+ 1073 0626 024B     		ldr	r3, .L83+4
+ 1074 0628 1A60     		str	r2, [r3]
+ 1075              	.L81:
+ 1076              		.loc 1 456 0
+ 1077 062a 08BD     		pop	{r3, pc}
+ 1078              	.L84:
+ 1079              		.align	2
+ 1080              	.L83:
+ 1081 062c 00000000 		.word	TargetBoardFeatures
+ 1082 0630 00000000 		.word	HWAdvanceFeaturesStatus
+ 1083              		.cfi_endproc
+ 1084              	.LFE278:
+ 1085              		.size	EnableHWPedometer, .-EnableHWPedometer
+ 1086              		.align	2
+ 1087 0634 AFF30080 		.p2align 4,,15
+ 1087      AFF30080 
+ 1087      AFF30080 
+ 1088              		.global	DisableHWPedometer
+ 1089              		.thumb
+ 1090              		.thumb_func
+ 1091              		.type	DisableHWPedometer, %function
+ 1092              	DisableHWPedometer:
+ 1093              	.LFB279:
+ 1094              		.loc 1 464 0
+ 1095              		.cfi_startproc
+ 1096              		@ args = 0, pretend = 0, frame = 0
+ 1097              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1098 0640 08B5     		push	{r3, lr}
+ 1099              		.cfi_def_cfa_offset 8
+ 1100              		.cfi_offset 3, -8
+ 1101              		.cfi_offset 14, -4
+ 1102              		.loc 1 465 0
+ 1103 0642 0D4B     		ldr	r3, .L88
+ 1104 0644 9B69     		ldr	r3, [r3, #24]
+ 1105 0646 002B     		cmp	r3, #0
+ 1106 0648 15D0     		beq	.L85
+ 1107              		.loc 1 466 0
+ 1108 064a 0B4B     		ldr	r3, .L88
+ 1109 064c DB69     		ldr	r3, [r3, #28]
+ 1110 064e 1846     		mov	r0, r3
+ 1111 0650 FFF7FEFF 		bl	BSP_ACCELERO_Disable_Pedometer_Ext
+ 1112 0654 0346     		mov	r3, r0
+ 1113 0656 012B     		cmp	r3, #1
+ 1114 0658 05D0     		beq	.L87
+ARM GAS  /tmp/ccy45MUB.s 			page 21
+
+
+ 1115              		.loc 1 470 0
+ 1116 065a 084B     		ldr	r3, .L88+4
+ 1117 065c 1B68     		ldr	r3, [r3]
+ 1118 065e 23F00102 		bic	r2, r3, #1
+ 1119 0662 064B     		ldr	r3, .L88+4
+ 1120 0664 1A60     		str	r2, [r3]
+ 1121              	.L87:
+ 1122              		.loc 1 474 0
+ 1123 0666 044B     		ldr	r3, .L88
+ 1124 0668 DA69     		ldr	r2, [r3, #28]
+ 1125 066a 054B     		ldr	r3, .L88+8
+ 1126 066c 1B68     		ldr	r3, [r3]	@ float
+ 1127 066e 1046     		mov	r0, r2
+ 1128 0670 1946     		mov	r1, r3
+ 1129 0672 FFF7FEFF 		bl	BSP_ACCELERO_Set_ODR_Value
+ 1130              	.L85:
+ 1131              		.loc 1 476 0
+ 1132 0676 08BD     		pop	{r3, pc}
+ 1133              	.L89:
+ 1134              		.align	2
+ 1135              	.L88:
+ 1136 0678 00000000 		.word	TargetBoardFeatures
+ 1137 067c 00000000 		.word	HWAdvanceFeaturesStatus
+ 1138 0680 04000000 		.word	DefaultAccODR
+ 1139              		.cfi_endproc
+ 1140              	.LFE279:
+ 1141              		.size	DisableHWPedometer, .-DisableHWPedometer
+ 1142              		.align	2
+ 1143 0684 AFF30080 		.p2align 4,,15
+ 1143      AFF30080 
+ 1143      AFF30080 
+ 1144              		.global	ResetHWPedometer
+ 1145              		.thumb
+ 1146              		.thumb_func
+ 1147              		.type	ResetHWPedometer, %function
+ 1148              	ResetHWPedometer:
+ 1149              	.LFB280:
+ 1150              		.loc 1 484 0
+ 1151              		.cfi_startproc
+ 1152              		@ args = 0, pretend = 0, frame = 0
+ 1153              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1154 0690 08B5     		push	{r3, lr}
+ 1155              		.cfi_def_cfa_offset 8
+ 1156              		.cfi_offset 3, -8
+ 1157              		.cfi_offset 14, -4
+ 1158              		.loc 1 485 0
+ 1159 0692 054B     		ldr	r3, .L92
+ 1160 0694 9B69     		ldr	r3, [r3, #24]
+ 1161 0696 002B     		cmp	r3, #0
+ 1162 0698 04D0     		beq	.L90
+ 1163              		.loc 1 486 0
+ 1164 069a 034B     		ldr	r3, .L92
+ 1165 069c DB69     		ldr	r3, [r3, #28]
+ 1166 069e 1846     		mov	r0, r3
+ 1167 06a0 FFF7FEFF 		bl	BSP_ACCELERO_Reset_Step_Counter_Ext
+ 1168              	.L90:
+ 1169              		.loc 1 492 0
+ARM GAS  /tmp/ccy45MUB.s 			page 22
+
+
+ 1170 06a4 08BD     		pop	{r3, pc}
+ 1171              	.L93:
+ 1172 06a6 00BF     		.align	2
+ 1173              	.L92:
+ 1174 06a8 00000000 		.word	TargetBoardFeatures
+ 1175              		.cfi_endproc
+ 1176              	.LFE280:
+ 1177              		.size	ResetHWPedometer, .-ResetHWPedometer
+ 1178              		.align	2
+ 1179 06ac AFF30080 		.p2align 4,,15
+ 1180              		.global	GetStepHWPedometer
+ 1181              		.thumb
+ 1182              		.thumb_func
+ 1183              		.type	GetStepHWPedometer, %function
+ 1184              	GetStepHWPedometer:
+ 1185              	.LFB281:
+ 1186              		.loc 1 500 0
+ 1187              		.cfi_startproc
+ 1188              		@ args = 0, pretend = 0, frame = 8
+ 1189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1190 06b0 00B5     		push	{lr}
+ 1191              		.cfi_def_cfa_offset 4
+ 1192              		.cfi_offset 14, -4
+ 1193 06b2 83B0     		sub	sp, sp, #12
+ 1194              		.cfi_def_cfa_offset 16
+ 1195              		.loc 1 501 0
+ 1196 06b4 0023     		movs	r3, #0
+ 1197 06b6 ADF80630 		strh	r3, [sp, #6]	@ movhi
+ 1198              		.loc 1 502 0
+ 1199 06ba 094B     		ldr	r3, .L97
+ 1200 06bc 9B69     		ldr	r3, [r3, #24]
+ 1201 06be 002B     		cmp	r3, #0
+ 1202 06c0 07D0     		beq	.L95
+ 1203              		.loc 1 503 0
+ 1204 06c2 074B     		ldr	r3, .L97
+ 1205 06c4 DA69     		ldr	r2, [r3, #28]
+ 1206 06c6 0DF10603 		add	r3, sp, #6
+ 1207 06ca 1046     		mov	r0, r2
+ 1208 06cc 1946     		mov	r1, r3
+ 1209 06ce FFF7FEFF 		bl	BSP_ACCELERO_Get_Step_Count_Ext
+ 1210              	.L95:
+ 1211              		.loc 1 509 0
+ 1212 06d2 BDF80630 		ldrh	r3, [sp, #6]
+ 1213              		.loc 1 510 0
+ 1214 06d6 1846     		mov	r0, r3
+ 1215 06d8 03B0     		add	sp, sp, #12
+ 1216              		@ sp needed
+ 1217 06da 5DF804FB 		ldr	pc, [sp], #4
+ 1218              	.L98:
+ 1219 06de 00BF     		.align	2
+ 1220              	.L97:
+ 1221 06e0 00000000 		.word	TargetBoardFeatures
+ 1222              		.cfi_endproc
+ 1223              	.LFE281:
+ 1224              		.size	GetStepHWPedometer, .-GetStepHWPedometer
+ 1225              	.Letext0:
+ 1226              		.file 2 "/nfs/nfs5/home/research/hardware/arm2/gcc-arm-embedded/gcc-arm-none-eabi-4_8-2014q2/lib/g
+ARM GAS  /tmp/ccy45MUB.s 			page 23
+
+
+ 1227              		.file 3 "/nfs/nfs5/home/research/hardware/arm2/gcc-arm-embedded/gcc-arm-none-eabi-4_8-2014q2/arm-n
+ 1228              		.file 4 "/nfs/nfs5/home/research/hardware/arm2/gcc-arm-embedded/gcc-arm-none-eabi-4_8-2014q2/arm-n
+ 1229              		.file 5 "../../../../../Drivers/BSP/Components/Common/component.h"
+ 1230              		.file 6 "../../../../../Drivers/BSP/Components/lsm6dsm/LSM6DSM_ACC_GYRO_driver.h"
+ 1231              		.file 7 "../../../../../Projects/Multi/Applications/BlueMicrosystem2/Inc/TargetFeatures.h"
+ 1232              		.file 8 "../../../../../../ChibiOS/os/rt/ports/ARMCMx/compilers/GCC/chtypes.h"
+ 1233              		.file 9 "../../../../../../ChibiOS/os/rt/include/chsystypes.h"
+ 1234              		.file 10 "../../../../../../ChibiOS/os/rt/include/chschd.h"
+ 1235              		.file 11 "../../../../../../ChibiOS/os/rt/ports/ARMCMx/chcore.h"
+ 1236              		.file 12 "../../../../../../ChibiOS/os/rt/ports/ARMCMx/chcore_v7m.h"
+ 1237              		.file 13 "../../../../../../ChibiOS/os/rt/include/chtm.h"
+ 1238              		.file 14 "../../../../../../ChibiOS/os/rt/include/chsem.h"
+ 1239              		.file 15 "../../../../../../ChibiOS/os/rt/include/chmtx.h"
+ 1240              		.file 16 "../../../../../Projects/Multi/Applications/BlueMicrosystem2/Inc/HWAdvanceFeatures.h"
+ 1241              		.file 17 "../../../../../../ChibiOS/os/ext/CMSIS/include/core_cm4.h"
+ 1242 06e4 AFF30080 		.section	.debug_info,"",%progbits
+ 1242      AFF30080 
+ 1242      AFF30080 
+ 1243              	.Ldebug_info0:
+ 1244 0000 560A0000 		.4byte	0xa56
+ 1245 0004 0400     		.2byte	0x4
+ 1246 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1247 000a 04       		.byte	0x4
+ 1248 000b 01       		.uleb128 0x1
+ 1249 000c A6060000 		.4byte	.LASF181
+ 1250 0010 01       		.byte	0x1
+ 1251 0011 DE090000 		.4byte	.LASF182
+ 1252 0015 6B020000 		.4byte	.LASF183
+ 1253 0019 00000000 		.4byte	.Ltext0
+ 1254 001d E4060000 		.4byte	.Letext0-.Ltext0
+ 1255 0021 00000000 		.4byte	.Ldebug_line0
+ 1256 0025 02       		.uleb128 0x2
+ 1257 0026 0D000000 		.4byte	.LASF2
+ 1258 002a 02       		.byte	0x2
+ 1259 002b D4       		.byte	0xd4
+ 1260 002c 30000000 		.4byte	0x30
+ 1261 0030 03       		.uleb128 0x3
+ 1262 0031 04       		.byte	0x4
+ 1263 0032 07       		.byte	0x7
+ 1264 0033 AC080000 		.4byte	.LASF0
+ 1265 0037 04       		.uleb128 0x4
+ 1266 0038 04       		.byte	0x4
+ 1267 0039 05       		.uleb128 0x5
+ 1268 003a 04       		.byte	0x4
+ 1269 003b 05       		.byte	0x5
+ 1270 003c 696E7400 		.ascii	"int\000"
+ 1271 0040 03       		.uleb128 0x3
+ 1272 0041 01       		.byte	0x1
+ 1273 0042 06       		.byte	0x6
+ 1274 0043 16010000 		.4byte	.LASF1
+ 1275 0047 02       		.uleb128 0x2
+ 1276 0048 25000000 		.4byte	.LASF3
+ 1277 004c 03       		.byte	0x3
+ 1278 004d 1C       		.byte	0x1c
+ 1279 004e 52000000 		.4byte	0x52
+ 1280 0052 03       		.uleb128 0x3
+ 1281 0053 01       		.byte	0x1
+ARM GAS  /tmp/ccy45MUB.s 			page 24
+
+
+ 1282 0054 08       		.byte	0x8
+ 1283 0055 79060000 		.4byte	.LASF4
+ 1284 0059 03       		.uleb128 0x3
+ 1285 005a 02       		.byte	0x2
+ 1286 005b 05       		.byte	0x5
+ 1287 005c 81070000 		.4byte	.LASF5
+ 1288 0060 02       		.uleb128 0x2
+ 1289 0061 B9080000 		.4byte	.LASF6
+ 1290 0065 03       		.byte	0x3
+ 1291 0066 26       		.byte	0x26
+ 1292 0067 6B000000 		.4byte	0x6b
+ 1293 006b 03       		.uleb128 0x3
+ 1294 006c 02       		.byte	0x2
+ 1295 006d 07       		.byte	0x7
+ 1296 006e B0030000 		.4byte	.LASF7
+ 1297 0072 02       		.uleb128 0x2
+ 1298 0073 37040000 		.4byte	.LASF8
+ 1299 0077 03       		.byte	0x3
+ 1300 0078 37       		.byte	0x37
+ 1301 0079 7D000000 		.4byte	0x7d
+ 1302 007d 03       		.uleb128 0x3
+ 1303 007e 04       		.byte	0x4
+ 1304 007f 05       		.byte	0x5
+ 1305 0080 52010000 		.4byte	.LASF9
+ 1306 0084 02       		.uleb128 0x2
+ 1307 0085 F2080000 		.4byte	.LASF10
+ 1308 0089 03       		.byte	0x3
+ 1309 008a 38       		.byte	0x38
+ 1310 008b 8F000000 		.4byte	0x8f
+ 1311 008f 03       		.uleb128 0x3
+ 1312 0090 04       		.byte	0x4
+ 1313 0091 07       		.byte	0x7
+ 1314 0092 86030000 		.4byte	.LASF11
+ 1315 0096 03       		.uleb128 0x3
+ 1316 0097 08       		.byte	0x8
+ 1317 0098 05       		.byte	0x5
+ 1318 0099 08010000 		.4byte	.LASF12
+ 1319 009d 02       		.uleb128 0x2
+ 1320 009e 6F040000 		.4byte	.LASF13
+ 1321 00a2 03       		.byte	0x3
+ 1322 00a3 4E       		.byte	0x4e
+ 1323 00a4 A8000000 		.4byte	0xa8
+ 1324 00a8 03       		.uleb128 0x3
+ 1325 00a9 08       		.byte	0x8
+ 1326 00aa 07       		.byte	0x7
+ 1327 00ab 51000000 		.4byte	.LASF14
+ 1328 00af 03       		.uleb128 0x3
+ 1329 00b0 04       		.byte	0x4
+ 1330 00b1 07       		.byte	0x7
+ 1331 00b2 9C0A0000 		.4byte	.LASF15
+ 1332 00b6 03       		.uleb128 0x3
+ 1333 00b7 01       		.byte	0x1
+ 1334 00b8 08       		.byte	0x8
+ 1335 00b9 9D080000 		.4byte	.LASF16
+ 1336 00bd 06       		.uleb128 0x6
+ 1337 00be 04       		.byte	0x4
+ 1338 00bf C3000000 		.4byte	0xc3
+ARM GAS  /tmp/ccy45MUB.s 			page 25
+
+
+ 1339 00c3 07       		.uleb128 0x7
+ 1340 00c4 B6000000 		.4byte	0xb6
+ 1341 00c8 02       		.uleb128 0x2
+ 1342 00c9 580A0000 		.4byte	.LASF17
+ 1343 00cd 04       		.byte	0x4
+ 1344 00ce 2A       		.byte	0x2a
+ 1345 00cf 47000000 		.4byte	0x47
+ 1346 00d3 02       		.uleb128 0x2
+ 1347 00d4 B3010000 		.4byte	.LASF18
+ 1348 00d8 04       		.byte	0x4
+ 1349 00d9 36       		.byte	0x36
+ 1350 00da 60000000 		.4byte	0x60
+ 1351 00de 02       		.uleb128 0x2
+ 1352 00df 71060000 		.4byte	.LASF19
+ 1353 00e3 04       		.byte	0x4
+ 1354 00e4 41       		.byte	0x41
+ 1355 00e5 72000000 		.4byte	0x72
+ 1356 00e9 02       		.uleb128 0x2
+ 1357 00ea 33080000 		.4byte	.LASF20
+ 1358 00ee 04       		.byte	0x4
+ 1359 00ef 42       		.byte	0x42
+ 1360 00f0 84000000 		.4byte	0x84
+ 1361 00f4 02       		.uleb128 0x2
+ 1362 00f5 51050000 		.4byte	.LASF21
+ 1363 00f9 04       		.byte	0x4
+ 1364 00fa 4E       		.byte	0x4e
+ 1365 00fb 9D000000 		.4byte	0x9d
+ 1366 00ff 08       		.uleb128 0x8
+ 1367 0100 01       		.byte	0x1
+ 1368 0101 05       		.byte	0x5
+ 1369 0102 79       		.byte	0x79
+ 1370 0103 20010000 		.4byte	0x120
+ 1371 0107 09       		.uleb128 0x9
+ 1372 0108 D30A0000 		.4byte	.LASF22
+ 1373 010c 00       		.sleb128 0
+ 1374 010d 09       		.uleb128 0x9
+ 1375 010e A3010000 		.4byte	.LASF23
+ 1376 0112 01       		.sleb128 1
+ 1377 0113 09       		.uleb128 0x9
+ 1378 0114 93050000 		.4byte	.LASF24
+ 1379 0118 02       		.sleb128 2
+ 1380 0119 09       		.uleb128 0x9
+ 1381 011a 77010000 		.4byte	.LASF25
+ 1382 011e 03       		.sleb128 3
+ 1383 011f 00       		.byte	0
+ 1384 0120 03       		.uleb128 0x3
+ 1385 0121 04       		.byte	0x4
+ 1386 0122 04       		.byte	0x4
+ 1387 0123 D2050000 		.4byte	.LASF26
+ 1388 0127 0A       		.uleb128 0xa
+ 1389 0128 01       		.byte	0x1
+ 1390 0129 06       		.byte	0x6
+ 1391 012a 5D09     		.2byte	0x95d
+ 1392 012c 61010000 		.4byte	0x161
+ 1393 0130 09       		.uleb128 0x9
+ 1394 0131 34020000 		.4byte	.LASF27
+ 1395 0135 00       		.sleb128 0
+ARM GAS  /tmp/ccy45MUB.s 			page 26
+
+
+ 1396 0136 09       		.uleb128 0x9
+ 1397 0137 7E0A0000 		.4byte	.LASF28
+ 1398 013b 01       		.sleb128 1
+ 1399 013c 09       		.uleb128 0x9
+ 1400 013d 59070000 		.4byte	.LASF29
+ 1401 0141 02       		.sleb128 2
+ 1402 0142 09       		.uleb128 0x9
+ 1403 0143 07090000 		.4byte	.LASF30
+ 1404 0147 03       		.sleb128 3
+ 1405 0148 09       		.uleb128 0x9
+ 1406 0149 C3000000 		.4byte	.LASF31
+ 1407 014d 04       		.sleb128 4
+ 1408 014e 09       		.uleb128 0x9
+ 1409 014f 2C090000 		.4byte	.LASF32
+ 1410 0153 05       		.sleb128 5
+ 1411 0154 09       		.uleb128 0x9
+ 1412 0155 FF050000 		.4byte	.LASF33
+ 1413 0159 06       		.sleb128 6
+ 1414 015a 09       		.uleb128 0x9
+ 1415 015b 33050000 		.4byte	.LASF34
+ 1416 015f 07       		.sleb128 7
+ 1417 0160 00       		.byte	0
+ 1418 0161 08       		.uleb128 0x8
+ 1419 0162 01       		.byte	0x1
+ 1420 0163 07       		.byte	0x7
+ 1421 0164 B2       		.byte	0xb2
+ 1422 0165 82010000 		.4byte	0x182
+ 1423 0169 09       		.uleb128 0x9
+ 1424 016a BC010000 		.4byte	.LASF35
+ 1425 016e 00       		.sleb128 0
+ 1426 016f 09       		.uleb128 0x9
+ 1427 0170 E5030000 		.4byte	.LASF36
+ 1428 0174 01       		.sleb128 1
+ 1429 0175 09       		.uleb128 0x9
+ 1430 0176 98030000 		.4byte	.LASF37
+ 1431 017a 02       		.sleb128 2
+ 1432 017b 09       		.uleb128 0x9
+ 1433 017c 68000000 		.4byte	.LASF38
+ 1434 0180 03       		.sleb128 3
+ 1435 0181 00       		.byte	0
+ 1436 0182 02       		.uleb128 0x2
+ 1437 0183 10040000 		.4byte	.LASF39
+ 1438 0187 07       		.byte	0x7
+ 1439 0188 B7       		.byte	0xb7
+ 1440 0189 61010000 		.4byte	0x161
+ 1441 018d 0B       		.uleb128 0xb
+ 1442 018e 48       		.byte	0x48
+ 1443 018f 07       		.byte	0x7
+ 1444 0190 BC       		.byte	0xbc
+ 1445 0191 6E020000 		.4byte	0x26e
+ 1446 0195 0C       		.uleb128 0xc
+ 1447 0196 C8050000 		.4byte	.LASF40
+ 1448 019a 07       		.byte	0x7
+ 1449 019b BE       		.byte	0xbe
+ 1450 019c 82010000 		.4byte	0x182
+ 1451 01a0 00       		.byte	0
+ 1452 01a1 0C       		.uleb128 0xc
+ARM GAS  /tmp/ccy45MUB.s 			page 27
+
+
+ 1453 01a2 24050000 		.4byte	.LASF41
+ 1454 01a6 07       		.byte	0x7
+ 1455 01a7 BF       		.byte	0xbf
+ 1456 01a8 DE000000 		.4byte	0xde
+ 1457 01ac 04       		.byte	0x4
+ 1458 01ad 0C       		.uleb128 0xc
+ 1459 01ae 8A040000 		.4byte	.LASF42
+ 1460 01b2 07       		.byte	0x7
+ 1461 01b3 C0       		.byte	0xc0
+ 1462 01b4 6E020000 		.4byte	0x26e
+ 1463 01b8 08       		.byte	0x8
+ 1464 01b9 0C       		.uleb128 0xc
+ 1465 01ba CC090000 		.4byte	.LASF43
+ 1466 01be 07       		.byte	0x7
+ 1467 01bf C2       		.byte	0xc2
+ 1468 01c0 37000000 		.4byte	0x37
+ 1469 01c4 10       		.byte	0x10
+ 1470 01c5 0C       		.uleb128 0xc
+ 1471 01c6 8D080000 		.4byte	.LASF44
+ 1472 01ca 07       		.byte	0x7
+ 1473 01cb C3       		.byte	0xc3
+ 1474 01cc 37000000 		.4byte	0x37
+ 1475 01d0 14       		.byte	0x14
+ 1476 01d1 0C       		.uleb128 0xc
+ 1477 01d2 9B000000 		.4byte	.LASF45
+ 1478 01d6 07       		.byte	0x7
+ 1479 01d7 C5       		.byte	0xc5
+ 1480 01d8 DE000000 		.4byte	0xde
+ 1481 01dc 18       		.byte	0x18
+ 1482 01dd 0C       		.uleb128 0xc
+ 1483 01de 77000000 		.4byte	.LASF46
+ 1484 01e2 07       		.byte	0x7
+ 1485 01e3 C6       		.byte	0xc6
+ 1486 01e4 37000000 		.4byte	0x37
+ 1487 01e8 1C       		.byte	0x1c
+ 1488 01e9 0C       		.uleb128 0xc
+ 1489 01ea 41040000 		.4byte	.LASF47
+ 1490 01ee 07       		.byte	0x7
+ 1491 01ef C7       		.byte	0xc7
+ 1492 01f0 37000000 		.4byte	0x37
+ 1493 01f4 20       		.byte	0x20
+ 1494 01f5 0C       		.uleb128 0xc
+ 1495 01f6 72050000 		.4byte	.LASF48
+ 1496 01fa 07       		.byte	0x7
+ 1497 01fb C8       		.byte	0xc8
+ 1498 01fc 37000000 		.4byte	0x37
+ 1499 0200 24       		.byte	0x24
+ 1500 0201 0C       		.uleb128 0xc
+ 1501 0202 CA010000 		.4byte	.LASF49
+ 1502 0206 07       		.byte	0x7
+ 1503 0207 CA       		.byte	0xca
+ 1504 0208 DE000000 		.4byte	0xde
+ 1505 020c 28       		.byte	0x28
+ 1506 020d 0C       		.uleb128 0xc
+ 1507 020e A2080000 		.4byte	.LASF50
+ 1508 0212 07       		.byte	0x7
+ 1509 0213 CC       		.byte	0xcc
+ARM GAS  /tmp/ccy45MUB.s 			page 28
+
+
+ 1510 0214 C8000000 		.4byte	0xc8
+ 1511 0218 2C       		.byte	0x2c
+ 1512 0219 0C       		.uleb128 0xc
+ 1513 021a 25060000 		.4byte	.LASF51
+ 1514 021e 07       		.byte	0x7
+ 1515 021f CD       		.byte	0xcd
+ 1516 0220 C8000000 		.4byte	0xc8
+ 1517 0224 2D       		.byte	0x2d
+ 1518 0225 0C       		.uleb128 0xc
+ 1519 0226 6C0A0000 		.4byte	.LASF52
+ 1520 022a 07       		.byte	0x7
+ 1521 022b D0       		.byte	0xd0
+ 1522 022c 37000000 		.4byte	0x37
+ 1523 0230 30       		.byte	0x30
+ 1524 0231 0C       		.uleb128 0xc
+ 1525 0232 11020000 		.4byte	.LASF53
+ 1526 0236 07       		.byte	0x7
+ 1527 0237 D4       		.byte	0xd4
+ 1528 0238 E9000000 		.4byte	0xe9
+ 1529 023c 34       		.byte	0x34
+ 1530 023d 0C       		.uleb128 0xc
+ 1531 023e E0050000 		.4byte	.LASF54
+ 1532 0242 07       		.byte	0x7
+ 1533 0243 D8       		.byte	0xd8
+ 1534 0244 E9000000 		.4byte	0xe9
+ 1535 0248 38       		.byte	0x38
+ 1536 0249 0C       		.uleb128 0xc
+ 1537 024a F3040000 		.4byte	.LASF55
+ 1538 024e 07       		.byte	0x7
+ 1539 024f DC       		.byte	0xdc
+ 1540 0250 E9000000 		.4byte	0xe9
+ 1541 0254 3C       		.byte	0x3c
+ 1542 0255 0C       		.uleb128 0xc
+ 1543 0256 C3030000 		.4byte	.LASF56
+ 1544 025a 07       		.byte	0x7
+ 1545 025b E0       		.byte	0xe0
+ 1546 025c E9000000 		.4byte	0xe9
+ 1547 0260 40       		.byte	0x40
+ 1548 0261 0C       		.uleb128 0xc
+ 1549 0262 3A060000 		.4byte	.LASF57
+ 1550 0266 07       		.byte	0x7
+ 1551 0267 E4       		.byte	0xe4
+ 1552 0268 E9000000 		.4byte	0xe9
+ 1553 026c 44       		.byte	0x44
+ 1554 026d 00       		.byte	0
+ 1555 026e 0D       		.uleb128 0xd
+ 1556 026f 37000000 		.4byte	0x37
+ 1557 0273 7E020000 		.4byte	0x27e
+ 1558 0277 0E       		.uleb128 0xe
+ 1559 0278 AF000000 		.4byte	0xaf
+ 1560 027c 01       		.byte	0x1
+ 1561 027d 00       		.byte	0
+ 1562 027e 02       		.uleb128 0x2
+ 1563 027f CC070000 		.4byte	.LASF58
+ 1564 0283 07       		.byte	0x7
+ 1565 0284 EB       		.byte	0xeb
+ 1566 0285 8D010000 		.4byte	0x18d
+ARM GAS  /tmp/ccy45MUB.s 			page 29
+
+
+ 1567 0289 02       		.uleb128 0x2
+ 1568 028a B3040000 		.4byte	.LASF59
+ 1569 028e 08       		.byte	0x8
+ 1570 028f 39       		.byte	0x39
+ 1571 0290 E9000000 		.4byte	0xe9
+ 1572 0294 02       		.uleb128 0x2
+ 1573 0295 FB030000 		.4byte	.LASF60
+ 1574 0299 08       		.byte	0x8
+ 1575 029a 3C       		.byte	0x3c
+ 1576 029b C8000000 		.4byte	0xc8
+ 1577 029f 02       		.uleb128 0x2
+ 1578 02a0 6E010000 		.4byte	.LASF61
+ 1579 02a4 08       		.byte	0x8
+ 1580 02a5 3D       		.byte	0x3d
+ 1581 02a6 C8000000 		.4byte	0xc8
+ 1582 02aa 02       		.uleb128 0x2
+ 1583 02ab D8050000 		.4byte	.LASF62
+ 1584 02af 08       		.byte	0x8
+ 1585 02b0 3E       		.byte	0x3e
+ 1586 02b1 C8000000 		.4byte	0xc8
+ 1587 02b5 02       		.uleb128 0x2
+ 1588 02b6 42010000 		.4byte	.LASF63
+ 1589 02ba 08       		.byte	0x8
+ 1590 02bb 3F       		.byte	0x3f
+ 1591 02bc C8000000 		.4byte	0xc8
+ 1592 02c0 02       		.uleb128 0x2
+ 1593 02c1 1D060000 		.4byte	.LASF64
+ 1594 02c5 08       		.byte	0x8
+ 1595 02c6 40       		.byte	0x40
+ 1596 02c7 E9000000 		.4byte	0xe9
+ 1597 02cb 02       		.uleb128 0x2
+ 1598 02cc F5030000 		.4byte	.LASF65
+ 1599 02d0 08       		.byte	0x8
+ 1600 02d1 41       		.byte	0x41
+ 1601 02d2 DE000000 		.4byte	0xde
+ 1602 02d6 02       		.uleb128 0x2
+ 1603 02d7 2B040000 		.4byte	.LASF66
+ 1604 02db 08       		.byte	0x8
+ 1605 02dc 43       		.byte	0x43
+ 1606 02dd E9000000 		.4byte	0xe9
+ 1607 02e1 02       		.uleb128 0x2
+ 1608 02e2 3D030000 		.4byte	.LASF67
+ 1609 02e6 08       		.byte	0x8
+ 1610 02e7 45       		.byte	0x45
+ 1611 02e8 DE000000 		.4byte	0xde
+ 1612 02ec 02       		.uleb128 0x2
+ 1613 02ed D4080000 		.4byte	.LASF68
+ 1614 02f1 09       		.byte	0x9
+ 1615 02f2 33       		.byte	0x33
+ 1616 02f3 E9000000 		.4byte	0xe9
+ 1617 02f7 02       		.uleb128 0x2
+ 1618 02f8 C4080000 		.4byte	.LASF69
+ 1619 02fc 09       		.byte	0x9
+ 1620 02fd 3F       		.byte	0x3f
+ 1621 02fe 02030000 		.4byte	0x302
+ 1622 0302 0F       		.uleb128 0xf
+ 1623 0303 DB030000 		.4byte	.LASF90
+ARM GAS  /tmp/ccy45MUB.s 			page 30
+
+
+ 1624 0307 44       		.byte	0x44
+ 1625 0308 0A       		.byte	0xa
+ 1626 0309 C2       		.byte	0xc2
+ 1627 030a FB030000 		.4byte	0x3fb
+ 1628 030e 0C       		.uleb128 0xc
+ 1629 030f 1D050000 		.4byte	.LASF70
+ 1630 0313 0A       		.byte	0xa
+ 1631 0314 C3       		.byte	0xc3
+ 1632 0315 06040000 		.4byte	0x406
+ 1633 0319 00       		.byte	0
+ 1634 031a 0C       		.uleb128 0xc
+ 1635 031b F8050000 		.4byte	.LASF71
+ 1636 031f 0A       		.byte	0xa
+ 1637 0320 C5       		.byte	0xc5
+ 1638 0321 06040000 		.4byte	0x406
+ 1639 0325 04       		.byte	0x4
+ 1640 0326 0C       		.uleb128 0xc
+ 1641 0327 F2000000 		.4byte	.LASF72
+ 1642 032b 0A       		.byte	0xa
+ 1643 032c C7       		.byte	0xc7
+ 1644 032d C0020000 		.4byte	0x2c0
+ 1645 0331 08       		.byte	0x8
+ 1646 0332 0C       		.uleb128 0xc
+ 1647 0333 FD0A0000 		.4byte	.LASF73
+ 1648 0337 0A       		.byte	0xa
+ 1649 0338 C8       		.byte	0xc8
+ 1650 0339 2D060000 		.4byte	0x62d
+ 1651 033d 0C       		.byte	0xc
+ 1652 033e 0C       		.uleb128 0xc
+ 1653 033f EE010000 		.4byte	.LASF74
+ 1654 0343 0A       		.byte	0xa
+ 1655 0344 CA       		.byte	0xca
+ 1656 0345 06040000 		.4byte	0x406
+ 1657 0349 10       		.byte	0x10
+ 1658 034a 0C       		.uleb128 0xc
+ 1659 034b 5A050000 		.4byte	.LASF75
+ 1660 034f 0A       		.byte	0xa
+ 1661 0350 CB       		.byte	0xcb
+ 1662 0351 06040000 		.4byte	0x406
+ 1663 0355 14       		.byte	0x14
+ 1664 0356 0C       		.uleb128 0xc
+ 1665 0357 AE0A0000 		.4byte	.LASF76
+ 1666 035b 0A       		.byte	0xa
+ 1667 035c D2       		.byte	0xd2
+ 1668 035d BD000000 		.4byte	0xbd
+ 1669 0361 18       		.byte	0x18
+ 1670 0362 0C       		.uleb128 0xc
+ 1671 0363 8B070000 		.4byte	.LASF77
+ 1672 0367 0A       		.byte	0xa
+ 1673 0368 DD       		.byte	0xdd
+ 1674 0369 9F020000 		.4byte	0x29f
+ 1675 036d 1C       		.byte	0x1c
+ 1676 036e 0C       		.uleb128 0xc
+ 1677 036f C4070000 		.4byte	.LASF78
+ 1678 0373 0A       		.byte	0xa
+ 1679 0374 E1       		.byte	0xe1
+ 1680 0375 94020000 		.4byte	0x294
+ARM GAS  /tmp/ccy45MUB.s 			page 31
+
+
+ 1681 0379 1D       		.byte	0x1d
+ 1682 037a 0C       		.uleb128 0xc
+ 1683 037b B8090000 		.4byte	.LASF79
+ 1684 037f 0A       		.byte	0xa
+ 1685 0380 E6       		.byte	0xe6
+ 1686 0381 AA020000 		.4byte	0x2aa
+ 1687 0385 1E       		.byte	0x1e
+ 1688 0386 0C       		.uleb128 0xc
+ 1689 0387 93070000 		.4byte	.LASF80
+ 1690 038b 0A       		.byte	0xa
+ 1691 038c EC       		.byte	0xec
+ 1692 038d B5020000 		.4byte	0x2b5
+ 1693 0391 1F       		.byte	0x1f
+ 1694 0392 10       		.uleb128 0x10
+ 1695 0393 705F7500 		.ascii	"p_u\000"
+ 1696 0397 0A       		.byte	0xa
+ 1697 0398 3101     		.2byte	0x131
+ 1698 039a E7060000 		.4byte	0x6e7
+ 1699 039e 20       		.byte	0x20
+ 1700 039f 11       		.uleb128 0x11
+ 1701 03a0 9C040000 		.4byte	.LASF81
+ 1702 03a4 0A       		.byte	0xa
+ 1703 03a5 3601     		.2byte	0x136
+ 1704 03a7 0C040000 		.4byte	0x40c
+ 1705 03ab 24       		.byte	0x24
+ 1706 03ac 11       		.uleb128 0x11
+ 1707 03ad 77090000 		.4byte	.LASF82
+ 1708 03b1 0A       		.byte	0xa
+ 1709 03b2 3C01     		.2byte	0x13c
+ 1710 03b4 30040000 		.4byte	0x430
+ 1711 03b8 28       		.byte	0x28
+ 1712 03b9 11       		.uleb128 0x11
+ 1713 03ba E00A0000 		.4byte	.LASF83
+ 1714 03be 0A       		.byte	0xa
+ 1715 03bf 4001     		.2byte	0x140
+ 1716 03c1 CB020000 		.4byte	0x2cb
+ 1717 03c5 30       		.byte	0x30
+ 1718 03c6 11       		.uleb128 0x11
+ 1719 03c7 08080000 		.4byte	.LASF84
+ 1720 03cb 0A       		.byte	0xa
+ 1721 03cc 4601     		.2byte	0x146
+ 1722 03ce D6020000 		.4byte	0x2d6
+ 1723 03d2 34       		.byte	0x34
+ 1724 03d3 11       		.uleb128 0x11
+ 1725 03d4 77070000 		.4byte	.LASF85
+ 1726 03d8 0A       		.byte	0xa
+ 1727 03d9 4D01     		.2byte	0x14d
+ 1728 03db A6070000 		.4byte	0x7a6
+ 1729 03df 38       		.byte	0x38
+ 1730 03e0 11       		.uleb128 0x11
+ 1731 03e1 DE080000 		.4byte	.LASF86
+ 1732 03e5 0A       		.byte	0xa
+ 1733 03e6 5101     		.2byte	0x151
+ 1734 03e8 C0020000 		.4byte	0x2c0
+ 1735 03ec 3C       		.byte	0x3c
+ 1736 03ed 11       		.uleb128 0x11
+ 1737 03ee 2B010000 		.4byte	.LASF87
+ARM GAS  /tmp/ccy45MUB.s 			page 32
+
+
+ 1738 03f2 0A       		.byte	0xa
+ 1739 03f3 5801     		.2byte	0x158
+ 1740 03f5 37000000 		.4byte	0x37
+ 1741 03f9 40       		.byte	0x40
+ 1742 03fa 00       		.byte	0
+ 1743 03fb 02       		.uleb128 0x2
+ 1744 03fc BB040000 		.4byte	.LASF88
+ 1745 0400 09       		.byte	0x9
+ 1746 0401 44       		.byte	0x44
+ 1747 0402 06040000 		.4byte	0x406
+ 1748 0406 06       		.uleb128 0x6
+ 1749 0407 04       		.byte	0x4
+ 1750 0408 F7020000 		.4byte	0x2f7
+ 1751 040c 02       		.uleb128 0x2
+ 1752 040d B50A0000 		.4byte	.LASF89
+ 1753 0411 09       		.byte	0x9
+ 1754 0412 49       		.byte	0x49
+ 1755 0413 17040000 		.4byte	0x417
+ 1756 0417 0F       		.uleb128 0xf
+ 1757 0418 56080000 		.4byte	.LASF91
+ 1758 041c 04       		.byte	0x4
+ 1759 041d 0A       		.byte	0xa
+ 1760 041e B0       		.byte	0xb0
+ 1761 041f 30040000 		.4byte	0x430
+ 1762 0423 0C       		.uleb128 0xc
+ 1763 0424 1D050000 		.4byte	.LASF70
+ 1764 0428 0A       		.byte	0xa
+ 1765 0429 B1       		.byte	0xb1
+ 1766 042a 06040000 		.4byte	0x406
+ 1767 042e 00       		.byte	0
+ 1768 042f 00       		.byte	0
+ 1769 0430 02       		.uleb128 0x2
+ 1770 0431 A1090000 		.4byte	.LASF92
+ 1771 0435 09       		.byte	0x9
+ 1772 0436 50       		.byte	0x50
+ 1773 0437 3B040000 		.4byte	0x43b
+ 1774 043b 0F       		.uleb128 0xf
+ 1775 043c E1000000 		.4byte	.LASF93
+ 1776 0440 08       		.byte	0x8
+ 1777 0441 0A       		.byte	0xa
+ 1778 0442 B7       		.byte	0xb7
+ 1779 0443 60040000 		.4byte	0x460
+ 1780 0447 0C       		.uleb128 0xc
+ 1781 0448 1D050000 		.4byte	.LASF70
+ 1782 044c 0A       		.byte	0xa
+ 1783 044d B8       		.byte	0xb8
+ 1784 044e 06040000 		.4byte	0x406
+ 1785 0452 00       		.byte	0
+ 1786 0453 0C       		.uleb128 0xc
+ 1787 0454 F8050000 		.4byte	.LASF71
+ 1788 0458 0A       		.byte	0xa
+ 1789 0459 B9       		.byte	0xb9
+ 1790 045a 06040000 		.4byte	0x406
+ 1791 045e 04       		.byte	0x4
+ 1792 045f 00       		.byte	0
+ 1793 0460 02       		.uleb128 0x2
+ 1794 0461 00000000 		.4byte	.LASF94
+ARM GAS  /tmp/ccy45MUB.s 			page 33
+
+
+ 1795 0465 09       		.byte	0x9
+ 1796 0466 57       		.byte	0x57
+ 1797 0467 6B040000 		.4byte	0x46b
+ 1798 046b 12       		.uleb128 0x12
+ 1799 046c 1D040000 		.4byte	.LASF95
+ 1800 0470 1C       		.byte	0x1c
+ 1801 0471 0A       		.byte	0xa
+ 1802 0472 9001     		.2byte	0x190
+ 1803 0474 C7040000 		.4byte	0x4c7
+ 1804 0478 11       		.uleb128 0x11
+ 1805 0479 43080000 		.4byte	.LASF96
+ 1806 047d 0A       		.byte	0xa
+ 1807 047e 9101     		.2byte	0x191
+ 1808 0480 30040000 		.4byte	0x430
+ 1809 0484 00       		.byte	0
+ 1810 0485 11       		.uleb128 0x11
+ 1811 0486 AC070000 		.4byte	.LASF97
+ 1812 048a 0A       		.byte	0xa
+ 1813 048b 9201     		.2byte	0x192
+ 1814 048d C0020000 		.4byte	0x2c0
+ 1815 0491 08       		.byte	0x8
+ 1816 0492 11       		.uleb128 0x11
+ 1817 0493 52090000 		.4byte	.LASF98
+ 1818 0497 0A       		.byte	0xa
+ 1819 0498 9401     		.2byte	0x194
+ 1820 049a 2D060000 		.4byte	0x62d
+ 1821 049e 0C       		.byte	0xc
+ 1822 049f 11       		.uleb128 0x11
+ 1823 04a0 52020000 		.4byte	.LASF99
+ 1824 04a4 0A       		.byte	0xa
+ 1825 04a5 9701     		.2byte	0x197
+ 1826 04a7 06040000 		.4byte	0x406
+ 1827 04ab 10       		.byte	0x10
+ 1828 04ac 11       		.uleb128 0x11
+ 1829 04ad AF050000 		.4byte	.LASF100
+ 1830 04b1 0A       		.byte	0xa
+ 1831 04b2 9801     		.2byte	0x198
+ 1832 04b4 06040000 		.4byte	0x406
+ 1833 04b8 14       		.byte	0x14
+ 1834 04b9 11       		.uleb128 0x11
+ 1835 04ba A5050000 		.4byte	.LASF101
+ 1836 04be 0A       		.byte	0xa
+ 1837 04bf 9B01     		.2byte	0x19b
+ 1838 04c1 06040000 		.4byte	0x406
+ 1839 04c5 18       		.byte	0x18
+ 1840 04c6 00       		.byte	0
+ 1841 04c7 02       		.uleb128 0x2
+ 1842 04c8 E9080000 		.4byte	.LASF102
+ 1843 04cc 09       		.byte	0x9
+ 1844 04cd 5C       		.byte	0x5c
+ 1845 04ce D2040000 		.4byte	0x4d2
+ 1846 04d2 06       		.uleb128 0x6
+ 1847 04d3 04       		.byte	0x4
+ 1848 04d4 D8040000 		.4byte	0x4d8
+ 1849 04d8 13       		.uleb128 0x13
+ 1850 04d9 E3040000 		.4byte	0x4e3
+ 1851 04dd 14       		.uleb128 0x14
+ARM GAS  /tmp/ccy45MUB.s 			page 34
+
+
+ 1852 04de 37000000 		.4byte	0x37
+ 1853 04e2 00       		.byte	0
+ 1854 04e3 02       		.uleb128 0x2
+ 1855 04e4 7A040000 		.4byte	.LASF103
+ 1856 04e8 09       		.byte	0x9
+ 1857 04e9 61       		.byte	0x61
+ 1858 04ea EE040000 		.4byte	0x4ee
+ 1859 04ee 12       		.uleb128 0x12
+ 1860 04ef EA070000 		.4byte	.LASF104
+ 1861 04f3 14       		.byte	0x14
+ 1862 04f4 0A       		.byte	0xa
+ 1863 04f5 6B01     		.2byte	0x16b
+ 1864 04f7 3D050000 		.4byte	0x53d
+ 1865 04fb 11       		.uleb128 0x11
+ 1866 04fc 51030000 		.4byte	.LASF105
+ 1867 0500 0A       		.byte	0xa
+ 1868 0501 6C01     		.2byte	0x16c
+ 1869 0503 AC070000 		.4byte	0x7ac
+ 1870 0507 00       		.byte	0
+ 1871 0508 11       		.uleb128 0x11
+ 1872 0509 63020000 		.4byte	.LASF106
+ 1873 050d 0A       		.byte	0xa
+ 1874 050e 6D01     		.2byte	0x16d
+ 1875 0510 AC070000 		.4byte	0x7ac
+ 1876 0514 04       		.byte	0x4
+ 1877 0515 11       		.uleb128 0x11
+ 1878 0516 6E030000 		.4byte	.LASF107
+ 1879 051a 0A       		.byte	0xa
+ 1880 051b 6E01     		.2byte	0x16e
+ 1881 051d EC020000 		.4byte	0x2ec
+ 1882 0521 08       		.byte	0x8
+ 1883 0522 11       		.uleb128 0x11
+ 1884 0523 030B0000 		.4byte	.LASF108
+ 1885 0527 0A       		.byte	0xa
+ 1886 0528 6F01     		.2byte	0x16f
+ 1887 052a C7040000 		.4byte	0x4c7
+ 1888 052e 0C       		.byte	0xc
+ 1889 052f 11       		.uleb128 0x11
+ 1890 0530 82090000 		.4byte	.LASF109
+ 1891 0534 0A       		.byte	0xa
+ 1892 0535 7101     		.2byte	0x171
+ 1893 0537 37000000 		.4byte	0x37
+ 1894 053b 10       		.byte	0x10
+ 1895 053c 00       		.byte	0
+ 1896 053d 02       		.uleb128 0x2
+ 1897 053e AD000000 		.4byte	.LASF110
+ 1898 0542 09       		.byte	0x9
+ 1899 0543 66       		.byte	0x66
+ 1900 0544 48050000 		.4byte	0x548
+ 1901 0548 12       		.uleb128 0x12
+ 1902 0549 CE040000 		.4byte	.LASF111
+ 1903 054d 10       		.byte	0x10
+ 1904 054e 0A       		.byte	0xa
+ 1905 054f 7B01     		.2byte	0x17b
+ 1906 0551 8A050000 		.4byte	0x58a
+ 1907 0555 11       		.uleb128 0x11
+ 1908 0556 51030000 		.4byte	.LASF105
+ARM GAS  /tmp/ccy45MUB.s 			page 35
+
+
+ 1909 055a 0A       		.byte	0xa
+ 1910 055b 7C01     		.2byte	0x17c
+ 1911 055d AC070000 		.4byte	0x7ac
+ 1912 0561 00       		.byte	0
+ 1913 0562 11       		.uleb128 0x11
+ 1914 0563 63020000 		.4byte	.LASF106
+ 1915 0567 0A       		.byte	0xa
+ 1916 0568 7E01     		.2byte	0x17e
+ 1917 056a AC070000 		.4byte	0x7ac
+ 1918 056e 04       		.byte	0x4
+ 1919 056f 11       		.uleb128 0x11
+ 1920 0570 6E030000 		.4byte	.LASF107
+ 1921 0574 0A       		.byte	0xa
+ 1922 0575 8001     		.2byte	0x180
+ 1923 0577 EC020000 		.4byte	0x2ec
+ 1924 057b 08       		.byte	0x8
+ 1925 057c 11       		.uleb128 0x11
+ 1926 057d 4B080000 		.4byte	.LASF112
+ 1927 0581 0A       		.byte	0xa
+ 1928 0582 8201     		.2byte	0x182
+ 1929 0584 B2070000 		.4byte	0x7b2
+ 1930 0588 0C       		.byte	0xc
+ 1931 0589 00       		.byte	0
+ 1932 058a 02       		.uleb128 0x2
+ 1933 058b 77030000 		.4byte	.LASF113
+ 1934 058f 09       		.byte	0x9
+ 1935 0590 6B       		.byte	0x6b
+ 1936 0591 95050000 		.4byte	0x595
+ 1937 0595 12       		.uleb128 0x12
+ 1938 0596 51060000 		.4byte	.LASF114
+ 1939 059a 04       		.byte	0x4
+ 1940 059b 0A       		.byte	0xa
+ 1941 059c A201     		.2byte	0x1a2
+ 1942 059e B0050000 		.4byte	0x5b0
+ 1943 05a2 11       		.uleb128 0x11
+ 1944 05a3 FD080000 		.4byte	.LASF115
+ 1945 05a7 0A       		.byte	0xa
+ 1946 05a8 AA01     		.2byte	0x1aa
+ 1947 05aa B7070000 		.4byte	0x7b7
+ 1948 05ae 00       		.byte	0
+ 1949 05af 00       		.byte	0
+ 1950 05b0 02       		.uleb128 0x2
+ 1951 05b1 58090000 		.4byte	.LASF116
+ 1952 05b5 09       		.byte	0x9
+ 1953 05b6 70       		.byte	0x70
+ 1954 05b7 BB050000 		.4byte	0x5bb
+ 1955 05bb 15       		.uleb128 0x15
+ 1956 05bc BA070000 		.4byte	.LASF117
+ 1957 05c0 5001     		.2byte	0x150
+ 1958 05c2 0A       		.byte	0xa
+ 1959 05c3 C201     		.2byte	0x1c2
+ 1960 05c5 17060000 		.4byte	0x617
+ 1961 05c9 11       		.uleb128 0x11
+ 1962 05ca 430A0000 		.4byte	.LASF118
+ 1963 05ce 0A       		.byte	0xa
+ 1964 05cf C601     		.2byte	0x1c6
+ 1965 05d1 60040000 		.4byte	0x460
+ARM GAS  /tmp/ccy45MUB.s 			page 36
+
+
+ 1966 05d5 00       		.byte	0
+ 1967 05d6 11       		.uleb128 0x11
+ 1968 05d7 4A000000 		.4byte	.LASF119
+ 1969 05db 0A       		.byte	0xa
+ 1970 05dc CA01     		.2byte	0x1ca
+ 1971 05de 3D050000 		.4byte	0x53d
+ 1972 05e2 1C       		.byte	0x1c
+ 1973 05e3 10       		.uleb128 0x10
+ 1974 05e4 64626700 		.ascii	"dbg\000"
+ 1975 05e8 0A       		.byte	0xa
+ 1976 05e9 CE01     		.2byte	0x1ce
+ 1977 05eb 8A050000 		.4byte	0x58a
+ 1978 05ef 2C       		.byte	0x2c
+ 1979 05f0 11       		.uleb128 0x11
+ 1980 05f1 90000000 		.4byte	.LASF120
+ 1981 05f5 0A       		.byte	0xa
+ 1982 05f6 D201     		.2byte	0x1d2
+ 1983 05f8 F7020000 		.4byte	0x2f7
+ 1984 05fc 30       		.byte	0x30
+ 1985 05fd 10       		.uleb128 0x10
+ 1986 05fe 746D00   		.ascii	"tm\000"
+ 1987 0601 0A       		.byte	0xa
+ 1988 0602 D701     		.2byte	0x1d7
+ 1989 0604 DC060000 		.4byte	0x6dc
+ 1990 0608 74       		.byte	0x74
+ 1991 0609 11       		.uleb128 0x11
+ 1992 060a 2E030000 		.4byte	.LASF121
+ 1993 060e 0A       		.byte	0xa
+ 1994 060f E301     		.2byte	0x1e3
+ 1995 0611 BC070000 		.4byte	0x7bc
+ 1996 0615 78       		.byte	0x78
+ 1997 0616 00       		.byte	0
+ 1998 0617 02       		.uleb128 0x2
+ 1999 0618 5A020000 		.4byte	.LASF122
+ 2000 061c 0B       		.byte	0xb
+ 2001 061d 65       		.byte	0x65
+ 2002 061e 37000000 		.4byte	0x37
+ 2003 0622 02       		.uleb128 0x2
+ 2004 0623 52040000 		.4byte	.LASF123
+ 2005 0627 0B       		.byte	0xb
+ 2006 0628 6D       		.byte	0x6d
+ 2007 0629 F4000000 		.4byte	0xf4
+ 2008 062d 0F       		.uleb128 0xf
+ 2009 062e 4A090000 		.4byte	.LASF124
+ 2010 0632 04       		.byte	0x4
+ 2011 0633 0B       		.byte	0xb
+ 2012 0634 89       		.byte	0x89
+ 2013 0635 46060000 		.4byte	0x646
+ 2014 0639 16       		.uleb128 0x16
+ 2015 063a 72313300 		.ascii	"r13\000"
+ 2016 063e 0B       		.byte	0xb
+ 2017 063f 8A       		.byte	0x8a
+ 2018 0640 C1060000 		.4byte	0x6c1
+ 2019 0644 00       		.byte	0
+ 2020 0645 00       		.byte	0
+ 2021 0646 0F       		.uleb128 0xf
+ 2022 0647 2F000000 		.4byte	.LASF125
+ARM GAS  /tmp/ccy45MUB.s 			page 37
+
+
+ 2023 064b 24       		.byte	0x24
+ 2024 064c 0C       		.byte	0xc
+ 2025 064d FD       		.byte	0xfd
+ 2026 064e C1060000 		.4byte	0x6c1
+ 2027 0652 10       		.uleb128 0x10
+ 2028 0653 723400   		.ascii	"r4\000"
+ 2029 0656 0C       		.byte	0xc
+ 2030 0657 1001     		.2byte	0x110
+ 2031 0659 17060000 		.4byte	0x617
+ 2032 065d 00       		.byte	0
+ 2033 065e 10       		.uleb128 0x10
+ 2034 065f 723500   		.ascii	"r5\000"
+ 2035 0662 0C       		.byte	0xc
+ 2036 0663 1101     		.2byte	0x111
+ 2037 0665 17060000 		.4byte	0x617
+ 2038 0669 04       		.byte	0x4
+ 2039 066a 10       		.uleb128 0x10
+ 2040 066b 723600   		.ascii	"r6\000"
+ 2041 066e 0C       		.byte	0xc
+ 2042 066f 1201     		.2byte	0x112
+ 2043 0671 17060000 		.4byte	0x617
+ 2044 0675 08       		.byte	0x8
+ 2045 0676 10       		.uleb128 0x10
+ 2046 0677 723700   		.ascii	"r7\000"
+ 2047 067a 0C       		.byte	0xc
+ 2048 067b 1301     		.2byte	0x113
+ 2049 067d 17060000 		.4byte	0x617
+ 2050 0681 0C       		.byte	0xc
+ 2051 0682 10       		.uleb128 0x10
+ 2052 0683 723800   		.ascii	"r8\000"
+ 2053 0686 0C       		.byte	0xc
+ 2054 0687 1401     		.2byte	0x114
+ 2055 0689 17060000 		.4byte	0x617
+ 2056 068d 10       		.byte	0x10
+ 2057 068e 10       		.uleb128 0x10
+ 2058 068f 723900   		.ascii	"r9\000"
+ 2059 0692 0C       		.byte	0xc
+ 2060 0693 1501     		.2byte	0x115
+ 2061 0695 17060000 		.4byte	0x617
+ 2062 0699 14       		.byte	0x14
+ 2063 069a 10       		.uleb128 0x10
+ 2064 069b 72313000 		.ascii	"r10\000"
+ 2065 069f 0C       		.byte	0xc
+ 2066 06a0 1601     		.2byte	0x116
+ 2067 06a2 17060000 		.4byte	0x617
+ 2068 06a6 18       		.byte	0x18
+ 2069 06a7 10       		.uleb128 0x10
+ 2070 06a8 72313100 		.ascii	"r11\000"
+ 2071 06ac 0C       		.byte	0xc
+ 2072 06ad 1701     		.2byte	0x117
+ 2073 06af 17060000 		.4byte	0x617
+ 2074 06b3 1C       		.byte	0x1c
+ 2075 06b4 10       		.uleb128 0x10
+ 2076 06b5 6C7200   		.ascii	"lr\000"
+ 2077 06b8 0C       		.byte	0xc
+ 2078 06b9 1801     		.2byte	0x118
+ 2079 06bb 17060000 		.4byte	0x617
+ARM GAS  /tmp/ccy45MUB.s 			page 38
+
+
+ 2080 06bf 20       		.byte	0x20
+ 2081 06c0 00       		.byte	0
+ 2082 06c1 06       		.uleb128 0x6
+ 2083 06c2 04       		.byte	0x4
+ 2084 06c3 46060000 		.4byte	0x646
+ 2085 06c7 0B       		.uleb128 0xb
+ 2086 06c8 04       		.byte	0x4
+ 2087 06c9 0D       		.byte	0xd
+ 2088 06ca 38       		.byte	0x38
+ 2089 06cb DC060000 		.4byte	0x6dc
+ 2090 06cf 0C       		.uleb128 0xc
+ 2091 06d0 25090000 		.4byte	.LASF126
+ 2092 06d4 0D       		.byte	0xd
+ 2093 06d5 3C       		.byte	0x3c
+ 2094 06d6 89020000 		.4byte	0x289
+ 2095 06da 00       		.byte	0
+ 2096 06db 00       		.byte	0
+ 2097 06dc 02       		.uleb128 0x2
+ 2098 06dd 82050000 		.4byte	.LASF127
+ 2099 06e1 0D       		.byte	0xd
+ 2100 06e2 3D       		.byte	0x3d
+ 2101 06e3 C7060000 		.4byte	0x6c7
+ 2102 06e7 17       		.uleb128 0x17
+ 2103 06e8 04       		.byte	0x4
+ 2104 06e9 0A       		.byte	0xa
+ 2105 06ea FA       		.byte	0xfa
+ 2106 06eb 44070000 		.4byte	0x744
+ 2107 06ef 18       		.uleb128 0x18
+ 2108 06f0 B1090000 		.4byte	.LASF128
+ 2109 06f4 0A       		.byte	0xa
+ 2110 06f5 0101     		.2byte	0x101
+ 2111 06f7 CB020000 		.4byte	0x2cb
+ 2112 06fb 18       		.uleb128 0x18
+ 2113 06fc 87000000 		.4byte	.LASF129
+ 2114 0700 0A       		.byte	0xa
+ 2115 0701 0801     		.2byte	0x108
+ 2116 0703 CB020000 		.4byte	0x2cb
+ 2117 0707 18       		.uleb128 0x18
+ 2118 0708 3B010000 		.4byte	.LASF130
+ 2119 070c 0A       		.byte	0xa
+ 2120 070d 0F01     		.2byte	0x10f
+ 2121 070f 37000000 		.4byte	0x37
+ 2122 0713 18       		.uleb128 0x18
+ 2123 0714 4C010000 		.4byte	.LASF131
+ 2124 0718 0A       		.byte	0xa
+ 2125 0719 1601     		.2byte	0x116
+ 2126 071b 44070000 		.4byte	0x744
+ 2127 071f 18       		.uleb128 0x18
+ 2128 0720 59030000 		.4byte	.LASF132
+ 2129 0724 0A       		.byte	0xa
+ 2130 0725 1E01     		.2byte	0x11e
+ 2131 0727 6F070000 		.4byte	0x76f
+ 2132 072b 18       		.uleb128 0x18
+ 2133 072c 3C080000 		.4byte	.LASF133
+ 2134 0730 0A       		.byte	0xa
+ 2135 0731 2701     		.2byte	0x127
+ 2136 0733 A6070000 		.4byte	0x7a6
+ARM GAS  /tmp/ccy45MUB.s 			page 39
+
+
+ 2137 0737 18       		.uleb128 0x18
+ 2138 0738 B3070000 		.4byte	.LASF134
+ 2139 073c 0A       		.byte	0xa
+ 2140 073d 2F01     		.2byte	0x12f
+ 2141 073f D6020000 		.4byte	0x2d6
+ 2142 0743 00       		.byte	0
+ 2143 0744 06       		.uleb128 0x6
+ 2144 0745 04       		.byte	0x4
+ 2145 0746 FB030000 		.4byte	0x3fb
+ 2146 074a 0F       		.uleb128 0xf
+ 2147 074b FB070000 		.4byte	.LASF135
+ 2148 074f 0C       		.byte	0xc
+ 2149 0750 0E       		.byte	0xe
+ 2150 0751 34       		.byte	0x34
+ 2151 0752 6F070000 		.4byte	0x76f
+ 2152 0756 0C       		.uleb128 0xc
+ 2153 0757 F6010000 		.4byte	.LASF136
+ 2154 075b 0E       		.byte	0xe
+ 2155 075c 35       		.byte	0x35
+ 2156 075d 30040000 		.4byte	0x430
+ 2157 0761 00       		.byte	0
+ 2158 0762 0C       		.uleb128 0xc
+ 2159 0763 AA030000 		.4byte	.LASF137
+ 2160 0767 0E       		.byte	0xe
+ 2161 0768 37       		.byte	0x37
+ 2162 0769 E1020000 		.4byte	0x2e1
+ 2163 076d 08       		.byte	0x8
+ 2164 076e 00       		.byte	0
+ 2165 076f 06       		.uleb128 0x6
+ 2166 0770 04       		.byte	0x4
+ 2167 0771 4A070000 		.4byte	0x74a
+ 2168 0775 0F       		.uleb128 0xf
+ 2169 0776 A50A0000 		.4byte	.LASF138
+ 2170 077a 10       		.byte	0x10
+ 2171 077b 0F       		.byte	0xf
+ 2172 077c 39       		.byte	0x39
+ 2173 077d A6070000 		.4byte	0x7a6
+ 2174 0781 0C       		.uleb128 0xc
+ 2175 0782 33010000 		.4byte	.LASF139
+ 2176 0786 0F       		.byte	0xf
+ 2177 0787 3A       		.byte	0x3a
+ 2178 0788 30040000 		.4byte	0x430
+ 2179 078c 00       		.byte	0
+ 2180 078d 0C       		.uleb128 0xc
+ 2181 078e F50A0000 		.4byte	.LASF140
+ 2182 0792 0F       		.byte	0xf
+ 2183 0793 3C       		.byte	0x3c
+ 2184 0794 06040000 		.4byte	0x406
+ 2185 0798 08       		.byte	0x8
+ 2186 0799 0C       		.uleb128 0xc
+ 2187 079a CD080000 		.4byte	.LASF141
+ 2188 079e 0F       		.byte	0xf
+ 2189 079f 3E       		.byte	0x3e
+ 2190 07a0 D7070000 		.4byte	0x7d7
+ 2191 07a4 0C       		.byte	0xc
+ 2192 07a5 00       		.byte	0
+ 2193 07a6 06       		.uleb128 0x6
+ARM GAS  /tmp/ccy45MUB.s 			page 40
+
+
+ 2194 07a7 04       		.byte	0x4
+ 2195 07a8 75070000 		.4byte	0x775
+ 2196 07ac 06       		.uleb128 0x6
+ 2197 07ad 04       		.byte	0x4
+ 2198 07ae E3040000 		.4byte	0x4e3
+ 2199 07b2 19       		.uleb128 0x19
+ 2200 07b3 EC020000 		.4byte	0x2ec
+ 2201 07b7 19       		.uleb128 0x19
+ 2202 07b8 BD000000 		.4byte	0xbd
+ 2203 07bc 0D       		.uleb128 0xd
+ 2204 07bd 22060000 		.4byte	0x622
+ 2205 07c1 CC070000 		.4byte	0x7cc
+ 2206 07c5 0E       		.uleb128 0xe
+ 2207 07c6 AF000000 		.4byte	0xaf
+ 2208 07ca 1A       		.byte	0x1a
+ 2209 07cb 00       		.byte	0
+ 2210 07cc 02       		.uleb128 0x2
+ 2211 07cd 26030000 		.4byte	.LASF142
+ 2212 07d1 0F       		.byte	0xf
+ 2213 07d2 34       		.byte	0x34
+ 2214 07d3 75070000 		.4byte	0x775
+ 2215 07d7 06       		.uleb128 0x6
+ 2216 07d8 04       		.byte	0x4
+ 2217 07d9 CC070000 		.4byte	0x7cc
+ 2218 07dd 08       		.uleb128 0x8
+ 2219 07de 01       		.byte	0x1
+ 2220 07df 10       		.byte	0x10
+ 2221 07e0 3D       		.byte	0x3d
+ 2222 07e1 30080000 		.4byte	0x830
+ 2223 07e5 09       		.uleb128 0x9
+ 2224 07e6 DD070000 		.4byte	.LASF143
+ 2225 07ea 00       		.sleb128 0
+ 2226 07eb 09       		.uleb128 0x9
+ 2227 07ec 25080000 		.4byte	.LASF144
+ 2228 07f0 01       		.sleb128 1
+ 2229 07f1 09       		.uleb128 0x9
+ 2230 07f2 9D070000 		.4byte	.LASF145
+ 2231 07f6 02       		.sleb128 2
+ 2232 07f7 09       		.uleb128 0x9
+ 2233 07f8 B7050000 		.4byte	.LASF146
+ 2234 07fc 03       		.sleb128 3
+ 2235 07fd 09       		.uleb128 0x9
+ 2236 07fe 62050000 		.4byte	.LASF147
+ 2237 0802 04       		.sleb128 4
+ 2238 0803 09       		.uleb128 0x9
+ 2239 0804 BF090000 		.4byte	.LASF148
+ 2240 0808 05       		.sleb128 5
+ 2241 0809 09       		.uleb128 0x9
+ 2242 080a E60A0000 		.4byte	.LASF149
+ 2243 080e 06       		.sleb128 6
+ 2244 080f 09       		.uleb128 0x9
+ 2245 0810 22010000 		.4byte	.LASF150
+ 2246 0814 08       		.sleb128 8
+ 2247 0815 09       		.uleb128 0x9
+ 2248 0816 43030000 		.4byte	.LASF151
+ 2249 081a 10       		.sleb128 16
+ 2250 081b 09       		.uleb128 0x9
+ARM GAS  /tmp/ccy45MUB.s 			page 41
+
+
+ 2251 081c 490A0000 		.4byte	.LASF152
+ 2252 0820 20       		.sleb128 32
+ 2253 0821 09       		.uleb128 0x9
+ 2254 0822 3B000000 		.4byte	.LASF153
+ 2255 0826 C000     		.sleb128 64
+ 2256 0828 09       		.uleb128 0x9
+ 2257 0829 600A0000 		.4byte	.LASF154
+ 2258 082d 8001     		.sleb128 128
+ 2259 082f 00       		.byte	0
+ 2260 0830 02       		.uleb128 0x2
+ 2261 0831 A6040000 		.4byte	.LASF155
+ 2262 0835 10       		.byte	0x10
+ 2263 0836 4A       		.byte	0x4a
+ 2264 0837 DD070000 		.4byte	0x7dd
+ 2265 083b 1A       		.uleb128 0x1a
+ 2266 083c C40A0000 		.4byte	.LASF156
+ 2267 0840 01       		.byte	0x1
+ 2268 0841 3B       		.byte	0x3b
+ 2269 0842 00000000 		.4byte	.LFB263
+ 2270 0846 18000000 		.4byte	.LFE263-.LFB263
+ 2271 084a 01       		.uleb128 0x1
+ 2272 084b 9C       		.byte	0x9c
+ 2273 084c 1A       		.uleb128 0x1a
+ 2274 084d 91010000 		.4byte	.LASF157
+ 2275 0851 01       		.byte	0x1
+ 2276 0852 45       		.byte	0x45
+ 2277 0853 20000000 		.4byte	.LFB264
+ 2278 0857 78000000 		.4byte	.LFE264-.LFB264
+ 2279 085b 01       		.uleb128 0x1
+ 2280 085c 9C       		.byte	0x9c
+ 2281 085d 1A       		.uleb128 0x1a
+ 2282 085e D8010000 		.4byte	.LASF158
+ 2283 0862 01       		.byte	0x1
+ 2284 0863 6B       		.byte	0x6b
+ 2285 0864 A0000000 		.4byte	.LFB265
+ 2286 0868 34000000 		.4byte	.LFE265-.LFB265
+ 2287 086c 01       		.uleb128 0x1
+ 2288 086d 9C       		.byte	0x9c
+ 2289 086e 1A       		.uleb128 0x1a
+ 2290 086f 0F030000 		.4byte	.LASF159
+ 2291 0873 01       		.byte	0x1
+ 2292 0874 80       		.byte	0x80
+ 2293 0875 E0000000 		.4byte	.LFB266
+ 2294 0879 44000000 		.4byte	.LFE266-.LFB266
+ 2295 087d 01       		.uleb128 0x1
+ 2296 087e 9C       		.byte	0x9c
+ 2297 087f 1B       		.uleb128 0x1b
+ 2298 0880 FE010000 		.4byte	.LASF174
+ 2299 0884 01       		.byte	0x1
+ 2300 0885 95       		.byte	0x95
+ 2301 0886 30080000 		.4byte	0x830
+ 2302 088a 30010000 		.4byte	.LFB267
+ 2303 088e F4010000 		.4byte	.LFE267-.LFB267
+ 2304 0892 01       		.uleb128 0x1
+ 2305 0893 9C       		.byte	0x9c
+ 2306 0894 FF080000 		.4byte	0x8ff
+ 2307 0898 1C       		.uleb128 0x1c
+ARM GAS  /tmp/ccy45MUB.s 			page 42
+
+
+ 2308 0899 0B050000 		.4byte	.LASF160
+ 2309 089d 01       		.byte	0x1
+ 2310 089e 97       		.byte	0x97
+ 2311 089f 30080000 		.4byte	0x830
+ 2312 08a3 02       		.uleb128 0x2
+ 2313 08a4 91       		.byte	0x91
+ 2314 08a5 77       		.sleb128 -9
+ 2315 08a6 1D       		.uleb128 0x1d
+ 2316 08a7 44010000 		.4byte	.LBB2
+ 2317 08ab D0010000 		.4byte	.LBE2-.LBB2
+ 2318 08af 1E       		.uleb128 0x1e
+ 2319 08b0 786C00   		.ascii	"xl\000"
+ 2320 08b3 01       		.byte	0x1
+ 2321 08b4 9A       		.byte	0x9a
+ 2322 08b5 C8000000 		.4byte	0xc8
+ 2323 08b9 02       		.uleb128 0x2
+ 2324 08ba 91       		.byte	0x91
+ 2325 08bb 76       		.sleb128 -10
+ 2326 08bc 1E       		.uleb128 0x1e
+ 2327 08bd 786800   		.ascii	"xh\000"
+ 2328 08c0 01       		.byte	0x1
+ 2329 08c1 9B       		.byte	0x9b
+ 2330 08c2 C8000000 		.4byte	0xc8
+ 2331 08c6 02       		.uleb128 0x2
+ 2332 08c7 91       		.byte	0x91
+ 2333 08c8 75       		.sleb128 -11
+ 2334 08c9 1E       		.uleb128 0x1e
+ 2335 08ca 796C00   		.ascii	"yl\000"
+ 2336 08cd 01       		.byte	0x1
+ 2337 08ce 9C       		.byte	0x9c
+ 2338 08cf C8000000 		.4byte	0xc8
+ 2339 08d3 02       		.uleb128 0x2
+ 2340 08d4 91       		.byte	0x91
+ 2341 08d5 74       		.sleb128 -12
+ 2342 08d6 1E       		.uleb128 0x1e
+ 2343 08d7 796800   		.ascii	"yh\000"
+ 2344 08da 01       		.byte	0x1
+ 2345 08db 9D       		.byte	0x9d
+ 2346 08dc C8000000 		.4byte	0xc8
+ 2347 08e0 02       		.uleb128 0x2
+ 2348 08e1 91       		.byte	0x91
+ 2349 08e2 73       		.sleb128 -13
+ 2350 08e3 1E       		.uleb128 0x1e
+ 2351 08e4 7A6C00   		.ascii	"zl\000"
+ 2352 08e7 01       		.byte	0x1
+ 2353 08e8 9E       		.byte	0x9e
+ 2354 08e9 C8000000 		.4byte	0xc8
+ 2355 08ed 02       		.uleb128 0x2
+ 2356 08ee 91       		.byte	0x91
+ 2357 08ef 72       		.sleb128 -14
+ 2358 08f0 1E       		.uleb128 0x1e
+ 2359 08f1 7A6800   		.ascii	"zh\000"
+ 2360 08f4 01       		.byte	0x1
+ 2361 08f5 9F       		.byte	0x9f
+ 2362 08f6 C8000000 		.4byte	0xc8
+ 2363 08fa 02       		.uleb128 0x2
+ 2364 08fb 91       		.byte	0x91
+ARM GAS  /tmp/ccy45MUB.s 			page 43
+
+
+ 2365 08fc 71       		.sleb128 -15
+ 2366 08fd 00       		.byte	0
+ 2367 08fe 00       		.byte	0
+ 2368 08ff 1A       		.uleb128 0x1a
+ 2369 0900 03040000 		.4byte	.LASF161
+ 2370 0904 01       		.byte	0x1
+ 2371 0905 D0       		.byte	0xd0
+ 2372 0906 30030000 		.4byte	.LFB268
+ 2373 090a 34000000 		.4byte	.LFE268-.LFB268
+ 2374 090e 01       		.uleb128 0x1
+ 2375 090f 9C       		.byte	0x9c
+ 2376 0910 1A       		.uleb128 0x1a
+ 2377 0911 60030000 		.4byte	.LASF162
+ 2378 0915 01       		.byte	0x1
+ 2379 0916 E5       		.byte	0xe5
+ 2380 0917 70030000 		.4byte	.LFB269
+ 2381 091b 44000000 		.4byte	.LFE269-.LFB269
+ 2382 091f 01       		.uleb128 0x1
+ 2383 0920 9C       		.byte	0x9c
+ 2384 0921 1A       		.uleb128 0x1a
+ 2385 0922 F9000000 		.4byte	.LASF163
+ 2386 0926 01       		.byte	0x1
+ 2387 0927 FB       		.byte	0xfb
+ 2388 0928 C0030000 		.4byte	.LFB270
+ 2389 092c 34000000 		.4byte	.LFE270-.LFB270
+ 2390 0930 01       		.uleb128 0x1
+ 2391 0931 9C       		.byte	0x9c
+ 2392 0932 1F       		.uleb128 0x1f
+ 2393 0933 61060000 		.4byte	.LASF164
+ 2394 0937 01       		.byte	0x1
+ 2395 0938 1001     		.2byte	0x110
+ 2396 093a 00040000 		.4byte	.LFB271
+ 2397 093e 44000000 		.4byte	.LFE271-.LFB271
+ 2398 0942 01       		.uleb128 0x1
+ 2399 0943 9C       		.byte	0x9c
+ 2400 0944 1F       		.uleb128 0x1f
+ 2401 0945 14000000 		.4byte	.LASF165
+ 2402 0949 01       		.byte	0x1
+ 2403 094a 2501     		.2byte	0x125
+ 2404 094c 50040000 		.4byte	.LFB272
+ 2405 0950 40000000 		.4byte	.LFE272-.LFB272
+ 2406 0954 01       		.uleb128 0x1
+ 2407 0955 9C       		.byte	0x9c
+ 2408 0956 1F       		.uleb128 0x1f
+ 2409 0957 13080000 		.4byte	.LASF166
+ 2410 095b 01       		.byte	0x1
+ 2411 095c 4601     		.2byte	0x146
+ 2412 095e 90040000 		.4byte	.LFB273
+ 2413 0962 44000000 		.4byte	.LFE273-.LFB273
+ 2414 0966 01       		.uleb128 0x1
+ 2415 0967 9C       		.byte	0x9c
+ 2416 0968 1F       		.uleb128 0x1f
+ 2417 0969 94060000 		.4byte	.LASF167
+ 2418 096d 01       		.byte	0x1
+ 2419 096e 5B01     		.2byte	0x15b
+ 2420 0970 E0040000 		.4byte	.LFB274
+ 2421 0974 40000000 		.4byte	.LFE274-.LFB274
+ARM GAS  /tmp/ccy45MUB.s 			page 44
+
+
+ 2422 0978 01       		.uleb128 0x1
+ 2423 0979 9C       		.byte	0x9c
+ 2424 097a 1F       		.uleb128 0x1f
+ 2425 097b 5B010000 		.4byte	.LASF168
+ 2426 097f 01       		.byte	0x1
+ 2427 0980 7C01     		.2byte	0x17c
+ 2428 0982 20050000 		.4byte	.LFB275
+ 2429 0986 44000000 		.4byte	.LFE275-.LFB275
+ 2430 098a 01       		.uleb128 0x1
+ 2431 098b 9C       		.byte	0x9c
+ 2432 098c 1F       		.uleb128 0x1f
+ 2433 098d 5D040000 		.4byte	.LASF169
+ 2434 0991 01       		.byte	0x1
+ 2435 0992 9101     		.2byte	0x191
+ 2436 0994 70050000 		.4byte	.LFB276
+ 2437 0998 34000000 		.4byte	.LFE276-.LFB276
+ 2438 099c 01       		.uleb128 0x1
+ 2439 099d 9C       		.byte	0x9c
+ 2440 099e 1F       		.uleb128 0x1f
+ 2441 099f 0B0B0000 		.4byte	.LASF170
+ 2442 09a3 01       		.byte	0x1
+ 2443 09a4 A601     		.2byte	0x1a6
+ 2444 09a6 B0050000 		.4byte	.LFB277
+ 2445 09aa 44000000 		.4byte	.LFE277-.LFB277
+ 2446 09ae 01       		.uleb128 0x1
+ 2447 09af 9C       		.byte	0x9c
+ 2448 09b0 1F       		.uleb128 0x1f
+ 2449 09b1 FD020000 		.4byte	.LASF171
+ 2450 09b5 01       		.byte	0x1
+ 2451 09b6 BB01     		.2byte	0x1bb
+ 2452 09b8 00060000 		.4byte	.LFB278
+ 2453 09bc 34000000 		.4byte	.LFE278-.LFB278
+ 2454 09c0 01       		.uleb128 0x1
+ 2455 09c1 9C       		.byte	0x9c
+ 2456 09c2 1F       		.uleb128 0x1f
+ 2457 09c3 64090000 		.4byte	.LASF172
+ 2458 09c7 01       		.byte	0x1
+ 2459 09c8 CF01     		.2byte	0x1cf
+ 2460 09ca 40060000 		.4byte	.LFB279
+ 2461 09ce 44000000 		.4byte	.LFE279-.LFB279
+ 2462 09d2 01       		.uleb128 0x1
+ 2463 09d3 9C       		.byte	0x9c
+ 2464 09d4 1F       		.uleb128 0x1f
+ 2465 09d5 320A0000 		.4byte	.LASF173
+ 2466 09d9 01       		.byte	0x1
+ 2467 09da E301     		.2byte	0x1e3
+ 2468 09dc 90060000 		.4byte	.LFB280
+ 2469 09e0 1C000000 		.4byte	.LFE280-.LFB280
+ 2470 09e4 01       		.uleb128 0x1
+ 2471 09e5 9C       		.byte	0x9c
+ 2472 09e6 20       		.uleb128 0x20
+ 2473 09e7 7A080000 		.4byte	.LASF175
+ 2474 09eb 01       		.byte	0x1
+ 2475 09ec F301     		.2byte	0x1f3
+ 2476 09ee D3000000 		.4byte	0xd3
+ 2477 09f2 B0060000 		.4byte	.LFB281
+ 2478 09f6 34000000 		.4byte	.LFE281-.LFB281
+ARM GAS  /tmp/ccy45MUB.s 			page 45
+
+
+ 2479 09fa 01       		.uleb128 0x1
+ 2480 09fb 9C       		.byte	0x9c
+ 2481 09fc 100A0000 		.4byte	0xa10
+ 2482 0a00 21       		.uleb128 0x21
+ 2483 0a01 29020000 		.4byte	.LASF176
+ 2484 0a05 01       		.byte	0x1
+ 2485 0a06 F501     		.2byte	0x1f5
+ 2486 0a08 D3000000 		.4byte	0xd3
+ 2487 0a0c 02       		.uleb128 0x2
+ 2488 0a0d 91       		.byte	0x91
+ 2489 0a0e 76       		.sleb128 -10
+ 2490 0a0f 00       		.byte	0
+ 2491 0a10 1C       		.uleb128 0x1c
+ 2492 0a11 E5040000 		.4byte	.LASF177
+ 2493 0a15 01       		.byte	0x1
+ 2494 0a16 34       		.byte	0x34
+ 2495 0a17 20010000 		.4byte	0x120
+ 2496 0a1b 05       		.uleb128 0x5
+ 2497 0a1c 03       		.byte	0x3
+ 2498 0a1d 04000000 		.4byte	DefaultAccODR
+ 2499 0a21 22       		.uleb128 0x22
+ 2500 0a22 87060000 		.4byte	.LASF178
+ 2501 0a26 11       		.byte	0x11
+ 2502 0a27 FA06     		.2byte	0x6fa
+ 2503 0a29 2D0A0000 		.4byte	0xa2d
+ 2504 0a2d 19       		.uleb128 0x19
+ 2505 0a2e DE000000 		.4byte	0xde
+ 2506 0a32 23       		.uleb128 0x23
+ 2507 0a33 66080000 		.4byte	.LASF179
+ 2508 0a37 07       		.byte	0x7
+ 2509 0a38 EE       		.byte	0xee
+ 2510 0a39 7E020000 		.4byte	0x27e
+ 2511 0a3d 24       		.uleb128 0x24
+ 2512 0a3e 636800   		.ascii	"ch\000"
+ 2513 0a41 0A       		.byte	0xa
+ 2514 0a42 0902     		.2byte	0x209
+ 2515 0a44 B0050000 		.4byte	0x5b0
+ 2516 0a48 25       		.uleb128 0x25
+ 2517 0a49 89090000 		.4byte	.LASF180
+ 2518 0a4d 01       		.byte	0x1
+ 2519 0a4e 31       		.byte	0x31
+ 2520 0a4f E9000000 		.4byte	0xe9
+ 2521 0a53 05       		.uleb128 0x5
+ 2522 0a54 03       		.byte	0x3
+ 2523 0a55 00000000 		.4byte	HWAdvanceFeaturesStatus
+ 2524 0a59 00       		.byte	0
+ 2525              		.section	.debug_abbrev,"",%progbits
+ 2526              	.Ldebug_abbrev0:
+ 2527 0000 01       		.uleb128 0x1
+ 2528 0001 11       		.uleb128 0x11
+ 2529 0002 01       		.byte	0x1
+ 2530 0003 25       		.uleb128 0x25
+ 2531 0004 0E       		.uleb128 0xe
+ 2532 0005 13       		.uleb128 0x13
+ 2533 0006 0B       		.uleb128 0xb
+ 2534 0007 03       		.uleb128 0x3
+ 2535 0008 0E       		.uleb128 0xe
+ARM GAS  /tmp/ccy45MUB.s 			page 46
+
+
+ 2536 0009 1B       		.uleb128 0x1b
+ 2537 000a 0E       		.uleb128 0xe
+ 2538 000b 11       		.uleb128 0x11
+ 2539 000c 01       		.uleb128 0x1
+ 2540 000d 12       		.uleb128 0x12
+ 2541 000e 06       		.uleb128 0x6
+ 2542 000f 10       		.uleb128 0x10
+ 2543 0010 17       		.uleb128 0x17
+ 2544 0011 00       		.byte	0
+ 2545 0012 00       		.byte	0
+ 2546 0013 02       		.uleb128 0x2
+ 2547 0014 16       		.uleb128 0x16
+ 2548 0015 00       		.byte	0
+ 2549 0016 03       		.uleb128 0x3
+ 2550 0017 0E       		.uleb128 0xe
+ 2551 0018 3A       		.uleb128 0x3a
+ 2552 0019 0B       		.uleb128 0xb
+ 2553 001a 3B       		.uleb128 0x3b
+ 2554 001b 0B       		.uleb128 0xb
+ 2555 001c 49       		.uleb128 0x49
+ 2556 001d 13       		.uleb128 0x13
+ 2557 001e 00       		.byte	0
+ 2558 001f 00       		.byte	0
+ 2559 0020 03       		.uleb128 0x3
+ 2560 0021 24       		.uleb128 0x24
+ 2561 0022 00       		.byte	0
+ 2562 0023 0B       		.uleb128 0xb
+ 2563 0024 0B       		.uleb128 0xb
+ 2564 0025 3E       		.uleb128 0x3e
+ 2565 0026 0B       		.uleb128 0xb
+ 2566 0027 03       		.uleb128 0x3
+ 2567 0028 0E       		.uleb128 0xe
+ 2568 0029 00       		.byte	0
+ 2569 002a 00       		.byte	0
+ 2570 002b 04       		.uleb128 0x4
+ 2571 002c 0F       		.uleb128 0xf
+ 2572 002d 00       		.byte	0
+ 2573 002e 0B       		.uleb128 0xb
+ 2574 002f 0B       		.uleb128 0xb
+ 2575 0030 00       		.byte	0
+ 2576 0031 00       		.byte	0
+ 2577 0032 05       		.uleb128 0x5
+ 2578 0033 24       		.uleb128 0x24
+ 2579 0034 00       		.byte	0
+ 2580 0035 0B       		.uleb128 0xb
+ 2581 0036 0B       		.uleb128 0xb
+ 2582 0037 3E       		.uleb128 0x3e
+ 2583 0038 0B       		.uleb128 0xb
+ 2584 0039 03       		.uleb128 0x3
+ 2585 003a 08       		.uleb128 0x8
+ 2586 003b 00       		.byte	0
+ 2587 003c 00       		.byte	0
+ 2588 003d 06       		.uleb128 0x6
+ 2589 003e 0F       		.uleb128 0xf
+ 2590 003f 00       		.byte	0
+ 2591 0040 0B       		.uleb128 0xb
+ 2592 0041 0B       		.uleb128 0xb
+ARM GAS  /tmp/ccy45MUB.s 			page 47
+
+
+ 2593 0042 49       		.uleb128 0x49
+ 2594 0043 13       		.uleb128 0x13
+ 2595 0044 00       		.byte	0
+ 2596 0045 00       		.byte	0
+ 2597 0046 07       		.uleb128 0x7
+ 2598 0047 26       		.uleb128 0x26
+ 2599 0048 00       		.byte	0
+ 2600 0049 49       		.uleb128 0x49
+ 2601 004a 13       		.uleb128 0x13
+ 2602 004b 00       		.byte	0
+ 2603 004c 00       		.byte	0
+ 2604 004d 08       		.uleb128 0x8
+ 2605 004e 04       		.uleb128 0x4
+ 2606 004f 01       		.byte	0x1
+ 2607 0050 0B       		.uleb128 0xb
+ 2608 0051 0B       		.uleb128 0xb
+ 2609 0052 3A       		.uleb128 0x3a
+ 2610 0053 0B       		.uleb128 0xb
+ 2611 0054 3B       		.uleb128 0x3b
+ 2612 0055 0B       		.uleb128 0xb
+ 2613 0056 01       		.uleb128 0x1
+ 2614 0057 13       		.uleb128 0x13
+ 2615 0058 00       		.byte	0
+ 2616 0059 00       		.byte	0
+ 2617 005a 09       		.uleb128 0x9
+ 2618 005b 28       		.uleb128 0x28
+ 2619 005c 00       		.byte	0
+ 2620 005d 03       		.uleb128 0x3
+ 2621 005e 0E       		.uleb128 0xe
+ 2622 005f 1C       		.uleb128 0x1c
+ 2623 0060 0D       		.uleb128 0xd
+ 2624 0061 00       		.byte	0
+ 2625 0062 00       		.byte	0
+ 2626 0063 0A       		.uleb128 0xa
+ 2627 0064 04       		.uleb128 0x4
+ 2628 0065 01       		.byte	0x1
+ 2629 0066 0B       		.uleb128 0xb
+ 2630 0067 0B       		.uleb128 0xb
+ 2631 0068 3A       		.uleb128 0x3a
+ 2632 0069 0B       		.uleb128 0xb
+ 2633 006a 3B       		.uleb128 0x3b
+ 2634 006b 05       		.uleb128 0x5
+ 2635 006c 01       		.uleb128 0x1
+ 2636 006d 13       		.uleb128 0x13
+ 2637 006e 00       		.byte	0
+ 2638 006f 00       		.byte	0
+ 2639 0070 0B       		.uleb128 0xb
+ 2640 0071 13       		.uleb128 0x13
+ 2641 0072 01       		.byte	0x1
+ 2642 0073 0B       		.uleb128 0xb
+ 2643 0074 0B       		.uleb128 0xb
+ 2644 0075 3A       		.uleb128 0x3a
+ 2645 0076 0B       		.uleb128 0xb
+ 2646 0077 3B       		.uleb128 0x3b
+ 2647 0078 0B       		.uleb128 0xb
+ 2648 0079 01       		.uleb128 0x1
+ 2649 007a 13       		.uleb128 0x13
+ARM GAS  /tmp/ccy45MUB.s 			page 48
+
+
+ 2650 007b 00       		.byte	0
+ 2651 007c 00       		.byte	0
+ 2652 007d 0C       		.uleb128 0xc
+ 2653 007e 0D       		.uleb128 0xd
+ 2654 007f 00       		.byte	0
+ 2655 0080 03       		.uleb128 0x3
+ 2656 0081 0E       		.uleb128 0xe
+ 2657 0082 3A       		.uleb128 0x3a
+ 2658 0083 0B       		.uleb128 0xb
+ 2659 0084 3B       		.uleb128 0x3b
+ 2660 0085 0B       		.uleb128 0xb
+ 2661 0086 49       		.uleb128 0x49
+ 2662 0087 13       		.uleb128 0x13
+ 2663 0088 38       		.uleb128 0x38
+ 2664 0089 0B       		.uleb128 0xb
+ 2665 008a 00       		.byte	0
+ 2666 008b 00       		.byte	0
+ 2667 008c 0D       		.uleb128 0xd
+ 2668 008d 01       		.uleb128 0x1
+ 2669 008e 01       		.byte	0x1
+ 2670 008f 49       		.uleb128 0x49
+ 2671 0090 13       		.uleb128 0x13
+ 2672 0091 01       		.uleb128 0x1
+ 2673 0092 13       		.uleb128 0x13
+ 2674 0093 00       		.byte	0
+ 2675 0094 00       		.byte	0
+ 2676 0095 0E       		.uleb128 0xe
+ 2677 0096 21       		.uleb128 0x21
+ 2678 0097 00       		.byte	0
+ 2679 0098 49       		.uleb128 0x49
+ 2680 0099 13       		.uleb128 0x13
+ 2681 009a 2F       		.uleb128 0x2f
+ 2682 009b 0B       		.uleb128 0xb
+ 2683 009c 00       		.byte	0
+ 2684 009d 00       		.byte	0
+ 2685 009e 0F       		.uleb128 0xf
+ 2686 009f 13       		.uleb128 0x13
+ 2687 00a0 01       		.byte	0x1
+ 2688 00a1 03       		.uleb128 0x3
+ 2689 00a2 0E       		.uleb128 0xe
+ 2690 00a3 0B       		.uleb128 0xb
+ 2691 00a4 0B       		.uleb128 0xb
+ 2692 00a5 3A       		.uleb128 0x3a
+ 2693 00a6 0B       		.uleb128 0xb
+ 2694 00a7 3B       		.uleb128 0x3b
+ 2695 00a8 0B       		.uleb128 0xb
+ 2696 00a9 01       		.uleb128 0x1
+ 2697 00aa 13       		.uleb128 0x13
+ 2698 00ab 00       		.byte	0
+ 2699 00ac 00       		.byte	0
+ 2700 00ad 10       		.uleb128 0x10
+ 2701 00ae 0D       		.uleb128 0xd
+ 2702 00af 00       		.byte	0
+ 2703 00b0 03       		.uleb128 0x3
+ 2704 00b1 08       		.uleb128 0x8
+ 2705 00b2 3A       		.uleb128 0x3a
+ 2706 00b3 0B       		.uleb128 0xb
+ARM GAS  /tmp/ccy45MUB.s 			page 49
+
+
+ 2707 00b4 3B       		.uleb128 0x3b
+ 2708 00b5 05       		.uleb128 0x5
+ 2709 00b6 49       		.uleb128 0x49
+ 2710 00b7 13       		.uleb128 0x13
+ 2711 00b8 38       		.uleb128 0x38
+ 2712 00b9 0B       		.uleb128 0xb
+ 2713 00ba 00       		.byte	0
+ 2714 00bb 00       		.byte	0
+ 2715 00bc 11       		.uleb128 0x11
+ 2716 00bd 0D       		.uleb128 0xd
+ 2717 00be 00       		.byte	0
+ 2718 00bf 03       		.uleb128 0x3
+ 2719 00c0 0E       		.uleb128 0xe
+ 2720 00c1 3A       		.uleb128 0x3a
+ 2721 00c2 0B       		.uleb128 0xb
+ 2722 00c3 3B       		.uleb128 0x3b
+ 2723 00c4 05       		.uleb128 0x5
+ 2724 00c5 49       		.uleb128 0x49
+ 2725 00c6 13       		.uleb128 0x13
+ 2726 00c7 38       		.uleb128 0x38
+ 2727 00c8 0B       		.uleb128 0xb
+ 2728 00c9 00       		.byte	0
+ 2729 00ca 00       		.byte	0
+ 2730 00cb 12       		.uleb128 0x12
+ 2731 00cc 13       		.uleb128 0x13
+ 2732 00cd 01       		.byte	0x1
+ 2733 00ce 03       		.uleb128 0x3
+ 2734 00cf 0E       		.uleb128 0xe
+ 2735 00d0 0B       		.uleb128 0xb
+ 2736 00d1 0B       		.uleb128 0xb
+ 2737 00d2 3A       		.uleb128 0x3a
+ 2738 00d3 0B       		.uleb128 0xb
+ 2739 00d4 3B       		.uleb128 0x3b
+ 2740 00d5 05       		.uleb128 0x5
+ 2741 00d6 01       		.uleb128 0x1
+ 2742 00d7 13       		.uleb128 0x13
+ 2743 00d8 00       		.byte	0
+ 2744 00d9 00       		.byte	0
+ 2745 00da 13       		.uleb128 0x13
+ 2746 00db 15       		.uleb128 0x15
+ 2747 00dc 01       		.byte	0x1
+ 2748 00dd 27       		.uleb128 0x27
+ 2749 00de 19       		.uleb128 0x19
+ 2750 00df 01       		.uleb128 0x1
+ 2751 00e0 13       		.uleb128 0x13
+ 2752 00e1 00       		.byte	0
+ 2753 00e2 00       		.byte	0
+ 2754 00e3 14       		.uleb128 0x14
+ 2755 00e4 05       		.uleb128 0x5
+ 2756 00e5 00       		.byte	0
+ 2757 00e6 49       		.uleb128 0x49
+ 2758 00e7 13       		.uleb128 0x13
+ 2759 00e8 00       		.byte	0
+ 2760 00e9 00       		.byte	0
+ 2761 00ea 15       		.uleb128 0x15
+ 2762 00eb 13       		.uleb128 0x13
+ 2763 00ec 01       		.byte	0x1
+ARM GAS  /tmp/ccy45MUB.s 			page 50
+
+
+ 2764 00ed 03       		.uleb128 0x3
+ 2765 00ee 0E       		.uleb128 0xe
+ 2766 00ef 0B       		.uleb128 0xb
+ 2767 00f0 05       		.uleb128 0x5
+ 2768 00f1 3A       		.uleb128 0x3a
+ 2769 00f2 0B       		.uleb128 0xb
+ 2770 00f3 3B       		.uleb128 0x3b
+ 2771 00f4 05       		.uleb128 0x5
+ 2772 00f5 01       		.uleb128 0x1
+ 2773 00f6 13       		.uleb128 0x13
+ 2774 00f7 00       		.byte	0
+ 2775 00f8 00       		.byte	0
+ 2776 00f9 16       		.uleb128 0x16
+ 2777 00fa 0D       		.uleb128 0xd
+ 2778 00fb 00       		.byte	0
+ 2779 00fc 03       		.uleb128 0x3
+ 2780 00fd 08       		.uleb128 0x8
+ 2781 00fe 3A       		.uleb128 0x3a
+ 2782 00ff 0B       		.uleb128 0xb
+ 2783 0100 3B       		.uleb128 0x3b
+ 2784 0101 0B       		.uleb128 0xb
+ 2785 0102 49       		.uleb128 0x49
+ 2786 0103 13       		.uleb128 0x13
+ 2787 0104 38       		.uleb128 0x38
+ 2788 0105 0B       		.uleb128 0xb
+ 2789 0106 00       		.byte	0
+ 2790 0107 00       		.byte	0
+ 2791 0108 17       		.uleb128 0x17
+ 2792 0109 17       		.uleb128 0x17
+ 2793 010a 01       		.byte	0x1
+ 2794 010b 0B       		.uleb128 0xb
+ 2795 010c 0B       		.uleb128 0xb
+ 2796 010d 3A       		.uleb128 0x3a
+ 2797 010e 0B       		.uleb128 0xb
+ 2798 010f 3B       		.uleb128 0x3b
+ 2799 0110 0B       		.uleb128 0xb
+ 2800 0111 01       		.uleb128 0x1
+ 2801 0112 13       		.uleb128 0x13
+ 2802 0113 00       		.byte	0
+ 2803 0114 00       		.byte	0
+ 2804 0115 18       		.uleb128 0x18
+ 2805 0116 0D       		.uleb128 0xd
+ 2806 0117 00       		.byte	0
+ 2807 0118 03       		.uleb128 0x3
+ 2808 0119 0E       		.uleb128 0xe
+ 2809 011a 3A       		.uleb128 0x3a
+ 2810 011b 0B       		.uleb128 0xb
+ 2811 011c 3B       		.uleb128 0x3b
+ 2812 011d 05       		.uleb128 0x5
+ 2813 011e 49       		.uleb128 0x49
+ 2814 011f 13       		.uleb128 0x13
+ 2815 0120 00       		.byte	0
+ 2816 0121 00       		.byte	0
+ 2817 0122 19       		.uleb128 0x19
+ 2818 0123 35       		.uleb128 0x35
+ 2819 0124 00       		.byte	0
+ 2820 0125 49       		.uleb128 0x49
+ARM GAS  /tmp/ccy45MUB.s 			page 51
+
+
+ 2821 0126 13       		.uleb128 0x13
+ 2822 0127 00       		.byte	0
+ 2823 0128 00       		.byte	0
+ 2824 0129 1A       		.uleb128 0x1a
+ 2825 012a 2E       		.uleb128 0x2e
+ 2826 012b 00       		.byte	0
+ 2827 012c 3F       		.uleb128 0x3f
+ 2828 012d 19       		.uleb128 0x19
+ 2829 012e 03       		.uleb128 0x3
+ 2830 012f 0E       		.uleb128 0xe
+ 2831 0130 3A       		.uleb128 0x3a
+ 2832 0131 0B       		.uleb128 0xb
+ 2833 0132 3B       		.uleb128 0x3b
+ 2834 0133 0B       		.uleb128 0xb
+ 2835 0134 27       		.uleb128 0x27
+ 2836 0135 19       		.uleb128 0x19
+ 2837 0136 11       		.uleb128 0x11
+ 2838 0137 01       		.uleb128 0x1
+ 2839 0138 12       		.uleb128 0x12
+ 2840 0139 06       		.uleb128 0x6
+ 2841 013a 40       		.uleb128 0x40
+ 2842 013b 18       		.uleb128 0x18
+ 2843 013c 9642     		.uleb128 0x2116
+ 2844 013e 19       		.uleb128 0x19
+ 2845 013f 00       		.byte	0
+ 2846 0140 00       		.byte	0
+ 2847 0141 1B       		.uleb128 0x1b
+ 2848 0142 2E       		.uleb128 0x2e
+ 2849 0143 01       		.byte	0x1
+ 2850 0144 3F       		.uleb128 0x3f
+ 2851 0145 19       		.uleb128 0x19
+ 2852 0146 03       		.uleb128 0x3
+ 2853 0147 0E       		.uleb128 0xe
+ 2854 0148 3A       		.uleb128 0x3a
+ 2855 0149 0B       		.uleb128 0xb
+ 2856 014a 3B       		.uleb128 0x3b
+ 2857 014b 0B       		.uleb128 0xb
+ 2858 014c 27       		.uleb128 0x27
+ 2859 014d 19       		.uleb128 0x19
+ 2860 014e 49       		.uleb128 0x49
+ 2861 014f 13       		.uleb128 0x13
+ 2862 0150 11       		.uleb128 0x11
+ 2863 0151 01       		.uleb128 0x1
+ 2864 0152 12       		.uleb128 0x12
+ 2865 0153 06       		.uleb128 0x6
+ 2866 0154 40       		.uleb128 0x40
+ 2867 0155 18       		.uleb128 0x18
+ 2868 0156 9642     		.uleb128 0x2116
+ 2869 0158 19       		.uleb128 0x19
+ 2870 0159 01       		.uleb128 0x1
+ 2871 015a 13       		.uleb128 0x13
+ 2872 015b 00       		.byte	0
+ 2873 015c 00       		.byte	0
+ 2874 015d 1C       		.uleb128 0x1c
+ 2875 015e 34       		.uleb128 0x34
+ 2876 015f 00       		.byte	0
+ 2877 0160 03       		.uleb128 0x3
+ARM GAS  /tmp/ccy45MUB.s 			page 52
+
+
+ 2878 0161 0E       		.uleb128 0xe
+ 2879 0162 3A       		.uleb128 0x3a
+ 2880 0163 0B       		.uleb128 0xb
+ 2881 0164 3B       		.uleb128 0x3b
+ 2882 0165 0B       		.uleb128 0xb
+ 2883 0166 49       		.uleb128 0x49
+ 2884 0167 13       		.uleb128 0x13
+ 2885 0168 02       		.uleb128 0x2
+ 2886 0169 18       		.uleb128 0x18
+ 2887 016a 00       		.byte	0
+ 2888 016b 00       		.byte	0
+ 2889 016c 1D       		.uleb128 0x1d
+ 2890 016d 0B       		.uleb128 0xb
+ 2891 016e 01       		.byte	0x1
+ 2892 016f 11       		.uleb128 0x11
+ 2893 0170 01       		.uleb128 0x1
+ 2894 0171 12       		.uleb128 0x12
+ 2895 0172 06       		.uleb128 0x6
+ 2896 0173 00       		.byte	0
+ 2897 0174 00       		.byte	0
+ 2898 0175 1E       		.uleb128 0x1e
+ 2899 0176 34       		.uleb128 0x34
+ 2900 0177 00       		.byte	0
+ 2901 0178 03       		.uleb128 0x3
+ 2902 0179 08       		.uleb128 0x8
+ 2903 017a 3A       		.uleb128 0x3a
+ 2904 017b 0B       		.uleb128 0xb
+ 2905 017c 3B       		.uleb128 0x3b
+ 2906 017d 0B       		.uleb128 0xb
+ 2907 017e 49       		.uleb128 0x49
+ 2908 017f 13       		.uleb128 0x13
+ 2909 0180 02       		.uleb128 0x2
+ 2910 0181 18       		.uleb128 0x18
+ 2911 0182 00       		.byte	0
+ 2912 0183 00       		.byte	0
+ 2913 0184 1F       		.uleb128 0x1f
+ 2914 0185 2E       		.uleb128 0x2e
+ 2915 0186 00       		.byte	0
+ 2916 0187 3F       		.uleb128 0x3f
+ 2917 0188 19       		.uleb128 0x19
+ 2918 0189 03       		.uleb128 0x3
+ 2919 018a 0E       		.uleb128 0xe
+ 2920 018b 3A       		.uleb128 0x3a
+ 2921 018c 0B       		.uleb128 0xb
+ 2922 018d 3B       		.uleb128 0x3b
+ 2923 018e 05       		.uleb128 0x5
+ 2924 018f 27       		.uleb128 0x27
+ 2925 0190 19       		.uleb128 0x19
+ 2926 0191 11       		.uleb128 0x11
+ 2927 0192 01       		.uleb128 0x1
+ 2928 0193 12       		.uleb128 0x12
+ 2929 0194 06       		.uleb128 0x6
+ 2930 0195 40       		.uleb128 0x40
+ 2931 0196 18       		.uleb128 0x18
+ 2932 0197 9642     		.uleb128 0x2116
+ 2933 0199 19       		.uleb128 0x19
+ 2934 019a 00       		.byte	0
+ARM GAS  /tmp/ccy45MUB.s 			page 53
+
+
+ 2935 019b 00       		.byte	0
+ 2936 019c 20       		.uleb128 0x20
+ 2937 019d 2E       		.uleb128 0x2e
+ 2938 019e 01       		.byte	0x1
+ 2939 019f 3F       		.uleb128 0x3f
+ 2940 01a0 19       		.uleb128 0x19
+ 2941 01a1 03       		.uleb128 0x3
+ 2942 01a2 0E       		.uleb128 0xe
+ 2943 01a3 3A       		.uleb128 0x3a
+ 2944 01a4 0B       		.uleb128 0xb
+ 2945 01a5 3B       		.uleb128 0x3b
+ 2946 01a6 05       		.uleb128 0x5
+ 2947 01a7 27       		.uleb128 0x27
+ 2948 01a8 19       		.uleb128 0x19
+ 2949 01a9 49       		.uleb128 0x49
+ 2950 01aa 13       		.uleb128 0x13
+ 2951 01ab 11       		.uleb128 0x11
+ 2952 01ac 01       		.uleb128 0x1
+ 2953 01ad 12       		.uleb128 0x12
+ 2954 01ae 06       		.uleb128 0x6
+ 2955 01af 40       		.uleb128 0x40
+ 2956 01b0 18       		.uleb128 0x18
+ 2957 01b1 9642     		.uleb128 0x2116
+ 2958 01b3 19       		.uleb128 0x19
+ 2959 01b4 01       		.uleb128 0x1
+ 2960 01b5 13       		.uleb128 0x13
+ 2961 01b6 00       		.byte	0
+ 2962 01b7 00       		.byte	0
+ 2963 01b8 21       		.uleb128 0x21
+ 2964 01b9 34       		.uleb128 0x34
+ 2965 01ba 00       		.byte	0
+ 2966 01bb 03       		.uleb128 0x3
+ 2967 01bc 0E       		.uleb128 0xe
+ 2968 01bd 3A       		.uleb128 0x3a
+ 2969 01be 0B       		.uleb128 0xb
+ 2970 01bf 3B       		.uleb128 0x3b
+ 2971 01c0 05       		.uleb128 0x5
+ 2972 01c1 49       		.uleb128 0x49
+ 2973 01c2 13       		.uleb128 0x13
+ 2974 01c3 02       		.uleb128 0x2
+ 2975 01c4 18       		.uleb128 0x18
+ 2976 01c5 00       		.byte	0
+ 2977 01c6 00       		.byte	0
+ 2978 01c7 22       		.uleb128 0x22
+ 2979 01c8 34       		.uleb128 0x34
+ 2980 01c9 00       		.byte	0
+ 2981 01ca 03       		.uleb128 0x3
+ 2982 01cb 0E       		.uleb128 0xe
+ 2983 01cc 3A       		.uleb128 0x3a
+ 2984 01cd 0B       		.uleb128 0xb
+ 2985 01ce 3B       		.uleb128 0x3b
+ 2986 01cf 05       		.uleb128 0x5
+ 2987 01d0 49       		.uleb128 0x49
+ 2988 01d1 13       		.uleb128 0x13
+ 2989 01d2 3F       		.uleb128 0x3f
+ 2990 01d3 19       		.uleb128 0x19
+ 2991 01d4 3C       		.uleb128 0x3c
+ARM GAS  /tmp/ccy45MUB.s 			page 54
+
+
+ 2992 01d5 19       		.uleb128 0x19
+ 2993 01d6 00       		.byte	0
+ 2994 01d7 00       		.byte	0
+ 2995 01d8 23       		.uleb128 0x23
+ 2996 01d9 34       		.uleb128 0x34
+ 2997 01da 00       		.byte	0
+ 2998 01db 03       		.uleb128 0x3
+ 2999 01dc 0E       		.uleb128 0xe
+ 3000 01dd 3A       		.uleb128 0x3a
+ 3001 01de 0B       		.uleb128 0xb
+ 3002 01df 3B       		.uleb128 0x3b
+ 3003 01e0 0B       		.uleb128 0xb
+ 3004 01e1 49       		.uleb128 0x49
+ 3005 01e2 13       		.uleb128 0x13
+ 3006 01e3 3F       		.uleb128 0x3f
+ 3007 01e4 19       		.uleb128 0x19
+ 3008 01e5 3C       		.uleb128 0x3c
+ 3009 01e6 19       		.uleb128 0x19
+ 3010 01e7 00       		.byte	0
+ 3011 01e8 00       		.byte	0
+ 3012 01e9 24       		.uleb128 0x24
+ 3013 01ea 34       		.uleb128 0x34
+ 3014 01eb 00       		.byte	0
+ 3015 01ec 03       		.uleb128 0x3
+ 3016 01ed 08       		.uleb128 0x8
+ 3017 01ee 3A       		.uleb128 0x3a
+ 3018 01ef 0B       		.uleb128 0xb
+ 3019 01f0 3B       		.uleb128 0x3b
+ 3020 01f1 05       		.uleb128 0x5
+ 3021 01f2 49       		.uleb128 0x49
+ 3022 01f3 13       		.uleb128 0x13
+ 3023 01f4 3F       		.uleb128 0x3f
+ 3024 01f5 19       		.uleb128 0x19
+ 3025 01f6 3C       		.uleb128 0x3c
+ 3026 01f7 19       		.uleb128 0x19
+ 3027 01f8 00       		.byte	0
+ 3028 01f9 00       		.byte	0
+ 3029 01fa 25       		.uleb128 0x25
+ 3030 01fb 34       		.uleb128 0x34
+ 3031 01fc 00       		.byte	0
+ 3032 01fd 03       		.uleb128 0x3
+ 3033 01fe 0E       		.uleb128 0xe
+ 3034 01ff 3A       		.uleb128 0x3a
+ 3035 0200 0B       		.uleb128 0xb
+ 3036 0201 3B       		.uleb128 0x3b
+ 3037 0202 0B       		.uleb128 0xb
+ 3038 0203 49       		.uleb128 0x49
+ 3039 0204 13       		.uleb128 0x13
+ 3040 0205 3F       		.uleb128 0x3f
+ 3041 0206 19       		.uleb128 0x19
+ 3042 0207 02       		.uleb128 0x2
+ 3043 0208 18       		.uleb128 0x18
+ 3044 0209 00       		.byte	0
+ 3045 020a 00       		.byte	0
+ 3046 020b 00       		.byte	0
+ 3047              		.section	.debug_aranges,"",%progbits
+ 3048 0000 1C000000 		.4byte	0x1c
+ARM GAS  /tmp/ccy45MUB.s 			page 55
+
+
+ 3049 0004 0200     		.2byte	0x2
+ 3050 0006 00000000 		.4byte	.Ldebug_info0
+ 3051 000a 04       		.byte	0x4
+ 3052 000b 00       		.byte	0
+ 3053 000c 0000     		.2byte	0
+ 3054 000e 0000     		.2byte	0
+ 3055 0010 00000000 		.4byte	.Ltext0
+ 3056 0014 E4060000 		.4byte	.Letext0-.Ltext0
+ 3057 0018 00000000 		.4byte	0
+ 3058 001c 00000000 		.4byte	0
+ 3059              		.section	.debug_line,"",%progbits
+ 3060              	.Ldebug_line0:
+ 3061 0000 EA040000 		.section	.debug_str,"MS",%progbits,1
+ 3061      02000E04 
+ 3061      00000201 
+ 3061      FB0E0D00 
+ 3061      01010101 
+ 3062              	.LASF94:
+ 3063 0000 72656164 		.ascii	"ready_list_t\000"
+ 3063      795F6C69 
+ 3063      73745F74 
+ 3063      00
+ 3064              	.LASF2:
+ 3065 000d 73697A65 		.ascii	"size_t\000"
+ 3065      5F7400
+ 3066              	.LASF165:
+ 3067 0014 456E6162 		.ascii	"EnableHWFreeFall\000"
+ 3067      6C654857 
+ 3067      46726565 
+ 3067      46616C6C 
+ 3067      00
+ 3068              	.LASF3:
+ 3069 0025 5F5F7569 		.ascii	"__uint8_t\000"
+ 3069      6E74385F 
+ 3069      7400
+ 3070              	.LASF125:
+ 3071 002f 706F7274 		.ascii	"port_intctx\000"
+ 3071      5F696E74 
+ 3071      63747800 
+ 3072              	.LASF153:
+ 3073 003b 4143435F 		.ascii	"ACC_DOUBLE_TAP\000"
+ 3073      444F5542 
+ 3073      4C455F54 
+ 3073      415000
+ 3074              	.LASF119:
+ 3075 004a 76746C69 		.ascii	"vtlist\000"
+ 3075      737400
+ 3076              	.LASF14:
+ 3077 0051 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3077      206C6F6E 
+ 3077      6720756E 
+ 3077      7369676E 
+ 3077      65642069 
+ 3078              	.LASF38:
+ 3079 0068 54415247 		.ascii	"TARGETS_NUMBER\000"
+ 3079      4554535F 
+ 3079      4E554D42 
+ARM GAS  /tmp/ccy45MUB.s 			page 56
+
+
+ 3079      455200
+ 3080              	.LASF46:
+ 3081 0077 48616E64 		.ascii	"HandleAccSensor\000"
+ 3081      6C654163 
+ 3081      6353656E 
+ 3081      736F7200 
+ 3082              	.LASF129:
+ 3083 0087 65786974 		.ascii	"exitcode\000"
+ 3083      636F6465 
+ 3083      00
+ 3084              	.LASF120:
+ 3085 0090 6D61696E 		.ascii	"mainthread\000"
+ 3085      74687265 
+ 3085      616400
+ 3086              	.LASF45:
+ 3087 009b 48574164 		.ascii	"HWAdvanceFeatures\000"
+ 3087      76616E63 
+ 3087      65466561 
+ 3087      74757265 
+ 3087      7300
+ 3088              	.LASF110:
+ 3089 00ad 76697274 		.ascii	"virtual_timers_list_t\000"
+ 3089      75616C5F 
+ 3089      74696D65 
+ 3089      72735F6C 
+ 3089      6973745F 
+ 3090              	.LASF31:
+ 3091 00c3 4C534D36 		.ascii	"LSM6DSM_ACC_GYRO_FF_THS_344mg\000"
+ 3091      44534D5F 
+ 3091      4143435F 
+ 3091      4759524F 
+ 3091      5F46465F 
+ 3092              	.LASF93:
+ 3093 00e1 63685F74 		.ascii	"ch_threads_queue\000"
+ 3093      68726561 
+ 3093      64735F71 
+ 3093      75657565 
+ 3093      00
+ 3094              	.LASF72:
+ 3095 00f2 705F7072 		.ascii	"p_prio\000"
+ 3095      696F00
+ 3096              	.LASF163:
+ 3097 00f9 456E6162 		.ascii	"EnableHWWakeUp\000"
+ 3097      6C654857 
+ 3097      57616B65 
+ 3097      557000
+ 3098              	.LASF12:
+ 3099 0108 6C6F6E67 		.ascii	"long long int\000"
+ 3099      206C6F6E 
+ 3099      6720696E 
+ 3099      7400
+ 3100              	.LASF1:
+ 3101 0116 7369676E 		.ascii	"signed char\000"
+ 3101      65642063 
+ 3101      68617200 
+ 3102              	.LASF150:
+ 3103 0122 4143435F 		.ascii	"ACC_TILT\000"
+ARM GAS  /tmp/ccy45MUB.s 			page 57
+
+
+ 3103      54494C54 
+ 3103      00
+ 3104              	.LASF87:
+ 3105 012b 705F6D70 		.ascii	"p_mpool\000"
+ 3105      6F6F6C00 
+ 3106              	.LASF139:
+ 3107 0133 6D5F7175 		.ascii	"m_queue\000"
+ 3107      65756500 
+ 3108              	.LASF130:
+ 3109 013b 77746F62 		.ascii	"wtobjp\000"
+ 3109      6A7000
+ 3110              	.LASF63:
+ 3111 0142 74736C69 		.ascii	"tslices_t\000"
+ 3111      6365735F 
+ 3111      7400
+ 3112              	.LASF131:
+ 3113 014c 77747472 		.ascii	"wttrp\000"
+ 3113      7000
+ 3114              	.LASF9:
+ 3115 0152 6C6F6E67 		.ascii	"long int\000"
+ 3115      20696E74 
+ 3115      00
+ 3116              	.LASF168:
+ 3117 015b 44697361 		.ascii	"DisableHWDoubleTap\000"
+ 3117      626C6548 
+ 3117      57446F75 
+ 3117      626C6554 
+ 3117      617000
+ 3118              	.LASF61:
+ 3119 016e 74737461 		.ascii	"tstate_t\000"
+ 3119      74655F74 
+ 3119      00
+ 3120              	.LASF25:
+ 3121 0177 434F4D50 		.ascii	"COMPONENT_NOT_IMPLEMENTED\000"
+ 3121      4F4E454E 
+ 3121      545F4E4F 
+ 3121      545F494D 
+ 3121      504C454D 
+ 3122              	.LASF157:
+ 3123 0191 44697361 		.ascii	"DisableHWFeatures\000"
+ 3123      626C6548 
+ 3123      57466561 
+ 3123      74757265 
+ 3123      7300
+ 3124              	.LASF23:
+ 3125 01a3 434F4D50 		.ascii	"COMPONENT_ERROR\000"
+ 3125      4F4E454E 
+ 3125      545F4552 
+ 3125      524F5200 
+ 3126              	.LASF18:
+ 3127 01b3 75696E74 		.ascii	"uint16_t\000"
+ 3127      31365F74 
+ 3127      00
+ 3128              	.LASF35:
+ 3129 01bc 54415247 		.ascii	"TARGET_NUCLEO\000"
+ 3129      45545F4E 
+ 3129      55434C45 
+ARM GAS  /tmp/ccy45MUB.s 			page 58
+
+
+ 3129      4F00
+ 3130              	.LASF49:
+ 3131 01ca 4E756D4D 		.ascii	"NumMicSensors\000"
+ 3131      69635365 
+ 3131      6E736F72 
+ 3131      7300
+ 3132              	.LASF158:
+ 3133 01d8 456E6162 		.ascii	"EnableHWOrientation6D\000"
+ 3133      6C654857 
+ 3133      4F726965 
+ 3133      6E746174 
+ 3133      696F6E36 
+ 3134              	.LASF74:
+ 3135 01ee 705F6E65 		.ascii	"p_newer\000"
+ 3135      77657200 
+ 3136              	.LASF136:
+ 3137 01f6 735F7175 		.ascii	"s_queue\000"
+ 3137      65756500 
+ 3138              	.LASF174:
+ 3139 01fe 47657448 		.ascii	"GetHWOrientation6D\000"
+ 3139      574F7269 
+ 3139      656E7461 
+ 3139      74696F6E 
+ 3139      364400
+ 3140              	.LASF53:
+ 3141 0211 6F73784D 		.ascii	"osxMotionFXIsInitalized\000"
+ 3141      6F74696F 
+ 3141      6E465849 
+ 3141      73496E69 
+ 3141      74616C69 
+ 3142              	.LASF176:
+ 3143 0229 73746570 		.ascii	"step_count\000"
+ 3143      5F636F75 
+ 3143      6E7400
+ 3144              	.LASF27:
+ 3145 0234 4C534D36 		.ascii	"LSM6DSM_ACC_GYRO_FF_THS_156mg\000"
+ 3145      44534D5F 
+ 3145      4143435F 
+ 3145      4759524F 
+ 3145      5F46465F 
+ 3146              	.LASF99:
+ 3147 0252 725F6E65 		.ascii	"r_newer\000"
+ 3147      77657200 
+ 3148              	.LASF122:
+ 3149 025a 72656761 		.ascii	"regarm_t\000"
+ 3149      726D5F74 
+ 3149      00
+ 3150              	.LASF106:
+ 3151 0263 76745F70 		.ascii	"vt_prev\000"
+ 3151      72657600 
+ 3152              	.LASF183:
+ 3153 026b 2F752F65 		.ascii	"/u/elawton2/p442-submissions/sensortile/reference/b"
+ 3153      6C617774 
+ 3153      6F6E322F 
+ 3153      70343432 
+ 3153      2D737562 
+ 3154 029e 6C75656D 		.ascii	"luemicrosystem2/BlueMicrosystem2_V2.2.0/Projects/Mu"
+ARM GAS  /tmp/ccy45MUB.s 			page 59
+
+
+ 3154      6963726F 
+ 3154      73797374 
+ 3154      656D322F 
+ 3154      426C7565 
+ 3155 02d1 6C74692F 		.ascii	"lti/Applications/BlueMicrosystem2/bluechibi\000"
+ 3155      4170706C 
+ 3155      69636174 
+ 3155      696F6E73 
+ 3155      2F426C75 
+ 3156              	.LASF171:
+ 3157 02fd 456E6162 		.ascii	"EnableHWPedometer\000"
+ 3157      6C654857 
+ 3157      5065646F 
+ 3157      6D657465 
+ 3157      7200
+ 3158              	.LASF159:
+ 3159 030f 44697361 		.ascii	"DisableHWOrientation6D\000"
+ 3159      626C6548 
+ 3159      574F7269 
+ 3159      656E7461 
+ 3159      74696F6E 
+ 3160              	.LASF142:
+ 3161 0326 6D757465 		.ascii	"mutex_t\000"
+ 3161      785F7400 
+ 3162              	.LASF121:
+ 3163 032e 69646C65 		.ascii	"idle_thread_wa\000"
+ 3163      5F746872 
+ 3163      6561645F 
+ 3163      776100
+ 3164              	.LASF67:
+ 3165 033d 636E745F 		.ascii	"cnt_t\000"
+ 3165      7400
+ 3166              	.LASF151:
+ 3167 0343 4143435F 		.ascii	"ACC_FREE_FALL\000"
+ 3167      46524545 
+ 3167      5F46414C 
+ 3167      4C00
+ 3168              	.LASF105:
+ 3169 0351 76745F6E 		.ascii	"vt_next\000"
+ 3169      65787400 
+ 3170              	.LASF132:
+ 3171 0359 77747365 		.ascii	"wtsemp\000"
+ 3171      6D7000
+ 3172              	.LASF162:
+ 3173 0360 44697361 		.ascii	"DisableHWTilt\000"
+ 3173      626C6548 
+ 3173      5754696C 
+ 3173      7400
+ 3174              	.LASF107:
+ 3175 036e 76745F64 		.ascii	"vt_delta\000"
+ 3175      656C7461 
+ 3175      00
+ 3176              	.LASF113:
+ 3177 0377 73797374 		.ascii	"system_debug_t\000"
+ 3177      656D5F64 
+ 3177      65627567 
+ 3177      5F7400
+ARM GAS  /tmp/ccy45MUB.s 			page 60
+
+
+ 3178              	.LASF11:
+ 3179 0386 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3179      20756E73 
+ 3179      69676E65 
+ 3179      6420696E 
+ 3179      7400
+ 3180              	.LASF37:
+ 3181 0398 54415247 		.ascii	"TARGET_SENSORTILE\000"
+ 3181      45545F53 
+ 3181      454E534F 
+ 3181      5254494C 
+ 3181      4500
+ 3182              	.LASF137:
+ 3183 03aa 735F636E 		.ascii	"s_cnt\000"
+ 3183      7400
+ 3184              	.LASF7:
+ 3185 03b0 73686F72 		.ascii	"short unsigned int\000"
+ 3185      7420756E 
+ 3185      7369676E 
+ 3185      65642069 
+ 3185      6E7400
+ 3186              	.LASF56:
+ 3187 03c3 6F73784D 		.ascii	"osxMotionGRIsInitalized\000"
+ 3187      6F74696F 
+ 3187      6E475249 
+ 3187      73496E69 
+ 3187      74616C69 
+ 3188              	.LASF90:
+ 3189 03db 63685F74 		.ascii	"ch_thread\000"
+ 3189      68726561 
+ 3189      6400
+ 3190              	.LASF36:
+ 3191 03e5 54415247 		.ascii	"TARGET_BLUECOIN\000"
+ 3191      45545F42 
+ 3191      4C554543 
+ 3191      4F494E00 
+ 3192              	.LASF65:
+ 3193 03f5 6D73675F 		.ascii	"msg_t\000"
+ 3193      7400
+ 3194              	.LASF60:
+ 3195 03fb 746D6F64 		.ascii	"tmode_t\000"
+ 3195      655F7400 
+ 3196              	.LASF161:
+ 3197 0403 456E6162 		.ascii	"EnableHWTilt\000"
+ 3197      6C654857 
+ 3197      54696C74 
+ 3197      00
+ 3198              	.LASF39:
+ 3199 0410 54617267 		.ascii	"TargetType_t\000"
+ 3199      65745479 
+ 3199      70655F74 
+ 3199      00
+ 3200              	.LASF95:
+ 3201 041d 63685F72 		.ascii	"ch_ready_list\000"
+ 3201      65616479 
+ 3201      5F6C6973 
+ 3201      7400
+ARM GAS  /tmp/ccy45MUB.s 			page 61
+
+
+ 3202              	.LASF66:
+ 3203 042b 6576656E 		.ascii	"eventmask_t\000"
+ 3203      746D6173 
+ 3203      6B5F7400 
+ 3204              	.LASF8:
+ 3205 0437 5F5F696E 		.ascii	"__int32_t\000"
+ 3205      7433325F 
+ 3205      7400
+ 3206              	.LASF47:
+ 3207 0441 48616E64 		.ascii	"HandleGyroSensor\000"
+ 3207      6C654779 
+ 3207      726F5365 
+ 3207      6E736F72 
+ 3207      00
+ 3208              	.LASF123:
+ 3209 0452 73746B61 		.ascii	"stkalign_t\000"
+ 3209      6C69676E 
+ 3209      5F7400
+ 3210              	.LASF169:
+ 3211 045d 456E6162 		.ascii	"EnableHWSingleTap\000"
+ 3211      6C654857 
+ 3211      53696E67 
+ 3211      6C655461 
+ 3211      7000
+ 3212              	.LASF13:
+ 3213 046f 5F5F7569 		.ascii	"__uint64_t\000"
+ 3213      6E743634 
+ 3213      5F7400
+ 3214              	.LASF103:
+ 3215 047a 76697274 		.ascii	"virtual_timer_t\000"
+ 3215      75616C5F 
+ 3215      74696D65 
+ 3215      725F7400 
+ 3216              	.LASF42:
+ 3217 048a 48616E64 		.ascii	"HandleTempSensors\000"
+ 3217      6C655465 
+ 3217      6D705365 
+ 3217      6E736F72 
+ 3217      7300
+ 3218              	.LASF81:
+ 3219 049c 705F7761 		.ascii	"p_waiting\000"
+ 3219      6974696E 
+ 3219      6700
+ 3220              	.LASF155:
+ 3221 04a6 41636345 		.ascii	"AccEventType\000"
+ 3221      76656E74 
+ 3221      54797065 
+ 3221      00
+ 3222              	.LASF59:
+ 3223 04b3 7274636E 		.ascii	"rtcnt_t\000"
+ 3223      745F7400 
+ 3224              	.LASF88:
+ 3225 04bb 74687265 		.ascii	"thread_reference_t\000"
+ 3225      61645F72 
+ 3225      65666572 
+ 3225      656E6365 
+ 3225      5F7400
+ARM GAS  /tmp/ccy45MUB.s 			page 62
+
+
+ 3226              	.LASF111:
+ 3227 04ce 63685F76 		.ascii	"ch_virtual_timers_list\000"
+ 3227      69727475 
+ 3227      616C5F74 
+ 3227      696D6572 
+ 3227      735F6C69 
+ 3228              	.LASF177:
+ 3229 04e5 44656661 		.ascii	"DefaultAccODR\000"
+ 3229      756C7441 
+ 3229      63634F44 
+ 3229      5200
+ 3230              	.LASF55:
+ 3231 04f3 6F73784D 		.ascii	"osxMotionCPIsInitalized\000"
+ 3231      6F74696F 
+ 3231      6E435049 
+ 3231      73496E69 
+ 3231      74616C69 
+ 3232              	.LASF160:
+ 3233 050b 4F726965 		.ascii	"OrientationResult\000"
+ 3233      6E746174 
+ 3233      696F6E52 
+ 3233      6573756C 
+ 3233      7400
+ 3234              	.LASF70:
+ 3235 051d 705F6E65 		.ascii	"p_next\000"
+ 3235      787400
+ 3236              	.LASF41:
+ 3237 0524 4E756D54 		.ascii	"NumTempSensors\000"
+ 3237      656D7053 
+ 3237      656E736F 
+ 3237      727300
+ 3238              	.LASF34:
+ 3239 0533 4C534D36 		.ascii	"LSM6DSM_ACC_GYRO_FF_THS_500mg\000"
+ 3239      44534D5F 
+ 3239      4143435F 
+ 3239      4759524F 
+ 3239      5F46465F 
+ 3240              	.LASF21:
+ 3241 0551 75696E74 		.ascii	"uint64_t\000"
+ 3241      36345F74 
+ 3241      00
+ 3242              	.LASF75:
+ 3243 055a 705F6F6C 		.ascii	"p_older\000"
+ 3243      64657200 
+ 3244              	.LASF147:
+ 3245 0562 4143435F 		.ascii	"ACC_6D_OR_RIGTH\000"
+ 3245      36445F4F 
+ 3245      525F5249 
+ 3245      47544800 
+ 3246              	.LASF48:
+ 3247 0572 48616E64 		.ascii	"HandleMagSensor\000"
+ 3247      6C654D61 
+ 3247      6753656E 
+ 3247      736F7200 
+ 3248              	.LASF127:
+ 3249 0582 746D5F63 		.ascii	"tm_calibration_t\000"
+ 3249      616C6962 
+ARM GAS  /tmp/ccy45MUB.s 			page 63
+
+
+ 3249      72617469 
+ 3249      6F6E5F74 
+ 3249      00
+ 3250              	.LASF24:
+ 3251 0593 434F4D50 		.ascii	"COMPONENT_TIMEOUT\000"
+ 3251      4F4E454E 
+ 3251      545F5449 
+ 3251      4D454F55 
+ 3251      5400
+ 3252              	.LASF101:
+ 3253 05a5 725F6375 		.ascii	"r_current\000"
+ 3253      7272656E 
+ 3253      7400
+ 3254              	.LASF100:
+ 3255 05af 725F6F6C 		.ascii	"r_older\000"
+ 3255      64657200 
+ 3256              	.LASF146:
+ 3257 05b7 4143435F 		.ascii	"ACC_6D_OR_BOTTOM\000"
+ 3257      36445F4F 
+ 3257      525F424F 
+ 3257      54544F4D 
+ 3257      00
+ 3258              	.LASF40:
+ 3259 05c8 426F6172 		.ascii	"BoardType\000"
+ 3259      64547970 
+ 3259      6500
+ 3260              	.LASF26:
+ 3261 05d2 666C6F61 		.ascii	"float\000"
+ 3261      7400
+ 3262              	.LASF62:
+ 3263 05d8 74726566 		.ascii	"trefs_t\000"
+ 3263      735F7400 
+ 3264              	.LASF54:
+ 3265 05e0 6F73784D 		.ascii	"osxMotionARIsInitalized\000"
+ 3265      6F74696F 
+ 3265      6E415249 
+ 3265      73496E69 
+ 3265      74616C69 
+ 3266              	.LASF71:
+ 3267 05f8 705F7072 		.ascii	"p_prev\000"
+ 3267      657600
+ 3268              	.LASF33:
+ 3269 05ff 4C534D36 		.ascii	"LSM6DSM_ACC_GYRO_FF_THS_469mg\000"
+ 3269      44534D5F 
+ 3269      4143435F 
+ 3269      4759524F 
+ 3269      5F46465F 
+ 3270              	.LASF64:
+ 3271 061d 74707269 		.ascii	"tprio_t\000"
+ 3271      6F5F7400 
+ 3272              	.LASF51:
+ 3273 0625 626E7267 		.ascii	"bnrg_expansion_board\000"
+ 3273      5F657870 
+ 3273      616E7369 
+ 3273      6F6E5F62 
+ 3273      6F617264 
+ 3274              	.LASF57:
+ARM GAS  /tmp/ccy45MUB.s 			page 64
+
+
+ 3275 063a 6F737841 		.ascii	"osxAudioBVIsInitalized\000"
+ 3275      7564696F 
+ 3275      42564973 
+ 3275      496E6974 
+ 3275      616C697A 
+ 3276              	.LASF114:
+ 3277 0651 63685F73 		.ascii	"ch_system_debug\000"
+ 3277      79737465 
+ 3277      6D5F6465 
+ 3277      62756700 
+ 3278              	.LASF164:
+ 3279 0661 44697361 		.ascii	"DisableHWWakeUp\000"
+ 3279      626C6548 
+ 3279      5757616B 
+ 3279      65557000 
+ 3280              	.LASF19:
+ 3281 0671 696E7433 		.ascii	"int32_t\000"
+ 3281      325F7400 
+ 3282              	.LASF4:
+ 3283 0679 756E7369 		.ascii	"unsigned char\000"
+ 3283      676E6564 
+ 3283      20636861 
+ 3283      7200
+ 3284              	.LASF178:
+ 3285 0687 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 3285      52784275 
+ 3285      66666572 
+ 3285      00
+ 3286              	.LASF167:
+ 3287 0694 456E6162 		.ascii	"EnableHWDoubleTap\000"
+ 3287      6C654857 
+ 3287      446F7562 
+ 3287      6C655461 
+ 3287      7000
+ 3288              	.LASF181:
+ 3289 06a6 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 3289      4320342E 
+ 3289      382E3420 
+ 3289      32303134 
+ 3289      30353236 
+ 3290 06d9 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m4 -mno-thumb-in"
+ 3290      20726576 
+ 3290      6973696F 
+ 3290      6E203231 
+ 3290      31333538 
+ 3291 070c 74657277 		.ascii	"terwork -mthumb -ggdb -O0 -std=c99 -fomit-frame-poi"
+ 3291      6F726B20 
+ 3291      2D6D7468 
+ 3291      756D6220 
+ 3291      2D676764 
+ 3292 073f 6E746572 		.ascii	"nter -falign-functions=16\000"
+ 3292      202D6661 
+ 3292      6C69676E 
+ 3292      2D66756E 
+ 3292      6374696F 
+ 3293              	.LASF29:
+ 3294 0759 4C534D36 		.ascii	"LSM6DSM_ACC_GYRO_FF_THS_250mg\000"
+ARM GAS  /tmp/ccy45MUB.s 			page 65
+
+
+ 3294      44534D5F 
+ 3294      4143435F 
+ 3294      4759524F 
+ 3294      5F46465F 
+ 3295              	.LASF85:
+ 3296 0777 705F6D74 		.ascii	"p_mtxlist\000"
+ 3296      786C6973 
+ 3296      7400
+ 3297              	.LASF5:
+ 3298 0781 73686F72 		.ascii	"short int\000"
+ 3298      7420696E 
+ 3298      7400
+ 3299              	.LASF77:
+ 3300 078b 705F7374 		.ascii	"p_state\000"
+ 3300      61746500 
+ 3301              	.LASF80:
+ 3302 0793 705F7072 		.ascii	"p_preempt\000"
+ 3302      65656D70 
+ 3302      7400
+ 3303              	.LASF145:
+ 3304 079d 4143435F 		.ascii	"ACC_6D_OR_LEFT\000"
+ 3304      36445F4F 
+ 3304      525F4C45 
+ 3304      465400
+ 3305              	.LASF97:
+ 3306 07ac 725F7072 		.ascii	"r_prio\000"
+ 3306      696F00
+ 3307              	.LASF134:
+ 3308 07b3 65776D61 		.ascii	"ewmask\000"
+ 3308      736B00
+ 3309              	.LASF117:
+ 3310 07ba 63685F73 		.ascii	"ch_system\000"
+ 3310      79737465 
+ 3310      6D00
+ 3311              	.LASF78:
+ 3312 07c4 705F666C 		.ascii	"p_flags\000"
+ 3312      61677300 
+ 3313              	.LASF58:
+ 3314 07cc 54617267 		.ascii	"TargetFeatures_t\000"
+ 3314      65744665 
+ 3314      61747572 
+ 3314      65735F74 
+ 3314      00
+ 3315              	.LASF143:
+ 3316 07dd 4143435F 		.ascii	"ACC_NOT_USED\000"
+ 3316      4E4F545F 
+ 3316      55534544 
+ 3316      00
+ 3317              	.LASF104:
+ 3318 07ea 63685F76 		.ascii	"ch_virtual_timer\000"
+ 3318      69727475 
+ 3318      616C5F74 
+ 3318      696D6572 
+ 3318      00
+ 3319              	.LASF135:
+ 3320 07fb 63685F73 		.ascii	"ch_semaphore\000"
+ 3320      656D6170 
+ARM GAS  /tmp/ccy45MUB.s 			page 66
+
+
+ 3320      686F7265 
+ 3320      00
+ 3321              	.LASF84:
+ 3322 0808 705F6570 		.ascii	"p_epending\000"
+ 3322      656E6469 
+ 3322      6E6700
+ 3323              	.LASF166:
+ 3324 0813 44697361 		.ascii	"DisableHWFreeFall\000"
+ 3324      626C6548 
+ 3324      57467265 
+ 3324      6546616C 
+ 3324      6C00
+ 3325              	.LASF144:
+ 3326 0825 4143435F 		.ascii	"ACC_6D_OR_TOP\000"
+ 3326      36445F4F 
+ 3326      525F544F 
+ 3326      5000
+ 3327              	.LASF20:
+ 3328 0833 75696E74 		.ascii	"uint32_t\000"
+ 3328      33325F74 
+ 3328      00
+ 3329              	.LASF133:
+ 3330 083c 77746D74 		.ascii	"wtmtxp\000"
+ 3330      787000
+ 3331              	.LASF96:
+ 3332 0843 725F7175 		.ascii	"r_queue\000"
+ 3332      65756500 
+ 3333              	.LASF112:
+ 3334 084b 76745F73 		.ascii	"vt_systime\000"
+ 3334      79737469 
+ 3334      6D6500
+ 3335              	.LASF91:
+ 3336 0856 63685F74 		.ascii	"ch_threads_list\000"
+ 3336      68726561 
+ 3336      64735F6C 
+ 3336      69737400 
+ 3337              	.LASF179:
+ 3338 0866 54617267 		.ascii	"TargetBoardFeatures\000"
+ 3338      6574426F 
+ 3338      61726446 
+ 3338      65617475 
+ 3338      72657300 
+ 3339              	.LASF175:
+ 3340 087a 47657453 		.ascii	"GetStepHWPedometer\000"
+ 3340      74657048 
+ 3340      57506564 
+ 3340      6F6D6574 
+ 3340      657200
+ 3341              	.LASF44:
+ 3342 088d 48616E64 		.ascii	"HandleHumSensor\000"
+ 3342      6C654875 
+ 3342      6D53656E 
+ 3342      736F7200 
+ 3343              	.LASF16:
+ 3344 089d 63686172 		.ascii	"char\000"
+ 3344      00
+ 3345              	.LASF50:
+ARM GAS  /tmp/ccy45MUB.s 			page 67
+
+
+ 3346 08a2 4C656453 		.ascii	"LedStatus\000"
+ 3346      74617475 
+ 3346      7300
+ 3347              	.LASF0:
+ 3348 08ac 756E7369 		.ascii	"unsigned int\000"
+ 3348      676E6564 
+ 3348      20696E74 
+ 3348      00
+ 3349              	.LASF6:
+ 3350 08b9 5F5F7569 		.ascii	"__uint16_t\000"
+ 3350      6E743136 
+ 3350      5F7400
+ 3351              	.LASF69:
+ 3352 08c4 74687265 		.ascii	"thread_t\000"
+ 3352      61645F74 
+ 3352      00
+ 3353              	.LASF141:
+ 3354 08cd 6D5F6E65 		.ascii	"m_next\000"
+ 3354      787400
+ 3355              	.LASF68:
+ 3356 08d4 73797374 		.ascii	"systime_t\000"
+ 3356      696D655F 
+ 3356      7400
+ 3357              	.LASF86:
+ 3358 08de 705F7265 		.ascii	"p_realprio\000"
+ 3358      616C7072 
+ 3358      696F00
+ 3359              	.LASF102:
+ 3360 08e9 76746675 		.ascii	"vtfunc_t\000"
+ 3360      6E635F74 
+ 3360      00
+ 3361              	.LASF10:
+ 3362 08f2 5F5F7569 		.ascii	"__uint32_t\000"
+ 3362      6E743332 
+ 3362      5F7400
+ 3363              	.LASF115:
+ 3364 08fd 70616E69 		.ascii	"panic_msg\000"
+ 3364      635F6D73 
+ 3364      6700
+ 3365              	.LASF30:
+ 3366 0907 4C534D36 		.ascii	"LSM6DSM_ACC_GYRO_FF_THS_312mg\000"
+ 3366      44534D5F 
+ 3366      4143435F 
+ 3366      4759524F 
+ 3366      5F46465F 
+ 3367              	.LASF126:
+ 3368 0925 6F666673 		.ascii	"offset\000"
+ 3368      657400
+ 3369              	.LASF32:
+ 3370 092c 4C534D36 		.ascii	"LSM6DSM_ACC_GYRO_FF_THS_406mg\000"
+ 3370      44534D5F 
+ 3370      4143435F 
+ 3370      4759524F 
+ 3370      5F46465F 
+ 3371              	.LASF124:
+ 3372 094a 636F6E74 		.ascii	"context\000"
+ 3372      65787400 
+ARM GAS  /tmp/ccy45MUB.s 			page 68
+
+
+ 3373              	.LASF98:
+ 3374 0952 725F6374 		.ascii	"r_ctx\000"
+ 3374      7800
+ 3375              	.LASF116:
+ 3376 0958 63685F73 		.ascii	"ch_system_t\000"
+ 3376      79737465 
+ 3376      6D5F7400 
+ 3377              	.LASF172:
+ 3378 0964 44697361 		.ascii	"DisableHWPedometer\000"
+ 3378      626C6548 
+ 3378      57506564 
+ 3378      6F6D6574 
+ 3378      657200
+ 3379              	.LASF82:
+ 3380 0977 705F6D73 		.ascii	"p_msgqueue\000"
+ 3380      67717565 
+ 3380      756500
+ 3381              	.LASF109:
+ 3382 0982 76745F70 		.ascii	"vt_par\000"
+ 3382      617200
+ 3383              	.LASF180:
+ 3384 0989 48574164 		.ascii	"HWAdvanceFeaturesStatus\000"
+ 3384      76616E63 
+ 3384      65466561 
+ 3384      74757265 
+ 3384      73537461 
+ 3385              	.LASF92:
+ 3386 09a1 74687265 		.ascii	"threads_queue_t\000"
+ 3386      6164735F 
+ 3386      71756575 
+ 3386      655F7400 
+ 3387              	.LASF128:
+ 3388 09b1 7264796D 		.ascii	"rdymsg\000"
+ 3388      736700
+ 3389              	.LASF79:
+ 3390 09b8 705F7265 		.ascii	"p_refs\000"
+ 3390      667300
+ 3391              	.LASF148:
+ 3392 09bf 4143435F 		.ascii	"ACC_6D_OR_UP\000"
+ 3392      36445F4F 
+ 3392      525F5550 
+ 3392      00
+ 3393              	.LASF43:
+ 3394 09cc 48616E64 		.ascii	"HandlePressSensor\000"
+ 3394      6C655072 
+ 3394      65737353 
+ 3394      656E736F 
+ 3394      7200
+ 3395              	.LASF182:
+ 3396 09de 2E2E2F2E 		.ascii	"../../../../../Projects/Multi/Applications/BlueMicr"
+ 3396      2E2F2E2E 
+ 3396      2F2E2E2F 
+ 3396      2E2E2F50 
+ 3396      726F6A65 
+ 3397 0a11 6F737973 		.ascii	"osystem2/Src/HWAdvanceFeatures.c\000"
+ 3397      74656D32 
+ 3397      2F537263 
+ARM GAS  /tmp/ccy45MUB.s 			page 69
+
+
+ 3397      2F485741 
+ 3397      6476616E 
+ 3398              	.LASF173:
+ 3399 0a32 52657365 		.ascii	"ResetHWPedometer\000"
+ 3399      74485750 
+ 3399      65646F6D 
+ 3399      65746572 
+ 3399      00
+ 3400              	.LASF118:
+ 3401 0a43 726C6973 		.ascii	"rlist\000"
+ 3401      7400
+ 3402              	.LASF152:
+ 3403 0a49 4143435F 		.ascii	"ACC_SINGLE_TAP\000"
+ 3403      53494E47 
+ 3403      4C455F54 
+ 3403      415000
+ 3404              	.LASF17:
+ 3405 0a58 75696E74 		.ascii	"uint8_t\000"
+ 3405      385F7400 
+ 3406              	.LASF154:
+ 3407 0a60 4143435F 		.ascii	"ACC_WAKE_UP\000"
+ 3407      57414B45 
+ 3407      5F555000 
+ 3408              	.LASF52:
+ 3409 0a6c 48616E64 		.ascii	"HandleGGComponent\000"
+ 3409      6C654747 
+ 3409      436F6D70 
+ 3409      6F6E656E 
+ 3409      7400
+ 3410              	.LASF28:
+ 3411 0a7e 4C534D36 		.ascii	"LSM6DSM_ACC_GYRO_FF_THS_219mg\000"
+ 3411      44534D5F 
+ 3411      4143435F 
+ 3411      4759524F 
+ 3411      5F46465F 
+ 3412              	.LASF15:
+ 3413 0a9c 73697A65 		.ascii	"sizetype\000"
+ 3413      74797065 
+ 3413      00
+ 3414              	.LASF138:
+ 3415 0aa5 63685F6D 		.ascii	"ch_mutex\000"
+ 3415      75746578 
+ 3415      00
+ 3416              	.LASF76:
+ 3417 0aae 705F6E61 		.ascii	"p_name\000"
+ 3417      6D6500
+ 3418              	.LASF89:
+ 3419 0ab5 74687265 		.ascii	"threads_list_t\000"
+ 3419      6164735F 
+ 3419      6C697374 
+ 3419      5F7400
+ 3420              	.LASF156:
+ 3421 0ac4 496E6974 		.ascii	"InitHWFeatures\000"
+ 3421      48574665 
+ 3421      61747572 
+ 3421      657300
+ 3422              	.LASF22:
+ARM GAS  /tmp/ccy45MUB.s 			page 70
+
+
+ 3423 0ad3 434F4D50 		.ascii	"COMPONENT_OK\000"
+ 3423      4F4E454E 
+ 3423      545F4F4B 
+ 3423      00
+ 3424              	.LASF83:
+ 3425 0ae0 705F6D73 		.ascii	"p_msg\000"
+ 3425      6700
+ 3426              	.LASF149:
+ 3427 0ae6 4143435F 		.ascii	"ACC_6D_OR_DOWN\000"
+ 3427      36445F4F 
+ 3427      525F444F 
+ 3427      574E00
+ 3428              	.LASF140:
+ 3429 0af5 6D5F6F77 		.ascii	"m_owner\000"
+ 3429      6E657200 
+ 3430              	.LASF73:
+ 3431 0afd 705F6374 		.ascii	"p_ctx\000"
+ 3431      7800
+ 3432              	.LASF108:
+ 3433 0b03 76745F66 		.ascii	"vt_func\000"
+ 3433      756E6300 
+ 3434              	.LASF170:
+ 3435 0b0b 44697361 		.ascii	"DisableHWSingleTap\000"
+ 3435      626C6548 
+ 3435      5753696E 
+ 3435      676C6554 
+ 3435      617000
+ 3436              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ARM GAS  /tmp/ccy45MUB.s 			page 71
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 HWAdvanceFeatures.c
+     /tmp/ccy45MUB.s:23     .bss:00000000 HWAdvanceFeaturesStatus
+     /tmp/ccy45MUB.s:20     .bss:00000000 $d
+     /tmp/ccy45MUB.s:26     .bss:00000004 DefaultAccODR
+     /tmp/ccy45MUB.s:29     .text:00000000 $t
+     /tmp/ccy45MUB.s:35     .text:00000000 InitHWFeatures
+     /tmp/ccy45MUB.s:57     .text:00000010 $d
+     /tmp/ccy45MUB.s:62     .text:00000018 $t
+     /tmp/ccy45MUB.s:68     .text:00000020 DisableHWFeatures
+     /tmp/ccy45MUB.s:1092   .text:00000640 DisableHWPedometer
+     /tmp/ccy45MUB.s:773    .text:00000490 DisableHWFreeFall
+     /tmp/ccy45MUB.s:884    .text:00000520 DisableHWDoubleTap
+     /tmp/ccy45MUB.s:988    .text:000005b0 DisableHWSingleTap
+     /tmp/ccy45MUB.s:662    .text:00000400 DisableHWWakeUp
+     /tmp/ccy45MUB.s:558    .text:00000370 DisableHWTilt
+     /tmp/ccy45MUB.s:204    .text:000000e0 DisableHWOrientation6D
+     /tmp/ccy45MUB.s:146    .text:00000094 $d
+     /tmp/ccy45MUB.s:150    .text:00000098 $t
+     /tmp/ccy45MUB.s:156    .text:000000a0 EnableHWOrientation6D
+     /tmp/ccy45MUB.s:193    .text:000000cc $d
+     /tmp/ccy45MUB.s:198    .text:000000d4 $t
+     /tmp/ccy45MUB.s:248    .text:00000118 $d
+     /tmp/ccy45MUB.s:254    .text:00000124 $t
+     /tmp/ccy45MUB.s:260    .text:00000130 GetHWOrientation6D
+     /tmp/ccy45MUB.s:500    .text:00000320 $d
+     /tmp/ccy45MUB.s:504    .text:00000324 $t
+     /tmp/ccy45MUB.s:510    .text:00000330 EnableHWTilt
+     /tmp/ccy45MUB.s:547    .text:0000035c $d
+     /tmp/ccy45MUB.s:552    .text:00000364 $t
+     /tmp/ccy45MUB.s:602    .text:000003a8 $d
+     /tmp/ccy45MUB.s:608    .text:000003b4 $t
+     /tmp/ccy45MUB.s:614    .text:000003c0 EnableHWWakeUp
+     /tmp/ccy45MUB.s:651    .text:000003ec $d
+     /tmp/ccy45MUB.s:656    .text:000003f4 $t
+     /tmp/ccy45MUB.s:706    .text:00000438 $d
+     /tmp/ccy45MUB.s:712    .text:00000444 $t
+     /tmp/ccy45MUB.s:718    .text:00000450 EnableHWFreeFall
+     /tmp/ccy45MUB.s:762    .text:00000488 $d
+     /tmp/ccy45MUB.s:767    .text:00000490 $t
+     /tmp/ccy45MUB.s:817    .text:000004c8 $d
+     /tmp/ccy45MUB.s:823    .text:000004d4 $t
+     /tmp/ccy45MUB.s:829    .text:000004e0 EnableHWDoubleTap
+     /tmp/ccy45MUB.s:873    .text:00000518 $d
+     /tmp/ccy45MUB.s:878    .text:00000520 $t
+     /tmp/ccy45MUB.s:928    .text:00000558 $d
+     /tmp/ccy45MUB.s:934    .text:00000564 $t
+     /tmp/ccy45MUB.s:940    .text:00000570 EnableHWSingleTap
+     /tmp/ccy45MUB.s:977    .text:0000059c $d
+     /tmp/ccy45MUB.s:982    .text:000005a4 $t
+     /tmp/ccy45MUB.s:1032   .text:000005e8 $d
+     /tmp/ccy45MUB.s:1038   .text:000005f4 $t
+     /tmp/ccy45MUB.s:1044   .text:00000600 EnableHWPedometer
+     /tmp/ccy45MUB.s:1081   .text:0000062c $d
+     /tmp/ccy45MUB.s:1086   .text:00000634 $t
+     /tmp/ccy45MUB.s:1136   .text:00000678 $d
+     /tmp/ccy45MUB.s:1142   .text:00000684 $t
+ARM GAS  /tmp/ccy45MUB.s 			page 72
+
+
+     /tmp/ccy45MUB.s:1148   .text:00000690 ResetHWPedometer
+     /tmp/ccy45MUB.s:1174   .text:000006a8 $d
+     /tmp/ccy45MUB.s:1178   .text:000006ac $t
+     /tmp/ccy45MUB.s:1184   .text:000006b0 GetStepHWPedometer
+     /tmp/ccy45MUB.s:1221   .text:000006e0 $d
+                     .debug_frame:00000010 $d
+     /tmp/ccy45MUB.s:1242   .text:000006e4 $t
+
+UNDEFINED SYMBOLS
+BSP_ACCELERO_Get_ODR
+TargetBoardFeatures
+BSP_ACCELERO_Enable_6D_Orientation_Ext
+BSP_ACCELERO_Disable_6D_Orientation_Ext
+BSP_ACCELERO_Set_ODR_Value
+BSP_ACCELERO_Get_6D_Orientation_XL_Ext
+BSP_ACCELERO_Get_6D_Orientation_XH_Ext
+BSP_ACCELERO_Get_6D_Orientation_YL_Ext
+BSP_ACCELERO_Get_6D_Orientation_YH_Ext
+BSP_ACCELERO_Get_6D_Orientation_ZL_Ext
+BSP_ACCELERO_Get_6D_Orientation_ZH_Ext
+BSP_ACCELERO_Enable_Tilt_Detection_Ext
+BSP_ACCELERO_Disable_Tilt_Detection_Ext
+BSP_ACCELERO_Enable_Wake_Up_Detection_Ext
+BSP_ACCELERO_Disable_Wake_Up_Detection_Ext
+BSP_ACCELERO_Enable_Free_Fall_Detection_Ext
+BSP_ACCELERO_Set_Free_Fall_Threshold_Ext
+BSP_ACCELERO_Disable_Free_Fall_Detection_Ext
+BSP_ACCELERO_Enable_Double_Tap_Detection_Ext
+BSP_ACCELERO_Set_Tap_Threshold_Ext
+BSP_ACCELERO_Disable_Double_Tap_Detection_Ext
+BSP_ACCELERO_Enable_Single_Tap_Detection_Ext
+BSP_ACCELERO_Disable_Single_Tap_Detection_Ext
+BSP_ACCELERO_Enable_Pedometer_Ext
+BSP_ACCELERO_Disable_Pedometer_Ext
+BSP_ACCELERO_Reset_Step_Counter_Ext
+BSP_ACCELERO_Get_Step_Count_Ext

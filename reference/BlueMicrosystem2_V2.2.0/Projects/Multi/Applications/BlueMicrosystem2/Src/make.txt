@@ -1,0 +1,74 @@
+GNU Make 3.82
+Built for x86_64-redhat-linux-gnu
+Copyright (C) 2010  Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Reading makefiles...
+Reading makefile `Makefile'...
+Reading makefile `proj.mk' (search path) (no ~ expansion)...
+Reading makefile `startup_stm32l476xx.d' (search path) (don't care) (no ~ expansion)...
+Reading makefile `system_stm32l4xx.d' (search path) (don't care) (no ~ expansion)...
+Reading makefile `main.d' (search path) (don't care) (no ~ expansion)...
+Updating goal targets....
+Considering target file `Src.elf'.
+ File `Src.elf' does not exist.
+  Considering target file `startup_stm32l476xx.o'.
+    Considering target file `startup_stm32l476xx.s'.
+     Finished prerequisites of target file `startup_stm32l476xx.s'.
+    No need to remake target `startup_stm32l476xx.s'; using VPATH name `../SW4STM32/STM32L476RG-SensorTile/startup_stm32l476xx.s'.
+   Finished prerequisites of target file `startup_stm32l476xx.o'.
+   Prerequisite `../SW4STM32/STM32L476RG-SensorTile/startup_stm32l476xx.s' is older than target `startup_stm32l476xx.o'.
+  No need to remake target `startup_stm32l476xx.o'.
+  Considering target file `system_stm32l4xx.o'.
+    Considering target file `system_stm32l4xx.c'.
+     Finished prerequisites of target file `system_stm32l4xx.c'.
+    No need to remake target `system_stm32l4xx.c'.
+    Pruning file `system_stm32l4xx.c'.
+    Considering target file `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l476xx.h'.
+     Finished prerequisites of target file `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l476xx.h'.
+    No need to remake target `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l476xx.h'.
+    Considering target file `../../../../../Drivers/CMSIS/Include/core_cm4.h'.
+     Finished prerequisites of target file `../../../../../Drivers/CMSIS/Include/core_cm4.h'.
+    No need to remake target `../../../../../Drivers/CMSIS/Include/core_cm4.h'.
+    Considering target file `../../../../../Drivers/CMSIS/Include/core_cmInstr.h'.
+     Finished prerequisites of target file `../../../../../Drivers/CMSIS/Include/core_cmInstr.h'.
+    No need to remake target `../../../../../Drivers/CMSIS/Include/core_cmInstr.h'.
+    Considering target file `../../../../../Drivers/CMSIS/Include/cmsis_gcc.h'.
+     Finished prerequisites of target file `../../../../../Drivers/CMSIS/Include/cmsis_gcc.h'.
+    No need to remake target `../../../../../Drivers/CMSIS/Include/cmsis_gcc.h'.
+    Considering target file `../../../../../Drivers/CMSIS/Include/core_cmFunc.h'.
+     Finished prerequisites of target file `../../../../../Drivers/CMSIS/Include/core_cmFunc.h'.
+    No need to remake target `../../../../../Drivers/CMSIS/Include/core_cmFunc.h'.
+    Considering target file `../../../../../Drivers/CMSIS/Include/core_cmSimd.h'.
+     Finished prerequisites of target file `../../../../../Drivers/CMSIS/Include/core_cmSimd.h'.
+    No need to remake target `../../../../../Drivers/CMSIS/Include/core_cmSimd.h'.
+    Considering target file `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/system_stm32l4xx.h'.
+     Finished prerequisites of target file `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/system_stm32l4xx.h'.
+    No need to remake target `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/system_stm32l4xx.h'.
+    Considering target file `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l4xx.h'.
+     Finished prerequisites of target file `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l4xx.h'.
+    No need to remake target `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l4xx.h'.
+    Pruning file `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l476xx.h'.
+   Finished prerequisites of target file `system_stm32l4xx.o'.
+   Prerequisite `system_stm32l4xx.c' is older than target `system_stm32l4xx.o'.
+   Prerequisite `system_stm32l4xx.c' is older than target `system_stm32l4xx.o'.
+   Prerequisite `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l476xx.h' is older than target `system_stm32l4xx.o'.
+   Prerequisite `../../../../../Drivers/CMSIS/Include/core_cm4.h' is older than target `system_stm32l4xx.o'.
+   Prerequisite `../../../../../Drivers/CMSIS/Include/core_cmInstr.h' is older than target `system_stm32l4xx.o'.
+   Prerequisite `../../../../../Drivers/CMSIS/Include/cmsis_gcc.h' is older than target `system_stm32l4xx.o'.
+   Prerequisite `../../../../../Drivers/CMSIS/Include/core_cmFunc.h' is older than target `system_stm32l4xx.o'.
+   Prerequisite `../../../../../Drivers/CMSIS/Include/core_cmSimd.h' is older than target `system_stm32l4xx.o'.
+   Prerequisite `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/system_stm32l4xx.h' is older than target `system_stm32l4xx.o'.
+   Prerequisite `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l4xx.h' is older than target `system_stm32l4xx.o'.
+   Prerequisite `../../../../../Drivers/CMSIS/Device/ST/STM32L4xx//Include/stm32l476xx.h' is older than target `system_stm32l4xx.o'.
+  No need to remake target `system_stm32l4xx.o'.
+  Considering target file `main.o'.
+   File `main.o' does not exist.
+    Considering target file `main.c'.
+     Finished prerequisites of target file `main.c'.
+    No need to remake target `main.c'.
+   Finished prerequisites of target file `main.o'.
+  Must remake target `main.o'.
+Invoking recipe from proj.mk:177 to update target `main.o'.
+Compiling main.c 

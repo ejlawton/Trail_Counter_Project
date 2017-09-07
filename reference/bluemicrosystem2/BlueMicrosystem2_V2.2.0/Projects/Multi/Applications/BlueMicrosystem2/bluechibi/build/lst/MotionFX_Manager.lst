@@ -1,0 +1,2567 @@
+ARM GAS  /tmp/ccCutVAN.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"MotionFX_Manager.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	osx_mfx_license
+  19              		.bss
+  20              		.align	2
+  21              		.type	osx_mfx_license, %object
+  22              		.size	osx_mfx_license, 48
+  23              	osx_mfx_license:
+  24 0000 00000000 		.space	48
+  24      00000000 
+  24      00000000 
+  24      00000000 
+  24      00000000 
+  25              		.comm	iDataOUT,112,4
+  26              		.comm	iDataIN,36,4
+  27              		.align	2
+  28              	discardedCount:
+  29 0030 00000000 		.space	4
+  30              		.align	2
+  31              	iKnobs:
+  32 0034 00000000 		.space	60
+  32      00000000 
+  32      00000000 
+  32      00000000 
+  32      00000000 
+  33              		.align	2
+  34              	ipKnobs:
+  35 0070 00000000 		.space	4
+  36              		.global	__aeabi_i2d
+  37              		.global	__aeabi_dmul
+  38              		.global	__aeabi_d2f
+  39              		.global	__aeabi_i2f
+  40              		.global	__aeabi_fmul
+  41              		.text
+  42              		.align	2
+  43              		.p2align 4,,15
+  44              		.global	MotionFX_manager_run
+  45              		.thumb
+  46              		.thumb_func
+  47              		.type	MotionFX_manager_run, %function
+  48              	MotionFX_manager_run:
+  49              	.LFB125:
+ARM GAS  /tmp/ccCutVAN.s 			page 2
+
+
+  50              		.file 1 "../../../../../Projects/Multi/Applications/BlueMicrosystem2/Src/MotionFX_Manager.c"
+  51              		.loc 1 86 0
+  52              		.cfi_startproc
+  53              		@ args = 24, pretend = 8, frame = 8
+  54              		@ frame_needed = 0, uses_anonymous_args = 0
+  55 0000 82B0     		sub	sp, sp, #8
+  56              		.cfi_def_cfa_offset 8
+  57 0002 10B5     		push	{r4, lr}
+  58              		.cfi_def_cfa_offset 16
+  59              		.cfi_offset 4, -16
+  60              		.cfi_offset 14, -12
+  61 0004 82B0     		sub	sp, sp, #8
+  62              		.cfi_def_cfa_offset 24
+  63 0006 6C46     		mov	r4, sp
+  64 0008 84E80300 		stmia	r4, {r0, r1}
+  65 000c 04A9     		add	r1, sp, #16
+  66 000e 81E80C00 		stmia	r1, {r2, r3}
+  67              		.loc 1 87 0
+  68 0012 049B     		ldr	r3, [sp, #16]
+  69 0014 1846     		mov	r0, r3
+  70 0016 FFF7FEFF 		bl	__aeabi_i2d
+  71 001a 0246     		mov	r2, r0
+  72 001c 0B46     		mov	r3, r1
+  73 001e 1046     		mov	r0, r2
+  74 0020 1946     		mov	r1, r3
+  75 0022 57A3     		adr	r3, .L3
+  76 0024 D3E90023 		ldrd	r2, [r3]
+  77 0028 FFF7FEFF 		bl	__aeabi_dmul
+  78 002c 0246     		mov	r2, r0
+  79 002e 0B46     		mov	r3, r1
+  80 0030 1046     		mov	r0, r2
+  81 0032 1946     		mov	r1, r3
+  82 0034 FFF7FEFF 		bl	__aeabi_d2f
+  83 0038 0246     		mov	r2, r0
+  84 003a 534B     		ldr	r3, .L3+8
+  85 003c 9A61     		str	r2, [r3, #24]	@ float
+  86              		.loc 1 88 0
+  87 003e 059B     		ldr	r3, [sp, #20]
+  88 0040 1846     		mov	r0, r3
+  89 0042 FFF7FEFF 		bl	__aeabi_i2d
+  90 0046 0246     		mov	r2, r0
+  91 0048 0B46     		mov	r3, r1
+  92 004a 1046     		mov	r0, r2
+  93 004c 1946     		mov	r1, r3
+  94 004e 4CA3     		adr	r3, .L3
+  95 0050 D3E90023 		ldrd	r2, [r3]
+  96 0054 FFF7FEFF 		bl	__aeabi_dmul
+  97 0058 0246     		mov	r2, r0
+  98 005a 0B46     		mov	r3, r1
+  99 005c 1046     		mov	r0, r2
+ 100 005e 1946     		mov	r1, r3
+ 101 0060 FFF7FEFF 		bl	__aeabi_d2f
+ 102 0064 0246     		mov	r2, r0
+ 103 0066 484B     		ldr	r3, .L3+8
+ 104 0068 DA61     		str	r2, [r3, #28]	@ float
+ 105              		.loc 1 89 0
+ 106 006a 069B     		ldr	r3, [sp, #24]
+ARM GAS  /tmp/ccCutVAN.s 			page 3
+
+
+ 107 006c 1846     		mov	r0, r3
+ 108 006e FFF7FEFF 		bl	__aeabi_i2d
+ 109 0072 0246     		mov	r2, r0
+ 110 0074 0B46     		mov	r3, r1
+ 111 0076 1046     		mov	r0, r2
+ 112 0078 1946     		mov	r1, r3
+ 113 007a 41A3     		adr	r3, .L3
+ 114 007c D3E90023 		ldrd	r2, [r3]
+ 115 0080 FFF7FEFF 		bl	__aeabi_dmul
+ 116 0084 0246     		mov	r2, r0
+ 117 0086 0B46     		mov	r3, r1
+ 118 0088 1046     		mov	r0, r2
+ 119 008a 1946     		mov	r1, r3
+ 120 008c FFF7FEFF 		bl	__aeabi_d2f
+ 121 0090 0246     		mov	r2, r0
+ 122 0092 3D4B     		ldr	r3, .L3+8
+ 123 0094 1A62     		str	r2, [r3, #32]	@ float
+ 124              		.loc 1 91 0
+ 125 0096 BDF80030 		ldrh	r3, [sp]
+ 126 009a 1BB2     		sxth	r3, r3
+ 127 009c 1846     		mov	r0, r3
+ 128 009e FFF7FEFF 		bl	__aeabi_i2f
+ 129 00a2 0246     		mov	r2, r0
+ 130 00a4 394B     		ldr	r3, .L3+12
+ 131 00a6 1B68     		ldr	r3, [r3]	@ float
+ 132 00a8 1046     		mov	r0, r2
+ 133 00aa 1946     		mov	r1, r3
+ 134 00ac FFF7FEFF 		bl	__aeabi_fmul
+ 135 00b0 0346     		mov	r3, r0
+ 136 00b2 1A46     		mov	r2, r3
+ 137 00b4 344B     		ldr	r3, .L3+8
+ 138 00b6 DA60     		str	r2, [r3, #12]	@ float
+ 139              		.loc 1 92 0
+ 140 00b8 BDF80230 		ldrh	r3, [sp, #2]
+ 141 00bc 1BB2     		sxth	r3, r3
+ 142 00be 1846     		mov	r0, r3
+ 143 00c0 FFF7FEFF 		bl	__aeabi_i2f
+ 144 00c4 0246     		mov	r2, r0
+ 145 00c6 314B     		ldr	r3, .L3+12
+ 146 00c8 1B68     		ldr	r3, [r3]	@ float
+ 147 00ca 1046     		mov	r0, r2
+ 148 00cc 1946     		mov	r1, r3
+ 149 00ce FFF7FEFF 		bl	__aeabi_fmul
+ 150 00d2 0346     		mov	r3, r0
+ 151 00d4 1A46     		mov	r2, r3
+ 152 00d6 2C4B     		ldr	r3, .L3+8
+ 153 00d8 1A61     		str	r2, [r3, #16]	@ float
+ 154              		.loc 1 93 0
+ 155 00da BDF80430 		ldrh	r3, [sp, #4]
+ 156 00de 1BB2     		sxth	r3, r3
+ 157 00e0 1846     		mov	r0, r3
+ 158 00e2 FFF7FEFF 		bl	__aeabi_i2f
+ 159 00e6 0246     		mov	r2, r0
+ 160 00e8 284B     		ldr	r3, .L3+12
+ 161 00ea 1B68     		ldr	r3, [r3]	@ float
+ 162 00ec 1046     		mov	r0, r2
+ 163 00ee 1946     		mov	r1, r3
+ARM GAS  /tmp/ccCutVAN.s 			page 4
+
+
+ 164 00f0 FFF7FEFF 		bl	__aeabi_fmul
+ 165 00f4 0346     		mov	r3, r0
+ 166 00f6 1A46     		mov	r2, r3
+ 167 00f8 234B     		ldr	r3, .L3+8
+ 168 00fa 5A61     		str	r2, [r3, #20]	@ float
+ 169              		.loc 1 95 0
+ 170 00fc 079A     		ldr	r2, [sp, #28]
+ 171 00fe 244B     		ldr	r3, .L3+16
+ 172 0100 1B88     		ldrh	r3, [r3]
+ 173 0102 1BB2     		sxth	r3, r3
+ 174 0104 D31A     		subs	r3, r2, r3
+ 175 0106 1846     		mov	r0, r3
+ 176 0108 FFF7FEFF 		bl	__aeabi_i2f
+ 177 010c 0346     		mov	r3, r0
+ 178 010e 1846     		mov	r0, r3
+ 179 0110 2049     		ldr	r1, .L3+20
+ 180 0112 FFF7FEFF 		bl	__aeabi_fmul
+ 181 0116 0346     		mov	r3, r0
+ 182 0118 1A46     		mov	r2, r3
+ 183 011a 1B4B     		ldr	r3, .L3+8
+ 184 011c 1A60     		str	r2, [r3]	@ float
+ 185              		.loc 1 96 0
+ 186 011e 089A     		ldr	r2, [sp, #32]
+ 187 0120 1B4B     		ldr	r3, .L3+16
+ 188 0122 5B88     		ldrh	r3, [r3, #2]
+ 189 0124 1BB2     		sxth	r3, r3
+ 190 0126 D31A     		subs	r3, r2, r3
+ 191 0128 1846     		mov	r0, r3
+ 192 012a FFF7FEFF 		bl	__aeabi_i2f
+ 193 012e 0346     		mov	r3, r0
+ 194 0130 1846     		mov	r0, r3
+ 195 0132 1849     		ldr	r1, .L3+20
+ 196 0134 FFF7FEFF 		bl	__aeabi_fmul
+ 197 0138 0346     		mov	r3, r0
+ 198 013a 1A46     		mov	r2, r3
+ 199 013c 124B     		ldr	r3, .L3+8
+ 200 013e 5A60     		str	r2, [r3, #4]	@ float
+ 201              		.loc 1 97 0
+ 202 0140 099A     		ldr	r2, [sp, #36]
+ 203 0142 134B     		ldr	r3, .L3+16
+ 204 0144 9B88     		ldrh	r3, [r3, #4]
+ 205 0146 1BB2     		sxth	r3, r3
+ 206 0148 D31A     		subs	r3, r2, r3
+ 207 014a 1846     		mov	r0, r3
+ 208 014c FFF7FEFF 		bl	__aeabi_i2f
+ 209 0150 0346     		mov	r3, r0
+ 210 0152 1846     		mov	r0, r3
+ 211 0154 0F49     		ldr	r1, .L3+20
+ 212 0156 FFF7FEFF 		bl	__aeabi_fmul
+ 213 015a 0346     		mov	r3, r0
+ 214 015c 1A46     		mov	r2, r3
+ 215 015e 0A4B     		ldr	r3, .L3+8
+ 216 0160 9A60     		str	r2, [r3, #8]	@ float
+ 217              		.loc 1 99 0
+ 218 0162 0D4B     		ldr	r3, .L3+24
+ 219 0164 1B68     		ldr	r3, [r3]
+ 220 0166 0F2B     		cmp	r3, #15
+ARM GAS  /tmp/ccCutVAN.s 			page 5
+
+
+ 221 0168 04D0     		beq	.L1
+ 222              		.loc 1 103 0
+ 223 016a 0B4B     		ldr	r3, .L3+24
+ 224 016c 1B68     		ldr	r3, [r3]
+ 225 016e 5A1C     		adds	r2, r3, #1
+ 226 0170 094B     		ldr	r3, .L3+24
+ 227 0172 1A60     		str	r2, [r3]
+ 228              	.L1:
+ 229              		.loc 1 105 0
+ 230 0174 02B0     		add	sp, sp, #8
+ 231              		@ sp needed
+ 232 0176 BDE81040 		pop	{r4, lr}
+ 233 017a 02B0     		add	sp, sp, #8
+ 234 017c 7047     		bx	lr
+ 235              	.L4:
+ 236 017e 00BF     		.align	3
+ 237              	.L3:
+ 238 0180 FCA9F1D2 		.word	-755914244
+ 239 0184 4D62503F 		.word	1062232653
+ 240 0188 00000000 		.word	iDataIN
+ 241 018c 00000000 		.word	sensitivity_Mul
+ 242 0190 00000000 		.word	magOffset
+ 243 0194 6F12033B 		.word	990057071
+ 244 0198 30000000 		.word	discardedCount
+ 245              		.cfi_endproc
+ 246              	.LFE125:
+ 247              		.size	MotionFX_manager_run, .-MotionFX_manager_run
+ 248              		.align	2
+ 249 019c AFF30080 		.p2align 4,,15
+ 250              		.global	MotionFX_License_init
+ 251              		.thumb
+ 252              		.thumb_func
+ 253              		.type	MotionFX_License_init, %function
+ 254              	MotionFX_License_init:
+ 255              	.LFB126:
+ 256              		.loc 1 113 0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 8
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260 01a0 00B5     		push	{lr}
+ 261              		.cfi_def_cfa_offset 4
+ 262              		.cfi_offset 14, -4
+ 263 01a2 83B0     		sub	sp, sp, #12
+ 264              		.cfi_def_cfa_offset 16
+ 265 01a4 0190     		str	r0, [sp, #4]
+ 266              		.loc 1 114 0
+ 267 01a6 019B     		ldr	r3, [sp, #4]
+ 268 01a8 2C33     		adds	r3, r3, #44
+ 269 01aa 1846     		mov	r0, r3
+ 270 01ac 0349     		ldr	r1, .L6
+ 271 01ae 3022     		movs	r2, #48
+ 272 01b0 FFF7FEFF 		bl	memcpy
+ 273              		.loc 1 128 0
+ 274 01b4 03B0     		add	sp, sp, #12
+ 275              		@ sp needed
+ 276 01b6 5DF804FB 		ldr	pc, [sp], #4
+ 277              	.L7:
+ARM GAS  /tmp/ccCutVAN.s 			page 6
+
+
+ 278 01ba 00BF     		.align	2
+ 279              	.L6:
+ 280 01bc 00000000 		.word	osx_mfx_license
+ 281              		.cfi_endproc
+ 282              	.LFE126:
+ 283              		.size	MotionFX_License_init, .-MotionFX_License_init
+ 284              		.align	2
+ 285              		.p2align 4,,15
+ 286              		.global	MotionFX_manager_init
+ 287              		.thumb
+ 288              		.thumb_func
+ 289              		.type	MotionFX_manager_init, %function
+ 290              	MotionFX_manager_init:
+ 291              	.LFB127:
+ 292              		.loc 1 135 0
+ 293              		.cfi_startproc
+ 294              		@ args = 0, pretend = 0, frame = 0
+ 295              		@ frame_needed = 0, uses_anonymous_args = 0
+ 296              		@ link register save eliminated.
+ 297              		.loc 1 137 0
+ 298 01c0 334B     		ldr	r3, .L9
+ 299 01c2 344A     		ldr	r2, .L9+4
+ 300 01c4 1A60     		str	r2, [r3]
+ 301              		.loc 1 143 0
+ 302 01c6 324B     		ldr	r3, .L9
+ 303 01c8 1B68     		ldr	r3, [r3]
+ 304 01ca 334A     		ldr	r2, .L9+8
+ 305 01cc 5A61     		str	r2, [r3, #20]	@ float
+ 306              		.loc 1 144 0
+ 307 01ce 304B     		ldr	r3, .L9
+ 308 01d0 1B68     		ldr	r3, [r3]
+ 309 01d2 324A     		ldr	r2, .L9+12
+ 310 01d4 9A61     		str	r2, [r3, #24]	@ float
+ 311              		.loc 1 145 0
+ 312 01d6 2E4B     		ldr	r3, .L9
+ 313 01d8 1B68     		ldr	r3, [r3]
+ 314 01da 314A     		ldr	r2, .L9+16
+ 315 01dc 1A61     		str	r2, [r3, #16]	@ float
+ 316              		.loc 1 147 0
+ 317 01de 2C4B     		ldr	r3, .L9
+ 318 01e0 1B68     		ldr	r3, [r3]
+ 319 01e2 2D4A     		ldr	r2, .L9+8
+ 320 01e4 1A62     		str	r2, [r3, #32]	@ float
+ 321              		.loc 1 148 0
+ 322 01e6 2A4B     		ldr	r3, .L9
+ 323 01e8 1B68     		ldr	r3, [r3]
+ 324 01ea 2C4A     		ldr	r2, .L9+12
+ 325 01ec 5A62     		str	r2, [r3, #36]	@ float
+ 326              		.loc 1 149 0
+ 327 01ee 284B     		ldr	r3, .L9
+ 328 01f0 1B68     		ldr	r3, [r3]
+ 329 01f2 2B4A     		ldr	r2, .L9+16
+ 330 01f4 DA61     		str	r2, [r3, #28]	@ float
+ 331              		.loc 1 185 0
+ 332 01f6 264B     		ldr	r3, .L9
+ 333 01f8 1B68     		ldr	r3, [r3]
+ 334 01fa 7722     		movs	r2, #119
+ARM GAS  /tmp/ccCutVAN.s 			page 7
+
+
+ 335 01fc 83F82920 		strb	r2, [r3, #41]
+ 336              		.loc 1 186 0
+ 337 0200 234B     		ldr	r3, .L9
+ 338 0202 1B68     		ldr	r3, [r3]
+ 339 0204 7322     		movs	r2, #115
+ 340 0206 83F82A20 		strb	r2, [r3, #42]
+ 341              		.loc 1 187 0
+ 342 020a 214B     		ldr	r3, .L9
+ 343 020c 1B68     		ldr	r3, [r3]
+ 344 020e 7522     		movs	r2, #117
+ 345 0210 83F82B20 		strb	r2, [r3, #43]
+ 346              		.loc 1 189 0
+ 347 0214 1E4B     		ldr	r3, .L9
+ 348 0216 1B68     		ldr	r3, [r3]
+ 349 0218 7722     		movs	r2, #119
+ 350 021a 83F82D20 		strb	r2, [r3, #45]
+ 351              		.loc 1 190 0
+ 352 021e 1C4B     		ldr	r3, .L9
+ 353 0220 1B68     		ldr	r3, [r3]
+ 354 0222 7322     		movs	r2, #115
+ 355 0224 83F82E20 		strb	r2, [r3, #46]
+ 356              		.loc 1 191 0
+ 357 0228 194B     		ldr	r3, .L9
+ 358 022a 1B68     		ldr	r3, [r3]
+ 359 022c 7522     		movs	r2, #117
+ 360 022e 83F82F20 		strb	r2, [r3, #47]
+ 361              		.loc 1 193 0
+ 362 0232 174B     		ldr	r3, .L9
+ 363 0234 1B68     		ldr	r3, [r3]
+ 364 0236 7322     		movs	r2, #115
+ 365 0238 83F83120 		strb	r2, [r3, #49]
+ 366              		.loc 1 194 0
+ 367 023c 144B     		ldr	r3, .L9
+ 368 023e 1B68     		ldr	r3, [r3]
+ 369 0240 7722     		movs	r2, #119
+ 370 0242 83F83220 		strb	r2, [r3, #50]
+ 371              		.loc 1 195 0
+ 372 0246 124B     		ldr	r3, .L9
+ 373 0248 1B68     		ldr	r3, [r3]
+ 374 024a 7522     		movs	r2, #117
+ 375 024c 83F83320 		strb	r2, [r3, #51]
+ 376              		.loc 1 198 0
+ 377 0250 0F4B     		ldr	r3, .L9
+ 378 0252 1B68     		ldr	r3, [r3]
+ 379 0254 0122     		movs	r2, #1
+ 380 0256 83F83520 		strb	r2, [r3, #53]
+ 381              		.loc 1 200 0
+ 382 025a 0D4B     		ldr	r3, .L9
+ 383 025c 1B68     		ldr	r3, [r3]
+ 384 025e 0122     		movs	r2, #1
+ 385 0260 1A73     		strb	r2, [r3, #12]
+ 386              		.loc 1 201 0
+ 387 0262 0B4B     		ldr	r3, .L9
+ 388 0264 1B68     		ldr	r3, [r3]
+ 389 0266 0122     		movs	r2, #1
+ 390 0268 83F82820 		strb	r2, [r3, #40]
+ 391              		.loc 1 209 0
+ARM GAS  /tmp/ccCutVAN.s 			page 8
+
+
+ 392 026c 0D4B     		ldr	r3, .L9+20
+ 393 026e 0022     		movs	r2, #0
+ 394 0270 1A60     		str	r2, [r3]
+ 395              		.loc 1 212 0
+ 396 0272 0D4B     		ldr	r3, .L9+24
+ 397 0274 0022     		movs	r2, #0
+ 398 0276 9A80     		strh	r2, [r3, #4]	@ movhi
+ 399 0278 0B4B     		ldr	r3, .L9+24
+ 400 027a 9A88     		ldrh	r2, [r3, #4]
+ 401 027c 0A4B     		ldr	r3, .L9+24
+ 402 027e 5A80     		strh	r2, [r3, #2]	@ movhi
+ 403 0280 094B     		ldr	r3, .L9+24
+ 404 0282 5A88     		ldrh	r2, [r3, #2]
+ 405 0284 084B     		ldr	r3, .L9+24
+ 406 0286 1A80     		strh	r2, [r3]	@ movhi
+ 407              		.loc 1 214 0
+ 408 0288 084B     		ldr	r3, .L9+28
+ 409 028a 0122     		movs	r2, #1
+ 410 028c 5A63     		str	r2, [r3, #52]
+ 411              		.loc 1 216 0
+ 412 028e 7047     		bx	lr
+ 413              	.L10:
+ 414              		.align	2
+ 415              	.L9:
+ 416 0290 70000000 		.word	ipKnobs
+ 417 0294 34000000 		.word	iKnobs
+ 418 0298 488AC83A 		.word	986221128
+ 419 029c 6F12833B 		.word	998445679
+ 420 02a0 A69B443B 		.word	994352038
+ 421 02a4 30000000 		.word	discardedCount
+ 422 02a8 00000000 		.word	magOffset
+ 423 02ac 00000000 		.word	TargetBoardFeatures
+ 424              		.cfi_endproc
+ 425              	.LFE127:
+ 426              		.size	MotionFX_manager_init, .-MotionFX_manager_init
+ 427              		.align	2
+ 428              		.p2align 4,,15
+ 429              		.global	MotionFX_manager_start_6X
+ 430              		.thumb
+ 431              		.thumb_func
+ 432              		.type	MotionFX_manager_start_6X, %function
+ 433              	MotionFX_manager_start_6X:
+ 434              	.LFB128:
+ 435              		.loc 1 223 0
+ 436              		.cfi_startproc
+ 437              		@ args = 0, pretend = 0, frame = 0
+ 438              		@ frame_needed = 0, uses_anonymous_args = 0
+ 439              		@ link register save eliminated.
+ 440              		.loc 1 225 0
+ 441 02b0 7047     		bx	lr
+ 442              		.cfi_endproc
+ 443              	.LFE128:
+ 444              		.size	MotionFX_manager_start_6X, .-MotionFX_manager_start_6X
+ 445 02b2 00BF     		.align	2
+ 446 02b4 AFF30080 		.p2align 4,,15
+ 446      AFF30080 
+ 446      AFF30080 
+ARM GAS  /tmp/ccCutVAN.s 			page 9
+
+
+ 447              		.global	MotionFX_manager_stop_6X
+ 448              		.thumb
+ 449              		.thumb_func
+ 450              		.type	MotionFX_manager_stop_6X, %function
+ 451              	MotionFX_manager_stop_6X:
+ 452              	.LFB129:
+ 453              		.loc 1 232 0
+ 454              		.cfi_startproc
+ 455              		@ args = 0, pretend = 0, frame = 0
+ 456              		@ frame_needed = 0, uses_anonymous_args = 0
+ 457              		@ link register save eliminated.
+ 458              		.loc 1 234 0
+ 459 02c0 7047     		bx	lr
+ 460              		.cfi_endproc
+ 461              	.LFE129:
+ 462              		.size	MotionFX_manager_stop_6X, .-MotionFX_manager_stop_6X
+ 463 02c2 00BF     		.align	2
+ 464 02c4 AFF30080 		.p2align 4,,15
+ 464      AFF30080 
+ 464      AFF30080 
+ 465              		.global	MotionFX_manager_start_9X
+ 466              		.thumb
+ 467              		.thumb_func
+ 468              		.type	MotionFX_manager_start_9X, %function
+ 469              	MotionFX_manager_start_9X:
+ 470              	.LFB130:
+ 471              		.loc 1 241 0
+ 472              		.cfi_startproc
+ 473              		@ args = 0, pretend = 0, frame = 0
+ 474              		@ frame_needed = 0, uses_anonymous_args = 0
+ 475              		@ link register save eliminated.
+ 476              		.loc 1 243 0
+ 477 02d0 7047     		bx	lr
+ 478              		.cfi_endproc
+ 479              	.LFE130:
+ 480              		.size	MotionFX_manager_start_9X, .-MotionFX_manager_start_9X
+ 481 02d2 00BF     		.align	2
+ 482 02d4 AFF30080 		.p2align 4,,15
+ 482      AFF30080 
+ 482      AFF30080 
+ 483              		.global	MotionFX_manager_stop_9X
+ 484              		.thumb
+ 485              		.thumb_func
+ 486              		.type	MotionFX_manager_stop_9X, %function
+ 487              	MotionFX_manager_stop_9X:
+ 488              	.LFB131:
+ 489              		.loc 1 250 0
+ 490              		.cfi_startproc
+ 491              		@ args = 0, pretend = 0, frame = 0
+ 492              		@ frame_needed = 0, uses_anonymous_args = 0
+ 493              		@ link register save eliminated.
+ 494              		.loc 1 252 0
+ 495 02e0 7047     		bx	lr
+ 496              		.cfi_endproc
+ 497              	.LFE131:
+ 498              		.size	MotionFX_manager_stop_9X, .-MotionFX_manager_stop_9X
+ 499 02e2 00BF     		.align	2
+ARM GAS  /tmp/ccCutVAN.s 			page 10
+
+
+ 500 02e4 AFF30080 		.p2align 4,,15
+ 500      AFF30080 
+ 500      AFF30080 
+ 501              		.global	MotionFX_manager_getDataOUT
+ 502              		.thumb
+ 503              		.thumb_func
+ 504              		.type	MotionFX_manager_getDataOUT, %function
+ 505              	MotionFX_manager_getDataOUT:
+ 506              	.LFB132:
+ 507              		.loc 1 260 0
+ 508              		.cfi_startproc
+ 509              		@ args = 0, pretend = 0, frame = 0
+ 510              		@ frame_needed = 0, uses_anonymous_args = 0
+ 511              		@ link register save eliminated.
+ 512              		.loc 1 261 0
+ 513 02f0 014B     		ldr	r3, .L17
+ 514              		.loc 1 262 0
+ 515 02f2 1846     		mov	r0, r3
+ 516 02f4 7047     		bx	lr
+ 517              	.L18:
+ 518 02f6 00BF     		.align	2
+ 519              	.L17:
+ 520 02f8 00000000 		.word	iDataOUT
+ 521              		.cfi_endproc
+ 522              	.LFE132:
+ 523              		.size	MotionFX_manager_getDataOUT, .-MotionFX_manager_getDataOUT
+ 524              		.align	2
+ 525 02fc AFF30080 		.p2align 4,,15
+ 526              		.global	MotionFX_manager_getDataIN
+ 527              		.thumb
+ 528              		.thumb_func
+ 529              		.type	MotionFX_manager_getDataIN, %function
+ 530              	MotionFX_manager_getDataIN:
+ 531              	.LFB133:
+ 532              		.loc 1 270 0
+ 533              		.cfi_startproc
+ 534              		@ args = 0, pretend = 0, frame = 0
+ 535              		@ frame_needed = 0, uses_anonymous_args = 0
+ 536              		@ link register save eliminated.
+ 537              		.loc 1 271 0
+ 538 0300 014B     		ldr	r3, .L21
+ 539              		.loc 1 272 0
+ 540 0302 1846     		mov	r0, r3
+ 541 0304 7047     		bx	lr
+ 542              	.L22:
+ 543 0306 00BF     		.align	2
+ 544              	.L21:
+ 545 0308 00000000 		.word	iDataIN
+ 546              		.cfi_endproc
+ 547              	.LFE133:
+ 548              		.size	MotionFX_manager_getDataIN, .-MotionFX_manager_getDataIN
+ 549              	.Letext0:
+ 550              		.file 2 "/nfs/nfs5/home/research/hardware/arm2/gcc-arm-embedded/gcc-arm-none-eabi-4_8-2014q2/arm-n
+ 551              		.file 3 "/nfs/nfs5/home/research/hardware/arm2/gcc-arm-embedded/gcc-arm-none-eabi-4_8-2014q2/arm-n
+ 552              		.file 4 "../../../../../Drivers/BSP/Components/Common/sensor.h"
+ 553              		.file 5 "../../../../../Middlewares/ST/STM32_MetaDataManager/MetaDataManager.h"
+ 554              		.file 6 "../../../../../Middlewares/ST/STM32_OSX_MotionFX_Library/Inc/osx_motion_fx.h"
+ARM GAS  /tmp/ccCutVAN.s 			page 11
+
+
+ 555              		.file 7 "../../../../../Projects/Multi/Applications/BlueMicrosystem2/Inc/TargetFeatures.h"
+ 556              		.file 8 "../../../../../../ChibiOS/os/ext/CMSIS/include/core_cm4.h"
+ 557              		.file 9 "../../../../../Projects/Multi/Applications/BlueMicrosystem2/Src/../../../../../Middleware
+ 558 030c AFF30080 		.section	.debug_info,"",%progbits
+ 559              	.Ldebug_info0:
+ 560 0000 DA060000 		.4byte	0x6da
+ 561 0004 0400     		.2byte	0x4
+ 562 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 563 000a 04       		.byte	0x4
+ 564 000b 01       		.uleb128 0x1
+ 565 000c D1000000 		.4byte	.LASF119
+ 566 0010 01       		.byte	0x1
+ 567 0011 5B000000 		.4byte	.LASF120
+ 568 0015 95040000 		.4byte	.LASF121
+ 569 0019 00000000 		.4byte	.Ltext0
+ 570 001d 0C030000 		.4byte	.Letext0-.Ltext0
+ 571 0021 00000000 		.4byte	.Ldebug_line0
+ 572 0025 02       		.uleb128 0x2
+ 573 0026 04       		.byte	0x4
+ 574 0027 07       		.byte	0x7
+ 575 0028 B9050000 		.4byte	.LASF0
+ 576 002c 03       		.uleb128 0x3
+ 577 002d 04       		.byte	0x4
+ 578 002e 04       		.uleb128 0x4
+ 579 002f 04       		.byte	0x4
+ 580 0030 05       		.byte	0x5
+ 581 0031 696E7400 		.ascii	"int\000"
+ 582 0035 02       		.uleb128 0x2
+ 583 0036 01       		.byte	0x1
+ 584 0037 06       		.byte	0x6
+ 585 0038 4F050000 		.4byte	.LASF1
+ 586 003c 05       		.uleb128 0x5
+ 587 003d ED030000 		.4byte	.LASF3
+ 588 0041 02       		.byte	0x2
+ 589 0042 1C       		.byte	0x1c
+ 590 0043 47000000 		.4byte	0x47
+ 591 0047 02       		.uleb128 0x2
+ 592 0048 01       		.byte	0x1
+ 593 0049 08       		.byte	0x8
+ 594 004a 6C040000 		.4byte	.LASF2
+ 595 004e 05       		.uleb128 0x5
+ 596 004f 96070000 		.4byte	.LASF4
+ 597 0053 02       		.byte	0x2
+ 598 0054 25       		.byte	0x25
+ 599 0055 59000000 		.4byte	0x59
+ 600 0059 02       		.uleb128 0x2
+ 601 005a 02       		.byte	0x2
+ 602 005b 05       		.byte	0x5
+ 603 005c 4E020000 		.4byte	.LASF5
+ 604 0060 02       		.uleb128 0x2
+ 605 0061 02       		.byte	0x2
+ 606 0062 07       		.byte	0x7
+ 607 0063 FF050000 		.4byte	.LASF6
+ 608 0067 05       		.uleb128 0x5
+ 609 0068 84070000 		.4byte	.LASF7
+ 610 006c 02       		.byte	0x2
+ 611 006d 37       		.byte	0x37
+ARM GAS  /tmp/ccCutVAN.s 			page 12
+
+
+ 612 006e 72000000 		.4byte	0x72
+ 613 0072 02       		.uleb128 0x2
+ 614 0073 04       		.byte	0x4
+ 615 0074 05       		.byte	0x5
+ 616 0075 65030000 		.4byte	.LASF8
+ 617 0079 05       		.uleb128 0x5
+ 618 007a FC010000 		.4byte	.LASF9
+ 619 007e 02       		.byte	0x2
+ 620 007f 38       		.byte	0x38
+ 621 0080 84000000 		.4byte	0x84
+ 622 0084 02       		.uleb128 0x2
+ 623 0085 04       		.byte	0x4
+ 624 0086 07       		.byte	0x7
+ 625 0087 E2060000 		.4byte	.LASF10
+ 626 008b 02       		.uleb128 0x2
+ 627 008c 08       		.byte	0x8
+ 628 008d 05       		.byte	0x5
+ 629 008e E0020000 		.4byte	.LASF11
+ 630 0092 02       		.uleb128 0x2
+ 631 0093 08       		.byte	0x8
+ 632 0094 07       		.byte	0x7
+ 633 0095 74050000 		.4byte	.LASF12
+ 634 0099 02       		.uleb128 0x2
+ 635 009a 04       		.byte	0x4
+ 636 009b 07       		.byte	0x7
+ 637 009c B2010000 		.4byte	.LASF13
+ 638 00a0 02       		.uleb128 0x2
+ 639 00a1 01       		.byte	0x1
+ 640 00a2 08       		.byte	0x8
+ 641 00a3 56060000 		.4byte	.LASF14
+ 642 00a7 05       		.uleb128 0x5
+ 643 00a8 64040000 		.4byte	.LASF15
+ 644 00ac 03       		.byte	0x3
+ 645 00ad 2A       		.byte	0x2a
+ 646 00ae 3C000000 		.4byte	0x3c
+ 647 00b2 05       		.uleb128 0x5
+ 648 00b3 98060000 		.4byte	.LASF16
+ 649 00b7 03       		.byte	0x3
+ 650 00b8 35       		.byte	0x35
+ 651 00b9 4E000000 		.4byte	0x4e
+ 652 00bd 05       		.uleb128 0x5
+ 653 00be CF030000 		.4byte	.LASF17
+ 654 00c2 03       		.byte	0x3
+ 655 00c3 41       		.byte	0x41
+ 656 00c4 67000000 		.4byte	0x67
+ 657 00c8 05       		.uleb128 0x5
+ 658 00c9 97020000 		.4byte	.LASF18
+ 659 00cd 03       		.byte	0x3
+ 660 00ce 42       		.byte	0x42
+ 661 00cf 79000000 		.4byte	0x79
+ 662 00d3 06       		.uleb128 0x6
+ 663 00d4 C8000000 		.4byte	0xc8
+ 664 00d8 E3000000 		.4byte	0xe3
+ 665 00dc 07       		.uleb128 0x7
+ 666 00dd 99000000 		.4byte	0x99
+ 667 00e1 0F       		.byte	0xf
+ 668 00e2 00       		.byte	0
+ARM GAS  /tmp/ccCutVAN.s 			page 13
+
+
+ 669 00e3 08       		.uleb128 0x8
+ 670 00e4 06       		.byte	0x6
+ 671 00e5 04       		.byte	0x4
+ 672 00e6 4D       		.byte	0x4d
+ 673 00e7 10010000 		.4byte	0x110
+ 674 00eb 09       		.uleb128 0x9
+ 675 00ec F4060000 		.4byte	.LASF19
+ 676 00f0 04       		.byte	0x4
+ 677 00f1 4F       		.byte	0x4f
+ 678 00f2 B2000000 		.4byte	0xb2
+ 679 00f6 00       		.byte	0
+ 680 00f7 09       		.uleb128 0x9
+ 681 00f8 FB060000 		.4byte	.LASF20
+ 682 00fc 04       		.byte	0x4
+ 683 00fd 50       		.byte	0x50
+ 684 00fe B2000000 		.4byte	0xb2
+ 685 0102 02       		.byte	0x2
+ 686 0103 09       		.uleb128 0x9
+ 687 0104 C9070000 		.4byte	.LASF21
+ 688 0108 04       		.byte	0x4
+ 689 0109 51       		.byte	0x51
+ 690 010a B2000000 		.4byte	0xb2
+ 691 010e 04       		.byte	0x4
+ 692 010f 00       		.byte	0
+ 693 0110 05       		.uleb128 0x5
+ 694 0111 12060000 		.4byte	.LASF22
+ 695 0115 04       		.byte	0x4
+ 696 0116 52       		.byte	0x52
+ 697 0117 E3000000 		.4byte	0xe3
+ 698 011b 08       		.uleb128 0x8
+ 699 011c 0C       		.byte	0xc
+ 700 011d 04       		.byte	0x4
+ 701 011e 57       		.byte	0x57
+ 702 011f 48010000 		.4byte	0x148
+ 703 0123 09       		.uleb128 0x9
+ 704 0124 F4060000 		.4byte	.LASF19
+ 705 0128 04       		.byte	0x4
+ 706 0129 59       		.byte	0x59
+ 707 012a BD000000 		.4byte	0xbd
+ 708 012e 00       		.byte	0
+ 709 012f 09       		.uleb128 0x9
+ 710 0130 FB060000 		.4byte	.LASF20
+ 711 0134 04       		.byte	0x4
+ 712 0135 5A       		.byte	0x5a
+ 713 0136 BD000000 		.4byte	0xbd
+ 714 013a 04       		.byte	0x4
+ 715 013b 09       		.uleb128 0x9
+ 716 013c C9070000 		.4byte	.LASF21
+ 717 0140 04       		.byte	0x4
+ 718 0141 5B       		.byte	0x5b
+ 719 0142 BD000000 		.4byte	0xbd
+ 720 0146 08       		.byte	0x8
+ 721 0147 00       		.byte	0
+ 722 0148 05       		.uleb128 0x5
+ 723 0149 00000000 		.4byte	.LASF23
+ 724 014d 04       		.byte	0x4
+ 725 014e 5C       		.byte	0x5c
+ARM GAS  /tmp/ccCutVAN.s 			page 14
+
+
+ 726 014f 1B010000 		.4byte	0x11b
+ 727 0153 02       		.uleb128 0x2
+ 728 0154 04       		.byte	0x4
+ 729 0155 04       		.byte	0x4
+ 730 0156 CF020000 		.4byte	.LASF24
+ 731 015a 06       		.uleb128 0x6
+ 732 015b A0000000 		.4byte	0xa0
+ 733 015f 6A010000 		.4byte	0x16a
+ 734 0163 07       		.uleb128 0x7
+ 735 0164 99000000 		.4byte	0x99
+ 736 0168 23       		.byte	0x23
+ 737 0169 00       		.byte	0
+ 738 016a 08       		.uleb128 0x8
+ 739 016b 9C       		.byte	0x9c
+ 740 016c 05       		.byte	0x5
+ 741 016d D6       		.byte	0xd6
+ 742 016e AF010000 		.4byte	0x1af
+ 743 0172 09       		.uleb128 0x9
+ 744 0173 40080000 		.4byte	.LASF25
+ 745 0177 05       		.byte	0x5
+ 746 0178 D7       		.byte	0xd7
+ 747 0179 C8000000 		.4byte	0xc8
+ 748 017d 00       		.byte	0
+ 749 017e 09       		.uleb128 0x9
+ 750 017f 27050000 		.4byte	.LASF26
+ 751 0183 05       		.byte	0x5
+ 752 0184 D8       		.byte	0xd8
+ 753 0185 C8000000 		.4byte	0xc8
+ 754 0189 04       		.byte	0x4
+ 755 018a 09       		.uleb128 0x9
+ 756 018b 71020000 		.4byte	.LASF27
+ 757 018f 05       		.byte	0x5
+ 758 0190 D9       		.byte	0xd9
+ 759 0191 5A010000 		.4byte	0x15a
+ 760 0195 08       		.byte	0x8
+ 761 0196 09       		.uleb128 0x9
+ 762 0197 7A040000 		.4byte	.LASF28
+ 763 019b 05       		.byte	0x5
+ 764 019c DA       		.byte	0xda
+ 765 019d AF010000 		.4byte	0x1af
+ 766 01a1 2C       		.byte	0x2c
+ 767 01a2 09       		.uleb128 0x9
+ 768 01a3 1E070000 		.4byte	.LASF29
+ 769 01a7 05       		.byte	0x5
+ 770 01a8 DB       		.byte	0xdb
+ 771 01a9 D3000000 		.4byte	0xd3
+ 772 01ad 5C       		.byte	0x5c
+ 773 01ae 00       		.byte	0
+ 774 01af 06       		.uleb128 0x6
+ 775 01b0 C8000000 		.4byte	0xc8
+ 776 01b4 C5010000 		.4byte	0x1c5
+ 777 01b8 07       		.uleb128 0x7
+ 778 01b9 99000000 		.4byte	0x99
+ 779 01bd 02       		.byte	0x2
+ 780 01be 07       		.uleb128 0x7
+ 781 01bf 99000000 		.4byte	0x99
+ 782 01c3 03       		.byte	0x3
+ARM GAS  /tmp/ccCutVAN.s 			page 15
+
+
+ 783 01c4 00       		.byte	0
+ 784 01c5 05       		.uleb128 0x5
+ 785 01c6 B8070000 		.4byte	.LASF30
+ 786 01ca 05       		.byte	0x5
+ 787 01cb DC       		.byte	0xdc
+ 788 01cc 6A010000 		.4byte	0x16a
+ 789 01d0 0A       		.uleb128 0xa
+ 790 01d1 01       		.byte	0x1
+ 791 01d2 06       		.byte	0x6
+ 792 01d3 4D       		.byte	0x4d
+ 793 01d4 E5010000 		.4byte	0x1e5
+ 794 01d8 0B       		.uleb128 0xb
+ 795 01d9 5B050000 		.4byte	.LASF31
+ 796 01dd 00       		.sleb128 0
+ 797 01de 0B       		.uleb128 0xb
+ 798 01df 95050000 		.4byte	.LASF32
+ 799 01e3 01       		.sleb128 1
+ 800 01e4 00       		.byte	0
+ 801 01e5 05       		.uleb128 0x5
+ 802 01e6 48030000 		.4byte	.LASF33
+ 803 01ea 06       		.byte	0x6
+ 804 01eb 50       		.byte	0x50
+ 805 01ec D0010000 		.4byte	0x1d0
+ 806 01f0 08       		.uleb128 0x8
+ 807 01f1 3C       		.byte	0x3c
+ 808 01f2 06       		.byte	0x6
+ 809 01f3 52       		.byte	0x52
+ 810 01f4 B9020000 		.4byte	0x2b9
+ 811 01f8 09       		.uleb128 0x9
+ 812 01f9 1F080000 		.4byte	.LASF34
+ 813 01fd 06       		.byte	0x6
+ 814 01fe 54       		.byte	0x54
+ 815 01ff 53010000 		.4byte	0x153
+ 816 0203 00       		.byte	0
+ 817 0204 09       		.uleb128 0x9
+ 818 0205 0F020000 		.4byte	.LASF35
+ 819 0209 06       		.byte	0x6
+ 820 020a 55       		.byte	0x55
+ 821 020b 53010000 		.4byte	0x153
+ 822 020f 04       		.byte	0x4
+ 823 0210 09       		.uleb128 0x9
+ 824 0211 4B040000 		.4byte	.LASF36
+ 825 0215 06       		.byte	0x6
+ 826 0216 56       		.byte	0x56
+ 827 0217 53010000 		.4byte	0x153
+ 828 021b 08       		.byte	0x8
+ 829 021c 09       		.uleb128 0x9
+ 830 021d E2070000 		.4byte	.LASF37
+ 831 0221 06       		.byte	0x6
+ 832 0222 57       		.byte	0x57
+ 833 0223 47000000 		.4byte	0x47
+ 834 0227 0C       		.byte	0xc
+ 835 0228 09       		.uleb128 0x9
+ 836 0229 AE020000 		.4byte	.LASF38
+ 837 022d 06       		.byte	0x6
+ 838 022e 58       		.byte	0x58
+ 839 022f 53010000 		.4byte	0x153
+ARM GAS  /tmp/ccCutVAN.s 			page 16
+
+
+ 840 0233 10       		.byte	0x10
+ 841 0234 09       		.uleb128 0x9
+ 842 0235 C6050000 		.4byte	.LASF39
+ 843 0239 06       		.byte	0x6
+ 844 023a 59       		.byte	0x59
+ 845 023b 53010000 		.4byte	0x153
+ 846 023f 14       		.byte	0x14
+ 847 0240 09       		.uleb128 0x9
+ 848 0241 22060000 		.4byte	.LASF40
+ 849 0245 06       		.byte	0x6
+ 850 0246 5A       		.byte	0x5a
+ 851 0247 53010000 		.4byte	0x153
+ 852 024b 18       		.byte	0x18
+ 853 024c 09       		.uleb128 0x9
+ 854 024d AE000000 		.4byte	.LASF41
+ 855 0251 06       		.byte	0x6
+ 856 0252 5B       		.byte	0x5b
+ 857 0253 53010000 		.4byte	0x153
+ 858 0257 1C       		.byte	0x1c
+ 859 0258 09       		.uleb128 0x9
+ 860 0259 6E030000 		.4byte	.LASF42
+ 861 025d 06       		.byte	0x6
+ 862 025e 5C       		.byte	0x5c
+ 863 025f 53010000 		.4byte	0x153
+ 864 0263 20       		.byte	0x20
+ 865 0264 09       		.uleb128 0x9
+ 866 0265 09040000 		.4byte	.LASF43
+ 867 0269 06       		.byte	0x6
+ 868 026a 5D       		.byte	0x5d
+ 869 026b 53010000 		.4byte	0x153
+ 870 026f 24       		.byte	0x24
+ 871 0270 09       		.uleb128 0x9
+ 872 0271 92020000 		.4byte	.LASF44
+ 873 0275 06       		.byte	0x6
+ 874 0276 5E       		.byte	0x5e
+ 875 0277 47000000 		.4byte	0x47
+ 876 027b 28       		.byte	0x28
+ 877 027c 09       		.uleb128 0x9
+ 878 027d A7060000 		.4byte	.LASF45
+ 879 0281 06       		.byte	0x6
+ 880 0282 61       		.byte	0x61
+ 881 0283 B9020000 		.4byte	0x2b9
+ 882 0287 29       		.byte	0x29
+ 883 0288 09       		.uleb128 0x9
+ 884 0289 2F040000 		.4byte	.LASF46
+ 885 028d 06       		.byte	0x6
+ 886 028e 62       		.byte	0x62
+ 887 028f B9020000 		.4byte	0x2b9
+ 888 0293 2D       		.byte	0x2d
+ 889 0294 09       		.uleb128 0x9
+ 890 0295 0F080000 		.4byte	.LASF47
+ 891 0299 06       		.byte	0x6
+ 892 029a 63       		.byte	0x63
+ 893 029b B9020000 		.4byte	0x2b9
+ 894 029f 31       		.byte	0x31
+ 895 02a0 09       		.uleb128 0x9
+ 896 02a1 F8020000 		.4byte	.LASF48
+ARM GAS  /tmp/ccCutVAN.s 			page 17
+
+
+ 897 02a5 06       		.byte	0x6
+ 898 02a6 64       		.byte	0x64
+ 899 02a7 E5010000 		.4byte	0x1e5
+ 900 02ab 35       		.byte	0x35
+ 901 02ac 09       		.uleb128 0x9
+ 902 02ad 15020000 		.4byte	.LASF49
+ 903 02b1 06       		.byte	0x6
+ 904 02b2 65       		.byte	0x65
+ 905 02b3 2E000000 		.4byte	0x2e
+ 906 02b7 38       		.byte	0x38
+ 907 02b8 00       		.byte	0
+ 908 02b9 06       		.uleb128 0x6
+ 909 02ba A0000000 		.4byte	0xa0
+ 910 02be C9020000 		.4byte	0x2c9
+ 911 02c2 07       		.uleb128 0x7
+ 912 02c3 99000000 		.4byte	0x99
+ 913 02c7 03       		.byte	0x3
+ 914 02c8 00       		.byte	0
+ 915 02c9 05       		.uleb128 0x5
+ 916 02ca C2030000 		.4byte	.LASF50
+ 917 02ce 06       		.byte	0x6
+ 918 02cf 66       		.byte	0x66
+ 919 02d0 F0010000 		.4byte	0x1f0
+ 920 02d4 08       		.uleb128 0x8
+ 921 02d5 24       		.byte	0x24
+ 922 02d6 06       		.byte	0x6
+ 923 02d7 68       		.byte	0x68
+ 924 02d8 01030000 		.4byte	0x301
+ 925 02dc 0C       		.uleb128 0xc
+ 926 02dd 6D616700 		.ascii	"mag\000"
+ 927 02e1 06       		.byte	0x6
+ 928 02e2 6A       		.byte	0x6a
+ 929 02e3 01030000 		.4byte	0x301
+ 930 02e7 00       		.byte	0
+ 931 02e8 0C       		.uleb128 0xc
+ 932 02e9 61636300 		.ascii	"acc\000"
+ 933 02ed 06       		.byte	0x6
+ 934 02ee 6B       		.byte	0x6b
+ 935 02ef 01030000 		.4byte	0x301
+ 936 02f3 0C       		.byte	0xc
+ 937 02f4 09       		.uleb128 0x9
+ 938 02f5 7F020000 		.4byte	.LASF51
+ 939 02f9 06       		.byte	0x6
+ 940 02fa 6C       		.byte	0x6c
+ 941 02fb 01030000 		.4byte	0x301
+ 942 02ff 18       		.byte	0x18
+ 943 0300 00       		.byte	0
+ 944 0301 06       		.uleb128 0x6
+ 945 0302 53010000 		.4byte	0x153
+ 946 0306 11030000 		.4byte	0x311
+ 947 030a 07       		.uleb128 0x7
+ 948 030b 99000000 		.4byte	0x99
+ 949 030f 02       		.byte	0x2
+ 950 0310 00       		.byte	0
+ 951 0311 05       		.uleb128 0x5
+ 952 0312 5B060000 		.4byte	.LASF52
+ 953 0316 06       		.byte	0x6
+ARM GAS  /tmp/ccCutVAN.s 			page 18
+
+
+ 954 0317 6D       		.byte	0x6d
+ 955 0318 D4020000 		.4byte	0x2d4
+ 956 031c 08       		.uleb128 0x8
+ 957 031d 70       		.byte	0x70
+ 958 031e 06       		.byte	0x6
+ 959 031f 6F       		.byte	0x6f
+ 960 0320 9D030000 		.4byte	0x39d
+ 961 0324 09       		.uleb128 0x9
+ 962 0325 03080000 		.4byte	.LASF53
+ 963 0329 06       		.byte	0x6
+ 964 032a 71       		.byte	0x71
+ 965 032b 01030000 		.4byte	0x301
+ 966 032f 00       		.byte	0
+ 967 0330 09       		.uleb128 0x9
+ 968 0331 A0020000 		.4byte	.LASF54
+ 969 0335 06       		.byte	0x6
+ 970 0336 72       		.byte	0x72
+ 971 0337 9D030000 		.4byte	0x39d
+ 972 033b 0C       		.byte	0xc
+ 973 033c 09       		.uleb128 0x9
+ 974 033d 40040000 		.4byte	.LASF55
+ 975 0341 06       		.byte	0x6
+ 976 0342 73       		.byte	0x73
+ 977 0343 01030000 		.4byte	0x301
+ 978 0347 1C       		.byte	0x1c
+ 979 0348 09       		.uleb128 0x9
+ 980 0349 37020000 		.4byte	.LASF56
+ 981 034d 06       		.byte	0x6
+ 982 034e 74       		.byte	0x74
+ 983 034f 01030000 		.4byte	0x301
+ 984 0353 28       		.byte	0x28
+ 985 0354 09       		.uleb128 0x9
+ 986 0355 04030000 		.4byte	.LASF57
+ 987 0359 06       		.byte	0x6
+ 988 035a 75       		.byte	0x75
+ 989 035b 53010000 		.4byte	0x153
+ 990 035f 34       		.byte	0x34
+ 991 0360 09       		.uleb128 0x9
+ 992 0361 F3050000 		.4byte	.LASF58
+ 993 0365 06       		.byte	0x6
+ 994 0366 76       		.byte	0x76
+ 995 0367 01030000 		.4byte	0x301
+ 996 036b 38       		.byte	0x38
+ 997 036c 09       		.uleb128 0x9
+ 998 036d 84020000 		.4byte	.LASF59
+ 999 0371 06       		.byte	0x6
+ 1000 0372 77       		.byte	0x77
+ 1001 0373 9D030000 		.4byte	0x39d
+ 1002 0377 44       		.byte	0x44
+ 1003 0378 09       		.uleb128 0x9
+ 1004 0379 4B060000 		.4byte	.LASF60
+ 1005 037d 06       		.byte	0x6
+ 1006 037e 78       		.byte	0x78
+ 1007 037f 01030000 		.4byte	0x301
+ 1008 0383 54       		.byte	0x54
+ 1009 0384 09       		.uleb128 0x9
+ 1010 0385 AB030000 		.4byte	.LASF61
+ARM GAS  /tmp/ccCutVAN.s 			page 19
+
+
+ 1011 0389 06       		.byte	0x6
+ 1012 038a 79       		.byte	0x79
+ 1013 038b 01030000 		.4byte	0x301
+ 1014 038f 60       		.byte	0x60
+ 1015 0390 09       		.uleb128 0x9
+ 1016 0391 AE050000 		.4byte	.LASF62
+ 1017 0395 06       		.byte	0x6
+ 1018 0396 7A       		.byte	0x7a
+ 1019 0397 53010000 		.4byte	0x153
+ 1020 039b 6C       		.byte	0x6c
+ 1021 039c 00       		.byte	0
+ 1022 039d 06       		.uleb128 0x6
+ 1023 039e 53010000 		.4byte	0x153
+ 1024 03a2 AD030000 		.4byte	0x3ad
+ 1025 03a6 07       		.uleb128 0x7
+ 1026 03a7 99000000 		.4byte	0x99
+ 1027 03ab 03       		.byte	0x3
+ 1028 03ac 00       		.byte	0
+ 1029 03ad 05       		.uleb128 0x5
+ 1030 03ae C1020000 		.4byte	.LASF63
+ 1031 03b2 06       		.byte	0x6
+ 1032 03b3 7B       		.byte	0x7b
+ 1033 03b4 1C030000 		.4byte	0x31c
+ 1034 03b8 08       		.uleb128 0x8
+ 1035 03b9 18       		.byte	0x18
+ 1036 03ba 06       		.byte	0x6
+ 1037 03bb 7D       		.byte	0x7d
+ 1038 03bc 15040000 		.4byte	0x415
+ 1039 03c0 09       		.uleb128 0x9
+ 1040 03c1 A0070000 		.4byte	.LASF64
+ 1041 03c5 06       		.byte	0x6
+ 1042 03c6 7F       		.byte	0x7f
+ 1043 03c7 59000000 		.4byte	0x59
+ 1044 03cb 00       		.byte	0
+ 1045 03cc 09       		.uleb128 0x9
+ 1046 03cd A8070000 		.4byte	.LASF65
+ 1047 03d1 06       		.byte	0x6
+ 1048 03d2 80       		.byte	0x80
+ 1049 03d3 59000000 		.4byte	0x59
+ 1050 03d7 02       		.byte	0x2
+ 1051 03d8 09       		.uleb128 0x9
+ 1052 03d9 B0070000 		.4byte	.LASF66
+ 1053 03dd 06       		.byte	0x6
+ 1054 03de 81       		.byte	0x81
+ 1055 03df 59000000 		.4byte	0x59
+ 1056 03e3 04       		.byte	0x4
+ 1057 03e4 09       		.uleb128 0x9
+ 1058 03e5 7D060000 		.4byte	.LASF67
+ 1059 03e9 06       		.byte	0x6
+ 1060 03ea 82       		.byte	0x82
+ 1061 03eb 53010000 		.4byte	0x153
+ 1062 03ef 08       		.byte	0x8
+ 1063 03f0 09       		.uleb128 0x9
+ 1064 03f1 86060000 		.4byte	.LASF68
+ 1065 03f5 06       		.byte	0x6
+ 1066 03f6 83       		.byte	0x83
+ 1067 03f7 53010000 		.4byte	0x153
+ARM GAS  /tmp/ccCutVAN.s 			page 20
+
+
+ 1068 03fb 0C       		.byte	0xc
+ 1069 03fc 09       		.uleb128 0x9
+ 1070 03fd 8F060000 		.4byte	.LASF69
+ 1071 0401 06       		.byte	0x6
+ 1072 0402 84       		.byte	0x84
+ 1073 0403 53010000 		.4byte	0x153
+ 1074 0407 10       		.byte	0x10
+ 1075 0408 09       		.uleb128 0x9
+ 1076 0409 D5020000 		.4byte	.LASF70
+ 1077 040d 06       		.byte	0x6
+ 1078 040e 85       		.byte	0x85
+ 1079 040f 53010000 		.4byte	0x153
+ 1080 0413 14       		.byte	0x14
+ 1081 0414 00       		.byte	0
+ 1082 0415 05       		.uleb128 0x5
+ 1083 0416 E9010000 		.4byte	.LASF71
+ 1084 041a 06       		.byte	0x6
+ 1085 041b 86       		.byte	0x86
+ 1086 041c B8030000 		.4byte	0x3b8
+ 1087 0420 0A       		.uleb128 0xa
+ 1088 0421 01       		.byte	0x1
+ 1089 0422 07       		.byte	0x7
+ 1090 0423 B2       		.byte	0xb2
+ 1091 0424 41040000 		.4byte	0x441
+ 1092 0428 0B       		.uleb128 0xb
+ 1093 0429 3A030000 		.4byte	.LASF72
+ 1094 042d 00       		.sleb128 0
+ 1095 042e 0B       		.uleb128 0xb
+ 1096 042f C1000000 		.4byte	.LASF73
+ 1097 0433 01       		.sleb128 1
+ 1098 0434 0B       		.uleb128 0xb
+ 1099 0435 D0070000 		.4byte	.LASF74
+ 1100 0439 02       		.sleb128 2
+ 1101 043a 0B       		.uleb128 0xb
+ 1102 043b 64070000 		.4byte	.LASF75
+ 1103 043f 03       		.sleb128 3
+ 1104 0440 00       		.byte	0
+ 1105 0441 05       		.uleb128 0x5
+ 1106 0442 4F070000 		.4byte	.LASF76
+ 1107 0446 07       		.byte	0x7
+ 1108 0447 B7       		.byte	0xb7
+ 1109 0448 20040000 		.4byte	0x420
+ 1110 044c 08       		.uleb128 0x8
+ 1111 044d 48       		.byte	0x48
+ 1112 044e 07       		.byte	0x7
+ 1113 044f BC       		.byte	0xbc
+ 1114 0450 2D050000 		.4byte	0x52d
+ 1115 0454 09       		.uleb128 0x9
+ 1116 0455 8B050000 		.4byte	.LASF77
+ 1117 0459 07       		.byte	0x7
+ 1118 045a BE       		.byte	0xbe
+ 1119 045b 41040000 		.4byte	0x441
+ 1120 045f 00       		.byte	0
+ 1121 0460 09       		.uleb128 0x9
+ 1122 0461 40070000 		.4byte	.LASF78
+ 1123 0465 07       		.byte	0x7
+ 1124 0466 BF       		.byte	0xbf
+ARM GAS  /tmp/ccCutVAN.s 			page 21
+
+
+ 1125 0467 BD000000 		.4byte	0xbd
+ 1126 046b 04       		.byte	0x4
+ 1127 046c 09       		.uleb128 0x9
+ 1128 046d F7030000 		.4byte	.LASF79
+ 1129 0471 07       		.byte	0x7
+ 1130 0472 C0       		.byte	0xc0
+ 1131 0473 2D050000 		.4byte	0x52d
+ 1132 0477 08       		.byte	0x8
+ 1133 0478 09       		.uleb128 0x9
+ 1134 0479 3D050000 		.4byte	.LASF80
+ 1135 047d 07       		.byte	0x7
+ 1136 047e C2       		.byte	0xc2
+ 1137 047f 2C000000 		.4byte	0x2c
+ 1138 0483 10       		.byte	0x10
+ 1139 0484 09       		.uleb128 0x9
+ 1140 0485 85040000 		.4byte	.LASF81
+ 1141 0489 07       		.byte	0x7
+ 1142 048a C3       		.byte	0xc3
+ 1143 048b 2C000000 		.4byte	0x2c
+ 1144 048f 14       		.byte	0x14
+ 1145 0490 09       		.uleb128 0x9
+ 1146 0491 1D040000 		.4byte	.LASF82
+ 1147 0495 07       		.byte	0x7
+ 1148 0496 C5       		.byte	0xc5
+ 1149 0497 BD000000 		.4byte	0xbd
+ 1150 049b 18       		.byte	0x18
+ 1151 049c 09       		.uleb128 0x9
+ 1152 049d C9010000 		.4byte	.LASF83
+ 1153 04a1 07       		.byte	0x7
+ 1154 04a2 C6       		.byte	0xc6
+ 1155 04a3 2C000000 		.4byte	0x2c
+ 1156 04a7 1C       		.byte	0x1c
+ 1157 04a8 09       		.uleb128 0x9
+ 1158 04a9 73070000 		.4byte	.LASF84
+ 1159 04ad 07       		.byte	0x7
+ 1160 04ae C7       		.byte	0xc7
+ 1161 04af 2C000000 		.4byte	0x2c
+ 1162 04b3 20       		.byte	0x20
+ 1163 04b4 09       		.uleb128 0x9
+ 1164 04b5 3A000000 		.4byte	.LASF85
+ 1165 04b9 07       		.byte	0x7
+ 1166 04ba C8       		.byte	0xc8
+ 1167 04bb 2C000000 		.4byte	0x2c
+ 1168 04bf 24       		.byte	0x24
+ 1169 04c0 09       		.uleb128 0x9
+ 1170 04c1 E8070000 		.4byte	.LASF86
+ 1171 04c5 07       		.byte	0x7
+ 1172 04c6 CA       		.byte	0xca
+ 1173 04c7 BD000000 		.4byte	0xbd
+ 1174 04cb 28       		.byte	0x28
+ 1175 04cc 09       		.uleb128 0x9
+ 1176 04cd EE020000 		.4byte	.LASF87
+ 1177 04d1 07       		.byte	0x7
+ 1178 04d2 CC       		.byte	0xcc
+ 1179 04d3 A7000000 		.4byte	0xa7
+ 1180 04d7 2C       		.byte	0x2c
+ 1181 04d8 09       		.uleb128 0x9
+ARM GAS  /tmp/ccCutVAN.s 			page 22
+
+
+ 1182 04d9 36060000 		.4byte	.LASF88
+ 1183 04dd 07       		.byte	0x7
+ 1184 04de CD       		.byte	0xcd
+ 1185 04df A7000000 		.4byte	0xa7
+ 1186 04e3 2D       		.byte	0x2d
+ 1187 04e4 09       		.uleb128 0x9
+ 1188 04e5 52040000 		.4byte	.LASF89
+ 1189 04e9 07       		.byte	0x7
+ 1190 04ea D0       		.byte	0xd0
+ 1191 04eb 2C000000 		.4byte	0x2c
+ 1192 04ef 30       		.byte	0x30
+ 1193 04f0 09       		.uleb128 0x9
+ 1194 04f1 48080000 		.4byte	.LASF90
+ 1195 04f5 07       		.byte	0x7
+ 1196 04f6 D4       		.byte	0xd4
+ 1197 04f7 C8000000 		.4byte	0xc8
+ 1198 04fb 34       		.byte	0x34
+ 1199 04fc 09       		.uleb128 0x9
+ 1200 04fd 84010000 		.4byte	.LASF91
+ 1201 0501 07       		.byte	0x7
+ 1202 0502 D8       		.byte	0xd8
+ 1203 0503 C8000000 		.4byte	0xc8
+ 1204 0507 38       		.byte	0x38
+ 1205 0508 09       		.uleb128 0x9
+ 1206 0509 28070000 		.4byte	.LASF92
+ 1207 050d 07       		.byte	0x7
+ 1208 050e DC       		.byte	0xdc
+ 1209 050f C8000000 		.4byte	0xc8
+ 1210 0513 3C       		.byte	0x3c
+ 1211 0514 09       		.uleb128 0x9
+ 1212 0515 CA060000 		.4byte	.LASF93
+ 1213 0519 07       		.byte	0x7
+ 1214 051a E0       		.byte	0xe0
+ 1215 051b C8000000 		.4byte	0xc8
+ 1216 051f 40       		.byte	0x40
+ 1217 0520 09       		.uleb128 0x9
+ 1218 0521 23030000 		.4byte	.LASF94
+ 1219 0525 07       		.byte	0x7
+ 1220 0526 E4       		.byte	0xe4
+ 1221 0527 C8000000 		.4byte	0xc8
+ 1222 052b 44       		.byte	0x44
+ 1223 052c 00       		.byte	0
+ 1224 052d 06       		.uleb128 0x6
+ 1225 052e 2C000000 		.4byte	0x2c
+ 1226 0532 3D050000 		.4byte	0x53d
+ 1227 0536 07       		.uleb128 0x7
+ 1228 0537 99000000 		.4byte	0x99
+ 1229 053b 01       		.byte	0x1
+ 1230 053c 00       		.byte	0
+ 1231 053d 05       		.uleb128 0x5
+ 1232 053e 4A000000 		.4byte	.LASF95
+ 1233 0542 07       		.byte	0x7
+ 1234 0543 EB       		.byte	0xeb
+ 1235 0544 4C040000 		.4byte	0x44c
+ 1236 0548 0D       		.uleb128 0xd
+ 1237 0549 68060000 		.4byte	.LASF99
+ 1238 054d 01       		.byte	0x1
+ARM GAS  /tmp/ccCutVAN.s 			page 23
+
+
+ 1239 054e 55       		.byte	0x55
+ 1240 054f 00000000 		.4byte	.LFB125
+ 1241 0553 9C010000 		.4byte	.LFE125-.LFB125
+ 1242 0557 01       		.uleb128 0x1
+ 1243 0558 9C       		.byte	0x9c
+ 1244 0559 88050000 		.4byte	0x588
+ 1245 055d 0E       		.uleb128 0xe
+ 1246 055e BB010000 		.4byte	.LASF96
+ 1247 0562 01       		.byte	0x1
+ 1248 0563 55       		.byte	0x55
+ 1249 0564 10010000 		.4byte	0x110
+ 1250 0568 02       		.uleb128 0x2
+ 1251 0569 91       		.byte	0x91
+ 1252 056a 68       		.sleb128 -24
+ 1253 056b 0E       		.uleb128 0xe
+ 1254 056c C0060000 		.4byte	.LASF97
+ 1255 0570 01       		.byte	0x1
+ 1256 0571 55       		.byte	0x55
+ 1257 0572 48010000 		.4byte	0x148
+ 1258 0576 02       		.uleb128 0x2
+ 1259 0577 91       		.byte	0x91
+ 1260 0578 78       		.sleb128 -8
+ 1261 0579 0E       		.uleb128 0xe
+ 1262 057a 26000000 		.4byte	.LASF98
+ 1263 057e 01       		.byte	0x1
+ 1264 057f 55       		.byte	0x55
+ 1265 0580 48010000 		.4byte	0x148
+ 1266 0584 02       		.uleb128 0x2
+ 1267 0585 91       		.byte	0x91
+ 1268 0586 04       		.sleb128 4
+ 1269 0587 00       		.byte	0
+ 1270 0588 0D       		.uleb128 0xd
+ 1271 0589 D7030000 		.4byte	.LASF100
+ 1272 058d 01       		.byte	0x1
+ 1273 058e 70       		.byte	0x70
+ 1274 058f A0010000 		.4byte	.LFB126
+ 1275 0593 20000000 		.4byte	.LFE126-.LFB126
+ 1276 0597 01       		.uleb128 0x1
+ 1277 0598 9C       		.byte	0x9c
+ 1278 0599 AC050000 		.4byte	0x5ac
+ 1279 059d 0E       		.uleb128 0xe
+ 1280 059e 8E070000 		.4byte	.LASF101
+ 1281 05a2 01       		.byte	0x1
+ 1282 05a3 70       		.byte	0x70
+ 1283 05a4 AC050000 		.4byte	0x5ac
+ 1284 05a8 02       		.uleb128 0x2
+ 1285 05a9 91       		.byte	0x91
+ 1286 05aa 74       		.sleb128 -12
+ 1287 05ab 00       		.byte	0
+ 1288 05ac 0F       		.uleb128 0xf
+ 1289 05ad 04       		.byte	0x4
+ 1290 05ae C5010000 		.4byte	0x1c5
+ 1291 05b2 10       		.uleb128 0x10
+ 1292 05b3 9C010000 		.4byte	.LASF102
+ 1293 05b7 01       		.byte	0x1
+ 1294 05b8 86       		.byte	0x86
+ 1295 05b9 C0010000 		.4byte	.LFB127
+ARM GAS  /tmp/ccCutVAN.s 			page 24
+
+
+ 1296 05bd F0000000 		.4byte	.LFE127-.LFB127
+ 1297 05c1 01       		.uleb128 0x1
+ 1298 05c2 9C       		.byte	0x9c
+ 1299 05c3 10       		.uleb128 0x10
+ 1300 05c4 D9050000 		.4byte	.LASF103
+ 1301 05c8 01       		.byte	0x1
+ 1302 05c9 DE       		.byte	0xde
+ 1303 05ca B0020000 		.4byte	.LFB128
+ 1304 05ce 02000000 		.4byte	.LFE128-.LFB128
+ 1305 05d2 01       		.uleb128 0x1
+ 1306 05d3 9C       		.byte	0x9c
+ 1307 05d4 10       		.uleb128 0x10
+ 1308 05d5 58020000 		.4byte	.LASF104
+ 1309 05d9 01       		.byte	0x1
+ 1310 05da E7       		.byte	0xe7
+ 1311 05db C0020000 		.4byte	.LFB129
+ 1312 05df 02000000 		.4byte	.LFE129-.LFB129
+ 1313 05e3 01       		.uleb128 0x1
+ 1314 05e4 9C       		.byte	0x9c
+ 1315 05e5 10       		.uleb128 0x10
+ 1316 05e6 91030000 		.4byte	.LASF105
+ 1317 05ea 01       		.byte	0x1
+ 1318 05eb F0       		.byte	0xf0
+ 1319 05ec D0020000 		.4byte	.LFB130
+ 1320 05f0 02000000 		.4byte	.LFE130-.LFB130
+ 1321 05f4 01       		.uleb128 0x1
+ 1322 05f5 9C       		.byte	0x9c
+ 1323 05f6 10       		.uleb128 0x10
+ 1324 05f7 0D000000 		.4byte	.LASF106
+ 1325 05fb 01       		.byte	0x1
+ 1326 05fc F9       		.byte	0xf9
+ 1327 05fd E0020000 		.4byte	.LFB131
+ 1328 0601 02000000 		.4byte	.LFE131-.LFB131
+ 1329 0605 01       		.uleb128 0x1
+ 1330 0606 9C       		.byte	0x9c
+ 1331 0607 11       		.uleb128 0x11
+ 1332 0608 02070000 		.4byte	.LASF107
+ 1333 060c 01       		.byte	0x1
+ 1334 060d 0301     		.2byte	0x103
+ 1335 060f 1D060000 		.4byte	0x61d
+ 1336 0613 F0020000 		.4byte	.LFB132
+ 1337 0617 0C000000 		.4byte	.LFE132-.LFB132
+ 1338 061b 01       		.uleb128 0x1
+ 1339 061c 9C       		.byte	0x9c
+ 1340 061d 0F       		.uleb128 0xf
+ 1341 061e 04       		.byte	0x4
+ 1342 061f AD030000 		.4byte	0x3ad
+ 1343 0623 11       		.uleb128 0x11
+ 1344 0624 25080000 		.4byte	.LASF108
+ 1345 0628 01       		.byte	0x1
+ 1346 0629 0D01     		.2byte	0x10d
+ 1347 062b 39060000 		.4byte	0x639
+ 1348 062f 00030000 		.4byte	.LFB133
+ 1349 0633 0C000000 		.4byte	.LFE133-.LFB133
+ 1350 0637 01       		.uleb128 0x1
+ 1351 0638 9C       		.byte	0x9c
+ 1352 0639 0F       		.uleb128 0xf
+ARM GAS  /tmp/ccCutVAN.s 			page 25
+
+
+ 1353 063a 04       		.byte	0x4
+ 1354 063b 11030000 		.4byte	0x311
+ 1355 063f 12       		.uleb128 0x12
+ 1356 0640 60080000 		.4byte	.LASF109
+ 1357 0644 01       		.byte	0x1
+ 1358 0645 49       		.byte	0x49
+ 1359 0646 2E000000 		.4byte	0x2e
+ 1360 064a 05       		.uleb128 0x5
+ 1361 064b 03       		.byte	0x3
+ 1362 064c 30000000 		.4byte	discardedCount
+ 1363 0650 12       		.uleb128 0x12
+ 1364 0651 A0060000 		.4byte	.LASF110
+ 1365 0655 01       		.byte	0x1
+ 1366 0656 4B       		.byte	0x4b
+ 1367 0657 C9020000 		.4byte	0x2c9
+ 1368 065b 05       		.uleb128 0x5
+ 1369 065c 03       		.byte	0x3
+ 1370 065d 34000000 		.4byte	iKnobs
+ 1371 0661 12       		.uleb128 0x12
+ 1372 0662 5C070000 		.4byte	.LASF111
+ 1373 0666 01       		.byte	0x1
+ 1374 0667 4C       		.byte	0x4c
+ 1375 0668 72060000 		.4byte	0x672
+ 1376 066c 05       		.uleb128 0x5
+ 1377 066d 03       		.byte	0x3
+ 1378 066e 70000000 		.4byte	ipKnobs
+ 1379 0672 0F       		.uleb128 0xf
+ 1380 0673 04       		.byte	0x4
+ 1381 0674 C9020000 		.4byte	0x2c9
+ 1382 0678 13       		.uleb128 0x13
+ 1383 0679 F6070000 		.4byte	.LASF112
+ 1384 067d 08       		.byte	0x8
+ 1385 067e FA06     		.2byte	0x6fa
+ 1386 0680 84060000 		.4byte	0x684
+ 1387 0684 14       		.uleb128 0x14
+ 1388 0685 BD000000 		.4byte	0xbd
+ 1389 0689 15       		.uleb128 0x15
+ 1390 068a 0F030000 		.4byte	.LASF113
+ 1391 068e 07       		.byte	0x7
+ 1392 068f EE       		.byte	0xee
+ 1393 0690 3D050000 		.4byte	0x53d
+ 1394 0694 16       		.uleb128 0x16
+ 1395 0695 D9010000 		.4byte	.LASF114
+ 1396 0699 09       		.byte	0x9
+ 1397 069a 1A       		.byte	0x1a
+ 1398 069b AF010000 		.4byte	0x1af
+ 1399 069f 05       		.uleb128 0x5
+ 1400 06a0 03       		.byte	0x3
+ 1401 06a1 00000000 		.4byte	osx_mfx_license
+ 1402 06a5 16       		.uleb128 0x16
+ 1403 06a6 B7060000 		.4byte	.LASF115
+ 1404 06aa 01       		.byte	0x1
+ 1405 06ab 40       		.byte	0x40
+ 1406 06ac AD030000 		.4byte	0x3ad
+ 1407 06b0 05       		.uleb128 0x5
+ 1408 06b1 03       		.byte	0x3
+ 1409 06b2 00000000 		.4byte	iDataOUT
+ARM GAS  /tmp/ccCutVAN.s 			page 26
+
+
+ 1410 06b6 16       		.uleb128 0x16
+ 1411 06b7 07020000 		.4byte	.LASF116
+ 1412 06bb 01       		.byte	0x1
+ 1413 06bc 41       		.byte	0x41
+ 1414 06bd 11030000 		.4byte	0x311
+ 1415 06c1 05       		.uleb128 0x5
+ 1416 06c2 03       		.byte	0x3
+ 1417 06c3 00000000 		.4byte	iDataIN
+ 1418 06c7 15       		.uleb128 0x15
+ 1419 06c8 81030000 		.4byte	.LASF117
+ 1420 06cc 01       		.byte	0x1
+ 1421 06cd 44       		.byte	0x44
+ 1422 06ce 53010000 		.4byte	0x153
+ 1423 06d2 15       		.uleb128 0x15
+ 1424 06d3 30000000 		.4byte	.LASF118
+ 1425 06d7 01       		.byte	0x1
+ 1426 06d8 46       		.byte	0x46
+ 1427 06d9 15040000 		.4byte	0x415
+ 1428 06dd 00       		.byte	0
+ 1429              		.section	.debug_abbrev,"",%progbits
+ 1430              	.Ldebug_abbrev0:
+ 1431 0000 01       		.uleb128 0x1
+ 1432 0001 11       		.uleb128 0x11
+ 1433 0002 01       		.byte	0x1
+ 1434 0003 25       		.uleb128 0x25
+ 1435 0004 0E       		.uleb128 0xe
+ 1436 0005 13       		.uleb128 0x13
+ 1437 0006 0B       		.uleb128 0xb
+ 1438 0007 03       		.uleb128 0x3
+ 1439 0008 0E       		.uleb128 0xe
+ 1440 0009 1B       		.uleb128 0x1b
+ 1441 000a 0E       		.uleb128 0xe
+ 1442 000b 11       		.uleb128 0x11
+ 1443 000c 01       		.uleb128 0x1
+ 1444 000d 12       		.uleb128 0x12
+ 1445 000e 06       		.uleb128 0x6
+ 1446 000f 10       		.uleb128 0x10
+ 1447 0010 17       		.uleb128 0x17
+ 1448 0011 00       		.byte	0
+ 1449 0012 00       		.byte	0
+ 1450 0013 02       		.uleb128 0x2
+ 1451 0014 24       		.uleb128 0x24
+ 1452 0015 00       		.byte	0
+ 1453 0016 0B       		.uleb128 0xb
+ 1454 0017 0B       		.uleb128 0xb
+ 1455 0018 3E       		.uleb128 0x3e
+ 1456 0019 0B       		.uleb128 0xb
+ 1457 001a 03       		.uleb128 0x3
+ 1458 001b 0E       		.uleb128 0xe
+ 1459 001c 00       		.byte	0
+ 1460 001d 00       		.byte	0
+ 1461 001e 03       		.uleb128 0x3
+ 1462 001f 0F       		.uleb128 0xf
+ 1463 0020 00       		.byte	0
+ 1464 0021 0B       		.uleb128 0xb
+ 1465 0022 0B       		.uleb128 0xb
+ 1466 0023 00       		.byte	0
+ARM GAS  /tmp/ccCutVAN.s 			page 27
+
+
+ 1467 0024 00       		.byte	0
+ 1468 0025 04       		.uleb128 0x4
+ 1469 0026 24       		.uleb128 0x24
+ 1470 0027 00       		.byte	0
+ 1471 0028 0B       		.uleb128 0xb
+ 1472 0029 0B       		.uleb128 0xb
+ 1473 002a 3E       		.uleb128 0x3e
+ 1474 002b 0B       		.uleb128 0xb
+ 1475 002c 03       		.uleb128 0x3
+ 1476 002d 08       		.uleb128 0x8
+ 1477 002e 00       		.byte	0
+ 1478 002f 00       		.byte	0
+ 1479 0030 05       		.uleb128 0x5
+ 1480 0031 16       		.uleb128 0x16
+ 1481 0032 00       		.byte	0
+ 1482 0033 03       		.uleb128 0x3
+ 1483 0034 0E       		.uleb128 0xe
+ 1484 0035 3A       		.uleb128 0x3a
+ 1485 0036 0B       		.uleb128 0xb
+ 1486 0037 3B       		.uleb128 0x3b
+ 1487 0038 0B       		.uleb128 0xb
+ 1488 0039 49       		.uleb128 0x49
+ 1489 003a 13       		.uleb128 0x13
+ 1490 003b 00       		.byte	0
+ 1491 003c 00       		.byte	0
+ 1492 003d 06       		.uleb128 0x6
+ 1493 003e 01       		.uleb128 0x1
+ 1494 003f 01       		.byte	0x1
+ 1495 0040 49       		.uleb128 0x49
+ 1496 0041 13       		.uleb128 0x13
+ 1497 0042 01       		.uleb128 0x1
+ 1498 0043 13       		.uleb128 0x13
+ 1499 0044 00       		.byte	0
+ 1500 0045 00       		.byte	0
+ 1501 0046 07       		.uleb128 0x7
+ 1502 0047 21       		.uleb128 0x21
+ 1503 0048 00       		.byte	0
+ 1504 0049 49       		.uleb128 0x49
+ 1505 004a 13       		.uleb128 0x13
+ 1506 004b 2F       		.uleb128 0x2f
+ 1507 004c 0B       		.uleb128 0xb
+ 1508 004d 00       		.byte	0
+ 1509 004e 00       		.byte	0
+ 1510 004f 08       		.uleb128 0x8
+ 1511 0050 13       		.uleb128 0x13
+ 1512 0051 01       		.byte	0x1
+ 1513 0052 0B       		.uleb128 0xb
+ 1514 0053 0B       		.uleb128 0xb
+ 1515 0054 3A       		.uleb128 0x3a
+ 1516 0055 0B       		.uleb128 0xb
+ 1517 0056 3B       		.uleb128 0x3b
+ 1518 0057 0B       		.uleb128 0xb
+ 1519 0058 01       		.uleb128 0x1
+ 1520 0059 13       		.uleb128 0x13
+ 1521 005a 00       		.byte	0
+ 1522 005b 00       		.byte	0
+ 1523 005c 09       		.uleb128 0x9
+ARM GAS  /tmp/ccCutVAN.s 			page 28
+
+
+ 1524 005d 0D       		.uleb128 0xd
+ 1525 005e 00       		.byte	0
+ 1526 005f 03       		.uleb128 0x3
+ 1527 0060 0E       		.uleb128 0xe
+ 1528 0061 3A       		.uleb128 0x3a
+ 1529 0062 0B       		.uleb128 0xb
+ 1530 0063 3B       		.uleb128 0x3b
+ 1531 0064 0B       		.uleb128 0xb
+ 1532 0065 49       		.uleb128 0x49
+ 1533 0066 13       		.uleb128 0x13
+ 1534 0067 38       		.uleb128 0x38
+ 1535 0068 0B       		.uleb128 0xb
+ 1536 0069 00       		.byte	0
+ 1537 006a 00       		.byte	0
+ 1538 006b 0A       		.uleb128 0xa
+ 1539 006c 04       		.uleb128 0x4
+ 1540 006d 01       		.byte	0x1
+ 1541 006e 0B       		.uleb128 0xb
+ 1542 006f 0B       		.uleb128 0xb
+ 1543 0070 3A       		.uleb128 0x3a
+ 1544 0071 0B       		.uleb128 0xb
+ 1545 0072 3B       		.uleb128 0x3b
+ 1546 0073 0B       		.uleb128 0xb
+ 1547 0074 01       		.uleb128 0x1
+ 1548 0075 13       		.uleb128 0x13
+ 1549 0076 00       		.byte	0
+ 1550 0077 00       		.byte	0
+ 1551 0078 0B       		.uleb128 0xb
+ 1552 0079 28       		.uleb128 0x28
+ 1553 007a 00       		.byte	0
+ 1554 007b 03       		.uleb128 0x3
+ 1555 007c 0E       		.uleb128 0xe
+ 1556 007d 1C       		.uleb128 0x1c
+ 1557 007e 0D       		.uleb128 0xd
+ 1558 007f 00       		.byte	0
+ 1559 0080 00       		.byte	0
+ 1560 0081 0C       		.uleb128 0xc
+ 1561 0082 0D       		.uleb128 0xd
+ 1562 0083 00       		.byte	0
+ 1563 0084 03       		.uleb128 0x3
+ 1564 0085 08       		.uleb128 0x8
+ 1565 0086 3A       		.uleb128 0x3a
+ 1566 0087 0B       		.uleb128 0xb
+ 1567 0088 3B       		.uleb128 0x3b
+ 1568 0089 0B       		.uleb128 0xb
+ 1569 008a 49       		.uleb128 0x49
+ 1570 008b 13       		.uleb128 0x13
+ 1571 008c 38       		.uleb128 0x38
+ 1572 008d 0B       		.uleb128 0xb
+ 1573 008e 00       		.byte	0
+ 1574 008f 00       		.byte	0
+ 1575 0090 0D       		.uleb128 0xd
+ 1576 0091 2E       		.uleb128 0x2e
+ 1577 0092 01       		.byte	0x1
+ 1578 0093 3F       		.uleb128 0x3f
+ 1579 0094 19       		.uleb128 0x19
+ 1580 0095 03       		.uleb128 0x3
+ARM GAS  /tmp/ccCutVAN.s 			page 29
+
+
+ 1581 0096 0E       		.uleb128 0xe
+ 1582 0097 3A       		.uleb128 0x3a
+ 1583 0098 0B       		.uleb128 0xb
+ 1584 0099 3B       		.uleb128 0x3b
+ 1585 009a 0B       		.uleb128 0xb
+ 1586 009b 27       		.uleb128 0x27
+ 1587 009c 19       		.uleb128 0x19
+ 1588 009d 11       		.uleb128 0x11
+ 1589 009e 01       		.uleb128 0x1
+ 1590 009f 12       		.uleb128 0x12
+ 1591 00a0 06       		.uleb128 0x6
+ 1592 00a1 40       		.uleb128 0x40
+ 1593 00a2 18       		.uleb128 0x18
+ 1594 00a3 9642     		.uleb128 0x2116
+ 1595 00a5 19       		.uleb128 0x19
+ 1596 00a6 01       		.uleb128 0x1
+ 1597 00a7 13       		.uleb128 0x13
+ 1598 00a8 00       		.byte	0
+ 1599 00a9 00       		.byte	0
+ 1600 00aa 0E       		.uleb128 0xe
+ 1601 00ab 05       		.uleb128 0x5
+ 1602 00ac 00       		.byte	0
+ 1603 00ad 03       		.uleb128 0x3
+ 1604 00ae 0E       		.uleb128 0xe
+ 1605 00af 3A       		.uleb128 0x3a
+ 1606 00b0 0B       		.uleb128 0xb
+ 1607 00b1 3B       		.uleb128 0x3b
+ 1608 00b2 0B       		.uleb128 0xb
+ 1609 00b3 49       		.uleb128 0x49
+ 1610 00b4 13       		.uleb128 0x13
+ 1611 00b5 02       		.uleb128 0x2
+ 1612 00b6 18       		.uleb128 0x18
+ 1613 00b7 00       		.byte	0
+ 1614 00b8 00       		.byte	0
+ 1615 00b9 0F       		.uleb128 0xf
+ 1616 00ba 0F       		.uleb128 0xf
+ 1617 00bb 00       		.byte	0
+ 1618 00bc 0B       		.uleb128 0xb
+ 1619 00bd 0B       		.uleb128 0xb
+ 1620 00be 49       		.uleb128 0x49
+ 1621 00bf 13       		.uleb128 0x13
+ 1622 00c0 00       		.byte	0
+ 1623 00c1 00       		.byte	0
+ 1624 00c2 10       		.uleb128 0x10
+ 1625 00c3 2E       		.uleb128 0x2e
+ 1626 00c4 00       		.byte	0
+ 1627 00c5 3F       		.uleb128 0x3f
+ 1628 00c6 19       		.uleb128 0x19
+ 1629 00c7 03       		.uleb128 0x3
+ 1630 00c8 0E       		.uleb128 0xe
+ 1631 00c9 3A       		.uleb128 0x3a
+ 1632 00ca 0B       		.uleb128 0xb
+ 1633 00cb 3B       		.uleb128 0x3b
+ 1634 00cc 0B       		.uleb128 0xb
+ 1635 00cd 27       		.uleb128 0x27
+ 1636 00ce 19       		.uleb128 0x19
+ 1637 00cf 11       		.uleb128 0x11
+ARM GAS  /tmp/ccCutVAN.s 			page 30
+
+
+ 1638 00d0 01       		.uleb128 0x1
+ 1639 00d1 12       		.uleb128 0x12
+ 1640 00d2 06       		.uleb128 0x6
+ 1641 00d3 40       		.uleb128 0x40
+ 1642 00d4 18       		.uleb128 0x18
+ 1643 00d5 9742     		.uleb128 0x2117
+ 1644 00d7 19       		.uleb128 0x19
+ 1645 00d8 00       		.byte	0
+ 1646 00d9 00       		.byte	0
+ 1647 00da 11       		.uleb128 0x11
+ 1648 00db 2E       		.uleb128 0x2e
+ 1649 00dc 00       		.byte	0
+ 1650 00dd 3F       		.uleb128 0x3f
+ 1651 00de 19       		.uleb128 0x19
+ 1652 00df 03       		.uleb128 0x3
+ 1653 00e0 0E       		.uleb128 0xe
+ 1654 00e1 3A       		.uleb128 0x3a
+ 1655 00e2 0B       		.uleb128 0xb
+ 1656 00e3 3B       		.uleb128 0x3b
+ 1657 00e4 05       		.uleb128 0x5
+ 1658 00e5 27       		.uleb128 0x27
+ 1659 00e6 19       		.uleb128 0x19
+ 1660 00e7 49       		.uleb128 0x49
+ 1661 00e8 13       		.uleb128 0x13
+ 1662 00e9 11       		.uleb128 0x11
+ 1663 00ea 01       		.uleb128 0x1
+ 1664 00eb 12       		.uleb128 0x12
+ 1665 00ec 06       		.uleb128 0x6
+ 1666 00ed 40       		.uleb128 0x40
+ 1667 00ee 18       		.uleb128 0x18
+ 1668 00ef 9742     		.uleb128 0x2117
+ 1669 00f1 19       		.uleb128 0x19
+ 1670 00f2 00       		.byte	0
+ 1671 00f3 00       		.byte	0
+ 1672 00f4 12       		.uleb128 0x12
+ 1673 00f5 34       		.uleb128 0x34
+ 1674 00f6 00       		.byte	0
+ 1675 00f7 03       		.uleb128 0x3
+ 1676 00f8 0E       		.uleb128 0xe
+ 1677 00f9 3A       		.uleb128 0x3a
+ 1678 00fa 0B       		.uleb128 0xb
+ 1679 00fb 3B       		.uleb128 0x3b
+ 1680 00fc 0B       		.uleb128 0xb
+ 1681 00fd 49       		.uleb128 0x49
+ 1682 00fe 13       		.uleb128 0x13
+ 1683 00ff 02       		.uleb128 0x2
+ 1684 0100 18       		.uleb128 0x18
+ 1685 0101 00       		.byte	0
+ 1686 0102 00       		.byte	0
+ 1687 0103 13       		.uleb128 0x13
+ 1688 0104 34       		.uleb128 0x34
+ 1689 0105 00       		.byte	0
+ 1690 0106 03       		.uleb128 0x3
+ 1691 0107 0E       		.uleb128 0xe
+ 1692 0108 3A       		.uleb128 0x3a
+ 1693 0109 0B       		.uleb128 0xb
+ 1694 010a 3B       		.uleb128 0x3b
+ARM GAS  /tmp/ccCutVAN.s 			page 31
+
+
+ 1695 010b 05       		.uleb128 0x5
+ 1696 010c 49       		.uleb128 0x49
+ 1697 010d 13       		.uleb128 0x13
+ 1698 010e 3F       		.uleb128 0x3f
+ 1699 010f 19       		.uleb128 0x19
+ 1700 0110 3C       		.uleb128 0x3c
+ 1701 0111 19       		.uleb128 0x19
+ 1702 0112 00       		.byte	0
+ 1703 0113 00       		.byte	0
+ 1704 0114 14       		.uleb128 0x14
+ 1705 0115 35       		.uleb128 0x35
+ 1706 0116 00       		.byte	0
+ 1707 0117 49       		.uleb128 0x49
+ 1708 0118 13       		.uleb128 0x13
+ 1709 0119 00       		.byte	0
+ 1710 011a 00       		.byte	0
+ 1711 011b 15       		.uleb128 0x15
+ 1712 011c 34       		.uleb128 0x34
+ 1713 011d 00       		.byte	0
+ 1714 011e 03       		.uleb128 0x3
+ 1715 011f 0E       		.uleb128 0xe
+ 1716 0120 3A       		.uleb128 0x3a
+ 1717 0121 0B       		.uleb128 0xb
+ 1718 0122 3B       		.uleb128 0x3b
+ 1719 0123 0B       		.uleb128 0xb
+ 1720 0124 49       		.uleb128 0x49
+ 1721 0125 13       		.uleb128 0x13
+ 1722 0126 3F       		.uleb128 0x3f
+ 1723 0127 19       		.uleb128 0x19
+ 1724 0128 3C       		.uleb128 0x3c
+ 1725 0129 19       		.uleb128 0x19
+ 1726 012a 00       		.byte	0
+ 1727 012b 00       		.byte	0
+ 1728 012c 16       		.uleb128 0x16
+ 1729 012d 34       		.uleb128 0x34
+ 1730 012e 00       		.byte	0
+ 1731 012f 03       		.uleb128 0x3
+ 1732 0130 0E       		.uleb128 0xe
+ 1733 0131 3A       		.uleb128 0x3a
+ 1734 0132 0B       		.uleb128 0xb
+ 1735 0133 3B       		.uleb128 0x3b
+ 1736 0134 0B       		.uleb128 0xb
+ 1737 0135 49       		.uleb128 0x49
+ 1738 0136 13       		.uleb128 0x13
+ 1739 0137 3F       		.uleb128 0x3f
+ 1740 0138 19       		.uleb128 0x19
+ 1741 0139 02       		.uleb128 0x2
+ 1742 013a 18       		.uleb128 0x18
+ 1743 013b 00       		.byte	0
+ 1744 013c 00       		.byte	0
+ 1745 013d 00       		.byte	0
+ 1746              		.section	.debug_aranges,"",%progbits
+ 1747 0000 1C000000 		.4byte	0x1c
+ 1748 0004 0200     		.2byte	0x2
+ 1749 0006 00000000 		.4byte	.Ldebug_info0
+ 1750 000a 04       		.byte	0x4
+ 1751 000b 00       		.byte	0
+ARM GAS  /tmp/ccCutVAN.s 			page 32
+
+
+ 1752 000c 0000     		.2byte	0
+ 1753 000e 0000     		.2byte	0
+ 1754 0010 00000000 		.4byte	.Ltext0
+ 1755 0014 0C030000 		.4byte	.Letext0-.Ltext0
+ 1756 0018 00000000 		.4byte	0
+ 1757 001c 00000000 		.4byte	0
+ 1758              		.section	.debug_line,"",%progbits
+ 1759              	.Ldebug_line0:
+ 1760 0000 AC030000 		.section	.debug_str,"MS",%progbits,1
+ 1760      02005203 
+ 1760      00000201 
+ 1760      FB0E0D00 
+ 1760      01010101 
+ 1761              	.LASF23:
+ 1762 0000 53656E73 		.ascii	"SensorAxes_t\000"
+ 1762      6F724178 
+ 1762      65735F74 
+ 1762      00
+ 1763              	.LASF106:
+ 1764 000d 4D6F7469 		.ascii	"MotionFX_manager_stop_9X\000"
+ 1764      6F6E4658 
+ 1764      5F6D616E 
+ 1764      61676572 
+ 1764      5F73746F 
+ 1765              	.LASF98:
+ 1766 0026 4D41475F 		.ascii	"MAG_Value\000"
+ 1766      56616C75 
+ 1766      6500
+ 1767              	.LASF118:
+ 1768 0030 6D61674F 		.ascii	"magOffset\000"
+ 1768      66667365 
+ 1768      7400
+ 1769              	.LASF85:
+ 1770 003a 48616E64 		.ascii	"HandleMagSensor\000"
+ 1770      6C654D61 
+ 1770      6753656E 
+ 1770      736F7200 
+ 1771              	.LASF95:
+ 1772 004a 54617267 		.ascii	"TargetFeatures_t\000"
+ 1772      65744665 
+ 1772      61747572 
+ 1772      65735F74 
+ 1772      00
+ 1773              	.LASF120:
+ 1774 005b 2E2E2F2E 		.ascii	"../../../../../Projects/Multi/Applications/BlueMicr"
+ 1774      2E2F2E2E 
+ 1774      2F2E2E2F 
+ 1774      2E2E2F50 
+ 1774      726F6A65 
+ 1775 008e 6F737973 		.ascii	"osystem2/Src/MotionFX_Manager.c\000"
+ 1775      74656D32 
+ 1775      2F537263 
+ 1775      2F4D6F74 
+ 1775      696F6E46 
+ 1776              	.LASF41:
+ 1777 00ae 67626961 		.ascii	"gbias_mag_th_sc_9X\000"
+ 1777      735F6D61 
+ARM GAS  /tmp/ccCutVAN.s 			page 33
+
+
+ 1777      675F7468 
+ 1777      5F73635F 
+ 1777      395800
+ 1778              	.LASF73:
+ 1779 00c1 54415247 		.ascii	"TARGET_BLUECOIN\000"
+ 1779      45545F42 
+ 1779      4C554543 
+ 1779      4F494E00 
+ 1780              	.LASF119:
+ 1781 00d1 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1781      4320342E 
+ 1781      382E3420 
+ 1781      32303134 
+ 1781      30353236 
+ 1782 0104 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m4 -mno-thumb-in"
+ 1782      20726576 
+ 1782      6973696F 
+ 1782      6E203231 
+ 1782      31333538 
+ 1783 0137 74657277 		.ascii	"terwork -mthumb -ggdb -O0 -std=c99 -fomit-frame-poi"
+ 1783      6F726B20 
+ 1783      2D6D7468 
+ 1783      756D6220 
+ 1783      2D676764 
+ 1784 016a 6E746572 		.ascii	"nter -falign-functions=16\000"
+ 1784      202D6661 
+ 1784      6C69676E 
+ 1784      2D66756E 
+ 1784      6374696F 
+ 1785              	.LASF91:
+ 1786 0184 6F73784D 		.ascii	"osxMotionARIsInitalized\000"
+ 1786      6F74696F 
+ 1786      6E415249 
+ 1786      73496E69 
+ 1786      74616C69 
+ 1787              	.LASF102:
+ 1788 019c 4D6F7469 		.ascii	"MotionFX_manager_init\000"
+ 1788      6F6E4658 
+ 1788      5F6D616E 
+ 1788      61676572 
+ 1788      5F696E69 
+ 1789              	.LASF13:
+ 1790 01b2 73697A65 		.ascii	"sizetype\000"
+ 1790      74797065 
+ 1790      00
+ 1791              	.LASF96:
+ 1792 01bb 4143435F 		.ascii	"ACC_Value_Raw\000"
+ 1792      56616C75 
+ 1792      655F5261 
+ 1792      7700
+ 1793              	.LASF83:
+ 1794 01c9 48616E64 		.ascii	"HandleAccSensor\000"
+ 1794      6C654163 
+ 1794      6353656E 
+ 1794      736F7200 
+ 1795              	.LASF114:
+ 1796 01d9 6F73785F 		.ascii	"osx_mfx_license\000"
+ARM GAS  /tmp/ccCutVAN.s 			page 34
+
+
+ 1796      6D66785F 
+ 1796      6C696365 
+ 1796      6E736500 
+ 1797              	.LASF71:
+ 1798 01e9 6F73784D 		.ascii	"osxMFX_calibFactor\000"
+ 1798      46585F63 
+ 1798      616C6962 
+ 1798      46616374 
+ 1798      6F7200
+ 1799              	.LASF9:
+ 1800 01fc 5F5F7569 		.ascii	"__uint32_t\000"
+ 1800      6E743332 
+ 1800      5F7400
+ 1801              	.LASF116:
+ 1802 0207 69446174 		.ascii	"iDataIN\000"
+ 1802      61494E00 
+ 1803              	.LASF35:
+ 1804 020f 4D54696D 		.ascii	"MTime\000"
+ 1804      6500
+ 1805              	.LASF49:
+ 1806 0215 73746172 		.ascii	"start_automatic_gbias_calculation\000"
+ 1806      745F6175 
+ 1806      746F6D61 
+ 1806      7469635F 
+ 1806      67626961 
+ 1807              	.LASF56:
+ 1808 0237 6C696E65 		.ascii	"linear_acceleration_9X\000"
+ 1808      61725F61 
+ 1808      6363656C 
+ 1808      65726174 
+ 1808      696F6E5F 
+ 1809              	.LASF5:
+ 1810 024e 73686F72 		.ascii	"short int\000"
+ 1810      7420696E 
+ 1810      7400
+ 1811              	.LASF104:
+ 1812 0258 4D6F7469 		.ascii	"MotionFX_manager_stop_6X\000"
+ 1812      6F6E4658 
+ 1812      5F6D616E 
+ 1812      61676572 
+ 1812      5F73746F 
+ 1813              	.LASF27:
+ 1814 0271 6F73784C 		.ascii	"osxLibVersion\000"
+ 1814      69625665 
+ 1814      7273696F 
+ 1814      6E00
+ 1815              	.LASF51:
+ 1816 027f 6779726F 		.ascii	"gyro\000"
+ 1816      00
+ 1817              	.LASF59:
+ 1818 0284 71756174 		.ascii	"quaternion_6X\000"
+ 1818      65726E69 
+ 1818      6F6E5F36 
+ 1818      5800
+ 1819              	.LASF44:
+ 1820 0292 6D6F6478 		.ascii	"modx\000"
+ 1820      00
+ARM GAS  /tmp/ccCutVAN.s 			page 35
+
+
+ 1821              	.LASF18:
+ 1822 0297 75696E74 		.ascii	"uint32_t\000"
+ 1822      33325F74 
+ 1822      00
+ 1823              	.LASF54:
+ 1824 02a0 71756174 		.ascii	"quaternion_9X\000"
+ 1824      65726E69 
+ 1824      6F6E5F39 
+ 1824      5800
+ 1825              	.LASF38:
+ 1826 02ae 67626961 		.ascii	"gbias_mag_th_sc_6X\000"
+ 1826      735F6D61 
+ 1826      675F7468 
+ 1826      5F73635F 
+ 1826      365800
+ 1827              	.LASF63:
+ 1828 02c1 6F73784D 		.ascii	"osxMFX_output\000"
+ 1828      46585F6F 
+ 1828      75747075 
+ 1828      7400
+ 1829              	.LASF24:
+ 1830 02cf 666C6F61 		.ascii	"float\000"
+ 1830      7400
+ 1831              	.LASF70:
+ 1832 02d5 6578704D 		.ascii	"expMagVect\000"
+ 1832      61675665 
+ 1832      637400
+ 1833              	.LASF11:
+ 1834 02e0 6C6F6E67 		.ascii	"long long int\000"
+ 1834      206C6F6E 
+ 1834      6720696E 
+ 1834      7400
+ 1835              	.LASF87:
+ 1836 02ee 4C656453 		.ascii	"LedStatus\000"
+ 1836      74617475 
+ 1836      7300
+ 1837              	.LASF48:
+ 1838 02f8 6F757470 		.ascii	"output_type\000"
+ 1838      75745F74 
+ 1838      79706500 
+ 1839              	.LASF57:
+ 1840 0304 68656164 		.ascii	"heading_9X\000"
+ 1840      696E675F 
+ 1840      395800
+ 1841              	.LASF113:
+ 1842 030f 54617267 		.ascii	"TargetBoardFeatures\000"
+ 1842      6574426F 
+ 1842      61726446 
+ 1842      65617475 
+ 1842      72657300 
+ 1843              	.LASF94:
+ 1844 0323 6F737841 		.ascii	"osxAudioBVIsInitalized\000"
+ 1844      7564696F 
+ 1844      42564973 
+ 1844      496E6974 
+ 1844      616C697A 
+ 1845              	.LASF72:
+ARM GAS  /tmp/ccCutVAN.s 			page 36
+
+
+ 1846 033a 54415247 		.ascii	"TARGET_NUCLEO\000"
+ 1846      45545F4E 
+ 1846      55434C45 
+ 1846      4F00
+ 1847              	.LASF33:
+ 1848 0348 6F73784D 		.ascii	"osxMFX_Engine_Output_Ref_Sys\000"
+ 1848      46585F45 
+ 1848      6E67696E 
+ 1848      655F4F75 
+ 1848      74707574 
+ 1849              	.LASF8:
+ 1850 0365 6C6F6E67 		.ascii	"long int\000"
+ 1850      20696E74 
+ 1850      00
+ 1851              	.LASF42:
+ 1852 036e 67626961 		.ascii	"gbias_acc_th_sc_9X\000"
+ 1852      735F6163 
+ 1852      635F7468 
+ 1852      5F73635F 
+ 1852      395800
+ 1853              	.LASF117:
+ 1854 0381 73656E73 		.ascii	"sensitivity_Mul\000"
+ 1854      69746976 
+ 1854      6974795F 
+ 1854      4D756C00 
+ 1855              	.LASF105:
+ 1856 0391 4D6F7469 		.ascii	"MotionFX_manager_start_9X\000"
+ 1856      6F6E4658 
+ 1856      5F6D616E 
+ 1856      61676572 
+ 1856      5F737461 
+ 1857              	.LASF61:
+ 1858 03ab 6C696E65 		.ascii	"linear_acceleration_6X\000"
+ 1858      61725F61 
+ 1858      6363656C 
+ 1858      65726174 
+ 1858      696F6E5F 
+ 1859              	.LASF50:
+ 1860 03c2 6F73784D 		.ascii	"osxMFX_knobs\000"
+ 1860      46585F6B 
+ 1860      6E6F6273 
+ 1860      00
+ 1861              	.LASF17:
+ 1862 03cf 696E7433 		.ascii	"int32_t\000"
+ 1862      325F7400 
+ 1863              	.LASF100:
+ 1864 03d7 4D6F7469 		.ascii	"MotionFX_License_init\000"
+ 1864      6F6E4658 
+ 1864      5F4C6963 
+ 1864      656E7365 
+ 1864      5F696E69 
+ 1865              	.LASF3:
+ 1866 03ed 5F5F7569 		.ascii	"__uint8_t\000"
+ 1866      6E74385F 
+ 1866      7400
+ 1867              	.LASF79:
+ 1868 03f7 48616E64 		.ascii	"HandleTempSensors\000"
+ARM GAS  /tmp/ccCutVAN.s 			page 37
+
+
+ 1868      6C655465 
+ 1868      6D705365 
+ 1868      6E736F72 
+ 1868      7300
+ 1869              	.LASF43:
+ 1870 0409 67626961 		.ascii	"gbias_gyro_th_sc_9X\000"
+ 1870      735F6779 
+ 1870      726F5F74 
+ 1870      685F7363 
+ 1870      5F395800 
+ 1871              	.LASF82:
+ 1872 041d 48574164 		.ascii	"HWAdvanceFeatures\000"
+ 1872      76616E63 
+ 1872      65466561 
+ 1872      74757265 
+ 1872      7300
+ 1873              	.LASF46:
+ 1874 042f 6779726F 		.ascii	"gyro_orientation\000"
+ 1874      5F6F7269 
+ 1874      656E7461 
+ 1874      74696F6E 
+ 1874      00
+ 1875              	.LASF55:
+ 1876 0440 67726176 		.ascii	"gravity_9X\000"
+ 1876      6974795F 
+ 1876      395800
+ 1877              	.LASF36:
+ 1878 044b 46725469 		.ascii	"FrTime\000"
+ 1878      6D6500
+ 1879              	.LASF89:
+ 1880 0452 48616E64 		.ascii	"HandleGGComponent\000"
+ 1880      6C654747 
+ 1880      436F6D70 
+ 1880      6F6E656E 
+ 1880      7400
+ 1881              	.LASF15:
+ 1882 0464 75696E74 		.ascii	"uint8_t\000"
+ 1882      385F7400 
+ 1883              	.LASF2:
+ 1884 046c 756E7369 		.ascii	"unsigned char\000"
+ 1884      676E6564 
+ 1884      20636861 
+ 1884      7200
+ 1885              	.LASF28:
+ 1886 047a 6F73784C 		.ascii	"osxLicense\000"
+ 1886      6963656E 
+ 1886      736500
+ 1887              	.LASF81:
+ 1888 0485 48616E64 		.ascii	"HandleHumSensor\000"
+ 1888      6C654875 
+ 1888      6D53656E 
+ 1888      736F7200 
+ 1889              	.LASF121:
+ 1890 0495 2F752F65 		.ascii	"/u/elawton2/p442-submissions/sensortile/reference/b"
+ 1890      6C617774 
+ 1890      6F6E322F 
+ 1890      70343432 
+ARM GAS  /tmp/ccCutVAN.s 			page 38
+
+
+ 1890      2D737562 
+ 1891 04c8 6C75656D 		.ascii	"luemicrosystem2/BlueMicrosystem2_V2.2.0/Projects/Mu"
+ 1891      6963726F 
+ 1891      73797374 
+ 1891      656D322F 
+ 1891      426C7565 
+ 1892 04fb 6C74692F 		.ascii	"lti/Applications/BlueMicrosystem2/bluechibi\000"
+ 1892      4170706C 
+ 1892      69636174 
+ 1892      696F6E73 
+ 1892      2F426C75 
+ 1893              	.LASF26:
+ 1894 0527 6F73784C 		.ascii	"osxLicenseInitialized\000"
+ 1894      6963656E 
+ 1894      7365496E 
+ 1894      69746961 
+ 1894      6C697A65 
+ 1895              	.LASF80:
+ 1896 053d 48616E64 		.ascii	"HandlePressSensor\000"
+ 1896      6C655072 
+ 1896      65737353 
+ 1896      656E736F 
+ 1896      7200
+ 1897              	.LASF1:
+ 1898 054f 7369676E 		.ascii	"signed char\000"
+ 1898      65642063 
+ 1898      68617200 
+ 1899              	.LASF31:
+ 1900 055b 4F53584D 		.ascii	"OSXMFX_ENGINE_OUTPUT_NED\000"
+ 1900      46585F45 
+ 1900      4E47494E 
+ 1900      455F4F55 
+ 1900      54505554 
+ 1901              	.LASF12:
+ 1902 0574 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1902      206C6F6E 
+ 1902      6720756E 
+ 1902      7369676E 
+ 1902      65642069 
+ 1903              	.LASF77:
+ 1904 058b 426F6172 		.ascii	"BoardType\000"
+ 1904      64547970 
+ 1904      6500
+ 1905              	.LASF32:
+ 1906 0595 4F53584D 		.ascii	"OSXMFX_ENGINE_OUTPUT_ENU\000"
+ 1906      46585F45 
+ 1906      4E47494E 
+ 1906      455F4F55 
+ 1906      54505554 
+ 1907              	.LASF62:
+ 1908 05ae 68656164 		.ascii	"heading_6X\000"
+ 1908      696E675F 
+ 1908      365800
+ 1909              	.LASF0:
+ 1910 05b9 756E7369 		.ascii	"unsigned int\000"
+ 1910      676E6564 
+ 1910      20696E74 
+ARM GAS  /tmp/ccCutVAN.s 			page 39
+
+
+ 1910      00
+ 1911              	.LASF39:
+ 1912 05c6 67626961 		.ascii	"gbias_acc_th_sc_6X\000"
+ 1912      735F6163 
+ 1912      635F7468 
+ 1912      5F73635F 
+ 1912      365800
+ 1913              	.LASF103:
+ 1914 05d9 4D6F7469 		.ascii	"MotionFX_manager_start_6X\000"
+ 1914      6F6E4658 
+ 1914      5F6D616E 
+ 1914      61676572 
+ 1914      5F737461 
+ 1915              	.LASF58:
+ 1916 05f3 726F7461 		.ascii	"rotation_6X\000"
+ 1916      74696F6E 
+ 1916      5F365800 
+ 1917              	.LASF6:
+ 1918 05ff 73686F72 		.ascii	"short unsigned int\000"
+ 1918      7420756E 
+ 1918      7369676E 
+ 1918      65642069 
+ 1918      6E7400
+ 1919              	.LASF22:
+ 1920 0612 53656E73 		.ascii	"SensorAxesRaw_t\000"
+ 1920      6F724178 
+ 1920      65735261 
+ 1920      775F7400 
+ 1921              	.LASF40:
+ 1922 0622 67626961 		.ascii	"gbias_gyro_th_sc_6X\000"
+ 1922      735F6779 
+ 1922      726F5F74 
+ 1922      685F7363 
+ 1922      5F365800 
+ 1923              	.LASF88:
+ 1924 0636 626E7267 		.ascii	"bnrg_expansion_board\000"
+ 1924      5F657870 
+ 1924      616E7369 
+ 1924      6F6E5F62 
+ 1924      6F617264 
+ 1925              	.LASF60:
+ 1926 064b 67726176 		.ascii	"gravity_6X\000"
+ 1926      6974795F 
+ 1926      365800
+ 1927              	.LASF14:
+ 1928 0656 63686172 		.ascii	"char\000"
+ 1928      00
+ 1929              	.LASF52:
+ 1930 065b 6F73784D 		.ascii	"osxMFX_input\000"
+ 1930      46585F69 
+ 1930      6E707574 
+ 1930      00
+ 1931              	.LASF99:
+ 1932 0668 4D6F7469 		.ascii	"MotionFX_manager_run\000"
+ 1932      6F6E4658 
+ 1932      5F6D616E 
+ 1932      61676572 
+ARM GAS  /tmp/ccCutVAN.s 			page 40
+
+
+ 1932      5F72756E 
+ 1933              	.LASF67:
+ 1934 067d 6D616747 		.ascii	"magGainX\000"
+ 1934      61696E58 
+ 1934      00
+ 1935              	.LASF68:
+ 1936 0686 6D616747 		.ascii	"magGainY\000"
+ 1936      61696E59 
+ 1936      00
+ 1937              	.LASF69:
+ 1938 068f 6D616747 		.ascii	"magGainZ\000"
+ 1938      61696E5A 
+ 1938      00
+ 1939              	.LASF16:
+ 1940 0698 696E7431 		.ascii	"int16_t\000"
+ 1940      365F7400 
+ 1941              	.LASF110:
+ 1942 06a0 694B6E6F 		.ascii	"iKnobs\000"
+ 1942      627300
+ 1943              	.LASF45:
+ 1944 06a7 6163635F 		.ascii	"acc_orientation\000"
+ 1944      6F726965 
+ 1944      6E746174 
+ 1944      696F6E00 
+ 1945              	.LASF115:
+ 1946 06b7 69446174 		.ascii	"iDataOUT\000"
+ 1946      614F5554 
+ 1946      00
+ 1947              	.LASF97:
+ 1948 06c0 4759525F 		.ascii	"GYR_Value\000"
+ 1948      56616C75 
+ 1948      6500
+ 1949              	.LASF93:
+ 1950 06ca 6F73784D 		.ascii	"osxMotionGRIsInitalized\000"
+ 1950      6F74696F 
+ 1950      6E475249 
+ 1950      73496E69 
+ 1950      74616C69 
+ 1951              	.LASF10:
+ 1952 06e2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1952      20756E73 
+ 1952      69676E65 
+ 1952      6420696E 
+ 1952      7400
+ 1953              	.LASF19:
+ 1954 06f4 41584953 		.ascii	"AXIS_X\000"
+ 1954      5F5800
+ 1955              	.LASF20:
+ 1956 06fb 41584953 		.ascii	"AXIS_Y\000"
+ 1956      5F5900
+ 1957              	.LASF107:
+ 1958 0702 4D6F7469 		.ascii	"MotionFX_manager_getDataOUT\000"
+ 1958      6F6E4658 
+ 1958      5F6D616E 
+ 1958      61676572 
+ 1958      5F676574 
+ 1959              	.LASF29:
+ARM GAS  /tmp/ccCutVAN.s 			page 41
+
+
+ 1960 071e 45787472 		.ascii	"ExtraData\000"
+ 1960      61446174 
+ 1960      6100
+ 1961              	.LASF92:
+ 1962 0728 6F73784D 		.ascii	"osxMotionCPIsInitalized\000"
+ 1962      6F74696F 
+ 1962      6E435049 
+ 1962      73496E69 
+ 1962      74616C69 
+ 1963              	.LASF78:
+ 1964 0740 4E756D54 		.ascii	"NumTempSensors\000"
+ 1964      656D7053 
+ 1964      656E736F 
+ 1964      727300
+ 1965              	.LASF76:
+ 1966 074f 54617267 		.ascii	"TargetType_t\000"
+ 1966      65745479 
+ 1966      70655F74 
+ 1966      00
+ 1967              	.LASF111:
+ 1968 075c 69704B6E 		.ascii	"ipKnobs\000"
+ 1968      6F627300 
+ 1969              	.LASF75:
+ 1970 0764 54415247 		.ascii	"TARGETS_NUMBER\000"
+ 1970      4554535F 
+ 1970      4E554D42 
+ 1970      455200
+ 1971              	.LASF84:
+ 1972 0773 48616E64 		.ascii	"HandleGyroSensor\000"
+ 1972      6C654779 
+ 1972      726F5365 
+ 1972      6E736F72 
+ 1972      00
+ 1973              	.LASF7:
+ 1974 0784 5F5F696E 		.ascii	"__int32_t\000"
+ 1974      7433325F 
+ 1974      7400
+ 1975              	.LASF101:
+ 1976 078e 5061794C 		.ascii	"PayLoad\000"
+ 1976      6F616400 
+ 1977              	.LASF4:
+ 1978 0796 5F5F696E 		.ascii	"__int16_t\000"
+ 1978      7431365F 
+ 1978      7400
+ 1979              	.LASF64:
+ 1980 07a0 6D61674F 		.ascii	"magOffX\000"
+ 1980      66665800 
+ 1981              	.LASF65:
+ 1982 07a8 6D61674F 		.ascii	"magOffY\000"
+ 1982      66665900 
+ 1983              	.LASF66:
+ 1984 07b0 6D61674F 		.ascii	"magOffZ\000"
+ 1984      66665A00 
+ 1985              	.LASF30:
+ 1986 07b8 4D444D5F 		.ascii	"MDM_PayLoadLic_t\000"
+ 1986      5061794C 
+ 1986      6F61644C 
+ARM GAS  /tmp/ccCutVAN.s 			page 42
+
+
+ 1986      69635F74 
+ 1986      00
+ 1987              	.LASF21:
+ 1988 07c9 41584953 		.ascii	"AXIS_Z\000"
+ 1988      5F5A00
+ 1989              	.LASF74:
+ 1990 07d0 54415247 		.ascii	"TARGET_SENSORTILE\000"
+ 1990      45545F53 
+ 1990      454E534F 
+ 1990      5254494C 
+ 1990      4500
+ 1991              	.LASF37:
+ 1992 07e2 4C4D6F64 		.ascii	"LMode\000"
+ 1992      6500
+ 1993              	.LASF86:
+ 1994 07e8 4E756D4D 		.ascii	"NumMicSensors\000"
+ 1994      69635365 
+ 1994      6E736F72 
+ 1994      7300
+ 1995              	.LASF112:
+ 1996 07f6 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1996      52784275 
+ 1996      66666572 
+ 1996      00
+ 1997              	.LASF53:
+ 1998 0803 726F7461 		.ascii	"rotation_9X\000"
+ 1998      74696F6E 
+ 1998      5F395800 
+ 1999              	.LASF47:
+ 2000 080f 6D61675F 		.ascii	"mag_orientation\000"
+ 2000      6F726965 
+ 2000      6E746174 
+ 2000      696F6E00 
+ 2001              	.LASF34:
+ 2002 081f 4154696D 		.ascii	"ATime\000"
+ 2002      6500
+ 2003              	.LASF108:
+ 2004 0825 4D6F7469 		.ascii	"MotionFX_manager_getDataIN\000"
+ 2004      6F6E4658 
+ 2004      5F6D616E 
+ 2004      61676572 
+ 2004      5F676574 
+ 2005              	.LASF25:
+ 2006 0840 4C696345 		.ascii	"LicEnum\000"
+ 2006      6E756D00 
+ 2007              	.LASF90:
+ 2008 0848 6F73784D 		.ascii	"osxMotionFXIsInitalized\000"
+ 2008      6F74696F 
+ 2008      6E465849 
+ 2008      73496E69 
+ 2008      74616C69 
+ 2009              	.LASF109:
+ 2010 0860 64697363 		.ascii	"discardedCount\000"
+ 2010      61726465 
+ 2010      64436F75 
+ 2010      6E7400
+ 2011              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ARM GAS  /tmp/ccCutVAN.s 			page 43
+
+
+ARM GAS  /tmp/ccCutVAN.s 			page 44
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 MotionFX_Manager.c
+     /tmp/ccCutVAN.s:23     .bss:00000000 osx_mfx_license
+     /tmp/ccCutVAN.s:20     .bss:00000000 $d
+                            *COM*:00000070 iDataOUT
+                            *COM*:00000024 iDataIN
+     /tmp/ccCutVAN.s:28     .bss:00000030 discardedCount
+     /tmp/ccCutVAN.s:31     .bss:00000034 iKnobs
+     /tmp/ccCutVAN.s:34     .bss:00000070 ipKnobs
+     /tmp/ccCutVAN.s:42     .text:00000000 $t
+     /tmp/ccCutVAN.s:48     .text:00000000 MotionFX_manager_run
+     /tmp/ccCutVAN.s:238    .text:00000180 $d
+     /tmp/ccCutVAN.s:248    .text:0000019c $t
+     /tmp/ccCutVAN.s:254    .text:000001a0 MotionFX_License_init
+     /tmp/ccCutVAN.s:280    .text:000001bc $d
+     /tmp/ccCutVAN.s:284    .text:000001c0 $t
+     /tmp/ccCutVAN.s:290    .text:000001c0 MotionFX_manager_init
+     /tmp/ccCutVAN.s:416    .text:00000290 $d
+     /tmp/ccCutVAN.s:427    .text:000002b0 $t
+     /tmp/ccCutVAN.s:433    .text:000002b0 MotionFX_manager_start_6X
+     /tmp/ccCutVAN.s:451    .text:000002c0 MotionFX_manager_stop_6X
+     /tmp/ccCutVAN.s:469    .text:000002d0 MotionFX_manager_start_9X
+     /tmp/ccCutVAN.s:487    .text:000002e0 MotionFX_manager_stop_9X
+     /tmp/ccCutVAN.s:505    .text:000002f0 MotionFX_manager_getDataOUT
+     /tmp/ccCutVAN.s:520    .text:000002f8 $d
+     /tmp/ccCutVAN.s:524    .text:000002fc $t
+     /tmp/ccCutVAN.s:530    .text:00000300 MotionFX_manager_getDataIN
+     /tmp/ccCutVAN.s:545    .text:00000308 $d
+                     .debug_frame:00000010 $d
+     /tmp/ccCutVAN.s:558    .text:0000030c $t
+
+UNDEFINED SYMBOLS
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_d2f
+__aeabi_i2f
+__aeabi_fmul
+sensitivity_Mul
+magOffset
+memcpy
+TargetBoardFeatures

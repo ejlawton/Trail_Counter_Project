@@ -1,0 +1,480 @@
+/**
+******************************************************************************
+* @file    SensorTile.c
+* @author  Central Labs
+* @version V1.2.0
+* @date    10-Nov-2016
+* @brief   This file provides low level functionalities for Sensor Tile board
+******************************************************************************
+* @attention
+*
+* <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+*
+* Redistribution and use in source and binary forms, with or without modification,
+* are permitted provided that the following conditions are met:
+*   1. Redistributions of source code must retain the above copyright notice,
+*      this list of conditions and the following disclaimer.
+*   2. Redistributions in binary form must reproduce the above copyright notice,
+*      this list of conditions and the following disclaimer in the documentation
+*      and/or other materials provided with the distribution.
+*   3. Neither the name of STMicroelectronics nor the names of its contributors
+*      may be used to endorse or promote products derived from this software
+*      without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+* DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+* FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+* SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+* CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+* OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+* OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+******************************************************************************
+*/ 
+
+/* Includes ------------------------------------------------------------------*/
+#include "SensorTile.h"
+#include "hal.h"
+#include "../../ChibiOS/os/hal/ports/STM32/LLD/SPIv2/spi_lld.h"
+#include "SensorTile_BlueNRG.h"
+
+/**
+* @brief SensorTile BSP Driver version number V1.0.0
+*/
+
+#define UNUSED(x) (void)(x)
+#define SPI_1LINE_TX(__HANDLE__) ((__HANDLE__)->spi->CR1 |= SPI_CR1_BIDIOE)
+#define SPI_1LINE_RX(__HANDLE__) ((__HANDLE__)->spi->CR1 &= (~SPI_CR1_BIDIOE))
+#define SPI_1LINE_ENABLE(__HANDLE__) ((__HANDLE__)->spi->CR1 |= SPI_CR1_SPE)
+#define SPI_1LINE_DISABLE(__HANDLE__) ((__HANDLE__)->spi->CR1 &= (~SPI_CR1_SPE))
+#define SPI_DMA_DISABLE(__HANDLE__) ((__HANDLE__)->spi->CR2 &= (~(SPI_CR2_RXDMAEN|SPI_CR2_TXDMAEN)))
+#define SPI_DMA_ENABLE(__HANDLE__) ((__HANDLE__)->spi->CR2 |= (SPI_CR2_RXDMAEN|SPI_CR2_TXDMAEN))
+
+#define __SensorTile_BSP_VERSION_MAIN   (0x01) /*!< [31:24] main version */
+#define __SensorTile_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
+#define __SensorTile_BSP_VERSION_SUB2   (0x00) /*!< [15:8]  sub2 version */
+#define __SensorTile_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */
+#define __SensorTile_BSP_VERSION         ((__SensorTile_BSP_VERSION_MAIN << 24)\
+|(__SensorTile_BSP_VERSION_SUB1 << 16)\
+  |(__SensorTile_BSP_VERSION_SUB2 << 8 )\
+	|(__SensorTile_BSP_VERSION_RC))
+
+//SPID2
+volatile int i;
+
+
+/**
+ * @brief  Writes a buffer to the sensor
+ * @param  handle instance handle
+ * @param  WriteAddr specifies the internal sensor address register to be written to
+ * @param  pBuffer pointer to data buffer
+ * @param  nBytesToWrite number of bytes to be written
+ * @retval 0 in case of success
+ * @retval 1 in case of failure
+ */
+
+uint8_t Sensor_IO_SPI_Write(SPIConfig *handle, uint8_t WriteAddr, uint8_t *pBuffer, uint16_t nBytesToWrite )
+{
+
+	
+  	 // casts the given handle as a SPID identifier
+										   // we're looking for SPID2 (spi_lld.c)
+
+  	uint8_t i;
+
+  	// checks which port & pin we're on 
+  	// enables 3-wire SPI mode for the accelerometer (LSM303)
+  	if(handle->ssport == GPIOC && handle->sspad == 4) // may not need this anymore 
+	  {
+	  	SPIDriver *spip = (SPIDriver *) &SPID2;
+	  	// Select the correct device
+	    //Sensor_IO_SPI_CS_Enable(handle); // -> spiSelect(SPIDriver *spip) || spiSelectI(spip) 
+	    	if(nBytesToWrite > 1){
+	  		WriteAddr |= 0x40;
+	  	}
+	    	//WriteAddr = WriteAddr & (~0x80);	
+	    	WriteAddr &= (~0x80);
+	    	spiAcquireBus(spip);
+	  
+	    	spiStart(spip, handle);
+	  
+	    	SPI_DMA_DISABLE(spip);
+	    	SPI_1LINE_ENABLE(spip);
+	    	SPI_1LINE_TX(spip);
+	  
+	 	 	spiSelect(spip);
+	  	
+	  		spiPolledTx(spip,(uint16_t)WriteAddr); // size ? 
+	  
+	    	for(i=0;i<nBytesToWrite;i++)
+	    	{
+	  		spiPolledTx(spip, (uint16_t)*pBuffer++);
+	   	}
+	    
+	  // Deselect the device
+	  	spiUnselect(spip);
+	  	spiReleaseBus(spip);
+	 } 
+
+
+  //Sensor_IO_SPI_CS_Disable(handle); // -> spiUnselect(SPIDRiver *spip) || spiUnselectI(spip)
+  
+  return 0;
+  
+}
+
+/**
+ * @brief  Reads a from the sensor to buffer
+ * @param  handle instance handle
+ * @param  ReadAddr specifies the internal sensor address register to be read from
+ * @param  pBuffer pointer to data buffer
+ * @param  nBytesToRead number of bytes to be read
+ * @retval 0 in case of success
+ * @retval 1 in case of failure
+ */
+
+
+uint8_t Sensor_IO_SPI_Read(SPIConfig *handle, uint8_t ReadAddr, uint8_t *pBuffer, uint16_t nBytesToRead )
+{
+
+	SPIDriver *spip = (SPIDriver *) &SPID2;
+
+	uint8_t i;
+	 
+	if(nBytesToRead > 1){
+		ReadAddr |=  0x40;
+	}
+	ReadAddr |= 0x80;
+
+	spiAcquireBus(spip); // acquire bus
+
+	spiStart(spip, handle); 
+ 
+ 	SPI_DMA_DISABLE(spip);
+ 	SPI_1LINE_ENABLE(spip);
+	spiSelect(spip);
+
+	spiPolledTx(spip, (uint16_t)ReadAddr);
+
+	SPI_1LINE_DISABLE(spip);
+	SPI_1LINE_RX(spip);
+
+	// Select the correct device
+	  for(i=0;i<nBytesToRead;i++)
+	  {
+		*pBuffer++ = spiPolledRx(spip);
+	
+	  }
+
+	  spiUnselect(spip);
+	  
+	  SPI_1LINE_TX(spip);
+
+	  spiReleaseBus(spip);
+
+	  return 0;
+}
+
+
+/**
+* @brief  Writes data from local buffer to SPI.
+* @param  handle     : SPI handle
+* @param  data1    : First data buffer to be written
+* @param  data2    : Second data buffer to be written
+* @param  numbytes1: Size of first data buffer to be written
+* @param  numbytes2: Size of second data buffer to be written
+* @retval Number of read bytes
+*/
+
+
+
+// How to set the IRQ low, and also set it as output?  
+
+
+int32_t Sensor_IO_SPI_BlueNRG_Write(SPIConfig *handle, uint8_t* data1,
+                          uint8_t* data2, uint8_t numbytes1, uint8_t numbytes2)
+{  
+	SPIDriver *spip = (SPIDriver *) &SPID1;
+
+  	int32_t result = 0;
+  
+  	int32_t spi_fix_enabled = 0;
+  
+#ifdef ENABLE_SPI_FIX
+  spi_fix_enabled = 1;
+#endif //ENABLE_SPI_FIX
+  
+  unsigned char header_master[HEADER_SIZE] = {0x0a, 0x00, 0x00, 0x00, 0x00};
+  unsigned char header_slave[HEADER_SIZE]  = {0xaa, 0x00, 0x00, 0x00, 0x00};
+  
+  unsigned char read_char_buf[MAX_BUFFER_SIZE];
+  
+  Disable_SPI_IRQ(); // chSysLock();
+  					 // chSysUnlock();
+
+
+  /*
+  If the SPI_FIX is enabled the IRQ is set in Output mode, then it is pulled
+  high and, after a delay of at least 112us, the CS line is asserted and the
+  header transmit/receive operations are started.
+  After these transmit/receive operations the IRQ is reset in input mode.
+  */
+  if (spi_fix_enabled) {
+    set_irq_as_output();
+    
+    /* Assert CS line after at least 112us */
+
+    us150Delay(); // chThdSleepMilliseconds(...); ???
+  }
+  
+
+
+  /* CS reset */
+  spiAcquireBus(spip); 
+  spiStart(spip, handle);
+
+  spiUnselect(spip);
+  // HAL_GPIO_WritePin(BNRG_SPI_CS_PORT, BNRG_SPI_CS_PIN, GPIO_PIN_RESET);  	// spiUnselect(SpiDriver *spip);   
+  
+  /* Exchange header */  
+  spiStartExchange(spip, HEADER_SIZE, header_master, header_slave);
+
+  /*__disable_irq();
+  HAL_SPI_TransmitReceive(handle, header_master, header_slave, HEADER_SIZE, TIMEOUT_DURATION);		// spiStartExchange(SpiDriver ..., size, txbuf, rxbuf);
+  __enable_irq();
+  */
+  if (spi_fix_enabled) {
+    set_irq_as_input();
+  }
+  
+  if (header_slave[0] == 0x02) {
+    /* SPI is ready */
+    if (header_slave[1] >= (numbytes1+numbytes2)) {
+      
+      /*  Buffer is big enough */	
+      if (numbytes1 > 0) {
+        spiStartExchange(spip, numbytes1, data1, read_char_buf);
+        /*__disable_irq();
+        HAL_SPI_TransmitReceive(handle, data1, read_char_buf, numbytes1, TIMEOUT_DURATION);     // spiStartExchange( ... ) again 
+        __enable_irq();
+        */
+      }
+      if (numbytes2 > 0) {
+        spiStartExchange(spip, numbytes2, data2, read_char_buf);
+        /*__disable_irq();
+        HAL_SPI_TransmitReceive(handle, data2, read_char_buf, numbytes2, TIMEOUT_DURATION);	// spiStartExchange( ... ) again 
+        __enable_irq();
+        */
+      }
+      
+    } else {
+      /* Buffer is too small */
+      result = -2;
+    }
+  } else {
+    /* SPI is not ready */
+    result = -1;
+  }
+  
+  /* Release CS line */
+  
+  spiSelect(spip);
+  //HAL_GPIO_WritePin(BNRG_SPI_CS_PORT, BNRG_SPI_CS_PIN, GPIO_PIN_SET);		// spiSelect( ... ); 
+  
+  // chSysUnlock();  
+  Enable_SPI_IRQ();
+
+  spiReleaseBus(spip); 
+  return result;
+}
+
+
+/**
+* @brief  Reads from BlueNRG SPI buffer and store data into local buffer.
+* @param  handle     : SPI handle
+* @param  buffer   : Buffer where data from SPI are stored
+* @param  buff_size: Buffer size
+* @retval int32_t  : Number of read bytes
+*/
+int32_t Sensor_IO_SPI_BlueNRG_Read(SPIConfig *handle, uint8_t *buffer,
+                             uint8_t buff_size)
+{
+	SPIDriver *spip = (SPIDriver *) &SPID1;
+
+  uint16_t byte_count;
+  uint8_t len = 0;
+  uint8_t char_ff = 0xff;
+  volatile uint8_t read_char;
+  
+  uint8_t header_master[HEADER_SIZE] = {0x0b, 0x00, 0x00, 0x00, 0x00};
+  uint8_t header_slave[HEADER_SIZE];
+  
+  /* CS reset */
+  spiSelect(spip); 
+  //HAL_GPIO_WritePin(BNRG_SPI_CS_PORT, BNRG_SPI_CS_PIN, GPIO_PIN_RESET);
+  spiAcquireBus(spip);
+  spiStart(spip, handle);
+  /* Read the header */  
+  spiStartExchange(spip, HEADER_SIZE, header_master, header_slave); 
+  //HAL_SPI_TransmitReceive(handle, header_master, header_slave, HEADER_SIZE, TIMEOUT_DURATION);
+  
+  if (header_slave[0] == 0x02) {
+    /* device is ready */
+    byte_count = (header_slave[4]<<8)|header_slave[3];
+    if (byte_count > 0) {
+      
+      /* avoid to read more data that size of the buffer */
+      if (byte_count > buff_size){
+        byte_count = buff_size;
+      }
+      
+      for (len = 0; len < byte_count; len++){
+        spiStartExchange(spip, 1, &char_ff, (uint8_t*)&read_char);
+        /*__disable_irq();
+        HAL_SPI_TransmitReceive(handle, &char_ff, (uint8_t*)&read_char, 1, TIMEOUT_DURATION);
+        __enable_irq();
+        */buffer[len] = read_char;
+      }
+    }    
+  }
+  /* Release CS line */
+  spiUnselect(spip);
+  //HAL_GPIO_WritePin(BNRG_SPI_CS_PORT, BNRG_SPI_CS_PIN, GPIO_PIN_SET);
+  
+  spiReleaseBus(spip);
+
+  // Add a small delay to give time to the BlueNRG to set the IRQ pin low
+  // to avoid a useless SPI read at the end of the transaction
+  for( i = 0; i < 2; i++)__NOP();
+  
+#ifdef PRINT_CSV_FORMAT
+  if (len > 0) {
+    print_csv_time();
+    for (int i=0; i<len; i++) {
+      PRINT_CSV(" %02x", buffer[i]);
+    }
+    PRINT_CSV("\n");
+  }
+#endif
+  
+  return len;   
+}
+
+void set_irq_as_output(void)
+{
+  	
+	palSetPadMode(GPIOA, 0, PAL_MODE_OUTPUT_PUSHPULL);
+	palSetPad(GPIOA, 0);
+
+
+  /*GPIO_InitTypeDef  GPIO_InitStructure;
+  
+
+   //Pull IRQ high 
+  GPIO_InitStructure.Pin = BNRG_SPI_IRQ_PIN;
+  GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
+  
+  GPIO_InitStructure.Speed = BNRG_SPI_IRQ_SPEED;
+  GPIO_InitStructure.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(BNRG_SPI_IRQ_PORT, &GPIO_InitStructure);
+  HAL_GPIO_WritePin(BNRG_SPI_IRQ_PORT, BNRG_SPI_IRQ_PIN, GPIO_PIN_SET);
+*/
+}
+
+/**
+* @brief  Set the IRQ in input mode.
+* @param  None
+* @retval None
+*/
+void set_irq_as_input(void)
+{
+  
+  
+	// sets the mode to pulldown, and the alternate function to 0
+	
+  palSetPadMode(GPIOA, 0, (PAL_MODE_INPUT_PULLDOWN | PAL_MODE_ALTERNATE(0)));
+
+  /*GPIO_InitTypeDef  GPIO_InitStructure;
+  
+
+  // IRQ input   
+  GPIO_InitStructure.Pin = BNRG_SPI_IRQ_PIN;
+  GPIO_InitStructure.Mode = BNRG_SPI_IRQ_MODE;
+  GPIO_InitStructure.Pull = GPIO_PULLDOWN;
+  GPIO_InitStructure.Speed = BNRG_SPI_IRQ_SPEED;
+  GPIO_InitStructure.Alternate = BNRG_SPI_IRQ_ALTERNATE;    
+  HAL_GPIO_Init(BNRG_SPI_IRQ_PORT, &GPIO_InitStructure);
+  
+  GPIO_InitStructure.Pull = BNRG_SPI_IRQ_PULL;
+  HAL_GPIO_Init(BNRG_SPI_IRQ_PORT, &GPIO_InitStructure);
+*/
+}
+
+/**
+* @brief  Utility function for delay
+* @param  None
+* @retval None
+* NOTE: TODO: implement with clock-independent function.
+*/
+void us150Delay(void)
+{
+#if SYSCLK_FREQ == 4000000
+  for( i = 0; i < 35; i++)__NOP();
+#elif SYSCLK_FREQ == 32000000
+  for( i = 0; i < 420; i++)__NOP();
+#elif SYSCLK_FREQ == 80000000
+  for( i = 0; i < 1072; i++)__NOP();
+#elif SYSCLK_FREQ == 84000000
+  for( i = 0; i < 1125; i++)__NOP();
+#elif SYSCLK_FREQ == 168000000
+  for( i = 0; i < 2250; i++)__NOP();
+#else
+#error Implement delay function.
+#endif    
+}
+
+/**
+* @brief  Enable SPI IRQ.
+* @param  None
+* @retval None
+*/
+void Enable_SPI_IRQ(void)
+{
+  NVIC_EnableIRQ(BNRG_SPI_EXTI_IRQn);  
+}
+
+/**
+* @brief  Disable SPI IRQ.
+* @param  None
+* @retval None
+*/
+void Disable_SPI_IRQ(void)
+{ 
+  NVIC_DisableIRQ(BNRG_SPI_EXTI_IRQn);
+}
+
+/**
+* @brief  Clear Pending SPI IRQ.
+* @param  None
+* @retval None
+*/
+void Clear_SPI_IRQ(void)
+{
+  NVIC_ClearPendingIRQ(BNRG_SPI_EXTI_IRQn);
+}
+
+/**
+* @brief  Clear EXTI (External Interrupt) line for SPI IRQ.
+* @param  None
+* @retval None
+*/
+
+//#define __GPIO_EXT1_CLEAR_IT(__EXTI_LINE__) (EXTI->PR = (__EXTI_LINE__))
+
+void Clear_SPI_EXTI_Flag(void)
+{  
+  // _GPIO_EXTI_CLEAR_IT(BNRG_SPI_EXTI_PIN);  
+}

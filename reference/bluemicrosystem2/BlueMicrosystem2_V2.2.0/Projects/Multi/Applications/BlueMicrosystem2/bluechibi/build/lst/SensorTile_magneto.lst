@@ -1,0 +1,4773 @@
+ARM GAS  /tmp/ccPuQAGd.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"SensorTile_magneto.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.bss
+  19              		.align	2
+  20              	MAGNETO_SensorHandle:
+  21 0000 00000000 		.space	20
+  21      00000000 
+  21      00000000 
+  21      00000000 
+  21      00000000 
+  22              		.align	2
+  23              	MAGNETO_Data:
+  24 0014 00000000 		.space	8
+  24      00000000 
+  25              		.align	2
+  26              	LSM303AGR_M_0_Data:
+  27 001c 00000000 		.space	4
+  28              		.text
+  29              		.align	2
+  30              		.p2align 4,,15
+  31              		.global	BSP_MAGNETO_Init
+  32              		.thumb
+  33              		.thumb_func
+  34              		.type	BSP_MAGNETO_Init, %function
+  35              	BSP_MAGNETO_Init:
+  36              	.LFB125:
+  37              		.file 1 "../../../../../Drivers/BSP/SensorTile/SensorTile_magneto.c"
+  38              		.loc 1 102 0
+  39              		.cfi_startproc
+  40              		@ args = 0, pretend = 0, frame = 8
+  41              		@ frame_needed = 0, uses_anonymous_args = 0
+  42 0000 00B5     		push	{lr}
+  43              		.cfi_def_cfa_offset 4
+  44              		.cfi_offset 14, -4
+  45 0002 83B0     		sub	sp, sp, #12
+  46              		.cfi_def_cfa_offset 16
+  47 0004 0346     		mov	r3, r0
+  48 0006 0091     		str	r1, [sp]
+  49 0008 8DF80730 		strb	r3, [sp, #7]
+  50              		.loc 1 104 0
+  51 000c 009B     		ldr	r3, [sp]
+  52 000e 0022     		movs	r2, #0
+ARM GAS  /tmp/ccPuQAGd.s 			page 2
+
+
+  53 0010 1A60     		str	r2, [r3]
+  54              		.loc 1 106 0
+  55 0012 9DF90730 		ldrsb	r3, [sp, #7]
+  56 0016 002B     		cmp	r3, #0
+  57 0018 08D0     		beq	.L3
+  58              		.loc 1 111 0
+  59 001a 0098     		ldr	r0, [sp]
+  60 001c 00F018F8 		bl	BSP_LSM303AGR_MAGNETO_Init
+  61 0020 0346     		mov	r3, r0
+  62 0022 012B     		cmp	r3, #1
+  63 0024 01D1     		bne	.L4
+  64              		.loc 1 113 0
+  65 0026 0123     		movs	r3, #1
+  66 0028 0AE0     		b	.L5
+  67              	.L4:
+  68              		.loc 1 115 0
+  69 002a 08E0     		b	.L6
+  70              	.L3:
+  71              		.loc 1 119 0
+  72 002c 0098     		ldr	r0, [sp]
+  73 002e 00F00FF8 		bl	BSP_LSM303AGR_MAGNETO_Init
+  74 0032 0346     		mov	r3, r0
+  75 0034 012B     		cmp	r3, #1
+  76 0036 01D1     		bne	.L7
+  77              		.loc 1 121 0
+  78 0038 0123     		movs	r3, #1
+  79 003a 01E0     		b	.L5
+  80              	.L7:
+  81              		.loc 1 123 0
+  82 003c 00BF     		nop
+  83              	.L6:
+  84              		.loc 1 127 0
+  85 003e 0023     		movs	r3, #0
+  86              	.L5:
+  87              		.loc 1 128 0
+  88 0040 1846     		mov	r0, r3
+  89 0042 03B0     		add	sp, sp, #12
+  90              		@ sp needed
+  91 0044 5DF804FB 		ldr	pc, [sp], #4
+  92              		.cfi_endproc
+  93              	.LFE125:
+  94              		.size	BSP_MAGNETO_Init, .-BSP_MAGNETO_Init
+  95              		.align	2
+  96 0048 AFF30080 		.p2align 4,,15
+  96      AFF30080 
+  97              		.thumb
+  98              		.thumb_func
+  99              		.type	BSP_LSM303AGR_MAGNETO_Init, %function
+ 100              	BSP_LSM303AGR_MAGNETO_Init:
+ 101              	.LFB126:
+ 102              		.loc 1 132 0
+ 103              		.cfi_startproc
+ 104              		@ args = 0, pretend = 0, frame = 16
+ 105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106 0050 00B5     		push	{lr}
+ 107              		.cfi_def_cfa_offset 4
+ 108              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccPuQAGd.s 			page 3
+
+
+ 109 0052 85B0     		sub	sp, sp, #20
+ 110              		.cfi_def_cfa_offset 24
+ 111 0054 0190     		str	r0, [sp, #4]
+ 112              		.loc 1 133 0
+ 113 0056 0023     		movs	r3, #0
+ 114 0058 0393     		str	r3, [sp, #12]
+ 115              		.loc 1 134 0
+ 116 005a 0123     		movs	r3, #1
+ 117 005c 8DF80B30 		strb	r3, [sp, #11]
+ 118              		.loc 1 136 0
+ 119 0060 3F4B     		ldr	r3, .L16
+ 120 0062 5B79     		ldrb	r3, [r3, #5]	@ zero_extendqisi2
+ 121 0064 012B     		cmp	r3, #1
+ 122 0066 01D1     		bne	.L9
+ 123              		.loc 1 139 0
+ 124 0068 0123     		movs	r3, #1
+ 125 006a 75E0     		b	.L15
+ 126              	.L9:
+ 127              		.loc 1 142 0
+ 128 006c FFF7FEFF 		bl	Sensor_IO_SPI_Init
+ 129 0070 0346     		mov	r3, r0
+ 130 0072 012B     		cmp	r3, #1
+ 131 0074 01D1     		bne	.L11
+ 132              		.loc 1 144 0
+ 133 0076 0123     		movs	r3, #1
+ 134 0078 6EE0     		b	.L15
+ 135              	.L11:
+ 136              		.loc 1 148 0
+ 137 007a 394B     		ldr	r3, .L16
+ 138 007c 4022     		movs	r2, #64
+ 139 007e 1A70     		strb	r2, [r3]
+ 140              		.loc 1 149 0
+ 141 0080 374B     		ldr	r3, .L16
+ 142 0082 0122     		movs	r2, #1
+ 143 0084 5A70     		strb	r2, [r3, #1]
+ 144              		.loc 1 150 0
+ 145 0086 364B     		ldr	r3, .L16
+ 146 0088 3C22     		movs	r2, #60
+ 147 008a 9A70     		strb	r2, [r3, #2]
+ 148              		.loc 1 151 0
+ 149 008c 344B     		ldr	r3, .L16
+ 150 008e 0222     		movs	r2, #2
+ 151 0090 DA70     		strb	r2, [r3, #3]
+ 152              		.loc 1 152 0
+ 153 0092 334B     		ldr	r3, .L16
+ 154 0094 0022     		movs	r2, #0
+ 155 0096 1A71     		strb	r2, [r3, #4]
+ 156              		.loc 1 153 0
+ 157 0098 314B     		ldr	r3, .L16
+ 158 009a 0022     		movs	r2, #0
+ 159 009c 5A71     		strb	r2, [r3, #5]
+ 160              		.loc 1 154 0
+ 161 009e 304B     		ldr	r3, .L16
+ 162 00a0 0022     		movs	r2, #0
+ 163 00a2 9A71     		strb	r2, [r3, #6]
+ 164              		.loc 1 155 0
+ 165 00a4 2E4B     		ldr	r3, .L16
+ARM GAS  /tmp/ccPuQAGd.s 			page 4
+
+
+ 166 00a6 0022     		movs	r2, #0
+ 167 00a8 DA71     		strb	r2, [r3, #7]
+ 168              		.loc 1 156 0
+ 169 00aa 2D4B     		ldr	r3, .L16
+ 170 00ac 2D4A     		ldr	r2, .L16+4
+ 171 00ae 9A60     		str	r2, [r3, #8]
+ 172              		.loc 1 157 0
+ 173 00b0 2B4B     		ldr	r3, .L16
+ 174 00b2 2D4A     		ldr	r2, .L16+8
+ 175 00b4 DA60     		str	r2, [r3, #12]
+ 176              		.loc 1 158 0
+ 177 00b6 2A4B     		ldr	r3, .L16
+ 178 00b8 0022     		movs	r2, #0
+ 179 00ba 1A61     		str	r2, [r3, #16]
+ 180              		.loc 1 160 0
+ 181 00bc 2B4B     		ldr	r3, .L16+12
+ 182 00be 2C4A     		ldr	r2, .L16+16
+ 183 00c0 1A60     		str	r2, [r3]
+ 184              		.loc 1 161 0
+ 185 00c2 284B     		ldr	r3, .L16+4
+ 186 00c4 294A     		ldr	r2, .L16+12
+ 187 00c6 1A60     		str	r2, [r3]
+ 188              		.loc 1 162 0
+ 189 00c8 264B     		ldr	r3, .L16+4
+ 190 00ca 0022     		movs	r2, #0
+ 191 00cc 5A60     		str	r2, [r3, #4]
+ 192              		.loc 1 164 0
+ 193 00ce 019B     		ldr	r3, [sp, #4]
+ 194 00d0 234A     		ldr	r2, .L16
+ 195 00d2 1A60     		str	r2, [r3]
+ 196              		.loc 1 166 0
+ 197 00d4 019B     		ldr	r3, [sp, #4]
+ 198 00d6 1B68     		ldr	r3, [r3]
+ 199 00d8 1846     		mov	r0, r3
+ 200 00da FFF7FEFF 		bl	Sensor_IO_SPI_CS_Init
+ 201              		.loc 1 168 0
+ 202 00de 244B     		ldr	r3, .L16+16
+ 203 00e0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 204 00e2 002B     		cmp	r3, #0
+ 205 00e4 0ED1     		bne	.L12
+ 206              		.loc 1 171 0
+ 207 00e6 019B     		ldr	r3, [sp, #4]
+ 208 00e8 1A68     		ldr	r2, [r3]
+ 209 00ea 0DF10B03 		add	r3, sp, #11
+ 210 00ee 1046     		mov	r0, r2
+ 211 00f0 2321     		movs	r1, #35
+ 212 00f2 1A46     		mov	r2, r3
+ 213 00f4 0123     		movs	r3, #1
+ 214 00f6 FFF7FEFF 		bl	Sensor_IO_Write
+ 215 00fa 0346     		mov	r3, r0
+ 216 00fc 002B     		cmp	r3, #0
+ 217 00fe 01D0     		beq	.L12
+ 218              		.loc 1 173 0
+ 219 0100 0123     		movs	r3, #1
+ 220 0102 29E0     		b	.L15
+ 221              	.L12:
+ 222              		.loc 1 177 0
+ARM GAS  /tmp/ccPuQAGd.s 			page 5
+
+
+ 223 0104 019B     		ldr	r3, [sp, #4]
+ 224 0106 1B68     		ldr	r3, [r3]
+ 225 0108 DB68     		ldr	r3, [r3, #12]
+ 226 010a 0393     		str	r3, [sp, #12]
+ 227              		.loc 1 179 0
+ 228 010c 039B     		ldr	r3, [sp, #12]
+ 229 010e 1B68     		ldr	r3, [r3]
+ 230 0110 002B     		cmp	r3, #0
+ 231 0112 0BD1     		bne	.L13
+ 232              		.loc 1 181 0
+ 233 0114 019B     		ldr	r3, [sp, #4]
+ 234 0116 1B68     		ldr	r3, [r3]
+ 235 0118 1846     		mov	r0, r3
+ 236 011a 0021     		movs	r1, #0
+ 237 011c 1422     		movs	r2, #20
+ 238 011e FFF7FEFF 		bl	memset
+ 239              		.loc 1 182 0
+ 240 0122 019B     		ldr	r3, [sp, #4]
+ 241 0124 0022     		movs	r2, #0
+ 242 0126 1A60     		str	r2, [r3]
+ 243              		.loc 1 183 0
+ 244 0128 0123     		movs	r3, #1
+ 245 012a 15E0     		b	.L15
+ 246              	.L13:
+ 247              		.loc 1 186 0
+ 248 012c 039B     		ldr	r3, [sp, #12]
+ 249 012e 1B68     		ldr	r3, [r3]
+ 250 0130 019A     		ldr	r2, [sp, #4]
+ 251 0132 1268     		ldr	r2, [r2]
+ 252 0134 1046     		mov	r0, r2
+ 253 0136 9847     		blx	r3
+ 254 0138 0346     		mov	r3, r0
+ 255 013a 012B     		cmp	r3, #1
+ 256 013c 0BD1     		bne	.L14
+ 257              		.loc 1 188 0
+ 258 013e 019B     		ldr	r3, [sp, #4]
+ 259 0140 1B68     		ldr	r3, [r3]
+ 260 0142 1846     		mov	r0, r3
+ 261 0144 0021     		movs	r1, #0
+ 262 0146 1422     		movs	r2, #20
+ 263 0148 FFF7FEFF 		bl	memset
+ 264              		.loc 1 189 0
+ 265 014c 019B     		ldr	r3, [sp, #4]
+ 266 014e 0022     		movs	r2, #0
+ 267 0150 1A60     		str	r2, [r3]
+ 268              		.loc 1 190 0
+ 269 0152 0123     		movs	r3, #1
+ 270 0154 00E0     		b	.L15
+ 271              	.L14:
+ 272              		.loc 1 193 0
+ 273 0156 0023     		movs	r3, #0
+ 274              	.L15:
+ 275              		.loc 1 194 0
+ 276 0158 1846     		mov	r0, r3
+ 277 015a 05B0     		add	sp, sp, #20
+ 278              		@ sp needed
+ 279 015c 5DF804FB 		ldr	pc, [sp], #4
+ARM GAS  /tmp/ccPuQAGd.s 			page 6
+
+
+ 280              	.L17:
+ 281              		.align	2
+ 282              	.L16:
+ 283 0160 00000000 		.word	MAGNETO_SensorHandle
+ 284 0164 14000000 		.word	MAGNETO_Data
+ 285 0168 00000000 		.word	LSM303AGR_M_Drv
+ 286 016c 1C000000 		.word	LSM303AGR_M_0_Data
+ 287 0170 00000000 		.word	LSM303AGR_Combo_Data
+ 288              		.cfi_endproc
+ 289              	.LFE126:
+ 290              		.size	BSP_LSM303AGR_MAGNETO_Init, .-BSP_LSM303AGR_MAGNETO_Init
+ 291              		.align	2
+ 292 0174 AFF30080 		.p2align 4,,15
+ 292      AFF30080 
+ 292      AFF30080 
+ 293              		.global	BSP_MAGNETO_DeInit
+ 294              		.thumb
+ 295              		.thumb_func
+ 296              		.type	BSP_MAGNETO_DeInit, %function
+ 297              	BSP_MAGNETO_DeInit:
+ 298              	.LFB127:
+ 299              		.loc 1 204 0
+ 300              		.cfi_startproc
+ 301              		@ args = 0, pretend = 0, frame = 16
+ 302              		@ frame_needed = 0, uses_anonymous_args = 0
+ 303 0180 00B5     		push	{lr}
+ 304              		.cfi_def_cfa_offset 4
+ 305              		.cfi_offset 14, -4
+ 306 0182 85B0     		sub	sp, sp, #20
+ 307              		.cfi_def_cfa_offset 24
+ 308 0184 0190     		str	r0, [sp, #4]
+ 309              		.loc 1 205 0
+ 310 0186 019B     		ldr	r3, [sp, #4]
+ 311 0188 1B68     		ldr	r3, [r3]
+ 312 018a 0393     		str	r3, [sp, #12]
+ 313              		.loc 1 206 0
+ 314 018c 0023     		movs	r3, #0
+ 315 018e 0293     		str	r3, [sp, #8]
+ 316              		.loc 1 208 0
+ 317 0190 039B     		ldr	r3, [sp, #12]
+ 318 0192 002B     		cmp	r3, #0
+ 319 0194 01D1     		bne	.L19
+ 320              		.loc 1 210 0
+ 321 0196 0123     		movs	r3, #1
+ 322 0198 1AE0     		b	.L20
+ 323              	.L19:
+ 324              		.loc 1 213 0
+ 325 019a 039B     		ldr	r3, [sp, #12]
+ 326 019c DB68     		ldr	r3, [r3, #12]
+ 327 019e 0293     		str	r3, [sp, #8]
+ 328              		.loc 1 215 0
+ 329 01a0 029B     		ldr	r3, [sp, #8]
+ 330 01a2 5B68     		ldr	r3, [r3, #4]
+ 331 01a4 002B     		cmp	r3, #0
+ 332 01a6 01D1     		bne	.L21
+ 333              		.loc 1 217 0
+ 334 01a8 0123     		movs	r3, #1
+ARM GAS  /tmp/ccPuQAGd.s 			page 7
+
+
+ 335 01aa 11E0     		b	.L20
+ 336              	.L21:
+ 337              		.loc 1 220 0
+ 338 01ac 029B     		ldr	r3, [sp, #8]
+ 339 01ae 5B68     		ldr	r3, [r3, #4]
+ 340 01b0 0398     		ldr	r0, [sp, #12]
+ 341 01b2 9847     		blx	r3
+ 342 01b4 0346     		mov	r3, r0
+ 343 01b6 012B     		cmp	r3, #1
+ 344 01b8 01D1     		bne	.L22
+ 345              		.loc 1 222 0
+ 346 01ba 0123     		movs	r3, #1
+ 347 01bc 08E0     		b	.L20
+ 348              	.L22:
+ 349              		.loc 1 225 0
+ 350 01be 0398     		ldr	r0, [sp, #12]
+ 351 01c0 0021     		movs	r1, #0
+ 352 01c2 1422     		movs	r2, #20
+ 353 01c4 FFF7FEFF 		bl	memset
+ 354              		.loc 1 227 0
+ 355 01c8 019B     		ldr	r3, [sp, #4]
+ 356 01ca 0022     		movs	r2, #0
+ 357 01cc 1A60     		str	r2, [r3]
+ 358              		.loc 1 229 0
+ 359 01ce 0023     		movs	r3, #0
+ 360              	.L20:
+ 361              		.loc 1 230 0
+ 362 01d0 1846     		mov	r0, r3
+ 363 01d2 05B0     		add	sp, sp, #20
+ 364              		@ sp needed
+ 365 01d4 5DF804FB 		ldr	pc, [sp], #4
+ 366              		.cfi_endproc
+ 367              	.LFE127:
+ 368              		.size	BSP_MAGNETO_DeInit, .-BSP_MAGNETO_DeInit
+ 369              		.align	2
+ 370 01d8 AFF30080 		.p2align 4,,15
+ 370      AFF30080 
+ 371              		.global	BSP_MAGNETO_Sensor_Enable
+ 372              		.thumb
+ 373              		.thumb_func
+ 374              		.type	BSP_MAGNETO_Sensor_Enable, %function
+ 375              	BSP_MAGNETO_Sensor_Enable:
+ 376              	.LFB128:
+ 377              		.loc 1 240 0
+ 378              		.cfi_startproc
+ 379              		@ args = 0, pretend = 0, frame = 16
+ 380              		@ frame_needed = 0, uses_anonymous_args = 0
+ 381 01e0 00B5     		push	{lr}
+ 382              		.cfi_def_cfa_offset 4
+ 383              		.cfi_offset 14, -4
+ 384 01e2 85B0     		sub	sp, sp, #20
+ 385              		.cfi_def_cfa_offset 24
+ 386 01e4 0190     		str	r0, [sp, #4]
+ 387              		.loc 1 242 0
+ 388 01e6 019B     		ldr	r3, [sp, #4]
+ 389 01e8 0393     		str	r3, [sp, #12]
+ 390              		.loc 1 243 0
+ARM GAS  /tmp/ccPuQAGd.s 			page 8
+
+
+ 391 01ea 0023     		movs	r3, #0
+ 392 01ec 0293     		str	r3, [sp, #8]
+ 393              		.loc 1 245 0
+ 394 01ee 039B     		ldr	r3, [sp, #12]
+ 395 01f0 002B     		cmp	r3, #0
+ 396 01f2 01D1     		bne	.L24
+ 397              		.loc 1 247 0
+ 398 01f4 0123     		movs	r3, #1
+ 399 01f6 12E0     		b	.L25
+ 400              	.L24:
+ 401              		.loc 1 250 0
+ 402 01f8 039B     		ldr	r3, [sp, #12]
+ 403 01fa DB68     		ldr	r3, [r3, #12]
+ 404 01fc 0293     		str	r3, [sp, #8]
+ 405              		.loc 1 252 0
+ 406 01fe 029B     		ldr	r3, [sp, #8]
+ 407 0200 9B68     		ldr	r3, [r3, #8]
+ 408 0202 002B     		cmp	r3, #0
+ 409 0204 01D1     		bne	.L26
+ 410              		.loc 1 254 0
+ 411 0206 0123     		movs	r3, #1
+ 412 0208 09E0     		b	.L25
+ 413              	.L26:
+ 414              		.loc 1 257 0
+ 415 020a 029B     		ldr	r3, [sp, #8]
+ 416 020c 9B68     		ldr	r3, [r3, #8]
+ 417 020e 0398     		ldr	r0, [sp, #12]
+ 418 0210 9847     		blx	r3
+ 419 0212 0346     		mov	r3, r0
+ 420 0214 012B     		cmp	r3, #1
+ 421 0216 01D1     		bne	.L27
+ 422              		.loc 1 259 0
+ 423 0218 0123     		movs	r3, #1
+ 424 021a 00E0     		b	.L25
+ 425              	.L27:
+ 426              		.loc 1 262 0
+ 427 021c 0023     		movs	r3, #0
+ 428              	.L25:
+ 429              		.loc 1 263 0
+ 430 021e 1846     		mov	r0, r3
+ 431 0220 05B0     		add	sp, sp, #20
+ 432              		@ sp needed
+ 433 0222 5DF804FB 		ldr	pc, [sp], #4
+ 434              		.cfi_endproc
+ 435              	.LFE128:
+ 436              		.size	BSP_MAGNETO_Sensor_Enable, .-BSP_MAGNETO_Sensor_Enable
+ 437 0226 00BF     		.align	2
+ 438 0228 AFF30080 		.p2align 4,,15
+ 438      AFF30080 
+ 439              		.global	BSP_MAGNETO_Sensor_Disable
+ 440              		.thumb
+ 441              		.thumb_func
+ 442              		.type	BSP_MAGNETO_Sensor_Disable, %function
+ 443              	BSP_MAGNETO_Sensor_Disable:
+ 444              	.LFB129:
+ 445              		.loc 1 274 0
+ 446              		.cfi_startproc
+ARM GAS  /tmp/ccPuQAGd.s 			page 9
+
+
+ 447              		@ args = 0, pretend = 0, frame = 16
+ 448              		@ frame_needed = 0, uses_anonymous_args = 0
+ 449 0230 00B5     		push	{lr}
+ 450              		.cfi_def_cfa_offset 4
+ 451              		.cfi_offset 14, -4
+ 452 0232 85B0     		sub	sp, sp, #20
+ 453              		.cfi_def_cfa_offset 24
+ 454 0234 0190     		str	r0, [sp, #4]
+ 455              		.loc 1 276 0
+ 456 0236 019B     		ldr	r3, [sp, #4]
+ 457 0238 0393     		str	r3, [sp, #12]
+ 458              		.loc 1 277 0
+ 459 023a 0023     		movs	r3, #0
+ 460 023c 0293     		str	r3, [sp, #8]
+ 461              		.loc 1 279 0
+ 462 023e 039B     		ldr	r3, [sp, #12]
+ 463 0240 002B     		cmp	r3, #0
+ 464 0242 01D1     		bne	.L29
+ 465              		.loc 1 281 0
+ 466 0244 0123     		movs	r3, #1
+ 467 0246 12E0     		b	.L30
+ 468              	.L29:
+ 469              		.loc 1 284 0
+ 470 0248 039B     		ldr	r3, [sp, #12]
+ 471 024a DB68     		ldr	r3, [r3, #12]
+ 472 024c 0293     		str	r3, [sp, #8]
+ 473              		.loc 1 286 0
+ 474 024e 029B     		ldr	r3, [sp, #8]
+ 475 0250 DB68     		ldr	r3, [r3, #12]
+ 476 0252 002B     		cmp	r3, #0
+ 477 0254 01D1     		bne	.L31
+ 478              		.loc 1 288 0
+ 479 0256 0123     		movs	r3, #1
+ 480 0258 09E0     		b	.L30
+ 481              	.L31:
+ 482              		.loc 1 291 0
+ 483 025a 029B     		ldr	r3, [sp, #8]
+ 484 025c DB68     		ldr	r3, [r3, #12]
+ 485 025e 0398     		ldr	r0, [sp, #12]
+ 486 0260 9847     		blx	r3
+ 487 0262 0346     		mov	r3, r0
+ 488 0264 012B     		cmp	r3, #1
+ 489 0266 01D1     		bne	.L32
+ 490              		.loc 1 293 0
+ 491 0268 0123     		movs	r3, #1
+ 492 026a 00E0     		b	.L30
+ 493              	.L32:
+ 494              		.loc 1 296 0
+ 495 026c 0023     		movs	r3, #0
+ 496              	.L30:
+ 497              		.loc 1 297 0
+ 498 026e 1846     		mov	r0, r3
+ 499 0270 05B0     		add	sp, sp, #20
+ 500              		@ sp needed
+ 501 0272 5DF804FB 		ldr	pc, [sp], #4
+ 502              		.cfi_endproc
+ 503              	.LFE129:
+ARM GAS  /tmp/ccPuQAGd.s 			page 10
+
+
+ 504              		.size	BSP_MAGNETO_Sensor_Disable, .-BSP_MAGNETO_Sensor_Disable
+ 505 0276 00BF     		.align	2
+ 506 0278 AFF30080 		.p2align 4,,15
+ 506      AFF30080 
+ 507              		.global	BSP_MAGNETO_IsInitialized
+ 508              		.thumb
+ 509              		.thumb_func
+ 510              		.type	BSP_MAGNETO_IsInitialized, %function
+ 511              	BSP_MAGNETO_IsInitialized:
+ 512              	.LFB130:
+ 513              		.loc 1 308 0
+ 514              		.cfi_startproc
+ 515              		@ args = 0, pretend = 0, frame = 16
+ 516              		@ frame_needed = 0, uses_anonymous_args = 0
+ 517              		@ link register save eliminated.
+ 518 0280 84B0     		sub	sp, sp, #16
+ 519              		.cfi_def_cfa_offset 16
+ 520 0282 0190     		str	r0, [sp, #4]
+ 521 0284 0091     		str	r1, [sp]
+ 522              		.loc 1 309 0
+ 523 0286 019B     		ldr	r3, [sp, #4]
+ 524 0288 0393     		str	r3, [sp, #12]
+ 525              		.loc 1 311 0
+ 526 028a 039B     		ldr	r3, [sp, #12]
+ 527 028c 002B     		cmp	r3, #0
+ 528 028e 01D1     		bne	.L34
+ 529              		.loc 1 313 0
+ 530 0290 0123     		movs	r3, #1
+ 531 0292 09E0     		b	.L35
+ 532              	.L34:
+ 533              		.loc 1 316 0
+ 534 0294 009B     		ldr	r3, [sp]
+ 535 0296 002B     		cmp	r3, #0
+ 536 0298 01D1     		bne	.L36
+ 537              		.loc 1 318 0
+ 538 029a 0123     		movs	r3, #1
+ 539 029c 04E0     		b	.L35
+ 540              	.L36:
+ 541              		.loc 1 321 0
+ 542 029e 039B     		ldr	r3, [sp, #12]
+ 543 02a0 5A79     		ldrb	r2, [r3, #5]	@ zero_extendqisi2
+ 544 02a2 009B     		ldr	r3, [sp]
+ 545 02a4 1A70     		strb	r2, [r3]
+ 546              		.loc 1 323 0
+ 547 02a6 0023     		movs	r3, #0
+ 548              	.L35:
+ 549              		.loc 1 324 0
+ 550 02a8 1846     		mov	r0, r3
+ 551 02aa 04B0     		add	sp, sp, #16
+ 552              		@ sp needed
+ 553 02ac 7047     		bx	lr
+ 554              		.cfi_endproc
+ 555              	.LFE130:
+ 556              		.size	BSP_MAGNETO_IsInitialized, .-BSP_MAGNETO_IsInitialized
+ 557 02ae 00BF     		.align	2
+ 558              		.p2align 4,,15
+ 559              		.global	BSP_MAGNETO_IsEnabled
+ARM GAS  /tmp/ccPuQAGd.s 			page 11
+
+
+ 560              		.thumb
+ 561              		.thumb_func
+ 562              		.type	BSP_MAGNETO_IsEnabled, %function
+ 563              	BSP_MAGNETO_IsEnabled:
+ 564              	.LFB131:
+ 565              		.loc 1 335 0
+ 566              		.cfi_startproc
+ 567              		@ args = 0, pretend = 0, frame = 16
+ 568              		@ frame_needed = 0, uses_anonymous_args = 0
+ 569              		@ link register save eliminated.
+ 570 02b0 84B0     		sub	sp, sp, #16
+ 571              		.cfi_def_cfa_offset 16
+ 572 02b2 0190     		str	r0, [sp, #4]
+ 573 02b4 0091     		str	r1, [sp]
+ 574              		.loc 1 336 0
+ 575 02b6 019B     		ldr	r3, [sp, #4]
+ 576 02b8 0393     		str	r3, [sp, #12]
+ 577              		.loc 1 338 0
+ 578 02ba 039B     		ldr	r3, [sp, #12]
+ 579 02bc 002B     		cmp	r3, #0
+ 580 02be 01D1     		bne	.L38
+ 581              		.loc 1 340 0
+ 582 02c0 0123     		movs	r3, #1
+ 583 02c2 09E0     		b	.L39
+ 584              	.L38:
+ 585              		.loc 1 343 0
+ 586 02c4 009B     		ldr	r3, [sp]
+ 587 02c6 002B     		cmp	r3, #0
+ 588 02c8 01D1     		bne	.L40
+ 589              		.loc 1 345 0
+ 590 02ca 0123     		movs	r3, #1
+ 591 02cc 04E0     		b	.L39
+ 592              	.L40:
+ 593              		.loc 1 348 0
+ 594 02ce 039B     		ldr	r3, [sp, #12]
+ 595 02d0 9A79     		ldrb	r2, [r3, #6]	@ zero_extendqisi2
+ 596 02d2 009B     		ldr	r3, [sp]
+ 597 02d4 1A70     		strb	r2, [r3]
+ 598              		.loc 1 350 0
+ 599 02d6 0023     		movs	r3, #0
+ 600              	.L39:
+ 601              		.loc 1 351 0
+ 602 02d8 1846     		mov	r0, r3
+ 603 02da 04B0     		add	sp, sp, #16
+ 604              		@ sp needed
+ 605 02dc 7047     		bx	lr
+ 606              		.cfi_endproc
+ 607              	.LFE131:
+ 608              		.size	BSP_MAGNETO_IsEnabled, .-BSP_MAGNETO_IsEnabled
+ 609 02de 00BF     		.align	2
+ 610              		.p2align 4,,15
+ 611              		.global	BSP_MAGNETO_IsCombo
+ 612              		.thumb
+ 613              		.thumb_func
+ 614              		.type	BSP_MAGNETO_IsCombo, %function
+ 615              	BSP_MAGNETO_IsCombo:
+ 616              	.LFB132:
+ARM GAS  /tmp/ccPuQAGd.s 			page 12
+
+
+ 617              		.loc 1 362 0
+ 618              		.cfi_startproc
+ 619              		@ args = 0, pretend = 0, frame = 16
+ 620              		@ frame_needed = 0, uses_anonymous_args = 0
+ 621              		@ link register save eliminated.
+ 622 02e0 84B0     		sub	sp, sp, #16
+ 623              		.cfi_def_cfa_offset 16
+ 624 02e2 0190     		str	r0, [sp, #4]
+ 625 02e4 0091     		str	r1, [sp]
+ 626              		.loc 1 363 0
+ 627 02e6 019B     		ldr	r3, [sp, #4]
+ 628 02e8 0393     		str	r3, [sp, #12]
+ 629              		.loc 1 365 0
+ 630 02ea 039B     		ldr	r3, [sp, #12]
+ 631 02ec 002B     		cmp	r3, #0
+ 632 02ee 01D1     		bne	.L42
+ 633              		.loc 1 367 0
+ 634 02f0 0123     		movs	r3, #1
+ 635 02f2 09E0     		b	.L43
+ 636              	.L42:
+ 637              		.loc 1 370 0
+ 638 02f4 009B     		ldr	r3, [sp]
+ 639 02f6 002B     		cmp	r3, #0
+ 640 02f8 01D1     		bne	.L44
+ 641              		.loc 1 372 0
+ 642 02fa 0123     		movs	r3, #1
+ 643 02fc 04E0     		b	.L43
+ 644              	.L44:
+ 645              		.loc 1 375 0
+ 646 02fe 039B     		ldr	r3, [sp, #12]
+ 647 0300 DA79     		ldrb	r2, [r3, #7]	@ zero_extendqisi2
+ 648 0302 009B     		ldr	r3, [sp]
+ 649 0304 1A70     		strb	r2, [r3]
+ 650              		.loc 1 377 0
+ 651 0306 0023     		movs	r3, #0
+ 652              	.L43:
+ 653              		.loc 1 378 0
+ 654 0308 1846     		mov	r0, r3
+ 655 030a 04B0     		add	sp, sp, #16
+ 656              		@ sp needed
+ 657 030c 7047     		bx	lr
+ 658              		.cfi_endproc
+ 659              	.LFE132:
+ 660              		.size	BSP_MAGNETO_IsCombo, .-BSP_MAGNETO_IsCombo
+ 661 030e 00BF     		.align	2
+ 662              		.p2align 4,,15
+ 663              		.global	BSP_MAGNETO_Get_Instance
+ 664              		.thumb
+ 665              		.thumb_func
+ 666              		.type	BSP_MAGNETO_Get_Instance, %function
+ 667              	BSP_MAGNETO_Get_Instance:
+ 668              	.LFB133:
+ 669              		.loc 1 389 0
+ 670              		.cfi_startproc
+ 671              		@ args = 0, pretend = 0, frame = 16
+ 672              		@ frame_needed = 0, uses_anonymous_args = 0
+ 673              		@ link register save eliminated.
+ARM GAS  /tmp/ccPuQAGd.s 			page 13
+
+
+ 674 0310 84B0     		sub	sp, sp, #16
+ 675              		.cfi_def_cfa_offset 16
+ 676 0312 0190     		str	r0, [sp, #4]
+ 677 0314 0091     		str	r1, [sp]
+ 678              		.loc 1 390 0
+ 679 0316 019B     		ldr	r3, [sp, #4]
+ 680 0318 0393     		str	r3, [sp, #12]
+ 681              		.loc 1 392 0
+ 682 031a 039B     		ldr	r3, [sp, #12]
+ 683 031c 002B     		cmp	r3, #0
+ 684 031e 01D1     		bne	.L46
+ 685              		.loc 1 394 0
+ 686 0320 0123     		movs	r3, #1
+ 687 0322 09E0     		b	.L47
+ 688              	.L46:
+ 689              		.loc 1 397 0
+ 690 0324 009B     		ldr	r3, [sp]
+ 691 0326 002B     		cmp	r3, #0
+ 692 0328 01D1     		bne	.L48
+ 693              		.loc 1 399 0
+ 694 032a 0123     		movs	r3, #1
+ 695 032c 04E0     		b	.L47
+ 696              	.L48:
+ 697              		.loc 1 402 0
+ 698 032e 039B     		ldr	r3, [sp, #12]
+ 699 0330 1A79     		ldrb	r2, [r3, #4]	@ zero_extendqisi2
+ 700 0332 009B     		ldr	r3, [sp]
+ 701 0334 1A70     		strb	r2, [r3]
+ 702              		.loc 1 404 0
+ 703 0336 0023     		movs	r3, #0
+ 704              	.L47:
+ 705              		.loc 1 405 0
+ 706 0338 1846     		mov	r0, r3
+ 707 033a 04B0     		add	sp, sp, #16
+ 708              		@ sp needed
+ 709 033c 7047     		bx	lr
+ 710              		.cfi_endproc
+ 711              	.LFE133:
+ 712              		.size	BSP_MAGNETO_Get_Instance, .-BSP_MAGNETO_Get_Instance
+ 713 033e 00BF     		.align	2
+ 714              		.p2align 4,,15
+ 715              		.global	BSP_MAGNETO_Get_WhoAmI
+ 716              		.thumb
+ 717              		.thumb_func
+ 718              		.type	BSP_MAGNETO_Get_WhoAmI, %function
+ 719              	BSP_MAGNETO_Get_WhoAmI:
+ 720              	.LFB134:
+ 721              		.loc 1 417 0
+ 722              		.cfi_startproc
+ 723              		@ args = 0, pretend = 0, frame = 16
+ 724              		@ frame_needed = 0, uses_anonymous_args = 0
+ 725 0340 00B5     		push	{lr}
+ 726              		.cfi_def_cfa_offset 4
+ 727              		.cfi_offset 14, -4
+ 728 0342 85B0     		sub	sp, sp, #20
+ 729              		.cfi_def_cfa_offset 24
+ 730 0344 0190     		str	r0, [sp, #4]
+ARM GAS  /tmp/ccPuQAGd.s 			page 14
+
+
+ 731 0346 0091     		str	r1, [sp]
+ 732              		.loc 1 419 0
+ 733 0348 019B     		ldr	r3, [sp, #4]
+ 734 034a 0393     		str	r3, [sp, #12]
+ 735              		.loc 1 420 0
+ 736 034c 0023     		movs	r3, #0
+ 737 034e 0293     		str	r3, [sp, #8]
+ 738              		.loc 1 422 0
+ 739 0350 039B     		ldr	r3, [sp, #12]
+ 740 0352 002B     		cmp	r3, #0
+ 741 0354 01D1     		bne	.L50
+ 742              		.loc 1 424 0
+ 743 0356 0123     		movs	r3, #1
+ 744 0358 18E0     		b	.L51
+ 745              	.L50:
+ 746              		.loc 1 427 0
+ 747 035a 039B     		ldr	r3, [sp, #12]
+ 748 035c DB68     		ldr	r3, [r3, #12]
+ 749 035e 0293     		str	r3, [sp, #8]
+ 750              		.loc 1 429 0
+ 751 0360 009B     		ldr	r3, [sp]
+ 752 0362 002B     		cmp	r3, #0
+ 753 0364 01D1     		bne	.L52
+ 754              		.loc 1 431 0
+ 755 0366 0123     		movs	r3, #1
+ 756 0368 10E0     		b	.L51
+ 757              	.L52:
+ 758              		.loc 1 433 0
+ 759 036a 029B     		ldr	r3, [sp, #8]
+ 760 036c 1B69     		ldr	r3, [r3, #16]
+ 761 036e 002B     		cmp	r3, #0
+ 762 0370 01D1     		bne	.L53
+ 763              		.loc 1 435 0
+ 764 0372 0123     		movs	r3, #1
+ 765 0374 0AE0     		b	.L51
+ 766              	.L53:
+ 767              		.loc 1 437 0
+ 768 0376 029B     		ldr	r3, [sp, #8]
+ 769 0378 1B69     		ldr	r3, [r3, #16]
+ 770 037a 0398     		ldr	r0, [sp, #12]
+ 771 037c 0099     		ldr	r1, [sp]
+ 772 037e 9847     		blx	r3
+ 773 0380 0346     		mov	r3, r0
+ 774 0382 012B     		cmp	r3, #1
+ 775 0384 01D1     		bne	.L54
+ 776              		.loc 1 439 0
+ 777 0386 0123     		movs	r3, #1
+ 778 0388 00E0     		b	.L51
+ 779              	.L54:
+ 780              		.loc 1 442 0
+ 781 038a 0023     		movs	r3, #0
+ 782              	.L51:
+ 783              		.loc 1 443 0
+ 784 038c 1846     		mov	r0, r3
+ 785 038e 05B0     		add	sp, sp, #20
+ 786              		@ sp needed
+ 787 0390 5DF804FB 		ldr	pc, [sp], #4
+ARM GAS  /tmp/ccPuQAGd.s 			page 15
+
+
+ 788              		.cfi_endproc
+ 789              	.LFE134:
+ 790              		.size	BSP_MAGNETO_Get_WhoAmI, .-BSP_MAGNETO_Get_WhoAmI
+ 791              		.align	2
+ 792 0394 AFF30080 		.p2align 4,,15
+ 792      AFF30080 
+ 792      AFF30080 
+ 793              		.global	BSP_MAGNETO_Check_WhoAmI
+ 794              		.thumb
+ 795              		.thumb_func
+ 796              		.type	BSP_MAGNETO_Check_WhoAmI, %function
+ 797              	BSP_MAGNETO_Check_WhoAmI:
+ 798              	.LFB135:
+ 799              		.loc 1 454 0
+ 800              		.cfi_startproc
+ 801              		@ args = 0, pretend = 0, frame = 16
+ 802              		@ frame_needed = 0, uses_anonymous_args = 0
+ 803 03a0 00B5     		push	{lr}
+ 804              		.cfi_def_cfa_offset 4
+ 805              		.cfi_offset 14, -4
+ 806 03a2 85B0     		sub	sp, sp, #20
+ 807              		.cfi_def_cfa_offset 24
+ 808 03a4 0190     		str	r0, [sp, #4]
+ 809              		.loc 1 456 0
+ 810 03a6 019B     		ldr	r3, [sp, #4]
+ 811 03a8 0393     		str	r3, [sp, #12]
+ 812              		.loc 1 457 0
+ 813 03aa 0023     		movs	r3, #0
+ 814 03ac 0293     		str	r3, [sp, #8]
+ 815              		.loc 1 459 0
+ 816 03ae 039B     		ldr	r3, [sp, #12]
+ 817 03b0 002B     		cmp	r3, #0
+ 818 03b2 01D1     		bne	.L56
+ 819              		.loc 1 461 0
+ 820 03b4 0123     		movs	r3, #1
+ 821 03b6 12E0     		b	.L57
+ 822              	.L56:
+ 823              		.loc 1 464 0
+ 824 03b8 039B     		ldr	r3, [sp, #12]
+ 825 03ba DB68     		ldr	r3, [r3, #12]
+ 826 03bc 0293     		str	r3, [sp, #8]
+ 827              		.loc 1 466 0
+ 828 03be 029B     		ldr	r3, [sp, #8]
+ 829 03c0 5B69     		ldr	r3, [r3, #20]
+ 830 03c2 002B     		cmp	r3, #0
+ 831 03c4 01D1     		bne	.L58
+ 832              		.loc 1 468 0
+ 833 03c6 0123     		movs	r3, #1
+ 834 03c8 09E0     		b	.L57
+ 835              	.L58:
+ 836              		.loc 1 470 0
+ 837 03ca 029B     		ldr	r3, [sp, #8]
+ 838 03cc 5B69     		ldr	r3, [r3, #20]
+ 839 03ce 0398     		ldr	r0, [sp, #12]
+ 840 03d0 9847     		blx	r3
+ 841 03d2 0346     		mov	r3, r0
+ 842 03d4 012B     		cmp	r3, #1
+ARM GAS  /tmp/ccPuQAGd.s 			page 16
+
+
+ 843 03d6 01D1     		bne	.L59
+ 844              		.loc 1 472 0
+ 845 03d8 0123     		movs	r3, #1
+ 846 03da 00E0     		b	.L57
+ 847              	.L59:
+ 848              		.loc 1 475 0
+ 849 03dc 0023     		movs	r3, #0
+ 850              	.L57:
+ 851              		.loc 1 476 0
+ 852 03de 1846     		mov	r0, r3
+ 853 03e0 05B0     		add	sp, sp, #20
+ 854              		@ sp needed
+ 855 03e2 5DF804FB 		ldr	pc, [sp], #4
+ 856              		.cfi_endproc
+ 857              	.LFE135:
+ 858              		.size	BSP_MAGNETO_Check_WhoAmI, .-BSP_MAGNETO_Check_WhoAmI
+ 859 03e6 00BF     		.align	2
+ 860 03e8 AFF30080 		.p2align 4,,15
+ 860      AFF30080 
+ 861              		.global	BSP_MAGNETO_Get_Axes
+ 862              		.thumb
+ 863              		.thumb_func
+ 864              		.type	BSP_MAGNETO_Get_Axes, %function
+ 865              	BSP_MAGNETO_Get_Axes:
+ 866              	.LFB136:
+ 867              		.loc 1 488 0
+ 868              		.cfi_startproc
+ 869              		@ args = 0, pretend = 0, frame = 16
+ 870              		@ frame_needed = 0, uses_anonymous_args = 0
+ 871 03f0 00B5     		push	{lr}
+ 872              		.cfi_def_cfa_offset 4
+ 873              		.cfi_offset 14, -4
+ 874 03f2 85B0     		sub	sp, sp, #20
+ 875              		.cfi_def_cfa_offset 24
+ 876 03f4 0190     		str	r0, [sp, #4]
+ 877 03f6 0091     		str	r1, [sp]
+ 878              		.loc 1 490 0
+ 879 03f8 019B     		ldr	r3, [sp, #4]
+ 880 03fa 0393     		str	r3, [sp, #12]
+ 881              		.loc 1 491 0
+ 882 03fc 0023     		movs	r3, #0
+ 883 03fe 0293     		str	r3, [sp, #8]
+ 884              		.loc 1 493 0
+ 885 0400 039B     		ldr	r3, [sp, #12]
+ 886 0402 002B     		cmp	r3, #0
+ 887 0404 01D1     		bne	.L61
+ 888              		.loc 1 495 0
+ 889 0406 0123     		movs	r3, #1
+ 890 0408 18E0     		b	.L62
+ 891              	.L61:
+ 892              		.loc 1 498 0
+ 893 040a 039B     		ldr	r3, [sp, #12]
+ 894 040c DB68     		ldr	r3, [r3, #12]
+ 895 040e 0293     		str	r3, [sp, #8]
+ 896              		.loc 1 500 0
+ 897 0410 009B     		ldr	r3, [sp]
+ 898 0412 002B     		cmp	r3, #0
+ARM GAS  /tmp/ccPuQAGd.s 			page 17
+
+
+ 899 0414 01D1     		bne	.L63
+ 900              		.loc 1 502 0
+ 901 0416 0123     		movs	r3, #1
+ 902 0418 10E0     		b	.L62
+ 903              	.L63:
+ 904              		.loc 1 504 0
+ 905 041a 029B     		ldr	r3, [sp, #8]
+ 906 041c 9B69     		ldr	r3, [r3, #24]
+ 907 041e 002B     		cmp	r3, #0
+ 908 0420 01D1     		bne	.L64
+ 909              		.loc 1 506 0
+ 910 0422 0123     		movs	r3, #1
+ 911 0424 0AE0     		b	.L62
+ 912              	.L64:
+ 913              		.loc 1 508 0
+ 914 0426 029B     		ldr	r3, [sp, #8]
+ 915 0428 9B69     		ldr	r3, [r3, #24]
+ 916 042a 0398     		ldr	r0, [sp, #12]
+ 917 042c 0099     		ldr	r1, [sp]
+ 918 042e 9847     		blx	r3
+ 919 0430 0346     		mov	r3, r0
+ 920 0432 012B     		cmp	r3, #1
+ 921 0434 01D1     		bne	.L65
+ 922              		.loc 1 510 0
+ 923 0436 0123     		movs	r3, #1
+ 924 0438 00E0     		b	.L62
+ 925              	.L65:
+ 926              		.loc 1 513 0
+ 927 043a 0023     		movs	r3, #0
+ 928              	.L62:
+ 929              		.loc 1 514 0
+ 930 043c 1846     		mov	r0, r3
+ 931 043e 05B0     		add	sp, sp, #20
+ 932              		@ sp needed
+ 933 0440 5DF804FB 		ldr	pc, [sp], #4
+ 934              		.cfi_endproc
+ 935              	.LFE136:
+ 936              		.size	BSP_MAGNETO_Get_Axes, .-BSP_MAGNETO_Get_Axes
+ 937              		.align	2
+ 938 0444 AFF30080 		.p2align 4,,15
+ 938      AFF30080 
+ 938      AFF30080 
+ 939              		.global	BSP_MAGNETO_Get_AxesRaw
+ 940              		.thumb
+ 941              		.thumb_func
+ 942              		.type	BSP_MAGNETO_Get_AxesRaw, %function
+ 943              	BSP_MAGNETO_Get_AxesRaw:
+ 944              	.LFB137:
+ 945              		.loc 1 526 0
+ 946              		.cfi_startproc
+ 947              		@ args = 0, pretend = 0, frame = 16
+ 948              		@ frame_needed = 0, uses_anonymous_args = 0
+ 949 0450 00B5     		push	{lr}
+ 950              		.cfi_def_cfa_offset 4
+ 951              		.cfi_offset 14, -4
+ 952 0452 85B0     		sub	sp, sp, #20
+ 953              		.cfi_def_cfa_offset 24
+ARM GAS  /tmp/ccPuQAGd.s 			page 18
+
+
+ 954 0454 0190     		str	r0, [sp, #4]
+ 955 0456 0091     		str	r1, [sp]
+ 956              		.loc 1 528 0
+ 957 0458 019B     		ldr	r3, [sp, #4]
+ 958 045a 0393     		str	r3, [sp, #12]
+ 959              		.loc 1 529 0
+ 960 045c 0023     		movs	r3, #0
+ 961 045e 0293     		str	r3, [sp, #8]
+ 962              		.loc 1 531 0
+ 963 0460 039B     		ldr	r3, [sp, #12]
+ 964 0462 002B     		cmp	r3, #0
+ 965 0464 01D1     		bne	.L67
+ 966              		.loc 1 533 0
+ 967 0466 0123     		movs	r3, #1
+ 968 0468 18E0     		b	.L68
+ 969              	.L67:
+ 970              		.loc 1 536 0
+ 971 046a 039B     		ldr	r3, [sp, #12]
+ 972 046c DB68     		ldr	r3, [r3, #12]
+ 973 046e 0293     		str	r3, [sp, #8]
+ 974              		.loc 1 538 0
+ 975 0470 009B     		ldr	r3, [sp]
+ 976 0472 002B     		cmp	r3, #0
+ 977 0474 01D1     		bne	.L69
+ 978              		.loc 1 540 0
+ 979 0476 0123     		movs	r3, #1
+ 980 0478 10E0     		b	.L68
+ 981              	.L69:
+ 982              		.loc 1 543 0
+ 983 047a 029B     		ldr	r3, [sp, #8]
+ 984 047c DB69     		ldr	r3, [r3, #28]
+ 985 047e 002B     		cmp	r3, #0
+ 986 0480 01D1     		bne	.L70
+ 987              		.loc 1 545 0
+ 988 0482 0123     		movs	r3, #1
+ 989 0484 0AE0     		b	.L68
+ 990              	.L70:
+ 991              		.loc 1 548 0
+ 992 0486 029B     		ldr	r3, [sp, #8]
+ 993 0488 DB69     		ldr	r3, [r3, #28]
+ 994 048a 0398     		ldr	r0, [sp, #12]
+ 995 048c 0099     		ldr	r1, [sp]
+ 996 048e 9847     		blx	r3
+ 997 0490 0346     		mov	r3, r0
+ 998 0492 012B     		cmp	r3, #1
+ 999 0494 01D1     		bne	.L71
+ 1000              		.loc 1 550 0
+ 1001 0496 0123     		movs	r3, #1
+ 1002 0498 00E0     		b	.L68
+ 1003              	.L71:
+ 1004              		.loc 1 553 0
+ 1005 049a 0023     		movs	r3, #0
+ 1006              	.L68:
+ 1007              		.loc 1 554 0
+ 1008 049c 1846     		mov	r0, r3
+ 1009 049e 05B0     		add	sp, sp, #20
+ 1010              		@ sp needed
+ARM GAS  /tmp/ccPuQAGd.s 			page 19
+
+
+ 1011 04a0 5DF804FB 		ldr	pc, [sp], #4
+ 1012              		.cfi_endproc
+ 1013              	.LFE137:
+ 1014              		.size	BSP_MAGNETO_Get_AxesRaw, .-BSP_MAGNETO_Get_AxesRaw
+ 1015              		.align	2
+ 1016 04a4 AFF30080 		.p2align 4,,15
+ 1016      AFF30080 
+ 1016      AFF30080 
+ 1017              		.global	BSP_MAGNETO_Get_Sensitivity
+ 1018              		.thumb
+ 1019              		.thumb_func
+ 1020              		.type	BSP_MAGNETO_Get_Sensitivity, %function
+ 1021              	BSP_MAGNETO_Get_Sensitivity:
+ 1022              	.LFB138:
+ 1023              		.loc 1 567 0
+ 1024              		.cfi_startproc
+ 1025              		@ args = 0, pretend = 0, frame = 16
+ 1026              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1027 04b0 00B5     		push	{lr}
+ 1028              		.cfi_def_cfa_offset 4
+ 1029              		.cfi_offset 14, -4
+ 1030 04b2 85B0     		sub	sp, sp, #20
+ 1031              		.cfi_def_cfa_offset 24
+ 1032 04b4 0190     		str	r0, [sp, #4]
+ 1033 04b6 0091     		str	r1, [sp]
+ 1034              		.loc 1 569 0
+ 1035 04b8 019B     		ldr	r3, [sp, #4]
+ 1036 04ba 0393     		str	r3, [sp, #12]
+ 1037              		.loc 1 570 0
+ 1038 04bc 0023     		movs	r3, #0
+ 1039 04be 0293     		str	r3, [sp, #8]
+ 1040              		.loc 1 572 0
+ 1041 04c0 039B     		ldr	r3, [sp, #12]
+ 1042 04c2 002B     		cmp	r3, #0
+ 1043 04c4 01D1     		bne	.L73
+ 1044              		.loc 1 574 0
+ 1045 04c6 0123     		movs	r3, #1
+ 1046 04c8 18E0     		b	.L74
+ 1047              	.L73:
+ 1048              		.loc 1 577 0
+ 1049 04ca 039B     		ldr	r3, [sp, #12]
+ 1050 04cc DB68     		ldr	r3, [r3, #12]
+ 1051 04ce 0293     		str	r3, [sp, #8]
+ 1052              		.loc 1 579 0
+ 1053 04d0 009B     		ldr	r3, [sp]
+ 1054 04d2 002B     		cmp	r3, #0
+ 1055 04d4 01D1     		bne	.L75
+ 1056              		.loc 1 581 0
+ 1057 04d6 0123     		movs	r3, #1
+ 1058 04d8 10E0     		b	.L74
+ 1059              	.L75:
+ 1060              		.loc 1 583 0
+ 1061 04da 029B     		ldr	r3, [sp, #8]
+ 1062 04dc 1B6A     		ldr	r3, [r3, #32]
+ 1063 04de 002B     		cmp	r3, #0
+ 1064 04e0 01D1     		bne	.L76
+ 1065              		.loc 1 585 0
+ARM GAS  /tmp/ccPuQAGd.s 			page 20
+
+
+ 1066 04e2 0123     		movs	r3, #1
+ 1067 04e4 0AE0     		b	.L74
+ 1068              	.L76:
+ 1069              		.loc 1 587 0
+ 1070 04e6 029B     		ldr	r3, [sp, #8]
+ 1071 04e8 1B6A     		ldr	r3, [r3, #32]
+ 1072 04ea 0398     		ldr	r0, [sp, #12]
+ 1073 04ec 0099     		ldr	r1, [sp]
+ 1074 04ee 9847     		blx	r3
+ 1075 04f0 0346     		mov	r3, r0
+ 1076 04f2 012B     		cmp	r3, #1
+ 1077 04f4 01D1     		bne	.L77
+ 1078              		.loc 1 589 0
+ 1079 04f6 0123     		movs	r3, #1
+ 1080 04f8 00E0     		b	.L74
+ 1081              	.L77:
+ 1082              		.loc 1 592 0
+ 1083 04fa 0023     		movs	r3, #0
+ 1084              	.L74:
+ 1085              		.loc 1 593 0
+ 1086 04fc 1846     		mov	r0, r3
+ 1087 04fe 05B0     		add	sp, sp, #20
+ 1088              		@ sp needed
+ 1089 0500 5DF804FB 		ldr	pc, [sp], #4
+ 1090              		.cfi_endproc
+ 1091              	.LFE138:
+ 1092              		.size	BSP_MAGNETO_Get_Sensitivity, .-BSP_MAGNETO_Get_Sensitivity
+ 1093              		.align	2
+ 1094 0504 AFF30080 		.p2align 4,,15
+ 1094      AFF30080 
+ 1094      AFF30080 
+ 1095              		.global	BSP_MAGNETO_Get_ODR
+ 1096              		.thumb
+ 1097              		.thumb_func
+ 1098              		.type	BSP_MAGNETO_Get_ODR, %function
+ 1099              	BSP_MAGNETO_Get_ODR:
+ 1100              	.LFB139:
+ 1101              		.loc 1 605 0
+ 1102              		.cfi_startproc
+ 1103              		@ args = 0, pretend = 0, frame = 16
+ 1104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1105 0510 00B5     		push	{lr}
+ 1106              		.cfi_def_cfa_offset 4
+ 1107              		.cfi_offset 14, -4
+ 1108 0512 85B0     		sub	sp, sp, #20
+ 1109              		.cfi_def_cfa_offset 24
+ 1110 0514 0190     		str	r0, [sp, #4]
+ 1111 0516 0091     		str	r1, [sp]
+ 1112              		.loc 1 607 0
+ 1113 0518 019B     		ldr	r3, [sp, #4]
+ 1114 051a 0393     		str	r3, [sp, #12]
+ 1115              		.loc 1 608 0
+ 1116 051c 0023     		movs	r3, #0
+ 1117 051e 0293     		str	r3, [sp, #8]
+ 1118              		.loc 1 610 0
+ 1119 0520 039B     		ldr	r3, [sp, #12]
+ 1120 0522 002B     		cmp	r3, #0
+ARM GAS  /tmp/ccPuQAGd.s 			page 21
+
+
+ 1121 0524 01D1     		bne	.L79
+ 1122              		.loc 1 612 0
+ 1123 0526 0123     		movs	r3, #1
+ 1124 0528 18E0     		b	.L80
+ 1125              	.L79:
+ 1126              		.loc 1 615 0
+ 1127 052a 039B     		ldr	r3, [sp, #12]
+ 1128 052c DB68     		ldr	r3, [r3, #12]
+ 1129 052e 0293     		str	r3, [sp, #8]
+ 1130              		.loc 1 617 0
+ 1131 0530 009B     		ldr	r3, [sp]
+ 1132 0532 002B     		cmp	r3, #0
+ 1133 0534 01D1     		bne	.L81
+ 1134              		.loc 1 619 0
+ 1135 0536 0123     		movs	r3, #1
+ 1136 0538 10E0     		b	.L80
+ 1137              	.L81:
+ 1138              		.loc 1 621 0
+ 1139 053a 029B     		ldr	r3, [sp, #8]
+ 1140 053c 5B6A     		ldr	r3, [r3, #36]
+ 1141 053e 002B     		cmp	r3, #0
+ 1142 0540 01D1     		bne	.L82
+ 1143              		.loc 1 623 0
+ 1144 0542 0123     		movs	r3, #1
+ 1145 0544 0AE0     		b	.L80
+ 1146              	.L82:
+ 1147              		.loc 1 625 0
+ 1148 0546 029B     		ldr	r3, [sp, #8]
+ 1149 0548 5B6A     		ldr	r3, [r3, #36]
+ 1150 054a 0398     		ldr	r0, [sp, #12]
+ 1151 054c 0099     		ldr	r1, [sp]
+ 1152 054e 9847     		blx	r3
+ 1153 0550 0346     		mov	r3, r0
+ 1154 0552 012B     		cmp	r3, #1
+ 1155 0554 01D1     		bne	.L83
+ 1156              		.loc 1 627 0
+ 1157 0556 0123     		movs	r3, #1
+ 1158 0558 00E0     		b	.L80
+ 1159              	.L83:
+ 1160              		.loc 1 630 0
+ 1161 055a 0023     		movs	r3, #0
+ 1162              	.L80:
+ 1163              		.loc 1 631 0
+ 1164 055c 1846     		mov	r0, r3
+ 1165 055e 05B0     		add	sp, sp, #20
+ 1166              		@ sp needed
+ 1167 0560 5DF804FB 		ldr	pc, [sp], #4
+ 1168              		.cfi_endproc
+ 1169              	.LFE139:
+ 1170              		.size	BSP_MAGNETO_Get_ODR, .-BSP_MAGNETO_Get_ODR
+ 1171              		.align	2
+ 1172 0564 AFF30080 		.p2align 4,,15
+ 1172      AFF30080 
+ 1172      AFF30080 
+ 1173              		.global	BSP_MAGNETO_Set_ODR
+ 1174              		.thumb
+ 1175              		.thumb_func
+ARM GAS  /tmp/ccPuQAGd.s 			page 22
+
+
+ 1176              		.type	BSP_MAGNETO_Set_ODR, %function
+ 1177              	BSP_MAGNETO_Set_ODR:
+ 1178              	.LFB140:
+ 1179              		.loc 1 643 0
+ 1180              		.cfi_startproc
+ 1181              		@ args = 0, pretend = 0, frame = 16
+ 1182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1183 0570 00B5     		push	{lr}
+ 1184              		.cfi_def_cfa_offset 4
+ 1185              		.cfi_offset 14, -4
+ 1186 0572 85B0     		sub	sp, sp, #20
+ 1187              		.cfi_def_cfa_offset 24
+ 1188 0574 0190     		str	r0, [sp, #4]
+ 1189 0576 0B46     		mov	r3, r1
+ 1190 0578 8DF80330 		strb	r3, [sp, #3]
+ 1191              		.loc 1 645 0
+ 1192 057c 019B     		ldr	r3, [sp, #4]
+ 1193 057e 0393     		str	r3, [sp, #12]
+ 1194              		.loc 1 646 0
+ 1195 0580 0023     		movs	r3, #0
+ 1196 0582 0293     		str	r3, [sp, #8]
+ 1197              		.loc 1 648 0
+ 1198 0584 039B     		ldr	r3, [sp, #12]
+ 1199 0586 002B     		cmp	r3, #0
+ 1200 0588 01D1     		bne	.L85
+ 1201              		.loc 1 650 0
+ 1202 058a 0123     		movs	r3, #1
+ 1203 058c 15E0     		b	.L86
+ 1204              	.L85:
+ 1205              		.loc 1 653 0
+ 1206 058e 039B     		ldr	r3, [sp, #12]
+ 1207 0590 DB68     		ldr	r3, [r3, #12]
+ 1208 0592 0293     		str	r3, [sp, #8]
+ 1209              		.loc 1 655 0
+ 1210 0594 029B     		ldr	r3, [sp, #8]
+ 1211 0596 9B6A     		ldr	r3, [r3, #40]
+ 1212 0598 002B     		cmp	r3, #0
+ 1213 059a 01D1     		bne	.L87
+ 1214              		.loc 1 657 0
+ 1215 059c 0123     		movs	r3, #1
+ 1216 059e 0CE0     		b	.L86
+ 1217              	.L87:
+ 1218              		.loc 1 659 0
+ 1219 05a0 029B     		ldr	r3, [sp, #8]
+ 1220 05a2 9B6A     		ldr	r3, [r3, #40]
+ 1221 05a4 9DF80320 		ldrb	r2, [sp, #3]	@ zero_extendqisi2
+ 1222 05a8 0398     		ldr	r0, [sp, #12]
+ 1223 05aa 1146     		mov	r1, r2
+ 1224 05ac 9847     		blx	r3
+ 1225 05ae 0346     		mov	r3, r0
+ 1226 05b0 012B     		cmp	r3, #1
+ 1227 05b2 01D1     		bne	.L88
+ 1228              		.loc 1 661 0
+ 1229 05b4 0123     		movs	r3, #1
+ 1230 05b6 00E0     		b	.L86
+ 1231              	.L88:
+ 1232              		.loc 1 664 0
+ARM GAS  /tmp/ccPuQAGd.s 			page 23
+
+
+ 1233 05b8 0023     		movs	r3, #0
+ 1234              	.L86:
+ 1235              		.loc 1 665 0
+ 1236 05ba 1846     		mov	r0, r3
+ 1237 05bc 05B0     		add	sp, sp, #20
+ 1238              		@ sp needed
+ 1239 05be 5DF804FB 		ldr	pc, [sp], #4
+ 1240              		.cfi_endproc
+ 1241              	.LFE140:
+ 1242              		.size	BSP_MAGNETO_Set_ODR, .-BSP_MAGNETO_Set_ODR
+ 1243 05c2 00BF     		.align	2
+ 1244 05c4 AFF30080 		.p2align 4,,15
+ 1244      AFF30080 
+ 1244      AFF30080 
+ 1245              		.global	BSP_MAGNETO_Set_ODR_Value
+ 1246              		.thumb
+ 1247              		.thumb_func
+ 1248              		.type	BSP_MAGNETO_Set_ODR_Value, %function
+ 1249              	BSP_MAGNETO_Set_ODR_Value:
+ 1250              	.LFB141:
+ 1251              		.loc 1 677 0
+ 1252              		.cfi_startproc
+ 1253              		@ args = 0, pretend = 0, frame = 16
+ 1254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1255 05d0 00B5     		push	{lr}
+ 1256              		.cfi_def_cfa_offset 4
+ 1257              		.cfi_offset 14, -4
+ 1258 05d2 85B0     		sub	sp, sp, #20
+ 1259              		.cfi_def_cfa_offset 24
+ 1260 05d4 0190     		str	r0, [sp, #4]
+ 1261 05d6 0091     		str	r1, [sp]	@ float
+ 1262              		.loc 1 679 0
+ 1263 05d8 019B     		ldr	r3, [sp, #4]
+ 1264 05da 0393     		str	r3, [sp, #12]
+ 1265              		.loc 1 680 0
+ 1266 05dc 0023     		movs	r3, #0
+ 1267 05de 0293     		str	r3, [sp, #8]
+ 1268              		.loc 1 682 0
+ 1269 05e0 039B     		ldr	r3, [sp, #12]
+ 1270 05e2 002B     		cmp	r3, #0
+ 1271 05e4 01D1     		bne	.L90
+ 1272              		.loc 1 684 0
+ 1273 05e6 0123     		movs	r3, #1
+ 1274 05e8 13E0     		b	.L91
+ 1275              	.L90:
+ 1276              		.loc 1 687 0
+ 1277 05ea 039B     		ldr	r3, [sp, #12]
+ 1278 05ec DB68     		ldr	r3, [r3, #12]
+ 1279 05ee 0293     		str	r3, [sp, #8]
+ 1280              		.loc 1 689 0
+ 1281 05f0 029B     		ldr	r3, [sp, #8]
+ 1282 05f2 DB6A     		ldr	r3, [r3, #44]
+ 1283 05f4 002B     		cmp	r3, #0
+ 1284 05f6 01D1     		bne	.L92
+ 1285              		.loc 1 691 0
+ 1286 05f8 0123     		movs	r3, #1
+ 1287 05fa 0AE0     		b	.L91
+ARM GAS  /tmp/ccPuQAGd.s 			page 24
+
+
+ 1288              	.L92:
+ 1289              		.loc 1 693 0
+ 1290 05fc 029B     		ldr	r3, [sp, #8]
+ 1291 05fe DB6A     		ldr	r3, [r3, #44]
+ 1292 0600 0398     		ldr	r0, [sp, #12]
+ 1293 0602 0099     		ldr	r1, [sp]	@ float
+ 1294 0604 9847     		blx	r3
+ 1295 0606 0346     		mov	r3, r0
+ 1296 0608 012B     		cmp	r3, #1
+ 1297 060a 01D1     		bne	.L93
+ 1298              		.loc 1 695 0
+ 1299 060c 0123     		movs	r3, #1
+ 1300 060e 00E0     		b	.L91
+ 1301              	.L93:
+ 1302              		.loc 1 698 0
+ 1303 0610 0023     		movs	r3, #0
+ 1304              	.L91:
+ 1305              		.loc 1 699 0
+ 1306 0612 1846     		mov	r0, r3
+ 1307 0614 05B0     		add	sp, sp, #20
+ 1308              		@ sp needed
+ 1309 0616 5DF804FB 		ldr	pc, [sp], #4
+ 1310              		.cfi_endproc
+ 1311              	.LFE141:
+ 1312              		.size	BSP_MAGNETO_Set_ODR_Value, .-BSP_MAGNETO_Set_ODR_Value
+ 1313 061a 00BF     		.align	2
+ 1314 061c AFF30080 		.p2align 4,,15
+ 1315              		.global	BSP_MAGNETO_Get_FS
+ 1316              		.thumb
+ 1317              		.thumb_func
+ 1318              		.type	BSP_MAGNETO_Get_FS, %function
+ 1319              	BSP_MAGNETO_Get_FS:
+ 1320              	.LFB142:
+ 1321              		.loc 1 711 0
+ 1322              		.cfi_startproc
+ 1323              		@ args = 0, pretend = 0, frame = 16
+ 1324              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1325 0620 00B5     		push	{lr}
+ 1326              		.cfi_def_cfa_offset 4
+ 1327              		.cfi_offset 14, -4
+ 1328 0622 85B0     		sub	sp, sp, #20
+ 1329              		.cfi_def_cfa_offset 24
+ 1330 0624 0190     		str	r0, [sp, #4]
+ 1331 0626 0091     		str	r1, [sp]
+ 1332              		.loc 1 713 0
+ 1333 0628 019B     		ldr	r3, [sp, #4]
+ 1334 062a 0393     		str	r3, [sp, #12]
+ 1335              		.loc 1 714 0
+ 1336 062c 0023     		movs	r3, #0
+ 1337 062e 0293     		str	r3, [sp, #8]
+ 1338              		.loc 1 716 0
+ 1339 0630 039B     		ldr	r3, [sp, #12]
+ 1340 0632 002B     		cmp	r3, #0
+ 1341 0634 01D1     		bne	.L95
+ 1342              		.loc 1 718 0
+ 1343 0636 0123     		movs	r3, #1
+ 1344 0638 18E0     		b	.L96
+ARM GAS  /tmp/ccPuQAGd.s 			page 25
+
+
+ 1345              	.L95:
+ 1346              		.loc 1 721 0
+ 1347 063a 039B     		ldr	r3, [sp, #12]
+ 1348 063c DB68     		ldr	r3, [r3, #12]
+ 1349 063e 0293     		str	r3, [sp, #8]
+ 1350              		.loc 1 723 0
+ 1351 0640 009B     		ldr	r3, [sp]
+ 1352 0642 002B     		cmp	r3, #0
+ 1353 0644 01D1     		bne	.L97
+ 1354              		.loc 1 725 0
+ 1355 0646 0123     		movs	r3, #1
+ 1356 0648 10E0     		b	.L96
+ 1357              	.L97:
+ 1358              		.loc 1 727 0
+ 1359 064a 029B     		ldr	r3, [sp, #8]
+ 1360 064c 1B6B     		ldr	r3, [r3, #48]
+ 1361 064e 002B     		cmp	r3, #0
+ 1362 0650 01D1     		bne	.L98
+ 1363              		.loc 1 729 0
+ 1364 0652 0123     		movs	r3, #1
+ 1365 0654 0AE0     		b	.L96
+ 1366              	.L98:
+ 1367              		.loc 1 731 0
+ 1368 0656 029B     		ldr	r3, [sp, #8]
+ 1369 0658 1B6B     		ldr	r3, [r3, #48]
+ 1370 065a 0398     		ldr	r0, [sp, #12]
+ 1371 065c 0099     		ldr	r1, [sp]
+ 1372 065e 9847     		blx	r3
+ 1373 0660 0346     		mov	r3, r0
+ 1374 0662 012B     		cmp	r3, #1
+ 1375 0664 01D1     		bne	.L99
+ 1376              		.loc 1 733 0
+ 1377 0666 0123     		movs	r3, #1
+ 1378 0668 00E0     		b	.L96
+ 1379              	.L99:
+ 1380              		.loc 1 736 0
+ 1381 066a 0023     		movs	r3, #0
+ 1382              	.L96:
+ 1383              		.loc 1 737 0
+ 1384 066c 1846     		mov	r0, r3
+ 1385 066e 05B0     		add	sp, sp, #20
+ 1386              		@ sp needed
+ 1387 0670 5DF804FB 		ldr	pc, [sp], #4
+ 1388              		.cfi_endproc
+ 1389              	.LFE142:
+ 1390              		.size	BSP_MAGNETO_Get_FS, .-BSP_MAGNETO_Get_FS
+ 1391              		.align	2
+ 1392 0674 AFF30080 		.p2align 4,,15
+ 1392      AFF30080 
+ 1392      AFF30080 
+ 1393              		.global	BSP_MAGNETO_Set_FS
+ 1394              		.thumb
+ 1395              		.thumb_func
+ 1396              		.type	BSP_MAGNETO_Set_FS, %function
+ 1397              	BSP_MAGNETO_Set_FS:
+ 1398              	.LFB143:
+ 1399              		.loc 1 749 0
+ARM GAS  /tmp/ccPuQAGd.s 			page 26
+
+
+ 1400              		.cfi_startproc
+ 1401              		@ args = 0, pretend = 0, frame = 16
+ 1402              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1403 0680 00B5     		push	{lr}
+ 1404              		.cfi_def_cfa_offset 4
+ 1405              		.cfi_offset 14, -4
+ 1406 0682 85B0     		sub	sp, sp, #20
+ 1407              		.cfi_def_cfa_offset 24
+ 1408 0684 0190     		str	r0, [sp, #4]
+ 1409 0686 0B46     		mov	r3, r1
+ 1410 0688 8DF80330 		strb	r3, [sp, #3]
+ 1411              		.loc 1 751 0
+ 1412 068c 019B     		ldr	r3, [sp, #4]
+ 1413 068e 0393     		str	r3, [sp, #12]
+ 1414              		.loc 1 752 0
+ 1415 0690 0023     		movs	r3, #0
+ 1416 0692 0293     		str	r3, [sp, #8]
+ 1417              		.loc 1 754 0
+ 1418 0694 039B     		ldr	r3, [sp, #12]
+ 1419 0696 002B     		cmp	r3, #0
+ 1420 0698 01D1     		bne	.L101
+ 1421              		.loc 1 756 0
+ 1422 069a 0123     		movs	r3, #1
+ 1423 069c 15E0     		b	.L102
+ 1424              	.L101:
+ 1425              		.loc 1 759 0
+ 1426 069e 039B     		ldr	r3, [sp, #12]
+ 1427 06a0 DB68     		ldr	r3, [r3, #12]
+ 1428 06a2 0293     		str	r3, [sp, #8]
+ 1429              		.loc 1 761 0
+ 1430 06a4 029B     		ldr	r3, [sp, #8]
+ 1431 06a6 5B6B     		ldr	r3, [r3, #52]
+ 1432 06a8 002B     		cmp	r3, #0
+ 1433 06aa 01D1     		bne	.L103
+ 1434              		.loc 1 763 0
+ 1435 06ac 0123     		movs	r3, #1
+ 1436 06ae 0CE0     		b	.L102
+ 1437              	.L103:
+ 1438              		.loc 1 765 0
+ 1439 06b0 029B     		ldr	r3, [sp, #8]
+ 1440 06b2 5B6B     		ldr	r3, [r3, #52]
+ 1441 06b4 9DF80320 		ldrb	r2, [sp, #3]	@ zero_extendqisi2
+ 1442 06b8 0398     		ldr	r0, [sp, #12]
+ 1443 06ba 1146     		mov	r1, r2
+ 1444 06bc 9847     		blx	r3
+ 1445 06be 0346     		mov	r3, r0
+ 1446 06c0 012B     		cmp	r3, #1
+ 1447 06c2 01D1     		bne	.L104
+ 1448              		.loc 1 767 0
+ 1449 06c4 0123     		movs	r3, #1
+ 1450 06c6 00E0     		b	.L102
+ 1451              	.L104:
+ 1452              		.loc 1 770 0
+ 1453 06c8 0023     		movs	r3, #0
+ 1454              	.L102:
+ 1455              		.loc 1 771 0
+ 1456 06ca 1846     		mov	r0, r3
+ARM GAS  /tmp/ccPuQAGd.s 			page 27
+
+
+ 1457 06cc 05B0     		add	sp, sp, #20
+ 1458              		@ sp needed
+ 1459 06ce 5DF804FB 		ldr	pc, [sp], #4
+ 1460              		.cfi_endproc
+ 1461              	.LFE143:
+ 1462              		.size	BSP_MAGNETO_Set_FS, .-BSP_MAGNETO_Set_FS
+ 1463 06d2 00BF     		.align	2
+ 1464 06d4 AFF30080 		.p2align 4,,15
+ 1464      AFF30080 
+ 1464      AFF30080 
+ 1465              		.global	BSP_MAGNETO_Set_FS_Value
+ 1466              		.thumb
+ 1467              		.thumb_func
+ 1468              		.type	BSP_MAGNETO_Set_FS_Value, %function
+ 1469              	BSP_MAGNETO_Set_FS_Value:
+ 1470              	.LFB144:
+ 1471              		.loc 1 783 0
+ 1472              		.cfi_startproc
+ 1473              		@ args = 0, pretend = 0, frame = 16
+ 1474              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1475 06e0 00B5     		push	{lr}
+ 1476              		.cfi_def_cfa_offset 4
+ 1477              		.cfi_offset 14, -4
+ 1478 06e2 85B0     		sub	sp, sp, #20
+ 1479              		.cfi_def_cfa_offset 24
+ 1480 06e4 0190     		str	r0, [sp, #4]
+ 1481 06e6 0091     		str	r1, [sp]	@ float
+ 1482              		.loc 1 785 0
+ 1483 06e8 019B     		ldr	r3, [sp, #4]
+ 1484 06ea 0393     		str	r3, [sp, #12]
+ 1485              		.loc 1 786 0
+ 1486 06ec 0023     		movs	r3, #0
+ 1487 06ee 0293     		str	r3, [sp, #8]
+ 1488              		.loc 1 788 0
+ 1489 06f0 039B     		ldr	r3, [sp, #12]
+ 1490 06f2 002B     		cmp	r3, #0
+ 1491 06f4 01D1     		bne	.L106
+ 1492              		.loc 1 790 0
+ 1493 06f6 0123     		movs	r3, #1
+ 1494 06f8 13E0     		b	.L107
+ 1495              	.L106:
+ 1496              		.loc 1 793 0
+ 1497 06fa 039B     		ldr	r3, [sp, #12]
+ 1498 06fc DB68     		ldr	r3, [r3, #12]
+ 1499 06fe 0293     		str	r3, [sp, #8]
+ 1500              		.loc 1 795 0
+ 1501 0700 029B     		ldr	r3, [sp, #8]
+ 1502 0702 9B6B     		ldr	r3, [r3, #56]
+ 1503 0704 002B     		cmp	r3, #0
+ 1504 0706 01D1     		bne	.L108
+ 1505              		.loc 1 797 0
+ 1506 0708 0123     		movs	r3, #1
+ 1507 070a 0AE0     		b	.L107
+ 1508              	.L108:
+ 1509              		.loc 1 799 0
+ 1510 070c 029B     		ldr	r3, [sp, #8]
+ 1511 070e 9B6B     		ldr	r3, [r3, #56]
+ARM GAS  /tmp/ccPuQAGd.s 			page 28
+
+
+ 1512 0710 0398     		ldr	r0, [sp, #12]
+ 1513 0712 0099     		ldr	r1, [sp]	@ float
+ 1514 0714 9847     		blx	r3
+ 1515 0716 0346     		mov	r3, r0
+ 1516 0718 012B     		cmp	r3, #1
+ 1517 071a 01D1     		bne	.L109
+ 1518              		.loc 1 801 0
+ 1519 071c 0123     		movs	r3, #1
+ 1520 071e 00E0     		b	.L107
+ 1521              	.L109:
+ 1522              		.loc 1 804 0
+ 1523 0720 0023     		movs	r3, #0
+ 1524              	.L107:
+ 1525              		.loc 1 805 0
+ 1526 0722 1846     		mov	r0, r3
+ 1527 0724 05B0     		add	sp, sp, #20
+ 1528              		@ sp needed
+ 1529 0726 5DF804FB 		ldr	pc, [sp], #4
+ 1530              		.cfi_endproc
+ 1531              	.LFE144:
+ 1532              		.size	BSP_MAGNETO_Set_FS_Value, .-BSP_MAGNETO_Set_FS_Value
+ 1533 072a 00BF     		.align	2
+ 1534 072c AFF30080 		.p2align 4,,15
+ 1535              		.global	BSP_MAGNETO_Read_Reg
+ 1536              		.thumb
+ 1537              		.thumb_func
+ 1538              		.type	BSP_MAGNETO_Read_Reg, %function
+ 1539              	BSP_MAGNETO_Read_Reg:
+ 1540              	.LFB145:
+ 1541              		.loc 1 817 0
+ 1542              		.cfi_startproc
+ 1543              		@ args = 0, pretend = 0, frame = 24
+ 1544              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1545 0730 00B5     		push	{lr}
+ 1546              		.cfi_def_cfa_offset 4
+ 1547              		.cfi_offset 14, -4
+ 1548 0732 87B0     		sub	sp, sp, #28
+ 1549              		.cfi_def_cfa_offset 32
+ 1550 0734 0390     		str	r0, [sp, #12]
+ 1551 0736 0B46     		mov	r3, r1
+ 1552 0738 0192     		str	r2, [sp, #4]
+ 1553 073a 8DF80B30 		strb	r3, [sp, #11]
+ 1554              		.loc 1 819 0
+ 1555 073e 039B     		ldr	r3, [sp, #12]
+ 1556 0740 0593     		str	r3, [sp, #20]
+ 1557              		.loc 1 820 0
+ 1558 0742 0023     		movs	r3, #0
+ 1559 0744 0493     		str	r3, [sp, #16]
+ 1560              		.loc 1 822 0
+ 1561 0746 059B     		ldr	r3, [sp, #20]
+ 1562 0748 002B     		cmp	r3, #0
+ 1563 074a 01D1     		bne	.L111
+ 1564              		.loc 1 824 0
+ 1565 074c 0123     		movs	r3, #1
+ 1566 074e 1BE0     		b	.L112
+ 1567              	.L111:
+ 1568              		.loc 1 827 0
+ARM GAS  /tmp/ccPuQAGd.s 			page 29
+
+
+ 1569 0750 059B     		ldr	r3, [sp, #20]
+ 1570 0752 DB68     		ldr	r3, [r3, #12]
+ 1571 0754 0493     		str	r3, [sp, #16]
+ 1572              		.loc 1 829 0
+ 1573 0756 019B     		ldr	r3, [sp, #4]
+ 1574 0758 002B     		cmp	r3, #0
+ 1575 075a 01D1     		bne	.L113
+ 1576              		.loc 1 831 0
+ 1577 075c 0123     		movs	r3, #1
+ 1578 075e 13E0     		b	.L112
+ 1579              	.L113:
+ 1580              		.loc 1 834 0
+ 1581 0760 049B     		ldr	r3, [sp, #16]
+ 1582 0762 DB6B     		ldr	r3, [r3, #60]
+ 1583 0764 002B     		cmp	r3, #0
+ 1584 0766 01D1     		bne	.L114
+ 1585              		.loc 1 836 0
+ 1586 0768 0123     		movs	r3, #1
+ 1587 076a 0DE0     		b	.L112
+ 1588              	.L114:
+ 1589              		.loc 1 839 0
+ 1590 076c 049B     		ldr	r3, [sp, #16]
+ 1591 076e DB6B     		ldr	r3, [r3, #60]
+ 1592 0770 9DF80B20 		ldrb	r2, [sp, #11]	@ zero_extendqisi2
+ 1593 0774 0598     		ldr	r0, [sp, #20]
+ 1594 0776 1146     		mov	r1, r2
+ 1595 0778 019A     		ldr	r2, [sp, #4]
+ 1596 077a 9847     		blx	r3
+ 1597 077c 0346     		mov	r3, r0
+ 1598 077e 012B     		cmp	r3, #1
+ 1599 0780 01D1     		bne	.L115
+ 1600              		.loc 1 841 0
+ 1601 0782 0123     		movs	r3, #1
+ 1602 0784 00E0     		b	.L112
+ 1603              	.L115:
+ 1604              		.loc 1 844 0
+ 1605 0786 0023     		movs	r3, #0
+ 1606              	.L112:
+ 1607              		.loc 1 845 0
+ 1608 0788 1846     		mov	r0, r3
+ 1609 078a 07B0     		add	sp, sp, #28
+ 1610              		@ sp needed
+ 1611 078c 5DF804FB 		ldr	pc, [sp], #4
+ 1612              		.cfi_endproc
+ 1613              	.LFE145:
+ 1614              		.size	BSP_MAGNETO_Read_Reg, .-BSP_MAGNETO_Read_Reg
+ 1615              		.align	2
+ 1616              		.p2align 4,,15
+ 1617              		.global	BSP_MAGNETO_Write_Reg
+ 1618              		.thumb
+ 1619              		.thumb_func
+ 1620              		.type	BSP_MAGNETO_Write_Reg, %function
+ 1621              	BSP_MAGNETO_Write_Reg:
+ 1622              	.LFB146:
+ 1623              		.loc 1 858 0
+ 1624              		.cfi_startproc
+ 1625              		@ args = 0, pretend = 0, frame = 16
+ARM GAS  /tmp/ccPuQAGd.s 			page 30
+
+
+ 1626              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1627 0790 00B5     		push	{lr}
+ 1628              		.cfi_def_cfa_offset 4
+ 1629              		.cfi_offset 14, -4
+ 1630 0792 85B0     		sub	sp, sp, #20
+ 1631              		.cfi_def_cfa_offset 24
+ 1632 0794 0190     		str	r0, [sp, #4]
+ 1633 0796 1346     		mov	r3, r2
+ 1634 0798 0A46     		mov	r2, r1
+ 1635 079a 8DF80320 		strb	r2, [sp, #3]
+ 1636 079e 8DF80230 		strb	r3, [sp, #2]
+ 1637              		.loc 1 860 0
+ 1638 07a2 019B     		ldr	r3, [sp, #4]
+ 1639 07a4 0393     		str	r3, [sp, #12]
+ 1640              		.loc 1 861 0
+ 1641 07a6 0023     		movs	r3, #0
+ 1642 07a8 0293     		str	r3, [sp, #8]
+ 1643              		.loc 1 863 0
+ 1644 07aa 039B     		ldr	r3, [sp, #12]
+ 1645 07ac 002B     		cmp	r3, #0
+ 1646 07ae 01D1     		bne	.L117
+ 1647              		.loc 1 865 0
+ 1648 07b0 0123     		movs	r3, #1
+ 1649 07b2 16E0     		b	.L118
+ 1650              	.L117:
+ 1651              		.loc 1 868 0
+ 1652 07b4 039B     		ldr	r3, [sp, #12]
+ 1653 07b6 DB68     		ldr	r3, [r3, #12]
+ 1654 07b8 0293     		str	r3, [sp, #8]
+ 1655              		.loc 1 870 0
+ 1656 07ba 029B     		ldr	r3, [sp, #8]
+ 1657 07bc 1B6C     		ldr	r3, [r3, #64]
+ 1658 07be 002B     		cmp	r3, #0
+ 1659 07c0 01D1     		bne	.L119
+ 1660              		.loc 1 872 0
+ 1661 07c2 0123     		movs	r3, #1
+ 1662 07c4 0DE0     		b	.L118
+ 1663              	.L119:
+ 1664              		.loc 1 875 0
+ 1665 07c6 029B     		ldr	r3, [sp, #8]
+ 1666 07c8 1B6C     		ldr	r3, [r3, #64]
+ 1667 07ca 9DF80310 		ldrb	r1, [sp, #3]	@ zero_extendqisi2
+ 1668 07ce 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
+ 1669 07d2 0398     		ldr	r0, [sp, #12]
+ 1670 07d4 9847     		blx	r3
+ 1671 07d6 0346     		mov	r3, r0
+ 1672 07d8 012B     		cmp	r3, #1
+ 1673 07da 01D1     		bne	.L120
+ 1674              		.loc 1 877 0
+ 1675 07dc 0123     		movs	r3, #1
+ 1676 07de 00E0     		b	.L118
+ 1677              	.L120:
+ 1678              		.loc 1 880 0
+ 1679 07e0 0023     		movs	r3, #0
+ 1680              	.L118:
+ 1681              		.loc 1 881 0
+ 1682 07e2 1846     		mov	r0, r3
+ARM GAS  /tmp/ccPuQAGd.s 			page 31
+
+
+ 1683 07e4 05B0     		add	sp, sp, #20
+ 1684              		@ sp needed
+ 1685 07e6 5DF804FB 		ldr	pc, [sp], #4
+ 1686              		.cfi_endproc
+ 1687              	.LFE146:
+ 1688              		.size	BSP_MAGNETO_Write_Reg, .-BSP_MAGNETO_Write_Reg
+ 1689 07ea 00BF     		.align	2
+ 1690 07ec AFF30080 		.p2align 4,,15
+ 1691              		.global	BSP_MAGNETO_Get_DRDY_Status
+ 1692              		.thumb
+ 1693              		.thumb_func
+ 1694              		.type	BSP_MAGNETO_Get_DRDY_Status, %function
+ 1695              	BSP_MAGNETO_Get_DRDY_Status:
+ 1696              	.LFB147:
+ 1697              		.loc 1 893 0
+ 1698              		.cfi_startproc
+ 1699              		@ args = 0, pretend = 0, frame = 16
+ 1700              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1701 07f0 00B5     		push	{lr}
+ 1702              		.cfi_def_cfa_offset 4
+ 1703              		.cfi_offset 14, -4
+ 1704 07f2 85B0     		sub	sp, sp, #20
+ 1705              		.cfi_def_cfa_offset 24
+ 1706 07f4 0190     		str	r0, [sp, #4]
+ 1707 07f6 0091     		str	r1, [sp]
+ 1708              		.loc 1 895 0
+ 1709 07f8 019B     		ldr	r3, [sp, #4]
+ 1710 07fa 0393     		str	r3, [sp, #12]
+ 1711              		.loc 1 896 0
+ 1712 07fc 0023     		movs	r3, #0
+ 1713 07fe 0293     		str	r3, [sp, #8]
+ 1714              		.loc 1 898 0
+ 1715 0800 039B     		ldr	r3, [sp, #12]
+ 1716 0802 002B     		cmp	r3, #0
+ 1717 0804 01D1     		bne	.L122
+ 1718              		.loc 1 900 0
+ 1719 0806 0123     		movs	r3, #1
+ 1720 0808 13E0     		b	.L123
+ 1721              	.L122:
+ 1722              		.loc 1 903 0
+ 1723 080a 039B     		ldr	r3, [sp, #12]
+ 1724 080c DB68     		ldr	r3, [r3, #12]
+ 1725 080e 0293     		str	r3, [sp, #8]
+ 1726              		.loc 1 905 0
+ 1727 0810 029B     		ldr	r3, [sp, #8]
+ 1728 0812 5B6C     		ldr	r3, [r3, #68]
+ 1729 0814 002B     		cmp	r3, #0
+ 1730 0816 01D1     		bne	.L124
+ 1731              		.loc 1 907 0
+ 1732 0818 0123     		movs	r3, #1
+ 1733 081a 0AE0     		b	.L123
+ 1734              	.L124:
+ 1735              		.loc 1 910 0
+ 1736 081c 029B     		ldr	r3, [sp, #8]
+ 1737 081e 5B6C     		ldr	r3, [r3, #68]
+ 1738 0820 0398     		ldr	r0, [sp, #12]
+ 1739 0822 0099     		ldr	r1, [sp]
+ARM GAS  /tmp/ccPuQAGd.s 			page 32
+
+
+ 1740 0824 9847     		blx	r3
+ 1741 0826 0346     		mov	r3, r0
+ 1742 0828 012B     		cmp	r3, #1
+ 1743 082a 01D1     		bne	.L125
+ 1744              		.loc 1 912 0
+ 1745 082c 0123     		movs	r3, #1
+ 1746 082e 00E0     		b	.L123
+ 1747              	.L125:
+ 1748              		.loc 1 915 0
+ 1749 0830 0023     		movs	r3, #0
+ 1750              	.L123:
+ 1751              		.loc 1 916 0
+ 1752 0832 1846     		mov	r0, r3
+ 1753 0834 05B0     		add	sp, sp, #20
+ 1754              		@ sp needed
+ 1755 0836 5DF804FB 		ldr	pc, [sp], #4
+ 1756              		.cfi_endproc
+ 1757              	.LFE147:
+ 1758              		.size	BSP_MAGNETO_Get_DRDY_Status, .-BSP_MAGNETO_Get_DRDY_Status
+ 1759              	.Letext0:
+ 1760              		.file 2 "/nfs/nfs5/home/research/hardware/arm2/gcc-arm-embedded/gcc-arm-none-eabi-4_8-2014q2/arm-n
+ 1761              		.file 3 "/nfs/nfs5/home/research/hardware/arm2/gcc-arm-embedded/gcc-arm-none-eabi-4_8-2014q2/arm-n
+ 1762              		.file 4 "../../../../../Drivers/BSP/Components/Common/component.h"
+ 1763              		.file 5 "../../../../../Drivers/BSP/Components/Common/sensor.h"
+ 1764              		.file 6 "../../../../../Drivers/BSP/Components/Common/magnetometer.h"
+ 1765              		.file 7 "../../../../../Drivers/BSP/Components/lsm303agr/LSM303AGR_Combo_driver_HL.h"
+ 1766              		.file 8 "../../../../../Drivers/BSP/Components/lsm303agr/LSM303AGR_MAG_driver_HL.h"
+ 1767              		.file 9 "../../../../../Drivers/BSP/SensorTile/SensorTile.h"
+ 1768              		.file 10 "../../../../../Drivers/BSP/SensorTile/SensorTile_magneto.h"
+ 1769              		.file 11 "../../../../../../ChibiOS/os/ext/CMSIS/include/core_cm4.h"
+ 1770 083a 00BFAFF3 		.section	.debug_info,"",%progbits
+ 1770      0080
+ 1771              	.Ldebug_info0:
+ 1772 0000 FB0C0000 		.4byte	0xcfb
+ 1773 0004 0400     		.2byte	0x4
+ 1774 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1775 000a 04       		.byte	0x4
+ 1776 000b 01       		.uleb128 0x1
+ 1777 000c 5C000000 		.4byte	.LASF122
+ 1778 0010 01       		.byte	0x1
+ 1779 0011 B2040000 		.4byte	.LASF123
+ 1780 0015 B8020000 		.4byte	.LASF124
+ 1781 0019 00000000 		.4byte	.Ltext0
+ 1782 001d 3A080000 		.4byte	.Letext0-.Ltext0
+ 1783 0021 00000000 		.4byte	.Ldebug_line0
+ 1784 0025 02       		.uleb128 0x2
+ 1785 0026 04       		.byte	0x4
+ 1786 0027 05       		.byte	0x5
+ 1787 0028 696E7400 		.ascii	"int\000"
+ 1788 002c 03       		.uleb128 0x3
+ 1789 002d 04       		.byte	0x4
+ 1790 002e 07       		.byte	0x7
+ 1791 002f A0030000 		.4byte	.LASF0
+ 1792 0033 03       		.uleb128 0x3
+ 1793 0034 01       		.byte	0x1
+ 1794 0035 06       		.byte	0x6
+ 1795 0036 E2010000 		.4byte	.LASF1
+ARM GAS  /tmp/ccPuQAGd.s 			page 33
+
+
+ 1796 003a 04       		.uleb128 0x4
+ 1797 003b 39010000 		.4byte	.LASF3
+ 1798 003f 02       		.byte	0x2
+ 1799 0040 1C       		.byte	0x1c
+ 1800 0041 45000000 		.4byte	0x45
+ 1801 0045 03       		.uleb128 0x3
+ 1802 0046 01       		.byte	0x1
+ 1803 0047 08       		.byte	0x8
+ 1804 0048 CE050000 		.4byte	.LASF2
+ 1805 004c 04       		.uleb128 0x4
+ 1806 004d 62030000 		.4byte	.LASF4
+ 1807 0051 02       		.byte	0x2
+ 1808 0052 25       		.byte	0x25
+ 1809 0053 57000000 		.4byte	0x57
+ 1810 0057 03       		.uleb128 0x3
+ 1811 0058 02       		.byte	0x2
+ 1812 0059 05       		.byte	0x5
+ 1813 005a EB050000 		.4byte	.LASF5
+ 1814 005e 03       		.uleb128 0x3
+ 1815 005f 02       		.byte	0x2
+ 1816 0060 07       		.byte	0x7
+ 1817 0061 39040000 		.4byte	.LASF6
+ 1818 0065 04       		.uleb128 0x4
+ 1819 0066 9C060000 		.4byte	.LASF7
+ 1820 006a 02       		.byte	0x2
+ 1821 006b 37       		.byte	0x37
+ 1822 006c 70000000 		.4byte	0x70
+ 1823 0070 03       		.uleb128 0x3
+ 1824 0071 04       		.byte	0x4
+ 1825 0072 05       		.byte	0x5
+ 1826 0073 01020000 		.4byte	.LASF8
+ 1827 0077 03       		.uleb128 0x3
+ 1828 0078 04       		.byte	0x4
+ 1829 0079 07       		.byte	0x7
+ 1830 007a C0030000 		.4byte	.LASF9
+ 1831 007e 03       		.uleb128 0x3
+ 1832 007f 08       		.byte	0x8
+ 1833 0080 05       		.byte	0x5
+ 1834 0081 D4010000 		.4byte	.LASF10
+ 1835 0085 03       		.uleb128 0x3
+ 1836 0086 08       		.byte	0x8
+ 1837 0087 07       		.byte	0x7
+ 1838 0088 5D010000 		.4byte	.LASF11
+ 1839 008c 03       		.uleb128 0x3
+ 1840 008d 04       		.byte	0x4
+ 1841 008e 07       		.byte	0x7
+ 1842 008f ED040000 		.4byte	.LASF12
+ 1843 0093 05       		.uleb128 0x5
+ 1844 0094 04       		.byte	0x4
+ 1845 0095 03       		.uleb128 0x3
+ 1846 0096 01       		.byte	0x1
+ 1847 0097 08       		.byte	0x8
+ 1848 0098 63060000 		.4byte	.LASF13
+ 1849 009c 04       		.uleb128 0x4
+ 1850 009d 85070000 		.4byte	.LASF14
+ 1851 00a1 03       		.byte	0x3
+ 1852 00a2 2A       		.byte	0x2a
+ARM GAS  /tmp/ccPuQAGd.s 			page 34
+
+
+ 1853 00a3 3A000000 		.4byte	0x3a
+ 1854 00a7 04       		.uleb128 0x4
+ 1855 00a8 F5070000 		.4byte	.LASF15
+ 1856 00ac 03       		.byte	0x3
+ 1857 00ad 35       		.byte	0x35
+ 1858 00ae 4C000000 		.4byte	0x4c
+ 1859 00b2 04       		.uleb128 0x4
+ 1860 00b3 C6050000 		.4byte	.LASF16
+ 1861 00b7 03       		.byte	0x3
+ 1862 00b8 41       		.byte	0x41
+ 1863 00b9 65000000 		.4byte	0x65
+ 1864 00bd 06       		.uleb128 0x6
+ 1865 00be 14       		.byte	0x14
+ 1866 00bf 04       		.byte	0x4
+ 1867 00c0 5B       		.byte	0x5b
+ 1868 00c1 4A010000 		.4byte	0x14a
+ 1869 00c5 07       		.uleb128 0x7
+ 1870 00c6 8C060000 		.4byte	.LASF17
+ 1871 00ca 04       		.byte	0x4
+ 1872 00cb 5F       		.byte	0x5f
+ 1873 00cc 9C000000 		.4byte	0x9c
+ 1874 00d0 00       		.byte	0
+ 1875 00d1 07       		.uleb128 0x7
+ 1876 00d2 95060000 		.4byte	.LASF18
+ 1877 00d6 04       		.byte	0x4
+ 1878 00d7 62       		.byte	0x62
+ 1879 00d8 9C000000 		.4byte	0x9c
+ 1880 00dc 01       		.byte	0x1
+ 1881 00dd 07       		.uleb128 0x7
+ 1882 00de 4C020000 		.4byte	.LASF19
+ 1883 00e2 04       		.byte	0x4
+ 1884 00e3 63       		.byte	0x63
+ 1885 00e4 9C000000 		.4byte	0x9c
+ 1886 00e8 02       		.byte	0x2
+ 1887 00e9 07       		.uleb128 0x7
+ 1888 00ea C0070000 		.4byte	.LASF20
+ 1889 00ee 04       		.byte	0x4
+ 1890 00ef 64       		.byte	0x64
+ 1891 00f0 9C000000 		.4byte	0x9c
+ 1892 00f4 03       		.byte	0x3
+ 1893 00f5 07       		.uleb128 0x7
+ 1894 00f6 CB010000 		.4byte	.LASF21
+ 1895 00fa 04       		.byte	0x4
+ 1896 00fb 65       		.byte	0x65
+ 1897 00fc 9C000000 		.4byte	0x9c
+ 1898 0100 04       		.byte	0x4
+ 1899 0101 07       		.uleb128 0x7
+ 1900 0102 AD060000 		.4byte	.LASF22
+ 1901 0106 04       		.byte	0x4
+ 1902 0107 66       		.byte	0x66
+ 1903 0108 9C000000 		.4byte	0x9c
+ 1904 010c 05       		.byte	0x5
+ 1905 010d 07       		.uleb128 0x7
+ 1906 010e 3C070000 		.4byte	.LASF23
+ 1907 0112 04       		.byte	0x4
+ 1908 0113 67       		.byte	0x67
+ 1909 0114 9C000000 		.4byte	0x9c
+ARM GAS  /tmp/ccPuQAGd.s 			page 35
+
+
+ 1910 0118 06       		.byte	0x6
+ 1911 0119 07       		.uleb128 0x7
+ 1912 011a 46070000 		.4byte	.LASF24
+ 1913 011e 04       		.byte	0x4
+ 1914 011f 68       		.byte	0x68
+ 1915 0120 9C000000 		.4byte	0x9c
+ 1916 0124 07       		.byte	0x7
+ 1917 0125 07       		.uleb128 0x7
+ 1918 0126 9E020000 		.4byte	.LASF25
+ 1919 012a 04       		.byte	0x4
+ 1920 012b 6B       		.byte	0x6b
+ 1921 012c 93000000 		.4byte	0x93
+ 1922 0130 08       		.byte	0x8
+ 1923 0131 07       		.uleb128 0x7
+ 1924 0132 4F000000 		.4byte	.LASF26
+ 1925 0136 04       		.byte	0x4
+ 1926 0137 6E       		.byte	0x6e
+ 1927 0138 93000000 		.4byte	0x93
+ 1928 013c 0C       		.byte	0xc
+ 1929 013d 07       		.uleb128 0x7
+ 1930 013e 05060000 		.4byte	.LASF27
+ 1931 0142 04       		.byte	0x4
+ 1932 0143 70       		.byte	0x70
+ 1933 0144 93000000 		.4byte	0x93
+ 1934 0148 10       		.byte	0x10
+ 1935 0149 00       		.byte	0
+ 1936 014a 04       		.uleb128 0x4
+ 1937 014b F1060000 		.4byte	.LASF28
+ 1938 014f 04       		.byte	0x4
+ 1939 0150 71       		.byte	0x71
+ 1940 0151 BD000000 		.4byte	0xbd
+ 1941 0155 08       		.uleb128 0x8
+ 1942 0156 01       		.byte	0x1
+ 1943 0157 04       		.byte	0x4
+ 1944 0158 79       		.byte	0x79
+ 1945 0159 76010000 		.4byte	0x176
+ 1946 015d 09       		.uleb128 0x9
+ 1947 015e B3070000 		.4byte	.LASF29
+ 1948 0162 00       		.sleb128 0
+ 1949 0163 09       		.uleb128 0x9
+ 1950 0164 3F000000 		.4byte	.LASF30
+ 1951 0168 01       		.sleb128 1
+ 1952 0169 09       		.uleb128 0x9
+ 1953 016a 59050000 		.4byte	.LASF31
+ 1954 016e 02       		.sleb128 2
+ 1955 016f 09       		.uleb128 0x9
+ 1956 0170 32020000 		.4byte	.LASF32
+ 1957 0174 03       		.sleb128 3
+ 1958 0175 00       		.byte	0
+ 1959 0176 04       		.uleb128 0x4
+ 1960 0177 7C010000 		.4byte	.LASF33
+ 1961 017b 04       		.byte	0x4
+ 1962 017c 7E       		.byte	0x7e
+ 1963 017d 55010000 		.4byte	0x155
+ 1964 0181 06       		.uleb128 0x6
+ 1965 0182 06       		.byte	0x6
+ 1966 0183 05       		.byte	0x5
+ARM GAS  /tmp/ccPuQAGd.s 			page 36
+
+
+ 1967 0184 4D       		.byte	0x4d
+ 1968 0185 AE010000 		.4byte	0x1ae
+ 1969 0189 07       		.uleb128 0x7
+ 1970 018a 00000000 		.4byte	.LASF34
+ 1971 018e 05       		.byte	0x5
+ 1972 018f 4F       		.byte	0x4f
+ 1973 0190 A7000000 		.4byte	0xa7
+ 1974 0194 00       		.byte	0
+ 1975 0195 07       		.uleb128 0x7
+ 1976 0196 07000000 		.4byte	.LASF35
+ 1977 019a 05       		.byte	0x5
+ 1978 019b 50       		.byte	0x50
+ 1979 019c A7000000 		.4byte	0xa7
+ 1980 01a0 02       		.byte	0x2
+ 1981 01a1 07       		.uleb128 0x7
+ 1982 01a2 0E000000 		.4byte	.LASF36
+ 1983 01a6 05       		.byte	0x5
+ 1984 01a7 51       		.byte	0x51
+ 1985 01a8 A7000000 		.4byte	0xa7
+ 1986 01ac 04       		.byte	0x4
+ 1987 01ad 00       		.byte	0
+ 1988 01ae 04       		.uleb128 0x4
+ 1989 01af 19080000 		.4byte	.LASF37
+ 1990 01b3 05       		.byte	0x5
+ 1991 01b4 52       		.byte	0x52
+ 1992 01b5 81010000 		.4byte	0x181
+ 1993 01b9 06       		.uleb128 0x6
+ 1994 01ba 0C       		.byte	0xc
+ 1995 01bb 05       		.byte	0x5
+ 1996 01bc 57       		.byte	0x57
+ 1997 01bd E6010000 		.4byte	0x1e6
+ 1998 01c1 07       		.uleb128 0x7
+ 1999 01c2 00000000 		.4byte	.LASF34
+ 2000 01c6 05       		.byte	0x5
+ 2001 01c7 59       		.byte	0x59
+ 2002 01c8 B2000000 		.4byte	0xb2
+ 2003 01cc 00       		.byte	0
+ 2004 01cd 07       		.uleb128 0x7
+ 2005 01ce 07000000 		.4byte	.LASF35
+ 2006 01d2 05       		.byte	0x5
+ 2007 01d3 5A       		.byte	0x5a
+ 2008 01d4 B2000000 		.4byte	0xb2
+ 2009 01d8 04       		.byte	0x4
+ 2010 01d9 07       		.uleb128 0x7
+ 2011 01da 0E000000 		.4byte	.LASF36
+ 2012 01de 05       		.byte	0x5
+ 2013 01df 5B       		.byte	0x5b
+ 2014 01e0 B2000000 		.4byte	0xb2
+ 2015 01e4 08       		.byte	0x8
+ 2016 01e5 00       		.byte	0
+ 2017 01e6 04       		.uleb128 0x4
+ 2018 01e7 AB020000 		.4byte	.LASF38
+ 2019 01eb 05       		.byte	0x5
+ 2020 01ec 5C       		.byte	0x5c
+ 2021 01ed B9010000 		.4byte	0x1b9
+ 2022 01f1 08       		.uleb128 0x8
+ 2023 01f2 01       		.byte	0x1
+ARM GAS  /tmp/ccPuQAGd.s 			page 37
+
+
+ 2024 01f3 05       		.byte	0x5
+ 2025 01f4 62       		.byte	0x62
+ 2026 01f5 18020000 		.4byte	0x218
+ 2027 01f9 09       		.uleb128 0x9
+ 2028 01fa 3E050000 		.4byte	.LASF39
+ 2029 01fe 00       		.sleb128 0
+ 2030 01ff 09       		.uleb128 0x9
+ 2031 0200 54020000 		.4byte	.LASF40
+ 2032 0204 01       		.sleb128 1
+ 2033 0205 09       		.uleb128 0x9
+ 2034 0206 22050000 		.4byte	.LASF41
+ 2035 020a 02       		.sleb128 2
+ 2036 020b 09       		.uleb128 0x9
+ 2037 020c FA030000 		.4byte	.LASF42
+ 2038 0210 03       		.sleb128 3
+ 2039 0211 09       		.uleb128 0x9
+ 2040 0212 36000000 		.4byte	.LASF43
+ 2041 0216 04       		.sleb128 4
+ 2042 0217 00       		.byte	0
+ 2043 0218 04       		.uleb128 0x4
+ 2044 0219 B4030000 		.4byte	.LASF44
+ 2045 021d 05       		.byte	0x5
+ 2046 021e 68       		.byte	0x68
+ 2047 021f F1010000 		.4byte	0x1f1
+ 2048 0223 08       		.uleb128 0x8
+ 2049 0224 01       		.byte	0x1
+ 2050 0225 05       		.byte	0x5
+ 2051 0226 6E       		.byte	0x6e
+ 2052 0227 4A020000 		.4byte	0x24a
+ 2053 022b 09       		.uleb128 0x9
+ 2054 022c D5060000 		.4byte	.LASF45
+ 2055 0230 00       		.sleb128 0
+ 2056 0231 09       		.uleb128 0x9
+ 2057 0232 15000000 		.4byte	.LASF46
+ 2058 0236 01       		.sleb128 1
+ 2059 0237 09       		.uleb128 0x9
+ 2060 0238 A6060000 		.4byte	.LASF47
+ 2061 023c 02       		.sleb128 2
+ 2062 023d 09       		.uleb128 0x9
+ 2063 023e 79070000 		.4byte	.LASF48
+ 2064 0242 03       		.sleb128 3
+ 2065 0243 09       		.uleb128 0x9
+ 2066 0244 74010000 		.4byte	.LASF49
+ 2067 0248 04       		.sleb128 4
+ 2068 0249 00       		.byte	0
+ 2069 024a 04       		.uleb128 0x4
+ 2070 024b 29060000 		.4byte	.LASF50
+ 2071 024f 05       		.byte	0x5
+ 2072 0250 74       		.byte	0x74
+ 2073 0251 23020000 		.4byte	0x223
+ 2074 0255 06       		.uleb128 0x6
+ 2075 0256 48       		.byte	0x48
+ 2076 0257 06       		.byte	0x6
+ 2077 0258 4B       		.byte	0x4b
+ 2078 0259 36030000 		.4byte	0x336
+ 2079 025d 07       		.uleb128 0x7
+ 2080 025e 57000000 		.4byte	.LASF51
+ARM GAS  /tmp/ccPuQAGd.s 			page 38
+
+
+ 2081 0262 06       		.byte	0x6
+ 2082 0263 4D       		.byte	0x4d
+ 2083 0264 4B030000 		.4byte	0x34b
+ 2084 0268 00       		.byte	0
+ 2085 0269 07       		.uleb128 0x7
+ 2086 026a AD030000 		.4byte	.LASF52
+ 2087 026e 06       		.byte	0x6
+ 2088 026f 4E       		.byte	0x4e
+ 2089 0270 4B030000 		.4byte	0x34b
+ 2090 0274 04       		.byte	0x4
+ 2091 0275 07       		.uleb128 0x7
+ 2092 0276 DF070000 		.4byte	.LASF53
+ 2093 027a 06       		.byte	0x6
+ 2094 027b 4F       		.byte	0x4f
+ 2095 027c 4B030000 		.4byte	0x34b
+ 2096 0280 08       		.byte	0x8
+ 2097 0281 07       		.uleb128 0x7
+ 2098 0282 59040000 		.4byte	.LASF54
+ 2099 0286 06       		.byte	0x6
+ 2100 0287 50       		.byte	0x50
+ 2101 0288 4B030000 		.4byte	0x34b
+ 2102 028c 0C       		.byte	0xc
+ 2103 028d 07       		.uleb128 0x7
+ 2104 028e BB050000 		.4byte	.LASF55
+ 2105 0292 06       		.byte	0x6
+ 2106 0293 51       		.byte	0x51
+ 2107 0294 6B030000 		.4byte	0x36b
+ 2108 0298 10       		.byte	0x10
+ 2109 0299 07       		.uleb128 0x7
+ 2110 029a B6010000 		.4byte	.LASF56
+ 2111 029e 06       		.byte	0x6
+ 2112 029f 52       		.byte	0x52
+ 2113 02a0 4B030000 		.4byte	0x34b
+ 2114 02a4 14       		.byte	0x14
+ 2115 02a5 07       		.uleb128 0x7
+ 2116 02a6 F6040000 		.4byte	.LASF57
+ 2117 02aa 06       		.byte	0x6
+ 2118 02ab 53       		.byte	0x53
+ 2119 02ac 8B030000 		.4byte	0x38b
+ 2120 02b0 18       		.byte	0x18
+ 2121 02b1 07       		.uleb128 0x7
+ 2122 02b2 AA010000 		.4byte	.LASF58
+ 2123 02b6 06       		.byte	0x6
+ 2124 02b7 54       		.byte	0x54
+ 2125 02b8 AB030000 		.4byte	0x3ab
+ 2126 02bc 1C       		.byte	0x1c
+ 2127 02bd 07       		.uleb128 0x7
+ 2128 02be F5050000 		.4byte	.LASF59
+ 2129 02c2 06       		.byte	0x6
+ 2130 02c3 55       		.byte	0x55
+ 2131 02c4 D2030000 		.4byte	0x3d2
+ 2132 02c8 20       		.byte	0x20
+ 2133 02c9 07       		.uleb128 0x7
+ 2134 02ca 03070000 		.4byte	.LASF60
+ 2135 02ce 06       		.byte	0x6
+ 2136 02cf 56       		.byte	0x56
+ 2137 02d0 D2030000 		.4byte	0x3d2
+ARM GAS  /tmp/ccPuQAGd.s 			page 39
+
+
+ 2138 02d4 24       		.byte	0x24
+ 2139 02d5 07       		.uleb128 0x7
+ 2140 02d6 83030000 		.4byte	.LASF61
+ 2141 02da 06       		.byte	0x6
+ 2142 02db 57       		.byte	0x57
+ 2143 02dc EC030000 		.4byte	0x3ec
+ 2144 02e0 28       		.byte	0x28
+ 2145 02e1 07       		.uleb128 0x7
+ 2146 02e2 6C030000 		.4byte	.LASF62
+ 2147 02e6 06       		.byte	0x6
+ 2148 02e7 58       		.byte	0x58
+ 2149 02e8 06040000 		.4byte	0x406
+ 2150 02ec 2C       		.byte	0x2c
+ 2151 02ed 07       		.uleb128 0x7
+ 2152 02ee A4020000 		.4byte	.LASF63
+ 2153 02f2 06       		.byte	0x6
+ 2154 02f3 59       		.byte	0x59
+ 2155 02f4 D2030000 		.4byte	0x3d2
+ 2156 02f8 30       		.byte	0x30
+ 2157 02f9 07       		.uleb128 0x7
+ 2158 02fa 12080000 		.4byte	.LASF64
+ 2159 02fe 06       		.byte	0x6
+ 2160 02ff 5A       		.byte	0x5a
+ 2161 0300 20040000 		.4byte	0x420
+ 2162 0304 34       		.byte	0x34
+ 2163 0305 07       		.uleb128 0x7
+ 2164 0306 60020000 		.4byte	.LASF65
+ 2165 030a 06       		.byte	0x6
+ 2166 030b 5B       		.byte	0x5b
+ 2167 030c 06040000 		.4byte	0x406
+ 2168 0310 38       		.byte	0x38
+ 2169 0311 07       		.uleb128 0x7
+ 2170 0312 22010000 		.4byte	.LASF66
+ 2171 0316 06       		.byte	0x6
+ 2172 0317 5C       		.byte	0x5c
+ 2173 0318 3F040000 		.4byte	0x43f
+ 2174 031c 3C       		.byte	0x3c
+ 2175 031d 07       		.uleb128 0x7
+ 2176 031e 4E070000 		.4byte	.LASF67
+ 2177 0322 06       		.byte	0x6
+ 2178 0323 5D       		.byte	0x5d
+ 2179 0324 5E040000 		.4byte	0x45e
+ 2180 0328 40       		.byte	0x40
+ 2181 0329 07       		.uleb128 0x7
+ 2182 032a 12050000 		.4byte	.LASF68
+ 2183 032e 06       		.byte	0x6
+ 2184 032f 5E       		.byte	0x5e
+ 2185 0330 6B030000 		.4byte	0x36b
+ 2186 0334 44       		.byte	0x44
+ 2187 0335 00       		.byte	0
+ 2188 0336 0A       		.uleb128 0xa
+ 2189 0337 76010000 		.4byte	0x176
+ 2190 033b 45030000 		.4byte	0x345
+ 2191 033f 0B       		.uleb128 0xb
+ 2192 0340 45030000 		.4byte	0x345
+ 2193 0344 00       		.byte	0
+ 2194 0345 0C       		.uleb128 0xc
+ARM GAS  /tmp/ccPuQAGd.s 			page 40
+
+
+ 2195 0346 04       		.byte	0x4
+ 2196 0347 4A010000 		.4byte	0x14a
+ 2197 034b 0C       		.uleb128 0xc
+ 2198 034c 04       		.byte	0x4
+ 2199 034d 36030000 		.4byte	0x336
+ 2200 0351 0A       		.uleb128 0xa
+ 2201 0352 76010000 		.4byte	0x176
+ 2202 0356 65030000 		.4byte	0x365
+ 2203 035a 0B       		.uleb128 0xb
+ 2204 035b 45030000 		.4byte	0x345
+ 2205 035f 0B       		.uleb128 0xb
+ 2206 0360 65030000 		.4byte	0x365
+ 2207 0364 00       		.byte	0
+ 2208 0365 0C       		.uleb128 0xc
+ 2209 0366 04       		.byte	0x4
+ 2210 0367 9C000000 		.4byte	0x9c
+ 2211 036b 0C       		.uleb128 0xc
+ 2212 036c 04       		.byte	0x4
+ 2213 036d 51030000 		.4byte	0x351
+ 2214 0371 0A       		.uleb128 0xa
+ 2215 0372 76010000 		.4byte	0x176
+ 2216 0376 85030000 		.4byte	0x385
+ 2217 037a 0B       		.uleb128 0xb
+ 2218 037b 45030000 		.4byte	0x345
+ 2219 037f 0B       		.uleb128 0xb
+ 2220 0380 85030000 		.4byte	0x385
+ 2221 0384 00       		.byte	0
+ 2222 0385 0C       		.uleb128 0xc
+ 2223 0386 04       		.byte	0x4
+ 2224 0387 E6010000 		.4byte	0x1e6
+ 2225 038b 0C       		.uleb128 0xc
+ 2226 038c 04       		.byte	0x4
+ 2227 038d 71030000 		.4byte	0x371
+ 2228 0391 0A       		.uleb128 0xa
+ 2229 0392 76010000 		.4byte	0x176
+ 2230 0396 A5030000 		.4byte	0x3a5
+ 2231 039a 0B       		.uleb128 0xb
+ 2232 039b 45030000 		.4byte	0x345
+ 2233 039f 0B       		.uleb128 0xb
+ 2234 03a0 A5030000 		.4byte	0x3a5
+ 2235 03a4 00       		.byte	0
+ 2236 03a5 0C       		.uleb128 0xc
+ 2237 03a6 04       		.byte	0x4
+ 2238 03a7 AE010000 		.4byte	0x1ae
+ 2239 03ab 0C       		.uleb128 0xc
+ 2240 03ac 04       		.byte	0x4
+ 2241 03ad 91030000 		.4byte	0x391
+ 2242 03b1 0A       		.uleb128 0xa
+ 2243 03b2 76010000 		.4byte	0x176
+ 2244 03b6 C5030000 		.4byte	0x3c5
+ 2245 03ba 0B       		.uleb128 0xb
+ 2246 03bb 45030000 		.4byte	0x345
+ 2247 03bf 0B       		.uleb128 0xb
+ 2248 03c0 C5030000 		.4byte	0x3c5
+ 2249 03c4 00       		.byte	0
+ 2250 03c5 0C       		.uleb128 0xc
+ 2251 03c6 04       		.byte	0x4
+ARM GAS  /tmp/ccPuQAGd.s 			page 41
+
+
+ 2252 03c7 CB030000 		.4byte	0x3cb
+ 2253 03cb 03       		.uleb128 0x3
+ 2254 03cc 04       		.byte	0x4
+ 2255 03cd 04       		.byte	0x4
+ 2256 03ce 6B050000 		.4byte	.LASF69
+ 2257 03d2 0C       		.uleb128 0xc
+ 2258 03d3 04       		.byte	0x4
+ 2259 03d4 B1030000 		.4byte	0x3b1
+ 2260 03d8 0A       		.uleb128 0xa
+ 2261 03d9 76010000 		.4byte	0x176
+ 2262 03dd EC030000 		.4byte	0x3ec
+ 2263 03e1 0B       		.uleb128 0xb
+ 2264 03e2 45030000 		.4byte	0x345
+ 2265 03e6 0B       		.uleb128 0xb
+ 2266 03e7 18020000 		.4byte	0x218
+ 2267 03eb 00       		.byte	0
+ 2268 03ec 0C       		.uleb128 0xc
+ 2269 03ed 04       		.byte	0x4
+ 2270 03ee D8030000 		.4byte	0x3d8
+ 2271 03f2 0A       		.uleb128 0xa
+ 2272 03f3 76010000 		.4byte	0x176
+ 2273 03f7 06040000 		.4byte	0x406
+ 2274 03fb 0B       		.uleb128 0xb
+ 2275 03fc 45030000 		.4byte	0x345
+ 2276 0400 0B       		.uleb128 0xb
+ 2277 0401 CB030000 		.4byte	0x3cb
+ 2278 0405 00       		.byte	0
+ 2279 0406 0C       		.uleb128 0xc
+ 2280 0407 04       		.byte	0x4
+ 2281 0408 F2030000 		.4byte	0x3f2
+ 2282 040c 0A       		.uleb128 0xa
+ 2283 040d 76010000 		.4byte	0x176
+ 2284 0411 20040000 		.4byte	0x420
+ 2285 0415 0B       		.uleb128 0xb
+ 2286 0416 45030000 		.4byte	0x345
+ 2287 041a 0B       		.uleb128 0xb
+ 2288 041b 4A020000 		.4byte	0x24a
+ 2289 041f 00       		.byte	0
+ 2290 0420 0C       		.uleb128 0xc
+ 2291 0421 04       		.byte	0x4
+ 2292 0422 0C040000 		.4byte	0x40c
+ 2293 0426 0A       		.uleb128 0xa
+ 2294 0427 76010000 		.4byte	0x176
+ 2295 042b 3F040000 		.4byte	0x43f
+ 2296 042f 0B       		.uleb128 0xb
+ 2297 0430 45030000 		.4byte	0x345
+ 2298 0434 0B       		.uleb128 0xb
+ 2299 0435 9C000000 		.4byte	0x9c
+ 2300 0439 0B       		.uleb128 0xb
+ 2301 043a 65030000 		.4byte	0x365
+ 2302 043e 00       		.byte	0
+ 2303 043f 0C       		.uleb128 0xc
+ 2304 0440 04       		.byte	0x4
+ 2305 0441 26040000 		.4byte	0x426
+ 2306 0445 0A       		.uleb128 0xa
+ 2307 0446 76010000 		.4byte	0x176
+ 2308 044a 5E040000 		.4byte	0x45e
+ARM GAS  /tmp/ccPuQAGd.s 			page 42
+
+
+ 2309 044e 0B       		.uleb128 0xb
+ 2310 044f 45030000 		.4byte	0x345
+ 2311 0453 0B       		.uleb128 0xb
+ 2312 0454 9C000000 		.4byte	0x9c
+ 2313 0458 0B       		.uleb128 0xb
+ 2314 0459 9C000000 		.4byte	0x9c
+ 2315 045d 00       		.byte	0
+ 2316 045e 0C       		.uleb128 0xc
+ 2317 045f 04       		.byte	0x4
+ 2318 0460 45040000 		.4byte	0x445
+ 2319 0464 04       		.uleb128 0x4
+ 2320 0465 58070000 		.4byte	.LASF70
+ 2321 0469 06       		.byte	0x6
+ 2322 046a 5F       		.byte	0x5f
+ 2323 046b 55020000 		.4byte	0x255
+ 2324 046f 06       		.uleb128 0x6
+ 2325 0470 08       		.byte	0x8
+ 2326 0471 06       		.byte	0x6
+ 2327 0472 64       		.byte	0x64
+ 2328 0473 90040000 		.4byte	0x490
+ 2329 0477 07       		.uleb128 0x7
+ 2330 0478 DC050000 		.4byte	.LASF71
+ 2331 047c 06       		.byte	0x6
+ 2332 047d 66       		.byte	0x66
+ 2333 047e 93000000 		.4byte	0x93
+ 2334 0482 00       		.byte	0
+ 2335 0483 07       		.uleb128 0x7
+ 2336 0484 7A030000 		.4byte	.LASF72
+ 2337 0488 06       		.byte	0x6
+ 2338 0489 67       		.byte	0x67
+ 2339 048a 93000000 		.4byte	0x93
+ 2340 048e 04       		.byte	0x4
+ 2341 048f 00       		.byte	0
+ 2342 0490 04       		.uleb128 0x4
+ 2343 0491 91030000 		.4byte	.LASF73
+ 2344 0495 06       		.byte	0x6
+ 2345 0496 68       		.byte	0x68
+ 2346 0497 6F040000 		.4byte	0x46f
+ 2347 049b 06       		.uleb128 0x6
+ 2348 049c 02       		.byte	0x2
+ 2349 049d 07       		.byte	0x7
+ 2350 049e 4B       		.byte	0x4b
+ 2351 049f BC040000 		.4byte	0x4bc
+ 2352 04a3 07       		.uleb128 0x7
+ 2353 04a4 A1040000 		.4byte	.LASF74
+ 2354 04a8 07       		.byte	0x7
+ 2355 04a9 4D       		.byte	0x4d
+ 2356 04aa 9C000000 		.4byte	0x9c
+ 2357 04ae 00       		.byte	0
+ 2358 04af 07       		.uleb128 0x7
+ 2359 04b0 28040000 		.4byte	.LASF75
+ 2360 04b4 07       		.byte	0x7
+ 2361 04b5 4E       		.byte	0x4e
+ 2362 04b6 9C000000 		.4byte	0x9c
+ 2363 04ba 01       		.byte	0x1
+ 2364 04bb 00       		.byte	0
+ 2365 04bc 04       		.uleb128 0x4
+ARM GAS  /tmp/ccPuQAGd.s 			page 43
+
+
+ 2366 04bd E3030000 		.4byte	.LASF76
+ 2367 04c1 07       		.byte	0x7
+ 2368 04c2 4F       		.byte	0x4f
+ 2369 04c3 9B040000 		.4byte	0x49b
+ 2370 04c7 06       		.uleb128 0x6
+ 2371 04c8 04       		.byte	0x4
+ 2372 04c9 08       		.byte	0x8
+ 2373 04ca 61       		.byte	0x61
+ 2374 04cb DC040000 		.4byte	0x4dc
+ 2375 04cf 07       		.uleb128 0x7
+ 2376 04d0 68060000 		.4byte	.LASF77
+ 2377 04d4 08       		.byte	0x8
+ 2378 04d5 63       		.byte	0x63
+ 2379 04d6 DC040000 		.4byte	0x4dc
+ 2380 04da 00       		.byte	0
+ 2381 04db 00       		.byte	0
+ 2382 04dc 0C       		.uleb128 0xc
+ 2383 04dd 04       		.byte	0x4
+ 2384 04de BC040000 		.4byte	0x4bc
+ 2385 04e2 04       		.uleb128 0x4
+ 2386 04e3 0F010000 		.4byte	.LASF78
+ 2387 04e7 08       		.byte	0x8
+ 2388 04e8 64       		.byte	0x64
+ 2389 04e9 C7040000 		.4byte	0x4c7
+ 2390 04ed 08       		.uleb128 0x8
+ 2391 04ee 01       		.byte	0x1
+ 2392 04ef 09       		.byte	0x9
+ 2393 04f0 52       		.byte	0x52
+ 2394 04f1 0E050000 		.4byte	0x50e
+ 2395 04f5 09       		.uleb128 0x9
+ 2396 04f6 C3010000 		.4byte	.LASF79
+ 2397 04fa 00       		.sleb128 0
+ 2398 04fb 09       		.uleb128 0x9
+ 2399 04fc 8D070000 		.4byte	.LASF80
+ 2400 0500 01       		.sleb128 1
+ 2401 0501 09       		.uleb128 0x9
+ 2402 0502 6D070000 		.4byte	.LASF81
+ 2403 0506 02       		.sleb128 2
+ 2404 0507 09       		.uleb128 0x9
+ 2405 0508 ED070000 		.4byte	.LASF82
+ 2406 050c 03       		.sleb128 3
+ 2407 050d 00       		.byte	0
+ 2408 050e 08       		.uleb128 0x8
+ 2409 050f 01       		.byte	0x1
+ 2410 0510 0A       		.byte	0xa
+ 2411 0511 47       		.byte	0x47
+ 2412 0512 23050000 		.4byte	0x523
+ 2413 0516 09       		.uleb128 0x9
+ 2414 0517 8C040000 		.4byte	.LASF83
+ 2415 051b 7F       		.sleb128 -1
+ 2416 051c 09       		.uleb128 0x9
+ 2417 051d 2B010000 		.4byte	.LASF84
+ 2418 0521 00       		.sleb128 0
+ 2419 0522 00       		.byte	0
+ 2420 0523 04       		.uleb128 0x4
+ 2421 0524 4C040000 		.4byte	.LASF85
+ 2422 0528 0A       		.byte	0xa
+ARM GAS  /tmp/ccPuQAGd.s 			page 44
+
+
+ 2423 0529 4A       		.byte	0x4a
+ 2424 052a 0E050000 		.4byte	0x50e
+ 2425 052e 0D       		.uleb128 0xd
+ 2426 052f D2030000 		.4byte	.LASF89
+ 2427 0533 01       		.byte	0x1
+ 2428 0534 65       		.byte	0x65
+ 2429 0535 76010000 		.4byte	0x176
+ 2430 0539 00000000 		.4byte	.LFB125
+ 2431 053d 48000000 		.4byte	.LFE125-.LFB125
+ 2432 0541 01       		.uleb128 0x1
+ 2433 0542 9C       		.byte	0x9c
+ 2434 0543 63050000 		.4byte	0x563
+ 2435 0547 0E       		.uleb128 0xe
+ 2436 0548 696400   		.ascii	"id\000"
+ 2437 054b 01       		.byte	0x1
+ 2438 054c 65       		.byte	0x65
+ 2439 054d 23050000 		.4byte	0x523
+ 2440 0551 02       		.uleb128 0x2
+ 2441 0552 91       		.byte	0x91
+ 2442 0553 77       		.sleb128 -9
+ 2443 0554 0F       		.uleb128 0xf
+ 2444 0555 AC070000 		.4byte	.LASF86
+ 2445 0559 01       		.byte	0x1
+ 2446 055a 65       		.byte	0x65
+ 2447 055b 63050000 		.4byte	0x563
+ 2448 055f 02       		.uleb128 0x2
+ 2449 0560 91       		.byte	0x91
+ 2450 0561 70       		.sleb128 -16
+ 2451 0562 00       		.byte	0
+ 2452 0563 0C       		.uleb128 0xc
+ 2453 0564 04       		.byte	0x4
+ 2454 0565 93000000 		.4byte	0x93
+ 2455 0569 10       		.uleb128 0x10
+ 2456 056a 34060000 		.4byte	.LASF125
+ 2457 056e 01       		.byte	0x1
+ 2458 056f 83       		.byte	0x83
+ 2459 0570 76010000 		.4byte	0x176
+ 2460 0574 50000000 		.4byte	.LFB126
+ 2461 0578 24010000 		.4byte	.LFE126-.LFB126
+ 2462 057c 01       		.uleb128 0x1
+ 2463 057d 9C       		.byte	0x9c
+ 2464 057e AD050000 		.4byte	0x5ad
+ 2465 0582 0F       		.uleb128 0xf
+ 2466 0583 AC070000 		.4byte	.LASF86
+ 2467 0587 01       		.byte	0x1
+ 2468 0588 83       		.byte	0x83
+ 2469 0589 63050000 		.4byte	0x563
+ 2470 058d 02       		.uleb128 0x2
+ 2471 058e 91       		.byte	0x91
+ 2472 058f 6C       		.sleb128 -20
+ 2473 0590 11       		.uleb128 0x11
+ 2474 0591 A5070000 		.4byte	.LASF87
+ 2475 0595 01       		.byte	0x1
+ 2476 0596 85       		.byte	0x85
+ 2477 0597 AD050000 		.4byte	0x5ad
+ 2478 059b 02       		.uleb128 0x2
+ 2479 059c 91       		.byte	0x91
+ARM GAS  /tmp/ccPuQAGd.s 			page 45
+
+
+ 2480 059d 74       		.sleb128 -12
+ 2481 059e 11       		.uleb128 0x11
+ 2482 059f 07040000 		.4byte	.LASF88
+ 2483 05a3 01       		.byte	0x1
+ 2484 05a4 86       		.byte	0x86
+ 2485 05a5 9C000000 		.4byte	0x9c
+ 2486 05a9 02       		.uleb128 0x2
+ 2487 05aa 91       		.byte	0x91
+ 2488 05ab 73       		.sleb128 -13
+ 2489 05ac 00       		.byte	0
+ 2490 05ad 0C       		.uleb128 0xc
+ 2491 05ae 04       		.byte	0x4
+ 2492 05af 64040000 		.4byte	0x464
+ 2493 05b3 0D       		.uleb128 0xd
+ 2494 05b4 46050000 		.4byte	.LASF90
+ 2495 05b8 01       		.byte	0x1
+ 2496 05b9 CB       		.byte	0xcb
+ 2497 05ba 76010000 		.4byte	0x176
+ 2498 05be 80010000 		.4byte	.LFB127
+ 2499 05c2 58000000 		.4byte	.LFE127-.LFB127
+ 2500 05c6 01       		.uleb128 0x1
+ 2501 05c7 9C       		.byte	0x9c
+ 2502 05c8 F7050000 		.4byte	0x5f7
+ 2503 05cc 0F       		.uleb128 0xf
+ 2504 05cd AC070000 		.4byte	.LASF86
+ 2505 05d1 01       		.byte	0x1
+ 2506 05d2 CB       		.byte	0xcb
+ 2507 05d3 63050000 		.4byte	0x563
+ 2508 05d7 02       		.uleb128 0x2
+ 2509 05d8 91       		.byte	0x91
+ 2510 05d9 6C       		.sleb128 -20
+ 2511 05da 12       		.uleb128 0x12
+ 2512 05db 63747800 		.ascii	"ctx\000"
+ 2513 05df 01       		.byte	0x1
+ 2514 05e0 CD       		.byte	0xcd
+ 2515 05e1 45030000 		.4byte	0x345
+ 2516 05e5 02       		.uleb128 0x2
+ 2517 05e6 91       		.byte	0x91
+ 2518 05e7 74       		.sleb128 -12
+ 2519 05e8 11       		.uleb128 0x11
+ 2520 05e9 A5070000 		.4byte	.LASF87
+ 2521 05ed 01       		.byte	0x1
+ 2522 05ee CE       		.byte	0xce
+ 2523 05ef AD050000 		.4byte	0x5ad
+ 2524 05f3 02       		.uleb128 0x2
+ 2525 05f4 91       		.byte	0x91
+ 2526 05f5 70       		.sleb128 -16
+ 2527 05f6 00       		.byte	0
+ 2528 05f7 0D       		.uleb128 0xd
+ 2529 05f8 72060000 		.4byte	.LASF91
+ 2530 05fc 01       		.byte	0x1
+ 2531 05fd EF       		.byte	0xef
+ 2532 05fe 76010000 		.4byte	0x176
+ 2533 0602 E0010000 		.4byte	.LFB128
+ 2534 0606 46000000 		.4byte	.LFE128-.LFB128
+ 2535 060a 01       		.uleb128 0x1
+ 2536 060b 9C       		.byte	0x9c
+ARM GAS  /tmp/ccPuQAGd.s 			page 46
+
+
+ 2537 060c 3B060000 		.4byte	0x63b
+ 2538 0610 0F       		.uleb128 0xf
+ 2539 0611 AC070000 		.4byte	.LASF86
+ 2540 0615 01       		.byte	0x1
+ 2541 0616 EF       		.byte	0xef
+ 2542 0617 93000000 		.4byte	0x93
+ 2543 061b 02       		.uleb128 0x2
+ 2544 061c 91       		.byte	0x91
+ 2545 061d 6C       		.sleb128 -20
+ 2546 061e 12       		.uleb128 0x12
+ 2547 061f 63747800 		.ascii	"ctx\000"
+ 2548 0623 01       		.byte	0x1
+ 2549 0624 F2       		.byte	0xf2
+ 2550 0625 45030000 		.4byte	0x345
+ 2551 0629 02       		.uleb128 0x2
+ 2552 062a 91       		.byte	0x91
+ 2553 062b 74       		.sleb128 -12
+ 2554 062c 11       		.uleb128 0x11
+ 2555 062d A5070000 		.4byte	.LASF87
+ 2556 0631 01       		.byte	0x1
+ 2557 0632 F3       		.byte	0xf3
+ 2558 0633 AD050000 		.4byte	0x5ad
+ 2559 0637 02       		.uleb128 0x2
+ 2560 0638 91       		.byte	0x91
+ 2561 0639 70       		.sleb128 -16
+ 2562 063a 00       		.byte	0
+ 2563 063b 13       		.uleb128 0x13
+ 2564 063c A0050000 		.4byte	.LASF92
+ 2565 0640 01       		.byte	0x1
+ 2566 0641 1101     		.2byte	0x111
+ 2567 0643 76010000 		.4byte	0x176
+ 2568 0647 30020000 		.4byte	.LFB129
+ 2569 064b 46000000 		.4byte	.LFE129-.LFB129
+ 2570 064f 01       		.uleb128 0x1
+ 2571 0650 9C       		.byte	0x9c
+ 2572 0651 83060000 		.4byte	0x683
+ 2573 0655 14       		.uleb128 0x14
+ 2574 0656 AC070000 		.4byte	.LASF86
+ 2575 065a 01       		.byte	0x1
+ 2576 065b 1101     		.2byte	0x111
+ 2577 065d 93000000 		.4byte	0x93
+ 2578 0661 02       		.uleb128 0x2
+ 2579 0662 91       		.byte	0x91
+ 2580 0663 6C       		.sleb128 -20
+ 2581 0664 15       		.uleb128 0x15
+ 2582 0665 63747800 		.ascii	"ctx\000"
+ 2583 0669 01       		.byte	0x1
+ 2584 066a 1401     		.2byte	0x114
+ 2585 066c 45030000 		.4byte	0x345
+ 2586 0670 02       		.uleb128 0x2
+ 2587 0671 91       		.byte	0x91
+ 2588 0672 74       		.sleb128 -12
+ 2589 0673 16       		.uleb128 0x16
+ 2590 0674 A5070000 		.4byte	.LASF87
+ 2591 0678 01       		.byte	0x1
+ 2592 0679 1501     		.2byte	0x115
+ 2593 067b AD050000 		.4byte	0x5ad
+ARM GAS  /tmp/ccPuQAGd.s 			page 47
+
+
+ 2594 067f 02       		.uleb128 0x2
+ 2595 0680 91       		.byte	0x91
+ 2596 0681 70       		.sleb128 -16
+ 2597 0682 00       		.byte	0
+ 2598 0683 17       		.uleb128 0x17
+ 2599 0684 43010000 		.4byte	.LASF93
+ 2600 0688 01       		.byte	0x1
+ 2601 0689 3301     		.2byte	0x133
+ 2602 068b 76010000 		.4byte	0x176
+ 2603 068f 80020000 		.4byte	.LFB130
+ 2604 0693 2E000000 		.4byte	.LFE130-.LFB130
+ 2605 0697 01       		.uleb128 0x1
+ 2606 0698 9C       		.byte	0x9c
+ 2607 0699 CB060000 		.4byte	0x6cb
+ 2608 069d 14       		.uleb128 0x14
+ 2609 069e AC070000 		.4byte	.LASF86
+ 2610 06a2 01       		.byte	0x1
+ 2611 06a3 3301     		.2byte	0x133
+ 2612 06a5 93000000 		.4byte	0x93
+ 2613 06a9 02       		.uleb128 0x2
+ 2614 06aa 91       		.byte	0x91
+ 2615 06ab 74       		.sleb128 -12
+ 2616 06ac 14       		.uleb128 0x14
+ 2617 06ad 66070000 		.4byte	.LASF94
+ 2618 06b1 01       		.byte	0x1
+ 2619 06b2 3301     		.2byte	0x133
+ 2620 06b4 65030000 		.4byte	0x365
+ 2621 06b8 02       		.uleb128 0x2
+ 2622 06b9 91       		.byte	0x91
+ 2623 06ba 70       		.sleb128 -16
+ 2624 06bb 15       		.uleb128 0x15
+ 2625 06bc 63747800 		.ascii	"ctx\000"
+ 2626 06c0 01       		.byte	0x1
+ 2627 06c1 3501     		.2byte	0x135
+ 2628 06c3 45030000 		.4byte	0x345
+ 2629 06c7 02       		.uleb128 0x2
+ 2630 06c8 91       		.byte	0x91
+ 2631 06c9 7C       		.sleb128 -4
+ 2632 06ca 00       		.byte	0
+ 2633 06cb 17       		.uleb128 0x17
+ 2634 06cc 71050000 		.4byte	.LASF95
+ 2635 06d0 01       		.byte	0x1
+ 2636 06d1 4E01     		.2byte	0x14e
+ 2637 06d3 76010000 		.4byte	0x176
+ 2638 06d7 B0020000 		.4byte	.LFB131
+ 2639 06db 2E000000 		.4byte	.LFE131-.LFB131
+ 2640 06df 01       		.uleb128 0x1
+ 2641 06e0 9C       		.byte	0x9c
+ 2642 06e1 13070000 		.4byte	0x713
+ 2643 06e5 14       		.uleb128 0x14
+ 2644 06e6 AC070000 		.4byte	.LASF86
+ 2645 06ea 01       		.byte	0x1
+ 2646 06eb 4E01     		.2byte	0x14e
+ 2647 06ed 93000000 		.4byte	0x93
+ 2648 06f1 02       		.uleb128 0x2
+ 2649 06f2 91       		.byte	0x91
+ 2650 06f3 74       		.sleb128 -12
+ARM GAS  /tmp/ccPuQAGd.s 			page 48
+
+
+ 2651 06f4 14       		.uleb128 0x14
+ 2652 06f5 66070000 		.4byte	.LASF94
+ 2653 06f9 01       		.byte	0x1
+ 2654 06fa 4E01     		.2byte	0x14e
+ 2655 06fc 65030000 		.4byte	0x365
+ 2656 0700 02       		.uleb128 0x2
+ 2657 0701 91       		.byte	0x91
+ 2658 0702 70       		.sleb128 -16
+ 2659 0703 15       		.uleb128 0x15
+ 2660 0704 63747800 		.ascii	"ctx\000"
+ 2661 0708 01       		.byte	0x1
+ 2662 0709 5001     		.2byte	0x150
+ 2663 070b 45030000 		.4byte	0x345
+ 2664 070f 02       		.uleb128 0x2
+ 2665 0710 91       		.byte	0x91
+ 2666 0711 7C       		.sleb128 -4
+ 2667 0712 00       		.byte	0
+ 2668 0713 17       		.uleb128 0x17
+ 2669 0714 2A050000 		.4byte	.LASF96
+ 2670 0718 01       		.byte	0x1
+ 2671 0719 6901     		.2byte	0x169
+ 2672 071b 76010000 		.4byte	0x176
+ 2673 071f E0020000 		.4byte	.LFB132
+ 2674 0723 2E000000 		.4byte	.LFE132-.LFB132
+ 2675 0727 01       		.uleb128 0x1
+ 2676 0728 9C       		.byte	0x9c
+ 2677 0729 5B070000 		.4byte	0x75b
+ 2678 072d 14       		.uleb128 0x14
+ 2679 072e AC070000 		.4byte	.LASF86
+ 2680 0732 01       		.byte	0x1
+ 2681 0733 6901     		.2byte	0x169
+ 2682 0735 93000000 		.4byte	0x93
+ 2683 0739 02       		.uleb128 0x2
+ 2684 073a 91       		.byte	0x91
+ 2685 073b 74       		.sleb128 -12
+ 2686 073c 14       		.uleb128 0x14
+ 2687 073d 66070000 		.4byte	.LASF94
+ 2688 0741 01       		.byte	0x1
+ 2689 0742 6901     		.2byte	0x169
+ 2690 0744 65030000 		.4byte	0x365
+ 2691 0748 02       		.uleb128 0x2
+ 2692 0749 91       		.byte	0x91
+ 2693 074a 70       		.sleb128 -16
+ 2694 074b 15       		.uleb128 0x15
+ 2695 074c 63747800 		.ascii	"ctx\000"
+ 2696 0750 01       		.byte	0x1
+ 2697 0751 6B01     		.2byte	0x16b
+ 2698 0753 45030000 		.4byte	0x345
+ 2699 0757 02       		.uleb128 0x2
+ 2700 0758 91       		.byte	0x91
+ 2701 0759 7C       		.sleb128 -4
+ 2702 075a 00       		.byte	0
+ 2703 075b 17       		.uleb128 0x17
+ 2704 075c 19020000 		.4byte	.LASF97
+ 2705 0760 01       		.byte	0x1
+ 2706 0761 8401     		.2byte	0x184
+ 2707 0763 76010000 		.4byte	0x176
+ARM GAS  /tmp/ccPuQAGd.s 			page 49
+
+
+ 2708 0767 10030000 		.4byte	.LFB133
+ 2709 076b 2E000000 		.4byte	.LFE133-.LFB133
+ 2710 076f 01       		.uleb128 0x1
+ 2711 0770 9C       		.byte	0x9c
+ 2712 0771 A3070000 		.4byte	0x7a3
+ 2713 0775 14       		.uleb128 0x14
+ 2714 0776 AC070000 		.4byte	.LASF86
+ 2715 077a 01       		.byte	0x1
+ 2716 077b 8401     		.2byte	0x184
+ 2717 077d 93000000 		.4byte	0x93
+ 2718 0781 02       		.uleb128 0x2
+ 2719 0782 91       		.byte	0x91
+ 2720 0783 74       		.sleb128 -12
+ 2721 0784 14       		.uleb128 0x14
+ 2722 0785 CB010000 		.4byte	.LASF21
+ 2723 0789 01       		.byte	0x1
+ 2724 078a 8401     		.2byte	0x184
+ 2725 078c 65030000 		.4byte	0x365
+ 2726 0790 02       		.uleb128 0x2
+ 2727 0791 91       		.byte	0x91
+ 2728 0792 70       		.sleb128 -16
+ 2729 0793 15       		.uleb128 0x15
+ 2730 0794 63747800 		.ascii	"ctx\000"
+ 2731 0798 01       		.byte	0x1
+ 2732 0799 8601     		.2byte	0x186
+ 2733 079b 45030000 		.4byte	0x345
+ 2734 079f 02       		.uleb128 0x2
+ 2735 07a0 91       		.byte	0x91
+ 2736 07a1 7C       		.sleb128 -4
+ 2737 07a2 00       		.byte	0
+ 2738 07a3 13       		.uleb128 0x13
+ 2739 07a4 68040000 		.4byte	.LASF98
+ 2740 07a8 01       		.byte	0x1
+ 2741 07a9 A001     		.2byte	0x1a0
+ 2742 07ab 76010000 		.4byte	0x176
+ 2743 07af 40030000 		.4byte	.LFB134
+ 2744 07b3 54000000 		.4byte	.LFE134-.LFB134
+ 2745 07b7 01       		.uleb128 0x1
+ 2746 07b8 9C       		.byte	0x9c
+ 2747 07b9 FA070000 		.4byte	0x7fa
+ 2748 07bd 14       		.uleb128 0x14
+ 2749 07be AC070000 		.4byte	.LASF86
+ 2750 07c2 01       		.byte	0x1
+ 2751 07c3 A001     		.2byte	0x1a0
+ 2752 07c5 93000000 		.4byte	0x93
+ 2753 07c9 02       		.uleb128 0x2
+ 2754 07ca 91       		.byte	0x91
+ 2755 07cb 6C       		.sleb128 -20
+ 2756 07cc 14       		.uleb128 0x14
+ 2757 07cd 8C060000 		.4byte	.LASF17
+ 2758 07d1 01       		.byte	0x1
+ 2759 07d2 A001     		.2byte	0x1a0
+ 2760 07d4 65030000 		.4byte	0x365
+ 2761 07d8 02       		.uleb128 0x2
+ 2762 07d9 91       		.byte	0x91
+ 2763 07da 68       		.sleb128 -24
+ 2764 07db 15       		.uleb128 0x15
+ARM GAS  /tmp/ccPuQAGd.s 			page 50
+
+
+ 2765 07dc 63747800 		.ascii	"ctx\000"
+ 2766 07e0 01       		.byte	0x1
+ 2767 07e1 A301     		.2byte	0x1a3
+ 2768 07e3 45030000 		.4byte	0x345
+ 2769 07e7 02       		.uleb128 0x2
+ 2770 07e8 91       		.byte	0x91
+ 2771 07e9 74       		.sleb128 -12
+ 2772 07ea 16       		.uleb128 0x16
+ 2773 07eb A5070000 		.4byte	.LASF87
+ 2774 07ef 01       		.byte	0x1
+ 2775 07f0 A401     		.2byte	0x1a4
+ 2776 07f2 AD050000 		.4byte	0x5ad
+ 2777 07f6 02       		.uleb128 0x2
+ 2778 07f7 91       		.byte	0x91
+ 2779 07f8 70       		.sleb128 -16
+ 2780 07f9 00       		.byte	0
+ 2781 07fa 13       		.uleb128 0x13
+ 2782 07fb 87050000 		.4byte	.LASF99
+ 2783 07ff 01       		.byte	0x1
+ 2784 0800 C501     		.2byte	0x1c5
+ 2785 0802 76010000 		.4byte	0x176
+ 2786 0806 A0030000 		.4byte	.LFB135
+ 2787 080a 46000000 		.4byte	.LFE135-.LFB135
+ 2788 080e 01       		.uleb128 0x1
+ 2789 080f 9C       		.byte	0x9c
+ 2790 0810 42080000 		.4byte	0x842
+ 2791 0814 14       		.uleb128 0x14
+ 2792 0815 AC070000 		.4byte	.LASF86
+ 2793 0819 01       		.byte	0x1
+ 2794 081a C501     		.2byte	0x1c5
+ 2795 081c 93000000 		.4byte	0x93
+ 2796 0820 02       		.uleb128 0x2
+ 2797 0821 91       		.byte	0x91
+ 2798 0822 6C       		.sleb128 -20
+ 2799 0823 15       		.uleb128 0x15
+ 2800 0824 63747800 		.ascii	"ctx\000"
+ 2801 0828 01       		.byte	0x1
+ 2802 0829 C801     		.2byte	0x1c8
+ 2803 082b 45030000 		.4byte	0x345
+ 2804 082f 02       		.uleb128 0x2
+ 2805 0830 91       		.byte	0x91
+ 2806 0831 74       		.sleb128 -12
+ 2807 0832 16       		.uleb128 0x16
+ 2808 0833 A5070000 		.4byte	.LASF87
+ 2809 0837 01       		.byte	0x1
+ 2810 0838 C901     		.2byte	0x1c9
+ 2811 083a AD050000 		.4byte	0x5ad
+ 2812 083e 02       		.uleb128 0x2
+ 2813 083f 91       		.byte	0x91
+ 2814 0840 70       		.sleb128 -16
+ 2815 0841 00       		.byte	0
+ 2816 0842 13       		.uleb128 0x13
+ 2817 0843 FD070000 		.4byte	.LASF100
+ 2818 0847 01       		.byte	0x1
+ 2819 0848 E701     		.2byte	0x1e7
+ 2820 084a 76010000 		.4byte	0x176
+ 2821 084e F0030000 		.4byte	.LFB136
+ARM GAS  /tmp/ccPuQAGd.s 			page 51
+
+
+ 2822 0852 54000000 		.4byte	.LFE136-.LFB136
+ 2823 0856 01       		.uleb128 0x1
+ 2824 0857 9C       		.byte	0x9c
+ 2825 0858 99080000 		.4byte	0x899
+ 2826 085c 14       		.uleb128 0x14
+ 2827 085d AC070000 		.4byte	.LASF86
+ 2828 0861 01       		.byte	0x1
+ 2829 0862 E701     		.2byte	0x1e7
+ 2830 0864 93000000 		.4byte	0x93
+ 2831 0868 02       		.uleb128 0x2
+ 2832 0869 91       		.byte	0x91
+ 2833 086a 6C       		.sleb128 -20
+ 2834 086b 14       		.uleb128 0x14
+ 2835 086c 0A020000 		.4byte	.LASF101
+ 2836 0870 01       		.byte	0x1
+ 2837 0871 E701     		.2byte	0x1e7
+ 2838 0873 85030000 		.4byte	0x385
+ 2839 0877 02       		.uleb128 0x2
+ 2840 0878 91       		.byte	0x91
+ 2841 0879 68       		.sleb128 -24
+ 2842 087a 15       		.uleb128 0x15
+ 2843 087b 63747800 		.ascii	"ctx\000"
+ 2844 087f 01       		.byte	0x1
+ 2845 0880 EA01     		.2byte	0x1ea
+ 2846 0882 45030000 		.4byte	0x345
+ 2847 0886 02       		.uleb128 0x2
+ 2848 0887 91       		.byte	0x91
+ 2849 0888 74       		.sleb128 -12
+ 2850 0889 16       		.uleb128 0x16
+ 2851 088a A5070000 		.4byte	.LASF87
+ 2852 088e 01       		.byte	0x1
+ 2853 088f EB01     		.2byte	0x1eb
+ 2854 0891 AD050000 		.4byte	0x5ad
+ 2855 0895 02       		.uleb128 0x2
+ 2856 0896 91       		.byte	0x91
+ 2857 0897 70       		.sleb128 -16
+ 2858 0898 00       		.byte	0
+ 2859 0899 13       		.uleb128 0x13
+ 2860 089a 4A030000 		.4byte	.LASF102
+ 2861 089e 01       		.byte	0x1
+ 2862 089f 0D02     		.2byte	0x20d
+ 2863 08a1 76010000 		.4byte	0x176
+ 2864 08a5 50040000 		.4byte	.LFB137
+ 2865 08a9 54000000 		.4byte	.LFE137-.LFB137
+ 2866 08ad 01       		.uleb128 0x1
+ 2867 08ae 9C       		.byte	0x9c
+ 2868 08af F0080000 		.4byte	0x8f0
+ 2869 08b3 14       		.uleb128 0x14
+ 2870 08b4 AC070000 		.4byte	.LASF86
+ 2871 08b8 01       		.byte	0x1
+ 2872 08b9 0D02     		.2byte	0x20d
+ 2873 08bb 93000000 		.4byte	0x93
+ 2874 08bf 02       		.uleb128 0x2
+ 2875 08c0 91       		.byte	0x91
+ 2876 08c1 6C       		.sleb128 -20
+ 2877 08c2 14       		.uleb128 0x14
+ 2878 08c3 8B030000 		.4byte	.LASF103
+ARM GAS  /tmp/ccPuQAGd.s 			page 52
+
+
+ 2879 08c7 01       		.byte	0x1
+ 2880 08c8 0D02     		.2byte	0x20d
+ 2881 08ca A5030000 		.4byte	0x3a5
+ 2882 08ce 02       		.uleb128 0x2
+ 2883 08cf 91       		.byte	0x91
+ 2884 08d0 68       		.sleb128 -24
+ 2885 08d1 15       		.uleb128 0x15
+ 2886 08d2 63747800 		.ascii	"ctx\000"
+ 2887 08d6 01       		.byte	0x1
+ 2888 08d7 1002     		.2byte	0x210
+ 2889 08d9 45030000 		.4byte	0x345
+ 2890 08dd 02       		.uleb128 0x2
+ 2891 08de 91       		.byte	0x91
+ 2892 08df 74       		.sleb128 -12
+ 2893 08e0 16       		.uleb128 0x16
+ 2894 08e1 A5070000 		.4byte	.LASF87
+ 2895 08e5 01       		.byte	0x1
+ 2896 08e6 1102     		.2byte	0x211
+ 2897 08e8 AD050000 		.4byte	0x5ad
+ 2898 08ec 02       		.uleb128 0x2
+ 2899 08ed 91       		.byte	0x91
+ 2900 08ee 70       		.sleb128 -16
+ 2901 08ef 00       		.byte	0
+ 2902 08f0 13       		.uleb128 0x13
+ 2903 08f1 0C040000 		.4byte	.LASF104
+ 2904 08f5 01       		.byte	0x1
+ 2905 08f6 3602     		.2byte	0x236
+ 2906 08f8 76010000 		.4byte	0x176
+ 2907 08fc B0040000 		.4byte	.LFB138
+ 2908 0900 54000000 		.4byte	.LFE138-.LFB138
+ 2909 0904 01       		.uleb128 0x1
+ 2910 0905 9C       		.byte	0x9c
+ 2911 0906 47090000 		.4byte	0x947
+ 2912 090a 14       		.uleb128 0x14
+ 2913 090b AC070000 		.4byte	.LASF86
+ 2914 090f 01       		.byte	0x1
+ 2915 0910 3602     		.2byte	0x236
+ 2916 0912 93000000 		.4byte	0x93
+ 2917 0916 02       		.uleb128 0x2
+ 2918 0917 91       		.byte	0x91
+ 2919 0918 6C       		.sleb128 -20
+ 2920 0919 14       		.uleb128 0x14
+ 2921 091a 99070000 		.4byte	.LASF105
+ 2922 091e 01       		.byte	0x1
+ 2923 091f 3602     		.2byte	0x236
+ 2924 0921 C5030000 		.4byte	0x3c5
+ 2925 0925 02       		.uleb128 0x2
+ 2926 0926 91       		.byte	0x91
+ 2927 0927 68       		.sleb128 -24
+ 2928 0928 15       		.uleb128 0x15
+ 2929 0929 63747800 		.ascii	"ctx\000"
+ 2930 092d 01       		.byte	0x1
+ 2931 092e 3902     		.2byte	0x239
+ 2932 0930 45030000 		.4byte	0x345
+ 2933 0934 02       		.uleb128 0x2
+ 2934 0935 91       		.byte	0x91
+ 2935 0936 74       		.sleb128 -12
+ARM GAS  /tmp/ccPuQAGd.s 			page 53
+
+
+ 2936 0937 16       		.uleb128 0x16
+ 2937 0938 A5070000 		.4byte	.LASF87
+ 2938 093c 01       		.byte	0x1
+ 2939 093d 3A02     		.2byte	0x23a
+ 2940 093f AD050000 		.4byte	0x5ad
+ 2941 0943 02       		.uleb128 0x2
+ 2942 0944 91       		.byte	0x91
+ 2943 0945 70       		.sleb128 -16
+ 2944 0946 00       		.byte	0
+ 2945 0947 13       		.uleb128 0x13
+ 2946 0948 8A020000 		.4byte	.LASF106
+ 2947 094c 01       		.byte	0x1
+ 2948 094d 5C02     		.2byte	0x25c
+ 2949 094f 76010000 		.4byte	0x176
+ 2950 0953 10050000 		.4byte	.LFB139
+ 2951 0957 54000000 		.4byte	.LFE139-.LFB139
+ 2952 095b 01       		.uleb128 0x1
+ 2953 095c 9C       		.byte	0x9c
+ 2954 095d 9E090000 		.4byte	0x99e
+ 2955 0961 14       		.uleb128 0x14
+ 2956 0962 AC070000 		.4byte	.LASF86
+ 2957 0966 01       		.byte	0x1
+ 2958 0967 5C02     		.2byte	0x25c
+ 2959 0969 93000000 		.4byte	0x93
+ 2960 096d 02       		.uleb128 0x2
+ 2961 096e 91       		.byte	0x91
+ 2962 096f 6C       		.sleb128 -20
+ 2963 0970 18       		.uleb128 0x18
+ 2964 0971 6F647200 		.ascii	"odr\000"
+ 2965 0975 01       		.byte	0x1
+ 2966 0976 5C02     		.2byte	0x25c
+ 2967 0978 C5030000 		.4byte	0x3c5
+ 2968 097c 02       		.uleb128 0x2
+ 2969 097d 91       		.byte	0x91
+ 2970 097e 68       		.sleb128 -24
+ 2971 097f 15       		.uleb128 0x15
+ 2972 0980 63747800 		.ascii	"ctx\000"
+ 2973 0984 01       		.byte	0x1
+ 2974 0985 5F02     		.2byte	0x25f
+ 2975 0987 45030000 		.4byte	0x345
+ 2976 098b 02       		.uleb128 0x2
+ 2977 098c 91       		.byte	0x91
+ 2978 098d 74       		.sleb128 -12
+ 2979 098e 16       		.uleb128 0x16
+ 2980 098f A5070000 		.4byte	.LASF87
+ 2981 0993 01       		.byte	0x1
+ 2982 0994 6002     		.2byte	0x260
+ 2983 0996 AD050000 		.4byte	0x5ad
+ 2984 099a 02       		.uleb128 0x2
+ 2985 099b 91       		.byte	0x91
+ 2986 099c 70       		.sleb128 -16
+ 2987 099d 00       		.byte	0
+ 2988 099e 13       		.uleb128 0x13
+ 2989 099f 4F060000 		.4byte	.LASF107
+ 2990 09a3 01       		.byte	0x1
+ 2991 09a4 8202     		.2byte	0x282
+ 2992 09a6 76010000 		.4byte	0x176
+ARM GAS  /tmp/ccPuQAGd.s 			page 54
+
+
+ 2993 09aa 70050000 		.4byte	.LFB140
+ 2994 09ae 52000000 		.4byte	.LFE140-.LFB140
+ 2995 09b2 01       		.uleb128 0x1
+ 2996 09b3 9C       		.byte	0x9c
+ 2997 09b4 F5090000 		.4byte	0x9f5
+ 2998 09b8 14       		.uleb128 0x14
+ 2999 09b9 AC070000 		.4byte	.LASF86
+ 3000 09bd 01       		.byte	0x1
+ 3001 09be 8202     		.2byte	0x282
+ 3002 09c0 93000000 		.4byte	0x93
+ 3003 09c4 02       		.uleb128 0x2
+ 3004 09c5 91       		.byte	0x91
+ 3005 09c6 6C       		.sleb128 -20
+ 3006 09c7 18       		.uleb128 0x18
+ 3007 09c8 6F647200 		.ascii	"odr\000"
+ 3008 09cc 01       		.byte	0x1
+ 3009 09cd 8202     		.2byte	0x282
+ 3010 09cf 18020000 		.4byte	0x218
+ 3011 09d3 02       		.uleb128 0x2
+ 3012 09d4 91       		.byte	0x91
+ 3013 09d5 6B       		.sleb128 -21
+ 3014 09d6 15       		.uleb128 0x15
+ 3015 09d7 63747800 		.ascii	"ctx\000"
+ 3016 09db 01       		.byte	0x1
+ 3017 09dc 8502     		.2byte	0x285
+ 3018 09de 45030000 		.4byte	0x345
+ 3019 09e2 02       		.uleb128 0x2
+ 3020 09e3 91       		.byte	0x91
+ 3021 09e4 74       		.sleb128 -12
+ 3022 09e5 16       		.uleb128 0x16
+ 3023 09e6 A5070000 		.4byte	.LASF87
+ 3024 09ea 01       		.byte	0x1
+ 3025 09eb 8602     		.2byte	0x286
+ 3026 09ed AD050000 		.4byte	0x5ad
+ 3027 09f1 02       		.uleb128 0x2
+ 3028 09f2 91       		.byte	0x91
+ 3029 09f3 70       		.sleb128 -16
+ 3030 09f4 00       		.byte	0
+ 3031 09f5 13       		.uleb128 0x13
+ 3032 09f6 BB060000 		.4byte	.LASF108
+ 3033 09fa 01       		.byte	0x1
+ 3034 09fb A402     		.2byte	0x2a4
+ 3035 09fd 76010000 		.4byte	0x176
+ 3036 0a01 D0050000 		.4byte	.LFB141
+ 3037 0a05 4A000000 		.4byte	.LFE141-.LFB141
+ 3038 0a09 01       		.uleb128 0x1
+ 3039 0a0a 9C       		.byte	0x9c
+ 3040 0a0b 4C0A0000 		.4byte	0xa4c
+ 3041 0a0f 14       		.uleb128 0x14
+ 3042 0a10 AC070000 		.4byte	.LASF86
+ 3043 0a14 01       		.byte	0x1
+ 3044 0a15 A402     		.2byte	0x2a4
+ 3045 0a17 93000000 		.4byte	0x93
+ 3046 0a1b 02       		.uleb128 0x2
+ 3047 0a1c 91       		.byte	0x91
+ 3048 0a1d 6C       		.sleb128 -20
+ 3049 0a1e 18       		.uleb128 0x18
+ARM GAS  /tmp/ccPuQAGd.s 			page 55
+
+
+ 3050 0a1f 6F647200 		.ascii	"odr\000"
+ 3051 0a23 01       		.byte	0x1
+ 3052 0a24 A402     		.2byte	0x2a4
+ 3053 0a26 CB030000 		.4byte	0x3cb
+ 3054 0a2a 02       		.uleb128 0x2
+ 3055 0a2b 91       		.byte	0x91
+ 3056 0a2c 68       		.sleb128 -24
+ 3057 0a2d 15       		.uleb128 0x15
+ 3058 0a2e 63747800 		.ascii	"ctx\000"
+ 3059 0a32 01       		.byte	0x1
+ 3060 0a33 A702     		.2byte	0x2a7
+ 3061 0a35 45030000 		.4byte	0x345
+ 3062 0a39 02       		.uleb128 0x2
+ 3063 0a3a 91       		.byte	0x91
+ 3064 0a3b 74       		.sleb128 -12
+ 3065 0a3c 16       		.uleb128 0x16
+ 3066 0a3d A5070000 		.4byte	.LASF87
+ 3067 0a41 01       		.byte	0x1
+ 3068 0a42 A802     		.2byte	0x2a8
+ 3069 0a44 AD050000 		.4byte	0x5ad
+ 3070 0a48 02       		.uleb128 0x2
+ 3071 0a49 91       		.byte	0x91
+ 3072 0a4a 70       		.sleb128 -16
+ 3073 0a4b 00       		.byte	0
+ 3074 0a4c 13       		.uleb128 0x13
+ 3075 0a4d FF040000 		.4byte	.LASF109
+ 3076 0a51 01       		.byte	0x1
+ 3077 0a52 C602     		.2byte	0x2c6
+ 3078 0a54 76010000 		.4byte	0x176
+ 3079 0a58 20060000 		.4byte	.LFB142
+ 3080 0a5c 54000000 		.4byte	.LFE142-.LFB142
+ 3081 0a60 01       		.uleb128 0x1
+ 3082 0a61 9C       		.byte	0x9c
+ 3083 0a62 A30A0000 		.4byte	0xaa3
+ 3084 0a66 14       		.uleb128 0x14
+ 3085 0a67 AC070000 		.4byte	.LASF86
+ 3086 0a6b 01       		.byte	0x1
+ 3087 0a6c C602     		.2byte	0x2c6
+ 3088 0a6e 93000000 		.4byte	0x93
+ 3089 0a72 02       		.uleb128 0x2
+ 3090 0a73 91       		.byte	0x91
+ 3091 0a74 6C       		.sleb128 -20
+ 3092 0a75 14       		.uleb128 0x14
+ 3093 0a76 80020000 		.4byte	.LASF110
+ 3094 0a7a 01       		.byte	0x1
+ 3095 0a7b C602     		.2byte	0x2c6
+ 3096 0a7d C5030000 		.4byte	0x3c5
+ 3097 0a81 02       		.uleb128 0x2
+ 3098 0a82 91       		.byte	0x91
+ 3099 0a83 68       		.sleb128 -24
+ 3100 0a84 15       		.uleb128 0x15
+ 3101 0a85 63747800 		.ascii	"ctx\000"
+ 3102 0a89 01       		.byte	0x1
+ 3103 0a8a C902     		.2byte	0x2c9
+ 3104 0a8c 45030000 		.4byte	0x345
+ 3105 0a90 02       		.uleb128 0x2
+ 3106 0a91 91       		.byte	0x91
+ARM GAS  /tmp/ccPuQAGd.s 			page 56
+
+
+ 3107 0a92 74       		.sleb128 -12
+ 3108 0a93 16       		.uleb128 0x16
+ 3109 0a94 A5070000 		.4byte	.LASF87
+ 3110 0a98 01       		.byte	0x1
+ 3111 0a99 CA02     		.2byte	0x2ca
+ 3112 0a9b AD050000 		.4byte	0x5ad
+ 3113 0a9f 02       		.uleb128 0x2
+ 3114 0aa0 91       		.byte	0x91
+ 3115 0aa1 70       		.sleb128 -16
+ 3116 0aa2 00       		.byte	0
+ 3117 0aa3 13       		.uleb128 0x13
+ 3118 0aa4 EE010000 		.4byte	.LASF111
+ 3119 0aa8 01       		.byte	0x1
+ 3120 0aa9 EC02     		.2byte	0x2ec
+ 3121 0aab 76010000 		.4byte	0x176
+ 3122 0aaf 80060000 		.4byte	.LFB143
+ 3123 0ab3 52000000 		.4byte	.LFE143-.LFB143
+ 3124 0ab7 01       		.uleb128 0x1
+ 3125 0ab8 9C       		.byte	0x9c
+ 3126 0ab9 FA0A0000 		.4byte	0xafa
+ 3127 0abd 14       		.uleb128 0x14
+ 3128 0abe AC070000 		.4byte	.LASF86
+ 3129 0ac2 01       		.byte	0x1
+ 3130 0ac3 EC02     		.2byte	0x2ec
+ 3131 0ac5 93000000 		.4byte	0x93
+ 3132 0ac9 02       		.uleb128 0x2
+ 3133 0aca 91       		.byte	0x91
+ 3134 0acb 6C       		.sleb128 -20
+ 3135 0acc 14       		.uleb128 0x14
+ 3136 0acd 80020000 		.4byte	.LASF110
+ 3137 0ad1 01       		.byte	0x1
+ 3138 0ad2 EC02     		.2byte	0x2ec
+ 3139 0ad4 4A020000 		.4byte	0x24a
+ 3140 0ad8 02       		.uleb128 0x2
+ 3141 0ad9 91       		.byte	0x91
+ 3142 0ada 6B       		.sleb128 -21
+ 3143 0adb 15       		.uleb128 0x15
+ 3144 0adc 63747800 		.ascii	"ctx\000"
+ 3145 0ae0 01       		.byte	0x1
+ 3146 0ae1 EF02     		.2byte	0x2ef
+ 3147 0ae3 45030000 		.4byte	0x345
+ 3148 0ae7 02       		.uleb128 0x2
+ 3149 0ae8 91       		.byte	0x91
+ 3150 0ae9 74       		.sleb128 -12
+ 3151 0aea 16       		.uleb128 0x16
+ 3152 0aeb A5070000 		.4byte	.LASF87
+ 3153 0aef 01       		.byte	0x1
+ 3154 0af0 F002     		.2byte	0x2f0
+ 3155 0af2 AD050000 		.4byte	0x5ad
+ 3156 0af6 02       		.uleb128 0x2
+ 3157 0af7 91       		.byte	0x91
+ 3158 0af8 70       		.sleb128 -16
+ 3159 0af9 00       		.byte	0
+ 3160 0afa 13       		.uleb128 0x13
+ 3161 0afb 10060000 		.4byte	.LASF112
+ 3162 0aff 01       		.byte	0x1
+ 3163 0b00 0E03     		.2byte	0x30e
+ARM GAS  /tmp/ccPuQAGd.s 			page 57
+
+
+ 3164 0b02 76010000 		.4byte	0x176
+ 3165 0b06 E0060000 		.4byte	.LFB144
+ 3166 0b0a 4A000000 		.4byte	.LFE144-.LFB144
+ 3167 0b0e 01       		.uleb128 0x1
+ 3168 0b0f 9C       		.byte	0x9c
+ 3169 0b10 510B0000 		.4byte	0xb51
+ 3170 0b14 14       		.uleb128 0x14
+ 3171 0b15 AC070000 		.4byte	.LASF86
+ 3172 0b19 01       		.byte	0x1
+ 3173 0b1a 0E03     		.2byte	0x30e
+ 3174 0b1c 93000000 		.4byte	0x93
+ 3175 0b20 02       		.uleb128 0x2
+ 3176 0b21 91       		.byte	0x91
+ 3177 0b22 6C       		.sleb128 -20
+ 3178 0b23 14       		.uleb128 0x14
+ 3179 0b24 80020000 		.4byte	.LASF110
+ 3180 0b28 01       		.byte	0x1
+ 3181 0b29 0E03     		.2byte	0x30e
+ 3182 0b2b CB030000 		.4byte	0x3cb
+ 3183 0b2f 02       		.uleb128 0x2
+ 3184 0b30 91       		.byte	0x91
+ 3185 0b31 68       		.sleb128 -24
+ 3186 0b32 15       		.uleb128 0x15
+ 3187 0b33 63747800 		.ascii	"ctx\000"
+ 3188 0b37 01       		.byte	0x1
+ 3189 0b38 1103     		.2byte	0x311
+ 3190 0b3a 45030000 		.4byte	0x345
+ 3191 0b3e 02       		.uleb128 0x2
+ 3192 0b3f 91       		.byte	0x91
+ 3193 0b40 74       		.sleb128 -12
+ 3194 0b41 16       		.uleb128 0x16
+ 3195 0b42 A5070000 		.4byte	.LASF87
+ 3196 0b46 01       		.byte	0x1
+ 3197 0b47 1203     		.2byte	0x312
+ 3198 0b49 AD050000 		.4byte	0x5ad
+ 3199 0b4d 02       		.uleb128 0x2
+ 3200 0b4e 91       		.byte	0x91
+ 3201 0b4f 70       		.sleb128 -16
+ 3202 0b50 00       		.byte	0
+ 3203 0b51 13       		.uleb128 0x13
+ 3204 0b52 DC060000 		.4byte	.LASF113
+ 3205 0b56 01       		.byte	0x1
+ 3206 0b57 3003     		.2byte	0x330
+ 3207 0b59 76010000 		.4byte	0x176
+ 3208 0b5d 30070000 		.4byte	.LFB145
+ 3209 0b61 60000000 		.4byte	.LFE145-.LFB145
+ 3210 0b65 01       		.uleb128 0x1
+ 3211 0b66 9C       		.byte	0x9c
+ 3212 0b67 B70B0000 		.4byte	0xbb7
+ 3213 0b6b 14       		.uleb128 0x14
+ 3214 0b6c AC070000 		.4byte	.LASF86
+ 3215 0b70 01       		.byte	0x1
+ 3216 0b71 3003     		.2byte	0x330
+ 3217 0b73 93000000 		.4byte	0x93
+ 3218 0b77 02       		.uleb128 0x2
+ 3219 0b78 91       		.byte	0x91
+ 3220 0b79 6C       		.sleb128 -20
+ARM GAS  /tmp/ccPuQAGd.s 			page 58
+
+
+ 3221 0b7a 18       		.uleb128 0x18
+ 3222 0b7b 72656700 		.ascii	"reg\000"
+ 3223 0b7f 01       		.byte	0x1
+ 3224 0b80 3003     		.2byte	0x330
+ 3225 0b82 9C000000 		.4byte	0x9c
+ 3226 0b86 02       		.uleb128 0x2
+ 3227 0b87 91       		.byte	0x91
+ 3228 0b88 6B       		.sleb128 -21
+ 3229 0b89 14       		.uleb128 0x14
+ 3230 0b8a 07040000 		.4byte	.LASF88
+ 3231 0b8e 01       		.byte	0x1
+ 3232 0b8f 3003     		.2byte	0x330
+ 3233 0b91 65030000 		.4byte	0x365
+ 3234 0b95 02       		.uleb128 0x2
+ 3235 0b96 91       		.byte	0x91
+ 3236 0b97 64       		.sleb128 -28
+ 3237 0b98 15       		.uleb128 0x15
+ 3238 0b99 63747800 		.ascii	"ctx\000"
+ 3239 0b9d 01       		.byte	0x1
+ 3240 0b9e 3303     		.2byte	0x333
+ 3241 0ba0 45030000 		.4byte	0x345
+ 3242 0ba4 02       		.uleb128 0x2
+ 3243 0ba5 91       		.byte	0x91
+ 3244 0ba6 74       		.sleb128 -12
+ 3245 0ba7 16       		.uleb128 0x16
+ 3246 0ba8 A5070000 		.4byte	.LASF87
+ 3247 0bac 01       		.byte	0x1
+ 3248 0bad 3403     		.2byte	0x334
+ 3249 0baf AD050000 		.4byte	0x5ad
+ 3250 0bb3 02       		.uleb128 0x2
+ 3251 0bb4 91       		.byte	0x91
+ 3252 0bb5 70       		.sleb128 -16
+ 3253 0bb6 00       		.byte	0
+ 3254 0bb7 13       		.uleb128 0x13
+ 3255 0bb8 20000000 		.4byte	.LASF114
+ 3256 0bbc 01       		.byte	0x1
+ 3257 0bbd 5903     		.2byte	0x359
+ 3258 0bbf 76010000 		.4byte	0x176
+ 3259 0bc3 90070000 		.4byte	.LFB146
+ 3260 0bc7 5A000000 		.4byte	.LFE146-.LFB146
+ 3261 0bcb 01       		.uleb128 0x1
+ 3262 0bcc 9C       		.byte	0x9c
+ 3263 0bcd 1D0C0000 		.4byte	0xc1d
+ 3264 0bd1 14       		.uleb128 0x14
+ 3265 0bd2 AC070000 		.4byte	.LASF86
+ 3266 0bd6 01       		.byte	0x1
+ 3267 0bd7 5903     		.2byte	0x359
+ 3268 0bd9 93000000 		.4byte	0x93
+ 3269 0bdd 02       		.uleb128 0x2
+ 3270 0bde 91       		.byte	0x91
+ 3271 0bdf 6C       		.sleb128 -20
+ 3272 0be0 18       		.uleb128 0x18
+ 3273 0be1 72656700 		.ascii	"reg\000"
+ 3274 0be5 01       		.byte	0x1
+ 3275 0be6 5903     		.2byte	0x359
+ 3276 0be8 9C000000 		.4byte	0x9c
+ 3277 0bec 02       		.uleb128 0x2
+ARM GAS  /tmp/ccPuQAGd.s 			page 59
+
+
+ 3278 0bed 91       		.byte	0x91
+ 3279 0bee 6B       		.sleb128 -21
+ 3280 0bef 14       		.uleb128 0x14
+ 3281 0bf0 07040000 		.4byte	.LASF88
+ 3282 0bf4 01       		.byte	0x1
+ 3283 0bf5 5903     		.2byte	0x359
+ 3284 0bf7 9C000000 		.4byte	0x9c
+ 3285 0bfb 02       		.uleb128 0x2
+ 3286 0bfc 91       		.byte	0x91
+ 3287 0bfd 6A       		.sleb128 -22
+ 3288 0bfe 15       		.uleb128 0x15
+ 3289 0bff 63747800 		.ascii	"ctx\000"
+ 3290 0c03 01       		.byte	0x1
+ 3291 0c04 5C03     		.2byte	0x35c
+ 3292 0c06 45030000 		.4byte	0x345
+ 3293 0c0a 02       		.uleb128 0x2
+ 3294 0c0b 91       		.byte	0x91
+ 3295 0c0c 74       		.sleb128 -12
+ 3296 0c0d 16       		.uleb128 0x16
+ 3297 0c0e A5070000 		.4byte	.LASF87
+ 3298 0c12 01       		.byte	0x1
+ 3299 0c13 5D03     		.2byte	0x35d
+ 3300 0c15 AD050000 		.4byte	0x5ad
+ 3301 0c19 02       		.uleb128 0x2
+ 3302 0c1a 91       		.byte	0x91
+ 3303 0c1b 70       		.sleb128 -16
+ 3304 0c1c 00       		.byte	0
+ 3305 0c1d 13       		.uleb128 0x13
+ 3306 0c1e 20070000 		.4byte	.LASF115
+ 3307 0c22 01       		.byte	0x1
+ 3308 0c23 7C03     		.2byte	0x37c
+ 3309 0c25 76010000 		.4byte	0x176
+ 3310 0c29 F0070000 		.4byte	.LFB147
+ 3311 0c2d 4A000000 		.4byte	.LFE147-.LFB147
+ 3312 0c31 01       		.uleb128 0x1
+ 3313 0c32 9C       		.byte	0x9c
+ 3314 0c33 740C0000 		.4byte	0xc74
+ 3315 0c37 14       		.uleb128 0x14
+ 3316 0c38 AC070000 		.4byte	.LASF86
+ 3317 0c3c 01       		.byte	0x1
+ 3318 0c3d 7C03     		.2byte	0x37c
+ 3319 0c3f 93000000 		.4byte	0x93
+ 3320 0c43 02       		.uleb128 0x2
+ 3321 0c44 91       		.byte	0x91
+ 3322 0c45 6C       		.sleb128 -20
+ 3323 0c46 14       		.uleb128 0x14
+ 3324 0c47 66070000 		.4byte	.LASF94
+ 3325 0c4b 01       		.byte	0x1
+ 3326 0c4c 7C03     		.2byte	0x37c
+ 3327 0c4e 65030000 		.4byte	0x365
+ 3328 0c52 02       		.uleb128 0x2
+ 3329 0c53 91       		.byte	0x91
+ 3330 0c54 68       		.sleb128 -24
+ 3331 0c55 15       		.uleb128 0x15
+ 3332 0c56 63747800 		.ascii	"ctx\000"
+ 3333 0c5a 01       		.byte	0x1
+ 3334 0c5b 7F03     		.2byte	0x37f
+ARM GAS  /tmp/ccPuQAGd.s 			page 60
+
+
+ 3335 0c5d 45030000 		.4byte	0x345
+ 3336 0c61 02       		.uleb128 0x2
+ 3337 0c62 91       		.byte	0x91
+ 3338 0c63 74       		.sleb128 -12
+ 3339 0c64 16       		.uleb128 0x16
+ 3340 0c65 A5070000 		.4byte	.LASF87
+ 3341 0c69 01       		.byte	0x1
+ 3342 0c6a 8003     		.2byte	0x380
+ 3343 0c6c AD050000 		.4byte	0x5ad
+ 3344 0c70 02       		.uleb128 0x2
+ 3345 0c71 91       		.byte	0x91
+ 3346 0c72 70       		.sleb128 -16
+ 3347 0c73 00       		.byte	0
+ 3348 0c74 19       		.uleb128 0x19
+ 3349 0c75 4A010000 		.4byte	0x14a
+ 3350 0c79 840C0000 		.4byte	0xc84
+ 3351 0c7d 1A       		.uleb128 0x1a
+ 3352 0c7e 8C000000 		.4byte	0x8c
+ 3353 0c82 00       		.byte	0
+ 3354 0c83 00       		.byte	0
+ 3355 0c84 11       		.uleb128 0x11
+ 3356 0c85 CA070000 		.4byte	.LASF116
+ 3357 0c89 01       		.byte	0x1
+ 3358 0c8a 3D       		.byte	0x3d
+ 3359 0c8b 740C0000 		.4byte	0xc74
+ 3360 0c8f 05       		.uleb128 0x5
+ 3361 0c90 03       		.byte	0x3
+ 3362 0c91 00000000 		.4byte	MAGNETO_SensorHandle
+ 3363 0c95 19       		.uleb128 0x19
+ 3364 0c96 90040000 		.4byte	0x490
+ 3365 0c9a A50C0000 		.4byte	0xca5
+ 3366 0c9e 1A       		.uleb128 0x1a
+ 3367 0c9f 8C000000 		.4byte	0x8c
+ 3368 0ca3 00       		.byte	0
+ 3369 0ca4 00       		.byte	0
+ 3370 0ca5 11       		.uleb128 0x11
+ 3371 0ca6 7F040000 		.4byte	.LASF117
+ 3372 0caa 01       		.byte	0x1
+ 3373 0cab 3E       		.byte	0x3e
+ 3374 0cac 950C0000 		.4byte	0xc95
+ 3375 0cb0 05       		.uleb128 0x5
+ 3376 0cb1 03       		.byte	0x3
+ 3377 0cb2 14000000 		.4byte	MAGNETO_Data
+ 3378 0cb6 11       		.uleb128 0x11
+ 3379 0cb7 6D020000 		.4byte	.LASF118
+ 3380 0cbb 01       		.byte	0x1
+ 3381 0cbc 3F       		.byte	0x3f
+ 3382 0cbd E2040000 		.4byte	0x4e2
+ 3383 0cc1 05       		.uleb128 0x5
+ 3384 0cc2 03       		.byte	0x3
+ 3385 0cc3 1C000000 		.4byte	LSM303AGR_M_0_Data
+ 3386 0cc7 19       		.uleb128 0x19
+ 3387 0cc8 BC040000 		.4byte	0x4bc
+ 3388 0ccc D70C0000 		.4byte	0xcd7
+ 3389 0cd0 1A       		.uleb128 0x1a
+ 3390 0cd1 8C000000 		.4byte	0x8c
+ 3391 0cd5 00       		.byte	0
+ARM GAS  /tmp/ccPuQAGd.s 			page 61
+
+
+ 3392 0cd6 00       		.byte	0
+ 3393 0cd7 1B       		.uleb128 0x1b
+ 3394 0cd8 0B070000 		.4byte	.LASF119
+ 3395 0cdc 07       		.byte	0x7
+ 3396 0cdd 59       		.byte	0x59
+ 3397 0cde C70C0000 		.4byte	0xcc7
+ 3398 0ce2 1B       		.uleb128 0x1b
+ 3399 0ce3 8D010000 		.4byte	.LASF120
+ 3400 0ce7 08       		.byte	0x8
+ 3401 0ce8 6E       		.byte	0x6e
+ 3402 0ce9 64040000 		.4byte	0x464
+ 3403 0ced 1C       		.uleb128 0x1c
+ 3404 0cee 9D010000 		.4byte	.LASF121
+ 3405 0cf2 0B       		.byte	0xb
+ 3406 0cf3 FA06     		.2byte	0x6fa
+ 3407 0cf5 F90C0000 		.4byte	0xcf9
+ 3408 0cf9 1D       		.uleb128 0x1d
+ 3409 0cfa B2000000 		.4byte	0xb2
+ 3410 0cfe 00       		.byte	0
+ 3411              		.section	.debug_abbrev,"",%progbits
+ 3412              	.Ldebug_abbrev0:
+ 3413 0000 01       		.uleb128 0x1
+ 3414 0001 11       		.uleb128 0x11
+ 3415 0002 01       		.byte	0x1
+ 3416 0003 25       		.uleb128 0x25
+ 3417 0004 0E       		.uleb128 0xe
+ 3418 0005 13       		.uleb128 0x13
+ 3419 0006 0B       		.uleb128 0xb
+ 3420 0007 03       		.uleb128 0x3
+ 3421 0008 0E       		.uleb128 0xe
+ 3422 0009 1B       		.uleb128 0x1b
+ 3423 000a 0E       		.uleb128 0xe
+ 3424 000b 11       		.uleb128 0x11
+ 3425 000c 01       		.uleb128 0x1
+ 3426 000d 12       		.uleb128 0x12
+ 3427 000e 06       		.uleb128 0x6
+ 3428 000f 10       		.uleb128 0x10
+ 3429 0010 17       		.uleb128 0x17
+ 3430 0011 00       		.byte	0
+ 3431 0012 00       		.byte	0
+ 3432 0013 02       		.uleb128 0x2
+ 3433 0014 24       		.uleb128 0x24
+ 3434 0015 00       		.byte	0
+ 3435 0016 0B       		.uleb128 0xb
+ 3436 0017 0B       		.uleb128 0xb
+ 3437 0018 3E       		.uleb128 0x3e
+ 3438 0019 0B       		.uleb128 0xb
+ 3439 001a 03       		.uleb128 0x3
+ 3440 001b 08       		.uleb128 0x8
+ 3441 001c 00       		.byte	0
+ 3442 001d 00       		.byte	0
+ 3443 001e 03       		.uleb128 0x3
+ 3444 001f 24       		.uleb128 0x24
+ 3445 0020 00       		.byte	0
+ 3446 0021 0B       		.uleb128 0xb
+ 3447 0022 0B       		.uleb128 0xb
+ 3448 0023 3E       		.uleb128 0x3e
+ARM GAS  /tmp/ccPuQAGd.s 			page 62
+
+
+ 3449 0024 0B       		.uleb128 0xb
+ 3450 0025 03       		.uleb128 0x3
+ 3451 0026 0E       		.uleb128 0xe
+ 3452 0027 00       		.byte	0
+ 3453 0028 00       		.byte	0
+ 3454 0029 04       		.uleb128 0x4
+ 3455 002a 16       		.uleb128 0x16
+ 3456 002b 00       		.byte	0
+ 3457 002c 03       		.uleb128 0x3
+ 3458 002d 0E       		.uleb128 0xe
+ 3459 002e 3A       		.uleb128 0x3a
+ 3460 002f 0B       		.uleb128 0xb
+ 3461 0030 3B       		.uleb128 0x3b
+ 3462 0031 0B       		.uleb128 0xb
+ 3463 0032 49       		.uleb128 0x49
+ 3464 0033 13       		.uleb128 0x13
+ 3465 0034 00       		.byte	0
+ 3466 0035 00       		.byte	0
+ 3467 0036 05       		.uleb128 0x5
+ 3468 0037 0F       		.uleb128 0xf
+ 3469 0038 00       		.byte	0
+ 3470 0039 0B       		.uleb128 0xb
+ 3471 003a 0B       		.uleb128 0xb
+ 3472 003b 00       		.byte	0
+ 3473 003c 00       		.byte	0
+ 3474 003d 06       		.uleb128 0x6
+ 3475 003e 13       		.uleb128 0x13
+ 3476 003f 01       		.byte	0x1
+ 3477 0040 0B       		.uleb128 0xb
+ 3478 0041 0B       		.uleb128 0xb
+ 3479 0042 3A       		.uleb128 0x3a
+ 3480 0043 0B       		.uleb128 0xb
+ 3481 0044 3B       		.uleb128 0x3b
+ 3482 0045 0B       		.uleb128 0xb
+ 3483 0046 01       		.uleb128 0x1
+ 3484 0047 13       		.uleb128 0x13
+ 3485 0048 00       		.byte	0
+ 3486 0049 00       		.byte	0
+ 3487 004a 07       		.uleb128 0x7
+ 3488 004b 0D       		.uleb128 0xd
+ 3489 004c 00       		.byte	0
+ 3490 004d 03       		.uleb128 0x3
+ 3491 004e 0E       		.uleb128 0xe
+ 3492 004f 3A       		.uleb128 0x3a
+ 3493 0050 0B       		.uleb128 0xb
+ 3494 0051 3B       		.uleb128 0x3b
+ 3495 0052 0B       		.uleb128 0xb
+ 3496 0053 49       		.uleb128 0x49
+ 3497 0054 13       		.uleb128 0x13
+ 3498 0055 38       		.uleb128 0x38
+ 3499 0056 0B       		.uleb128 0xb
+ 3500 0057 00       		.byte	0
+ 3501 0058 00       		.byte	0
+ 3502 0059 08       		.uleb128 0x8
+ 3503 005a 04       		.uleb128 0x4
+ 3504 005b 01       		.byte	0x1
+ 3505 005c 0B       		.uleb128 0xb
+ARM GAS  /tmp/ccPuQAGd.s 			page 63
+
+
+ 3506 005d 0B       		.uleb128 0xb
+ 3507 005e 3A       		.uleb128 0x3a
+ 3508 005f 0B       		.uleb128 0xb
+ 3509 0060 3B       		.uleb128 0x3b
+ 3510 0061 0B       		.uleb128 0xb
+ 3511 0062 01       		.uleb128 0x1
+ 3512 0063 13       		.uleb128 0x13
+ 3513 0064 00       		.byte	0
+ 3514 0065 00       		.byte	0
+ 3515 0066 09       		.uleb128 0x9
+ 3516 0067 28       		.uleb128 0x28
+ 3517 0068 00       		.byte	0
+ 3518 0069 03       		.uleb128 0x3
+ 3519 006a 0E       		.uleb128 0xe
+ 3520 006b 1C       		.uleb128 0x1c
+ 3521 006c 0D       		.uleb128 0xd
+ 3522 006d 00       		.byte	0
+ 3523 006e 00       		.byte	0
+ 3524 006f 0A       		.uleb128 0xa
+ 3525 0070 15       		.uleb128 0x15
+ 3526 0071 01       		.byte	0x1
+ 3527 0072 27       		.uleb128 0x27
+ 3528 0073 19       		.uleb128 0x19
+ 3529 0074 49       		.uleb128 0x49
+ 3530 0075 13       		.uleb128 0x13
+ 3531 0076 01       		.uleb128 0x1
+ 3532 0077 13       		.uleb128 0x13
+ 3533 0078 00       		.byte	0
+ 3534 0079 00       		.byte	0
+ 3535 007a 0B       		.uleb128 0xb
+ 3536 007b 05       		.uleb128 0x5
+ 3537 007c 00       		.byte	0
+ 3538 007d 49       		.uleb128 0x49
+ 3539 007e 13       		.uleb128 0x13
+ 3540 007f 00       		.byte	0
+ 3541 0080 00       		.byte	0
+ 3542 0081 0C       		.uleb128 0xc
+ 3543 0082 0F       		.uleb128 0xf
+ 3544 0083 00       		.byte	0
+ 3545 0084 0B       		.uleb128 0xb
+ 3546 0085 0B       		.uleb128 0xb
+ 3547 0086 49       		.uleb128 0x49
+ 3548 0087 13       		.uleb128 0x13
+ 3549 0088 00       		.byte	0
+ 3550 0089 00       		.byte	0
+ 3551 008a 0D       		.uleb128 0xd
+ 3552 008b 2E       		.uleb128 0x2e
+ 3553 008c 01       		.byte	0x1
+ 3554 008d 3F       		.uleb128 0x3f
+ 3555 008e 19       		.uleb128 0x19
+ 3556 008f 03       		.uleb128 0x3
+ 3557 0090 0E       		.uleb128 0xe
+ 3558 0091 3A       		.uleb128 0x3a
+ 3559 0092 0B       		.uleb128 0xb
+ 3560 0093 3B       		.uleb128 0x3b
+ 3561 0094 0B       		.uleb128 0xb
+ 3562 0095 27       		.uleb128 0x27
+ARM GAS  /tmp/ccPuQAGd.s 			page 64
+
+
+ 3563 0096 19       		.uleb128 0x19
+ 3564 0097 49       		.uleb128 0x49
+ 3565 0098 13       		.uleb128 0x13
+ 3566 0099 11       		.uleb128 0x11
+ 3567 009a 01       		.uleb128 0x1
+ 3568 009b 12       		.uleb128 0x12
+ 3569 009c 06       		.uleb128 0x6
+ 3570 009d 40       		.uleb128 0x40
+ 3571 009e 18       		.uleb128 0x18
+ 3572 009f 9642     		.uleb128 0x2116
+ 3573 00a1 19       		.uleb128 0x19
+ 3574 00a2 01       		.uleb128 0x1
+ 3575 00a3 13       		.uleb128 0x13
+ 3576 00a4 00       		.byte	0
+ 3577 00a5 00       		.byte	0
+ 3578 00a6 0E       		.uleb128 0xe
+ 3579 00a7 05       		.uleb128 0x5
+ 3580 00a8 00       		.byte	0
+ 3581 00a9 03       		.uleb128 0x3
+ 3582 00aa 08       		.uleb128 0x8
+ 3583 00ab 3A       		.uleb128 0x3a
+ 3584 00ac 0B       		.uleb128 0xb
+ 3585 00ad 3B       		.uleb128 0x3b
+ 3586 00ae 0B       		.uleb128 0xb
+ 3587 00af 49       		.uleb128 0x49
+ 3588 00b0 13       		.uleb128 0x13
+ 3589 00b1 02       		.uleb128 0x2
+ 3590 00b2 18       		.uleb128 0x18
+ 3591 00b3 00       		.byte	0
+ 3592 00b4 00       		.byte	0
+ 3593 00b5 0F       		.uleb128 0xf
+ 3594 00b6 05       		.uleb128 0x5
+ 3595 00b7 00       		.byte	0
+ 3596 00b8 03       		.uleb128 0x3
+ 3597 00b9 0E       		.uleb128 0xe
+ 3598 00ba 3A       		.uleb128 0x3a
+ 3599 00bb 0B       		.uleb128 0xb
+ 3600 00bc 3B       		.uleb128 0x3b
+ 3601 00bd 0B       		.uleb128 0xb
+ 3602 00be 49       		.uleb128 0x49
+ 3603 00bf 13       		.uleb128 0x13
+ 3604 00c0 02       		.uleb128 0x2
+ 3605 00c1 18       		.uleb128 0x18
+ 3606 00c2 00       		.byte	0
+ 3607 00c3 00       		.byte	0
+ 3608 00c4 10       		.uleb128 0x10
+ 3609 00c5 2E       		.uleb128 0x2e
+ 3610 00c6 01       		.byte	0x1
+ 3611 00c7 03       		.uleb128 0x3
+ 3612 00c8 0E       		.uleb128 0xe
+ 3613 00c9 3A       		.uleb128 0x3a
+ 3614 00ca 0B       		.uleb128 0xb
+ 3615 00cb 3B       		.uleb128 0x3b
+ 3616 00cc 0B       		.uleb128 0xb
+ 3617 00cd 27       		.uleb128 0x27
+ 3618 00ce 19       		.uleb128 0x19
+ 3619 00cf 49       		.uleb128 0x49
+ARM GAS  /tmp/ccPuQAGd.s 			page 65
+
+
+ 3620 00d0 13       		.uleb128 0x13
+ 3621 00d1 11       		.uleb128 0x11
+ 3622 00d2 01       		.uleb128 0x1
+ 3623 00d3 12       		.uleb128 0x12
+ 3624 00d4 06       		.uleb128 0x6
+ 3625 00d5 40       		.uleb128 0x40
+ 3626 00d6 18       		.uleb128 0x18
+ 3627 00d7 9642     		.uleb128 0x2116
+ 3628 00d9 19       		.uleb128 0x19
+ 3629 00da 01       		.uleb128 0x1
+ 3630 00db 13       		.uleb128 0x13
+ 3631 00dc 00       		.byte	0
+ 3632 00dd 00       		.byte	0
+ 3633 00de 11       		.uleb128 0x11
+ 3634 00df 34       		.uleb128 0x34
+ 3635 00e0 00       		.byte	0
+ 3636 00e1 03       		.uleb128 0x3
+ 3637 00e2 0E       		.uleb128 0xe
+ 3638 00e3 3A       		.uleb128 0x3a
+ 3639 00e4 0B       		.uleb128 0xb
+ 3640 00e5 3B       		.uleb128 0x3b
+ 3641 00e6 0B       		.uleb128 0xb
+ 3642 00e7 49       		.uleb128 0x49
+ 3643 00e8 13       		.uleb128 0x13
+ 3644 00e9 02       		.uleb128 0x2
+ 3645 00ea 18       		.uleb128 0x18
+ 3646 00eb 00       		.byte	0
+ 3647 00ec 00       		.byte	0
+ 3648 00ed 12       		.uleb128 0x12
+ 3649 00ee 34       		.uleb128 0x34
+ 3650 00ef 00       		.byte	0
+ 3651 00f0 03       		.uleb128 0x3
+ 3652 00f1 08       		.uleb128 0x8
+ 3653 00f2 3A       		.uleb128 0x3a
+ 3654 00f3 0B       		.uleb128 0xb
+ 3655 00f4 3B       		.uleb128 0x3b
+ 3656 00f5 0B       		.uleb128 0xb
+ 3657 00f6 49       		.uleb128 0x49
+ 3658 00f7 13       		.uleb128 0x13
+ 3659 00f8 02       		.uleb128 0x2
+ 3660 00f9 18       		.uleb128 0x18
+ 3661 00fa 00       		.byte	0
+ 3662 00fb 00       		.byte	0
+ 3663 00fc 13       		.uleb128 0x13
+ 3664 00fd 2E       		.uleb128 0x2e
+ 3665 00fe 01       		.byte	0x1
+ 3666 00ff 3F       		.uleb128 0x3f
+ 3667 0100 19       		.uleb128 0x19
+ 3668 0101 03       		.uleb128 0x3
+ 3669 0102 0E       		.uleb128 0xe
+ 3670 0103 3A       		.uleb128 0x3a
+ 3671 0104 0B       		.uleb128 0xb
+ 3672 0105 3B       		.uleb128 0x3b
+ 3673 0106 05       		.uleb128 0x5
+ 3674 0107 27       		.uleb128 0x27
+ 3675 0108 19       		.uleb128 0x19
+ 3676 0109 49       		.uleb128 0x49
+ARM GAS  /tmp/ccPuQAGd.s 			page 66
+
+
+ 3677 010a 13       		.uleb128 0x13
+ 3678 010b 11       		.uleb128 0x11
+ 3679 010c 01       		.uleb128 0x1
+ 3680 010d 12       		.uleb128 0x12
+ 3681 010e 06       		.uleb128 0x6
+ 3682 010f 40       		.uleb128 0x40
+ 3683 0110 18       		.uleb128 0x18
+ 3684 0111 9642     		.uleb128 0x2116
+ 3685 0113 19       		.uleb128 0x19
+ 3686 0114 01       		.uleb128 0x1
+ 3687 0115 13       		.uleb128 0x13
+ 3688 0116 00       		.byte	0
+ 3689 0117 00       		.byte	0
+ 3690 0118 14       		.uleb128 0x14
+ 3691 0119 05       		.uleb128 0x5
+ 3692 011a 00       		.byte	0
+ 3693 011b 03       		.uleb128 0x3
+ 3694 011c 0E       		.uleb128 0xe
+ 3695 011d 3A       		.uleb128 0x3a
+ 3696 011e 0B       		.uleb128 0xb
+ 3697 011f 3B       		.uleb128 0x3b
+ 3698 0120 05       		.uleb128 0x5
+ 3699 0121 49       		.uleb128 0x49
+ 3700 0122 13       		.uleb128 0x13
+ 3701 0123 02       		.uleb128 0x2
+ 3702 0124 18       		.uleb128 0x18
+ 3703 0125 00       		.byte	0
+ 3704 0126 00       		.byte	0
+ 3705 0127 15       		.uleb128 0x15
+ 3706 0128 34       		.uleb128 0x34
+ 3707 0129 00       		.byte	0
+ 3708 012a 03       		.uleb128 0x3
+ 3709 012b 08       		.uleb128 0x8
+ 3710 012c 3A       		.uleb128 0x3a
+ 3711 012d 0B       		.uleb128 0xb
+ 3712 012e 3B       		.uleb128 0x3b
+ 3713 012f 05       		.uleb128 0x5
+ 3714 0130 49       		.uleb128 0x49
+ 3715 0131 13       		.uleb128 0x13
+ 3716 0132 02       		.uleb128 0x2
+ 3717 0133 18       		.uleb128 0x18
+ 3718 0134 00       		.byte	0
+ 3719 0135 00       		.byte	0
+ 3720 0136 16       		.uleb128 0x16
+ 3721 0137 34       		.uleb128 0x34
+ 3722 0138 00       		.byte	0
+ 3723 0139 03       		.uleb128 0x3
+ 3724 013a 0E       		.uleb128 0xe
+ 3725 013b 3A       		.uleb128 0x3a
+ 3726 013c 0B       		.uleb128 0xb
+ 3727 013d 3B       		.uleb128 0x3b
+ 3728 013e 05       		.uleb128 0x5
+ 3729 013f 49       		.uleb128 0x49
+ 3730 0140 13       		.uleb128 0x13
+ 3731 0141 02       		.uleb128 0x2
+ 3732 0142 18       		.uleb128 0x18
+ 3733 0143 00       		.byte	0
+ARM GAS  /tmp/ccPuQAGd.s 			page 67
+
+
+ 3734 0144 00       		.byte	0
+ 3735 0145 17       		.uleb128 0x17
+ 3736 0146 2E       		.uleb128 0x2e
+ 3737 0147 01       		.byte	0x1
+ 3738 0148 3F       		.uleb128 0x3f
+ 3739 0149 19       		.uleb128 0x19
+ 3740 014a 03       		.uleb128 0x3
+ 3741 014b 0E       		.uleb128 0xe
+ 3742 014c 3A       		.uleb128 0x3a
+ 3743 014d 0B       		.uleb128 0xb
+ 3744 014e 3B       		.uleb128 0x3b
+ 3745 014f 05       		.uleb128 0x5
+ 3746 0150 27       		.uleb128 0x27
+ 3747 0151 19       		.uleb128 0x19
+ 3748 0152 49       		.uleb128 0x49
+ 3749 0153 13       		.uleb128 0x13
+ 3750 0154 11       		.uleb128 0x11
+ 3751 0155 01       		.uleb128 0x1
+ 3752 0156 12       		.uleb128 0x12
+ 3753 0157 06       		.uleb128 0x6
+ 3754 0158 40       		.uleb128 0x40
+ 3755 0159 18       		.uleb128 0x18
+ 3756 015a 9742     		.uleb128 0x2117
+ 3757 015c 19       		.uleb128 0x19
+ 3758 015d 01       		.uleb128 0x1
+ 3759 015e 13       		.uleb128 0x13
+ 3760 015f 00       		.byte	0
+ 3761 0160 00       		.byte	0
+ 3762 0161 18       		.uleb128 0x18
+ 3763 0162 05       		.uleb128 0x5
+ 3764 0163 00       		.byte	0
+ 3765 0164 03       		.uleb128 0x3
+ 3766 0165 08       		.uleb128 0x8
+ 3767 0166 3A       		.uleb128 0x3a
+ 3768 0167 0B       		.uleb128 0xb
+ 3769 0168 3B       		.uleb128 0x3b
+ 3770 0169 05       		.uleb128 0x5
+ 3771 016a 49       		.uleb128 0x49
+ 3772 016b 13       		.uleb128 0x13
+ 3773 016c 02       		.uleb128 0x2
+ 3774 016d 18       		.uleb128 0x18
+ 3775 016e 00       		.byte	0
+ 3776 016f 00       		.byte	0
+ 3777 0170 19       		.uleb128 0x19
+ 3778 0171 01       		.uleb128 0x1
+ 3779 0172 01       		.byte	0x1
+ 3780 0173 49       		.uleb128 0x49
+ 3781 0174 13       		.uleb128 0x13
+ 3782 0175 01       		.uleb128 0x1
+ 3783 0176 13       		.uleb128 0x13
+ 3784 0177 00       		.byte	0
+ 3785 0178 00       		.byte	0
+ 3786 0179 1A       		.uleb128 0x1a
+ 3787 017a 21       		.uleb128 0x21
+ 3788 017b 00       		.byte	0
+ 3789 017c 49       		.uleb128 0x49
+ 3790 017d 13       		.uleb128 0x13
+ARM GAS  /tmp/ccPuQAGd.s 			page 68
+
+
+ 3791 017e 2F       		.uleb128 0x2f
+ 3792 017f 0B       		.uleb128 0xb
+ 3793 0180 00       		.byte	0
+ 3794 0181 00       		.byte	0
+ 3795 0182 1B       		.uleb128 0x1b
+ 3796 0183 34       		.uleb128 0x34
+ 3797 0184 00       		.byte	0
+ 3798 0185 03       		.uleb128 0x3
+ 3799 0186 0E       		.uleb128 0xe
+ 3800 0187 3A       		.uleb128 0x3a
+ 3801 0188 0B       		.uleb128 0xb
+ 3802 0189 3B       		.uleb128 0x3b
+ 3803 018a 0B       		.uleb128 0xb
+ 3804 018b 49       		.uleb128 0x49
+ 3805 018c 13       		.uleb128 0x13
+ 3806 018d 3F       		.uleb128 0x3f
+ 3807 018e 19       		.uleb128 0x19
+ 3808 018f 3C       		.uleb128 0x3c
+ 3809 0190 19       		.uleb128 0x19
+ 3810 0191 00       		.byte	0
+ 3811 0192 00       		.byte	0
+ 3812 0193 1C       		.uleb128 0x1c
+ 3813 0194 34       		.uleb128 0x34
+ 3814 0195 00       		.byte	0
+ 3815 0196 03       		.uleb128 0x3
+ 3816 0197 0E       		.uleb128 0xe
+ 3817 0198 3A       		.uleb128 0x3a
+ 3818 0199 0B       		.uleb128 0xb
+ 3819 019a 3B       		.uleb128 0x3b
+ 3820 019b 05       		.uleb128 0x5
+ 3821 019c 49       		.uleb128 0x49
+ 3822 019d 13       		.uleb128 0x13
+ 3823 019e 3F       		.uleb128 0x3f
+ 3824 019f 19       		.uleb128 0x19
+ 3825 01a0 3C       		.uleb128 0x3c
+ 3826 01a1 19       		.uleb128 0x19
+ 3827 01a2 00       		.byte	0
+ 3828 01a3 00       		.byte	0
+ 3829 01a4 1D       		.uleb128 0x1d
+ 3830 01a5 35       		.uleb128 0x35
+ 3831 01a6 00       		.byte	0
+ 3832 01a7 49       		.uleb128 0x49
+ 3833 01a8 13       		.uleb128 0x13
+ 3834 01a9 00       		.byte	0
+ 3835 01aa 00       		.byte	0
+ 3836 01ab 00       		.byte	0
+ 3837              		.section	.debug_aranges,"",%progbits
+ 3838 0000 1C000000 		.4byte	0x1c
+ 3839 0004 0200     		.2byte	0x2
+ 3840 0006 00000000 		.4byte	.Ldebug_info0
+ 3841 000a 04       		.byte	0x4
+ 3842 000b 00       		.byte	0
+ 3843 000c 0000     		.2byte	0
+ 3844 000e 0000     		.2byte	0
+ 3845 0010 00000000 		.4byte	.Ltext0
+ 3846 0014 3A080000 		.4byte	.Letext0-.Ltext0
+ 3847 0018 00000000 		.4byte	0
+ARM GAS  /tmp/ccPuQAGd.s 			page 69
+
+
+ 3848 001c 00000000 		.4byte	0
+ 3849              		.section	.debug_line,"",%progbits
+ 3850              	.Ldebug_line0:
+ 3851 0000 E8030000 		.section	.debug_str,"MS",%progbits,1
+ 3851      02007802 
+ 3851      00000201 
+ 3851      FB0E0D00 
+ 3851      01010101 
+ 3852              	.LASF34:
+ 3853 0000 41584953 		.ascii	"AXIS_X\000"
+ 3853      5F5800
+ 3854              	.LASF35:
+ 3855 0007 41584953 		.ascii	"AXIS_Y\000"
+ 3855      5F5900
+ 3856              	.LASF36:
+ 3857 000e 41584953 		.ascii	"AXIS_Z\000"
+ 3857      5F5A00
+ 3858              	.LASF46:
+ 3859 0015 46535F4D 		.ascii	"FS_MID_LOW\000"
+ 3859      49445F4C 
+ 3859      4F5700
+ 3860              	.LASF114:
+ 3861 0020 4253505F 		.ascii	"BSP_MAGNETO_Write_Reg\000"
+ 3861      4D41474E 
+ 3861      45544F5F 
+ 3861      57726974 
+ 3861      655F5265 
+ 3862              	.LASF43:
+ 3863 0036 4F44525F 		.ascii	"ODR_HIGH\000"
+ 3863      48494748 
+ 3863      00
+ 3864              	.LASF30:
+ 3865 003f 434F4D50 		.ascii	"COMPONENT_ERROR\000"
+ 3865      4F4E454E 
+ 3865      545F4552 
+ 3865      524F5200 
+ 3866              	.LASF26:
+ 3867 004f 70565461 		.ascii	"pVTable\000"
+ 3867      626C6500 
+ 3868              	.LASF51:
+ 3869 0057 496E6974 		.ascii	"Init\000"
+ 3869      00
+ 3870              	.LASF122:
+ 3871 005c 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 3871      4320342E 
+ 3871      382E3420 
+ 3871      32303134 
+ 3871      30353236 
+ 3872 008f 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m4 -mno-thumb-in"
+ 3872      20726576 
+ 3872      6973696F 
+ 3872      6E203231 
+ 3872      31333538 
+ 3873 00c2 74657277 		.ascii	"terwork -mthumb -ggdb -O0 -std=c99 -fomit-frame-poi"
+ 3873      6F726B20 
+ 3873      2D6D7468 
+ 3873      756D6220 
+ARM GAS  /tmp/ccPuQAGd.s 			page 70
+
+
+ 3873      2D676764 
+ 3874 00f5 6E746572 		.ascii	"nter -falign-functions=16\000"
+ 3874      202D6661 
+ 3874      6C69676E 
+ 3874      2D66756E 
+ 3874      6374696F 
+ 3875              	.LASF78:
+ 3876 010f 4C534D33 		.ascii	"LSM303AGR_M_Data_t\000"
+ 3876      30334147 
+ 3876      525F4D5F 
+ 3876      44617461 
+ 3876      5F7400
+ 3877              	.LASF66:
+ 3878 0122 52656164 		.ascii	"Read_Reg\000"
+ 3878      5F526567 
+ 3878      00
+ 3879              	.LASF84:
+ 3880 012b 4C534D33 		.ascii	"LSM303AGR_M_0\000"
+ 3880      30334147 
+ 3880      525F4D5F 
+ 3880      3000
+ 3881              	.LASF3:
+ 3882 0139 5F5F7569 		.ascii	"__uint8_t\000"
+ 3882      6E74385F 
+ 3882      7400
+ 3883              	.LASF93:
+ 3884 0143 4253505F 		.ascii	"BSP_MAGNETO_IsInitialized\000"
+ 3884      4D41474E 
+ 3884      45544F5F 
+ 3884      4973496E 
+ 3884      69746961 
+ 3885              	.LASF11:
+ 3886 015d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3886      206C6F6E 
+ 3886      6720756E 
+ 3886      7369676E 
+ 3886      65642069 
+ 3887              	.LASF49:
+ 3888 0174 46535F48 		.ascii	"FS_HIGH\000"
+ 3888      49474800 
+ 3889              	.LASF33:
+ 3890 017c 44727653 		.ascii	"DrvStatusTypeDef\000"
+ 3890      74617475 
+ 3890      73547970 
+ 3890      65446566 
+ 3890      00
+ 3891              	.LASF120:
+ 3892 018d 4C534D33 		.ascii	"LSM303AGR_M_Drv\000"
+ 3892      30334147 
+ 3892      525F4D5F 
+ 3892      44727600 
+ 3893              	.LASF121:
+ 3894 019d 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 3894      52784275 
+ 3894      66666572 
+ 3894      00
+ 3895              	.LASF58:
+ARM GAS  /tmp/ccPuQAGd.s 			page 71
+
+
+ 3896 01aa 4765745F 		.ascii	"Get_AxesRaw\000"
+ 3896      41786573 
+ 3896      52617700 
+ 3897              	.LASF56:
+ 3898 01b6 43686563 		.ascii	"Check_WhoAmI\000"
+ 3898      6B5F5768 
+ 3898      6F416D49 
+ 3898      00
+ 3899              	.LASF79:
+ 3900 01c3 4C534D36 		.ascii	"LSM6DSM\000"
+ 3900      44534D00 
+ 3901              	.LASF21:
+ 3902 01cb 696E7374 		.ascii	"instance\000"
+ 3902      616E6365 
+ 3902      00
+ 3903              	.LASF10:
+ 3904 01d4 6C6F6E67 		.ascii	"long long int\000"
+ 3904      206C6F6E 
+ 3904      6720696E 
+ 3904      7400
+ 3905              	.LASF1:
+ 3906 01e2 7369676E 		.ascii	"signed char\000"
+ 3906      65642063 
+ 3906      68617200 
+ 3907              	.LASF111:
+ 3908 01ee 4253505F 		.ascii	"BSP_MAGNETO_Set_FS\000"
+ 3908      4D41474E 
+ 3908      45544F5F 
+ 3908      5365745F 
+ 3908      465300
+ 3909              	.LASF8:
+ 3910 0201 6C6F6E67 		.ascii	"long int\000"
+ 3910      20696E74 
+ 3910      00
+ 3911              	.LASF101:
+ 3912 020a 6D61676E 		.ascii	"magnetic_field\000"
+ 3912      65746963 
+ 3912      5F666965 
+ 3912      6C6400
+ 3913              	.LASF97:
+ 3914 0219 4253505F 		.ascii	"BSP_MAGNETO_Get_Instance\000"
+ 3914      4D41474E 
+ 3914      45544F5F 
+ 3914      4765745F 
+ 3914      496E7374 
+ 3915              	.LASF32:
+ 3916 0232 434F4D50 		.ascii	"COMPONENT_NOT_IMPLEMENTED\000"
+ 3916      4F4E454E 
+ 3916      545F4E4F 
+ 3916      545F494D 
+ 3916      504C454D 
+ 3917              	.LASF19:
+ 3918 024c 61646472 		.ascii	"address\000"
+ 3918      65737300 
+ 3919              	.LASF40:
+ 3920 0254 4F44525F 		.ascii	"ODR_MID_LOW\000"
+ 3920      4D49445F 
+ARM GAS  /tmp/ccPuQAGd.s 			page 72
+
+
+ 3920      4C4F5700 
+ 3921              	.LASF65:
+ 3922 0260 5365745F 		.ascii	"Set_FS_Value\000"
+ 3922      46535F56 
+ 3922      616C7565 
+ 3922      00
+ 3923              	.LASF118:
+ 3924 026d 4C534D33 		.ascii	"LSM303AGR_M_0_Data\000"
+ 3924      30334147 
+ 3924      525F4D5F 
+ 3924      305F4461 
+ 3924      746100
+ 3925              	.LASF110:
+ 3926 0280 66756C6C 		.ascii	"fullScale\000"
+ 3926      5363616C 
+ 3926      6500
+ 3927              	.LASF106:
+ 3928 028a 4253505F 		.ascii	"BSP_MAGNETO_Get_ODR\000"
+ 3928      4D41474E 
+ 3928      45544F5F 
+ 3928      4765745F 
+ 3928      4F445200 
+ 3929              	.LASF25:
+ 3930 029e 70446174 		.ascii	"pData\000"
+ 3930      6100
+ 3931              	.LASF63:
+ 3932 02a4 4765745F 		.ascii	"Get_FS\000"
+ 3932      465300
+ 3933              	.LASF38:
+ 3934 02ab 53656E73 		.ascii	"SensorAxes_t\000"
+ 3934      6F724178 
+ 3934      65735F74 
+ 3934      00
+ 3935              	.LASF124:
+ 3936 02b8 2F752F65 		.ascii	"/u/elawton2/p442-submissions/sensortile/reference/b"
+ 3936      6C617774 
+ 3936      6F6E322F 
+ 3936      70343432 
+ 3936      2D737562 
+ 3937 02eb 6C75656D 		.ascii	"luemicrosystem2/BlueMicrosystem2_V2.2.0/Projects/Mu"
+ 3937      6963726F 
+ 3937      73797374 
+ 3937      656D322F 
+ 3937      426C7565 
+ 3938 031e 6C74692F 		.ascii	"lti/Applications/BlueMicrosystem2/bluechibi\000"
+ 3938      4170706C 
+ 3938      69636174 
+ 3938      696F6E73 
+ 3938      2F426C75 
+ 3939              	.LASF102:
+ 3940 034a 4253505F 		.ascii	"BSP_MAGNETO_Get_AxesRaw\000"
+ 3940      4D41474E 
+ 3940      45544F5F 
+ 3940      4765745F 
+ 3940      41786573 
+ 3941              	.LASF4:
+ 3942 0362 5F5F696E 		.ascii	"__int16_t\000"
+ARM GAS  /tmp/ccPuQAGd.s 			page 73
+
+
+ 3942      7431365F 
+ 3942      7400
+ 3943              	.LASF62:
+ 3944 036c 5365745F 		.ascii	"Set_ODR_Value\000"
+ 3944      4F44525F 
+ 3944      56616C75 
+ 3944      6500
+ 3945              	.LASF72:
+ 3946 037a 70457874 		.ascii	"pExtData\000"
+ 3946      44617461 
+ 3946      00
+ 3947              	.LASF61:
+ 3948 0383 5365745F 		.ascii	"Set_ODR\000"
+ 3948      4F445200 
+ 3949              	.LASF103:
+ 3950 038b 76616C75 		.ascii	"value\000"
+ 3950      6500
+ 3951              	.LASF73:
+ 3952 0391 4D41474E 		.ascii	"MAGNETO_Data_t\000"
+ 3952      45544F5F 
+ 3952      44617461 
+ 3952      5F7400
+ 3953              	.LASF0:
+ 3954 03a0 756E7369 		.ascii	"unsigned int\000"
+ 3954      676E6564 
+ 3954      20696E74 
+ 3954      00
+ 3955              	.LASF52:
+ 3956 03ad 4465496E 		.ascii	"DeInit\000"
+ 3956      697400
+ 3957              	.LASF44:
+ 3958 03b4 53656E73 		.ascii	"SensorOdr_t\000"
+ 3958      6F724F64 
+ 3958      725F7400 
+ 3959              	.LASF9:
+ 3960 03c0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3960      20756E73 
+ 3960      69676E65 
+ 3960      6420696E 
+ 3960      7400
+ 3961              	.LASF89:
+ 3962 03d2 4253505F 		.ascii	"BSP_MAGNETO_Init\000"
+ 3962      4D41474E 
+ 3962      45544F5F 
+ 3962      496E6974 
+ 3962      00
+ 3963              	.LASF76:
+ 3964 03e3 4C534D33 		.ascii	"LSM303AGR_Combo_Data_t\000"
+ 3964      30334147 
+ 3964      525F436F 
+ 3964      6D626F5F 
+ 3964      44617461 
+ 3965              	.LASF42:
+ 3966 03fa 4F44525F 		.ascii	"ODR_MID_HIGH\000"
+ 3966      4D49445F 
+ 3966      48494748 
+ 3966      00
+ARM GAS  /tmp/ccPuQAGd.s 			page 74
+
+
+ 3967              	.LASF88:
+ 3968 0407 64617461 		.ascii	"data\000"
+ 3968      00
+ 3969              	.LASF104:
+ 3970 040c 4253505F 		.ascii	"BSP_MAGNETO_Get_Sensitivity\000"
+ 3970      4D41474E 
+ 3970      45544F5F 
+ 3970      4765745F 
+ 3970      53656E73 
+ 3971              	.LASF75:
+ 3972 0428 69734D61 		.ascii	"isMagInitialized\000"
+ 3972      67496E69 
+ 3972      7469616C 
+ 3972      697A6564 
+ 3972      00
+ 3973              	.LASF6:
+ 3974 0439 73686F72 		.ascii	"short unsigned int\000"
+ 3974      7420756E 
+ 3974      7369676E 
+ 3974      65642069 
+ 3974      6E7400
+ 3975              	.LASF85:
+ 3976 044c 4D41474E 		.ascii	"MAGNETO_ID_t\000"
+ 3976      45544F5F 
+ 3976      49445F74 
+ 3976      00
+ 3977              	.LASF54:
+ 3978 0459 53656E73 		.ascii	"Sensor_Disable\000"
+ 3978      6F725F44 
+ 3978      69736162 
+ 3978      6C6500
+ 3979              	.LASF98:
+ 3980 0468 4253505F 		.ascii	"BSP_MAGNETO_Get_WhoAmI\000"
+ 3980      4D41474E 
+ 3980      45544F5F 
+ 3980      4765745F 
+ 3980      57686F41 
+ 3981              	.LASF117:
+ 3982 047f 4D41474E 		.ascii	"MAGNETO_Data\000"
+ 3982      45544F5F 
+ 3982      44617461 
+ 3982      00
+ 3983              	.LASF83:
+ 3984 048c 4D41474E 		.ascii	"MAGNETO_SENSORS_AUTO\000"
+ 3984      45544F5F 
+ 3984      53454E53 
+ 3984      4F52535F 
+ 3984      4155544F 
+ 3985              	.LASF74:
+ 3986 04a1 69734163 		.ascii	"isAccInitialized\000"
+ 3986      63496E69 
+ 3986      7469616C 
+ 3986      697A6564 
+ 3986      00
+ 3987              	.LASF123:
+ 3988 04b2 2E2E2F2E 		.ascii	"../../../../../Drivers/BSP/SensorTile/SensorTile_ma"
+ 3988      2E2F2E2E 
+ARM GAS  /tmp/ccPuQAGd.s 			page 75
+
+
+ 3988      2F2E2E2F 
+ 3988      2E2E2F44 
+ 3988      72697665 
+ 3989 04e5 676E6574 		.ascii	"gneto.c\000"
+ 3989      6F2E6300 
+ 3990              	.LASF12:
+ 3991 04ed 73697A65 		.ascii	"sizetype\000"
+ 3991      74797065 
+ 3991      00
+ 3992              	.LASF57:
+ 3993 04f6 4765745F 		.ascii	"Get_Axes\000"
+ 3993      41786573 
+ 3993      00
+ 3994              	.LASF109:
+ 3995 04ff 4253505F 		.ascii	"BSP_MAGNETO_Get_FS\000"
+ 3995      4D41474E 
+ 3995      45544F5F 
+ 3995      4765745F 
+ 3995      465300
+ 3996              	.LASF68:
+ 3997 0512 4765745F 		.ascii	"Get_DRDY_Status\000"
+ 3997      44524459 
+ 3997      5F537461 
+ 3997      74757300 
+ 3998              	.LASF41:
+ 3999 0522 4F44525F 		.ascii	"ODR_MID\000"
+ 3999      4D494400 
+ 4000              	.LASF96:
+ 4001 052a 4253505F 		.ascii	"BSP_MAGNETO_IsCombo\000"
+ 4001      4D41474E 
+ 4001      45544F5F 
+ 4001      4973436F 
+ 4001      6D626F00 
+ 4002              	.LASF39:
+ 4003 053e 4F44525F 		.ascii	"ODR_LOW\000"
+ 4003      4C4F5700 
+ 4004              	.LASF90:
+ 4005 0546 4253505F 		.ascii	"BSP_MAGNETO_DeInit\000"
+ 4005      4D41474E 
+ 4005      45544F5F 
+ 4005      4465496E 
+ 4005      697400
+ 4006              	.LASF31:
+ 4007 0559 434F4D50 		.ascii	"COMPONENT_TIMEOUT\000"
+ 4007      4F4E454E 
+ 4007      545F5449 
+ 4007      4D454F55 
+ 4007      5400
+ 4008              	.LASF69:
+ 4009 056b 666C6F61 		.ascii	"float\000"
+ 4009      7400
+ 4010              	.LASF95:
+ 4011 0571 4253505F 		.ascii	"BSP_MAGNETO_IsEnabled\000"
+ 4011      4D41474E 
+ 4011      45544F5F 
+ 4011      4973456E 
+ 4011      61626C65 
+ARM GAS  /tmp/ccPuQAGd.s 			page 76
+
+
+ 4012              	.LASF99:
+ 4013 0587 4253505F 		.ascii	"BSP_MAGNETO_Check_WhoAmI\000"
+ 4013      4D41474E 
+ 4013      45544F5F 
+ 4013      43686563 
+ 4013      6B5F5768 
+ 4014              	.LASF92:
+ 4015 05a0 4253505F 		.ascii	"BSP_MAGNETO_Sensor_Disable\000"
+ 4015      4D41474E 
+ 4015      45544F5F 
+ 4015      53656E73 
+ 4015      6F725F44 
+ 4016              	.LASF55:
+ 4017 05bb 4765745F 		.ascii	"Get_WhoAmI\000"
+ 4017      57686F41 
+ 4017      6D4900
+ 4018              	.LASF16:
+ 4019 05c6 696E7433 		.ascii	"int32_t\000"
+ 4019      325F7400 
+ 4020              	.LASF2:
+ 4021 05ce 756E7369 		.ascii	"unsigned char\000"
+ 4021      676E6564 
+ 4021      20636861 
+ 4021      7200
+ 4022              	.LASF71:
+ 4023 05dc 70436F6D 		.ascii	"pComponentData\000"
+ 4023      706F6E65 
+ 4023      6E744461 
+ 4023      746100
+ 4024              	.LASF5:
+ 4025 05eb 73686F72 		.ascii	"short int\000"
+ 4025      7420696E 
+ 4025      7400
+ 4026              	.LASF59:
+ 4027 05f5 4765745F 		.ascii	"Get_Sensitivity\000"
+ 4027      53656E73 
+ 4027      69746976 
+ 4027      69747900 
+ 4028              	.LASF27:
+ 4029 0605 70457874 		.ascii	"pExtVTable\000"
+ 4029      56546162 
+ 4029      6C6500
+ 4030              	.LASF112:
+ 4031 0610 4253505F 		.ascii	"BSP_MAGNETO_Set_FS_Value\000"
+ 4031      4D41474E 
+ 4031      45544F5F 
+ 4031      5365745F 
+ 4031      46535F56 
+ 4032              	.LASF50:
+ 4033 0629 53656E73 		.ascii	"SensorFs_t\000"
+ 4033      6F724673 
+ 4033      5F7400
+ 4034              	.LASF125:
+ 4035 0634 4253505F 		.ascii	"BSP_LSM303AGR_MAGNETO_Init\000"
+ 4035      4C534D33 
+ 4035      30334147 
+ 4035      525F4D41 
+ARM GAS  /tmp/ccPuQAGd.s 			page 77
+
+
+ 4035      474E4554 
+ 4036              	.LASF107:
+ 4037 064f 4253505F 		.ascii	"BSP_MAGNETO_Set_ODR\000"
+ 4037      4D41474E 
+ 4037      45544F5F 
+ 4037      5365745F 
+ 4037      4F445200 
+ 4038              	.LASF13:
+ 4039 0663 63686172 		.ascii	"char\000"
+ 4039      00
+ 4040              	.LASF77:
+ 4041 0668 636F6D62 		.ascii	"comboData\000"
+ 4041      6F446174 
+ 4041      6100
+ 4042              	.LASF91:
+ 4043 0672 4253505F 		.ascii	"BSP_MAGNETO_Sensor_Enable\000"
+ 4043      4D41474E 
+ 4043      45544F5F 
+ 4043      53656E73 
+ 4043      6F725F45 
+ 4044              	.LASF17:
+ 4045 068c 77686F5F 		.ascii	"who_am_i\000"
+ 4045      616D5F69 
+ 4045      00
+ 4046              	.LASF18:
+ 4047 0695 69665479 		.ascii	"ifType\000"
+ 4047      706500
+ 4048              	.LASF7:
+ 4049 069c 5F5F696E 		.ascii	"__int32_t\000"
+ 4049      7433325F 
+ 4049      7400
+ 4050              	.LASF47:
+ 4051 06a6 46535F4D 		.ascii	"FS_MID\000"
+ 4051      494400
+ 4052              	.LASF22:
+ 4053 06ad 6973496E 		.ascii	"isInitialized\000"
+ 4053      69746961 
+ 4053      6C697A65 
+ 4053      6400
+ 4054              	.LASF108:
+ 4055 06bb 4253505F 		.ascii	"BSP_MAGNETO_Set_ODR_Value\000"
+ 4055      4D41474E 
+ 4055      45544F5F 
+ 4055      5365745F 
+ 4055      4F44525F 
+ 4056              	.LASF45:
+ 4057 06d5 46535F4C 		.ascii	"FS_LOW\000"
+ 4057      4F5700
+ 4058              	.LASF113:
+ 4059 06dc 4253505F 		.ascii	"BSP_MAGNETO_Read_Reg\000"
+ 4059      4D41474E 
+ 4059      45544F5F 
+ 4059      52656164 
+ 4059      5F526567 
+ 4060              	.LASF28:
+ 4061 06f1 44727643 		.ascii	"DrvContextTypeDef\000"
+ 4061      6F6E7465 
+ARM GAS  /tmp/ccPuQAGd.s 			page 78
+
+
+ 4061      78745479 
+ 4061      70654465 
+ 4061      6600
+ 4062              	.LASF60:
+ 4063 0703 4765745F 		.ascii	"Get_ODR\000"
+ 4063      4F445200 
+ 4064              	.LASF119:
+ 4065 070b 4C534D33 		.ascii	"LSM303AGR_Combo_Data\000"
+ 4065      30334147 
+ 4065      525F436F 
+ 4065      6D626F5F 
+ 4065      44617461 
+ 4066              	.LASF115:
+ 4067 0720 4253505F 		.ascii	"BSP_MAGNETO_Get_DRDY_Status\000"
+ 4067      4D41474E 
+ 4067      45544F5F 
+ 4067      4765745F 
+ 4067      44524459 
+ 4068              	.LASF23:
+ 4069 073c 6973456E 		.ascii	"isEnabled\000"
+ 4069      61626C65 
+ 4069      6400
+ 4070              	.LASF24:
+ 4071 0746 6973436F 		.ascii	"isCombo\000"
+ 4071      6D626F00 
+ 4072              	.LASF67:
+ 4073 074e 57726974 		.ascii	"Write_Reg\000"
+ 4073      655F5265 
+ 4073      6700
+ 4074              	.LASF70:
+ 4075 0758 4D41474E 		.ascii	"MAGNETO_Drv_t\000"
+ 4075      45544F5F 
+ 4075      4472765F 
+ 4075      7400
+ 4076              	.LASF94:
+ 4077 0766 73746174 		.ascii	"status\000"
+ 4077      757300
+ 4078              	.LASF81:
+ 4079 076d 4C534D33 		.ascii	"LSM303AGR_M\000"
+ 4079      30334147 
+ 4079      525F4D00 
+ 4080              	.LASF48:
+ 4081 0779 46535F4D 		.ascii	"FS_MID_HIGH\000"
+ 4081      49445F48 
+ 4081      49474800 
+ 4082              	.LASF14:
+ 4083 0785 75696E74 		.ascii	"uint8_t\000"
+ 4083      385F7400 
+ 4084              	.LASF80:
+ 4085 078d 4C534D33 		.ascii	"LSM303AGR_X\000"
+ 4085      30334147 
+ 4085      525F5800 
+ 4086              	.LASF105:
+ 4087 0799 73656E73 		.ascii	"sensitivity\000"
+ 4087      69746976 
+ 4087      69747900 
+ 4088              	.LASF87:
+ARM GAS  /tmp/ccPuQAGd.s 			page 79
+
+
+ 4089 07a5 64726976 		.ascii	"driver\000"
+ 4089      657200
+ 4090              	.LASF86:
+ 4091 07ac 68616E64 		.ascii	"handle\000"
+ 4091      6C6500
+ 4092              	.LASF29:
+ 4093 07b3 434F4D50 		.ascii	"COMPONENT_OK\000"
+ 4093      4F4E454E 
+ 4093      545F4F4B 
+ 4093      00
+ 4094              	.LASF20:
+ 4095 07c0 73706944 		.ascii	"spiDevice\000"
+ 4095      65766963 
+ 4095      6500
+ 4096              	.LASF116:
+ 4097 07ca 4D41474E 		.ascii	"MAGNETO_SensorHandle\000"
+ 4097      45544F5F 
+ 4097      53656E73 
+ 4097      6F724861 
+ 4097      6E646C65 
+ 4098              	.LASF53:
+ 4099 07df 53656E73 		.ascii	"Sensor_Enable\000"
+ 4099      6F725F45 
+ 4099      6E61626C 
+ 4099      6500
+ 4100              	.LASF82:
+ 4101 07ed 4C505332 		.ascii	"LPS22HB\000"
+ 4101      32484200 
+ 4102              	.LASF15:
+ 4103 07f5 696E7431 		.ascii	"int16_t\000"
+ 4103      365F7400 
+ 4104              	.LASF100:
+ 4105 07fd 4253505F 		.ascii	"BSP_MAGNETO_Get_Axes\000"
+ 4105      4D41474E 
+ 4105      45544F5F 
+ 4105      4765745F 
+ 4105      41786573 
+ 4106              	.LASF64:
+ 4107 0812 5365745F 		.ascii	"Set_FS\000"
+ 4107      465300
+ 4108              	.LASF37:
+ 4109 0819 53656E73 		.ascii	"SensorAxesRaw_t\000"
+ 4109      6F724178 
+ 4109      65735261 
+ 4109      775F7400 
+ 4110              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
+ARM GAS  /tmp/ccPuQAGd.s 			page 80
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 SensorTile_magneto.c
+     /tmp/ccPuQAGd.s:19     .bss:00000000 $d
+     /tmp/ccPuQAGd.s:20     .bss:00000000 MAGNETO_SensorHandle
+     /tmp/ccPuQAGd.s:23     .bss:00000014 MAGNETO_Data
+     /tmp/ccPuQAGd.s:26     .bss:0000001c LSM303AGR_M_0_Data
+     /tmp/ccPuQAGd.s:29     .text:00000000 $t
+     /tmp/ccPuQAGd.s:35     .text:00000000 BSP_MAGNETO_Init
+     /tmp/ccPuQAGd.s:100    .text:00000050 BSP_LSM303AGR_MAGNETO_Init
+     /tmp/ccPuQAGd.s:283    .text:00000160 $d
+     /tmp/ccPuQAGd.s:291    .text:00000174 $t
+     /tmp/ccPuQAGd.s:297    .text:00000180 BSP_MAGNETO_DeInit
+     /tmp/ccPuQAGd.s:375    .text:000001e0 BSP_MAGNETO_Sensor_Enable
+     /tmp/ccPuQAGd.s:443    .text:00000230 BSP_MAGNETO_Sensor_Disable
+     /tmp/ccPuQAGd.s:511    .text:00000280 BSP_MAGNETO_IsInitialized
+     /tmp/ccPuQAGd.s:563    .text:000002b0 BSP_MAGNETO_IsEnabled
+     /tmp/ccPuQAGd.s:615    .text:000002e0 BSP_MAGNETO_IsCombo
+     /tmp/ccPuQAGd.s:667    .text:00000310 BSP_MAGNETO_Get_Instance
+     /tmp/ccPuQAGd.s:719    .text:00000340 BSP_MAGNETO_Get_WhoAmI
+     /tmp/ccPuQAGd.s:797    .text:000003a0 BSP_MAGNETO_Check_WhoAmI
+     /tmp/ccPuQAGd.s:865    .text:000003f0 BSP_MAGNETO_Get_Axes
+     /tmp/ccPuQAGd.s:943    .text:00000450 BSP_MAGNETO_Get_AxesRaw
+     /tmp/ccPuQAGd.s:1021   .text:000004b0 BSP_MAGNETO_Get_Sensitivity
+     /tmp/ccPuQAGd.s:1099   .text:00000510 BSP_MAGNETO_Get_ODR
+     /tmp/ccPuQAGd.s:1177   .text:00000570 BSP_MAGNETO_Set_ODR
+     /tmp/ccPuQAGd.s:1249   .text:000005d0 BSP_MAGNETO_Set_ODR_Value
+     /tmp/ccPuQAGd.s:1319   .text:00000620 BSP_MAGNETO_Get_FS
+     /tmp/ccPuQAGd.s:1397   .text:00000680 BSP_MAGNETO_Set_FS
+     /tmp/ccPuQAGd.s:1469   .text:000006e0 BSP_MAGNETO_Set_FS_Value
+     /tmp/ccPuQAGd.s:1539   .text:00000730 BSP_MAGNETO_Read_Reg
+     /tmp/ccPuQAGd.s:1621   .text:00000790 BSP_MAGNETO_Write_Reg
+     /tmp/ccPuQAGd.s:1695   .text:000007f0 BSP_MAGNETO_Get_DRDY_Status
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+Sensor_IO_SPI_Init
+Sensor_IO_SPI_CS_Init
+Sensor_IO_Write
+memset
+LSM303AGR_M_Drv
+LSM303AGR_Combo_Data
